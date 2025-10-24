@@ -1,0 +1,20 @@
+# Build output
+bin/
+*.o
+*.out
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Debug files
+*.dSYM/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# macOS
+.DS_Store
