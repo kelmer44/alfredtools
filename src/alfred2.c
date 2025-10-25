@@ -23,84 +23,101 @@ unsigned char *getPalette() {
 
 void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char extra)
 {
-    printf("Will save anims now");
-	// int w = bufferFile[0];
-	// int h = bufferFile[1];
-	// int n = bufferFile[4];
 
-	// if ((w == 0) || (h == 0) || (n == 0))
-	// 	return;
+	int w = bufferFile[0];
+	int h = bufferFile[1];
+	int n = bufferFile[4];
 
-    //     // QImage *image=new QImage(w*n,h,QImage::Format_Indexed8);
+	if ((w == 0) || (h == 0) || (n == 0))
+		return;
 
-	// 	// int p=indexCab/55;
-	// 	// int p2=(p*13)+11;
-	// 	// memset(bufpal,0,3);
-	// 	// itoa(p2,bufpal,10);
+        // QImage *image=new QImage(w*n,h,QImage::Format_Indexed8);
 
-	// unsigned superwidth = (unsigned)(w * n);
-	// unsigned height = (unsigned)h;
-	// unsigned total = (unsigned)(w * h);
+		// int p=indexCab/55;
+		// int p2=(p*13)+11;
+		// memset(bufpal,0,3);
+		// itoa(p2,bufpal,10);
 
-	// unsigned char *indices = (unsigned char *)malloc((size_t)superwidth * height);
-	// if (!indices) {
-	// 	fprintf(stderr, "saveAnim: out of memory allocating indices\n");
-	// 	return;
-	// }
+	unsigned superwidth = (unsigned)(w * n);
+	unsigned height = (unsigned)h;
+	unsigned total = (unsigned)(w * h);
 
-	// // Fill indices from global pic buffer using the same layout as the original code
-	// for (unsigned y = 0; y < height; ++y) {
-	// 	for (unsigned x = 0; x < superwidth; ++x) {
-	// 		unsigned frame = x / (unsigned)w;
-	// 		unsigned sx = x - frame * (unsigned)w;
-	// 		unsigned idx = (unsigned)offset + (frame * total) + (y * (unsigned)w) + sx;
-	// 		indices[y * superwidth + x] = pic[idx];
-	// 	}
-	// }
+	unsigned char *indices = (unsigned char *)malloc((size_t)superwidth * height);
+	if (!indices) {
+		fprintf(stderr, "saveAnim: out of memory allocating indices\n");
+		return;
+	}
 
-    // unsigned char *palette = getPalette();
-    // if(palette == NULL) {
-    //     free(palette);
-    //     free(indices);
-    //     return;
-    // }
+	// Fill indices from global pic buffer using the same layout as the original code
+	for (unsigned y = 0; y < height; ++y) {
+		for (unsigned x = 0; x < superwidth; ++x) {
+			unsigned frame = x / (unsigned)w;
+			unsigned sx = x - frame * (unsigned)w;
+			unsigned idx = (unsigned)offset + (frame * total) + (y * (unsigned)w) + sx;
+			indices[y * superwidth + x] = pic[idx];
+		}
+	}
 
-	// // Setup LodePNG state for palette encoding
-	// LodePNGState state;
-	// lodepng_state_init(&state);
-	// state.info_raw.colortype = LCT_PALETTE;
-	// state.info_raw.bitdepth = 8;
-	// state.info_png.color.colortype = LCT_PALETTE;
-	// state.info_png.color.bitdepth = 8;
+    unsigned char *palette = getPalette();
+    if(palette == NULL) {
+        free(palette);
+        free(indices);
+        return;
+    }
 
-	// state.info_png.color.palettesize = 256;
-	// state.info_png.color.palette = (unsigned char *)malloc(256 * 4);
-	// if (!state.info_png.color.palette) {
-	// 	fprintf(stderr, "saveAnim: out of memory allocating state palette\n");
-	// 	lodepng_state_cleanup(&state);
-	// 	free(palette);
-	// 	free(indices);
-	// 	return;
-	// }
-	// memcpy(state.info_png.color.palette, palette, 256 * 4);
+	// Setup LodePNG state for palette encoding
+	LodePNGState state;
+	lodepng_state_init(&state);
+	state.info_raw.colortype = LCT_PALETTE;
+	state.info_raw.bitdepth = 8;
+	state.info_png.color.colortype = LCT_PALETTE;
+	state.info_png.color.bitdepth = 8;
 
-	// unsigned char *png = NULL;
-	// size_t pngsize = 0;
-	// unsigned error = lodepng_encode(&png, &pngsize, indices, superwidth, height, &state);
-	// if (error) {
-	// 	fprintf(stderr, "saveAnim: lodepng_encode error %u: %s\n", error, lodepng_error_text(error));
-	// } else {
-	// 	// Build a filename (placeholder) — you may want to customize naming
-	// 	char filename[128];
-	// 	snprintf(filename, sizeof(filename), "anim_%d_%c.png", indexCab, extra ? extra : '0');
-	// 	lodepng_save_file(png, pngsize, filename);
-	// }
+	state.info_png.color.palettesize = 256;
+	state.info_png.color.palette = (unsigned char *)malloc(256 * 4);
+	if (!state.info_png.color.palette) {
+		fprintf(stderr, "saveAnim: out of memory allocating state palette\n");
+		lodepng_state_cleanup(&state);
+		free(palette);
+		free(indices);
+		return;
+	}
+	memcpy(state.info_png.color.palette, palette, 256 * 4);
+    // state.info_png.color.palette = palette;
+    for ( int i = 0; i< 768; i++){
+        lodepng_palette_add(
+            &state.info_png.color,
+            palette[i * 4 + 0],
+            palette[i * 4 + 1],
+            palette[i * 4 + 2],
+            palette[i * 4 + 3]
+        );
+        lodepng_palette_add(
+            &state.info_raw,
+            palette[i * 4 + 0],
+            palette[i * 4 + 1],
+            palette[i * 4 + 2],
+            palette[i * 4 + 3]
+        );
+    }
 
-	// // cleanup
-	// lodepng_state_cleanup(&state);
+	unsigned char *png = NULL;
+	size_t pngsize = 0;
+	unsigned error = lodepng_encode(&png, &pngsize, indices, superwidth, height, &state);
+	if (error) {
+		fprintf(stderr, "saveAnim: lodepng_encode error %u: %s\n", error, lodepng_error_text(error));
+	} else {
+		// Build a filename (placeholder) — you may want to customize naming
+		char filename[128];
+		snprintf(filename, sizeof(filename), "anim_%d_%c.png", indexCab, extra ? extra : '0');
+		lodepng_save_file(png, pngsize, filename);
+	}
+
+	// cleanup
+	lodepng_state_cleanup(&state);
 	// free(palette);
-	// free(indices);
-	// if (png) free(png);
+	free(indices);
+	if (png) free(png);
 
 
     // -------------------------------------------------
@@ -164,9 +181,15 @@ void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char
 
 int extractAlfredAnims()
 {
-    char *name = "../files/alfred.2";
+    char *name = "./files/alfred.2";
     pic = (unsigned char *)malloc(10000*10000*4);
     FILE *fp1 = fopen(name, "rb");
+
+    if (fp1 == NULL)
+    {
+        printf("failed to fopen %s\n", name);
+        return -1;
+    }
 
     fseek(fp1, 0L, SEEK_END);
     int size = ftell(fp1);
