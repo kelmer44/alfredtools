@@ -1,10 +1,11 @@
 CC := gcc
-CFLAGS := -O2 -std=c11 -Wall -Wextra
+# build with debug symbols for easier debugging in VSCode
+CFLAGS := -g -O0 -std=c11 -Wall -Wextra
 SRCDIR := src
 BINDIR := bin
 TARGET := $(BINDIR)/alfredcli
 
-SOURCES := $(SRCDIR)/main.c $(SRCDIR)/lodepng.c
+SOURCES := $(SRCDIR)/main.c $(SRCDIR)/lodepng.c $(SRCDIR)/alfred2.c
 
 all: $(TARGET)
 
