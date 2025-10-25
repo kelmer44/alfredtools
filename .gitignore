@@ -6,6 +6,7 @@ bin/
 *.dll
 *.so
 *.dylib
+*.*
 
 # Debug files
 *.dSYM/
@@ -18,3 +19,7 @@ bin/
 
 # macOS
 .DS_Store
+
+# output
+output/
+
