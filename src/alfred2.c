@@ -109,7 +109,7 @@ void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char
 	} else {
 		// Build a filename (placeholder) — you may want to customize naming
 		char filename[128];
-		snprintf(filename, sizeof(filename), "anim_%d_%c.png", indexCab, extra ? extra : '0');
+		snprintf(filename, sizeof(filename), "output/anim_%d_%c.png", indexCab, extra ? extra : '0');
 		lodepng_save_file(png, pngsize, filename);
 	}
 
