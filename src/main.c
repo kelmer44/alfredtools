@@ -8,9 +8,13 @@
 // Usage: ./alfredcli [out.png]
 
 void extractAlfredAnims();
+void extractAlfred3();
+void extractAlfred4();
 
 int main(int argc, char **argv) {
-    extractAlfredAnims();
+    // extractAlfredAnims();
+    // extractAlfred3();
+    extractAlfred4();
     // const char *out = "out.png";
     // if (argc > 1) out = argv[1];
 

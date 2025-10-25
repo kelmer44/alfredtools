@@ -5,7 +5,7 @@ SRCDIR := src
 BINDIR := bin
 TARGET := $(BINDIR)/alfredcli
 
-SOURCES := $(SRCDIR)/main.c $(SRCDIR)/lodepng.c $(SRCDIR)/alfred2.c
+SOURCES := $(SRCDIR)/main.c $(SRCDIR)/lodepng.c $(SRCDIR)/alfred*.c $(SRCDIR)/functions.c
 
 all: $(TARGET)
 

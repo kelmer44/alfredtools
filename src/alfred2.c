@@ -1,25 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lodepng.h"
+#include "functions.h"
 
 int index2=0;
 unsigned char *pic;
-
-unsigned char *getPalette() {
-
-	// Prepare a simple 256-color palette (RGBA). Replace with real palette when available.
-	unsigned char *palette = (unsigned char *)malloc(256 * 4);
-	if (!palette) {
-		fprintf(stderr, "saveAnim: out of memory allocating palette\n");
-		return NULL;
-	}
-	for (int i = 0; i < 256; ++i) {
-		palette[i * 4 + 0] = (unsigned char)i; // R
-		palette[i * 4 + 1] = (unsigned char)i; // G
-		palette[i * 4 + 2] = (unsigned char)i; // B
-		palette[i * 4 + 3] = 255;              // A
-	}
-}
 
 void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char extra)
 {
@@ -30,13 +15,6 @@ void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char
 
 	if ((w == 0) || (h == 0) || (n == 0))
 		return;
-
-        // QImage *image=new QImage(w*n,h,QImage::Format_Indexed8);
-
-		// int p=indexCab/55;
-		// int p2=(p*13)+11;
-		// memset(bufpal,0,3);
-		// itoa(p2,bufpal,10);
 
 	unsigned superwidth = (unsigned)(w * n);
 	unsigned height = (unsigned)h;
@@ -58,12 +36,11 @@ void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char
 		}
 	}
 
-    unsigned char *palette = getPalette();
-    if(palette == NULL) {
-        free(palette);
-        free(indices);
-        return;
-    }
+	unsigned char *palette = getPalette();
+	if (palette == NULL) {
+		free(indices);
+		return;
+	}
 
 	// Setup LodePNG state for palette encoding
 	LodePNGState state;
@@ -84,22 +61,18 @@ void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char
 	}
 	memcpy(state.info_png.color.palette, palette, 256 * 4);
     // state.info_png.color.palette = palette;
-    for ( int i = 0; i< 768; i++){
-        lodepng_palette_add(
-            &state.info_png.color,
-            palette[i * 4 + 0],
-            palette[i * 4 + 1],
-            palette[i * 4 + 2],
-            palette[i * 4 + 3]
-        );
-        lodepng_palette_add(
-            &state.info_raw,
-            palette[i * 4 + 0],
-            palette[i * 4 + 1],
-            palette[i * 4 + 2],
-            palette[i * 4 + 3]
-        );
-    }
+	for (int i = 0; i < 256; ++i) {
+		lodepng_palette_add(&state.info_png.color,
+							palette[i * 4 + 0],
+							palette[i * 4 + 1],
+							palette[i * 4 + 2],
+							palette[i * 4 + 3]);
+		lodepng_palette_add(&state.info_raw,
+							palette[i * 4 + 0],
+							palette[i * 4 + 1],
+							palette[i * 4 + 2],
+							palette[i * 4 + 3]);
+	}
 
 	unsigned char *png = NULL;
 	size_t pngsize = 0;
@@ -109,13 +82,13 @@ void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char
 	} else {
 		// Build a filename (placeholder) — you may want to customize naming
 		char filename[128];
-		snprintf(filename, sizeof(filename), "output/anim_%d_%c.png", indexCab, extra ? extra : '0');
+		snprintf(filename, sizeof(filename), "output/2/anim_%d_%c.png", indexCab, extra ? extra : '0');
 		lodepng_save_file(png, pngsize, filename);
 	}
 
 	// cleanup
 	lodepng_state_cleanup(&state);
-	// free(palette);
+	free(palette);
 	free(indices);
 	if (png) free(png);
 
