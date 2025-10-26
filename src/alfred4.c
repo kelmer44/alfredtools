@@ -5,19 +5,7 @@
 #include "lodepng.h"
 #include "functions.h"
 
-
-int BUFFER_SIZE = 8;
-FILE *source;
-FILE *destination;
-int n;
-int count = 0;
-int written = 0;
-
 unsigned int index4=0;
-int w=102;
-int h=51;
-unsigned int offset;
-
 
 int extractAlfred4()
 {
@@ -25,88 +13,6 @@ int extractAlfred4()
 
     unsigned char *finalbuffer=(unsigned char *)malloc(10000*10000*4);
     unsigned char *workingbuffer=(unsigned char *)malloc(10000*10000*4);
-
-	// QCoreApplication a(argc, argv);
-
-
-	// int www=60;
-
-	// int jj=0;
-	// w=51;
-	// h=102;
-	// offset=0;
-	// int nframes=60;
-
-
-	// argc=2;
-	// argv[1]="C:/compartido/alfred/alfred.4";
-
-	// FILE *fp1=fopen(argv[1],"rb");
-
-
-	// fseek(fp1, 0L, SEEK_END);
-	// int size = ftell(fp1);
-	// fseek(fp1, 0L, SEEK_SET);
-
-	// unsigned char *bufferFile=(unsigned char *)malloc(size);
-	// fread(bufferFile, 1, size, fp1);
-
-	// QImage *image=new QImage(60*69,60,QImage::Format_Indexed8);
-
-	// FILE *fp2=fopen(paleta,"rb");
-	// unsigned char *bufferPaleta=(unsigned char *)malloc(768);
-	// fread(bufferPaleta, 1, 768, fp2);
-	// fclose(fp2);
-
-	// ctable=new QVector<QRgb>;
-
-	// unsigned int cc, aa,rr,gg,bb;
-	// for(int i = 0; i < 256; ++i)
-	// {
-	// 	aa=0xFF000000;
-	// 	rr=bufferPaleta[i*3] *2;
-	// 	gg=bufferPaleta[(i*3) + 1] *2;
-	// 	bb=bufferPaleta[(i*3) + 2] *2;
-	// 	cc=aa | (rr<<16) | (gg<<8) | bb;
-	// 	ctable->append(cc);
-	// }
-
-	// image->setColorCount(256);
-	// image->setColorTable(*ctable);
-
-
-
-
-	// if (argc!=2)
-	// {
-	// 	printf(" uso: test fichero");
-	// }
-	// else
-	// {
-
-	// 	unsigned int indexWorkingBuffer=0;
-	// 	unsigned int indexFile=0;
-	// 	unsigned int off=0;
-	// 	unsigned int supercount=0;
-
-	// 	while (indexFile < size)
-	// 	{
-
-	// 		workingbuffer[indexWorkingBuffer]=bufferFile[indexFile];
-	// 		indexWorkingBuffer++;
-	// 		indexFile++;
-	// 		supercount++;
-
-
-	// 		if ((bufferFile[indexFile]=='B') && (bufferFile[indexFile+1]=='U') && (bufferFile[indexFile+2]=='D') && (bufferFile[indexFile+3]=='A'))
-	// 		{
-
-	// 			unsigned int i=0;
-	// 			unsigned char count;
-	// unsigned char* palette = getPalette();
-
-	// unsigned char *finalbuffer=(unsigned char *)malloc(10000*10000*4);
-	// unsigned char *workingbuffer=(unsigned char *)malloc(10000*10000*4);
 
 	// Read input file
 	FILE *fp1 = fopen("files/alfred.4", "rb");

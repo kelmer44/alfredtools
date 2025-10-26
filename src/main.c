@@ -12,7 +12,7 @@ void extractAlfred3();
 void extractAlfred4();
 void extractAlfred5();
 void extractAlfred6();
-// void extractAlfred7();
+void extractAlfred7();
 // void extractAlfred9();
 
 int main(int argc, char **argv) {
@@ -20,7 +20,8 @@ int main(int argc, char **argv) {
     // extractAlfred3();
     // extractAlfred4();
     // extractAlfred5();
-    extractAlfred6();
+    // extractAlfred6();
+    extractAlfred7();
     // const char *out = "out.png";
     // if (argc > 1) out = argv[1];
 
