@@ -10,11 +10,17 @@
 void extractAlfredAnims();
 void extractAlfred3();
 void extractAlfred4();
+void extractAlfred5();
+void extractAlfred6();
+// void extractAlfred7();
+// void extractAlfred9();
 
 int main(int argc, char **argv) {
     // extractAlfredAnims();
     // extractAlfred3();
-    extractAlfred4();
+    // extractAlfred4();
+    // extractAlfred5();
+    extractAlfred6();
     // const char *out = "out.png";
     // if (argc > 1) out = argv[1];
 

@@ -6,7 +6,6 @@ bin/
 *.dll
 *.so
 *.dylib
-*.*
 
 # Debug files
 *.dSYM/
@@ -15,7 +14,7 @@ bin/
 .vscode/
 .idea/
 *.swp
-*~
+# *~
 
 # macOS
 .DS_Store
