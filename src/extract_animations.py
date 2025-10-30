@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Extract all 4 animations from Room 13 of ALFRED.1
-With corrected metadata from user-provided byte sequence
+Extract all animations from all rooms in ALFRED.1
+Uses the discovered pattern: metadata is 112 bytes after Pair 8 sprite data ends
 """
 
 import struct
@@ -52,56 +52,68 @@ def extract_sprite_data(data, room_offset):
     size = struct.unpack('<I', data[pair_offset+4:pair_offset+8])[0]
 
     if offset > 0 and size > 0:
-        return decompress_rle(data, offset, size)
-    return None
+        return decompress_rle(data, offset, size), offset + size
+    return None, None
 
 
-def main():
-    if len(sys.argv) < 2:
-        print("Usage: python extract_room13_fixed.py <alfred.1> [output_dir]")
-        sys.exit(1)
+def get_animation_metadata(data, sprite_end_offset):
+    """
+    Get animation metadata starting 112 bytes after sprite data ends.
+    Each animation metadata is 44 bytes apart, up to 4 animations per room.
+    Format: [width, height, ..., frames at +6, ...]
+    """
+    animations = []
+    metadata_start = sprite_end_offset + 112
 
-    alfred1_path = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else "room13_anims_fixed"
+    for anim_idx in range(4):
+        anim_offset = metadata_start + (anim_idx * 44)
 
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+        if anim_offset + 12 > len(data):
+            break
 
-    with open(alfred1_path, 'rb') as f:
-        data = f.read()
+        w = data[anim_offset]
+        h = data[anim_offset + 1]
+        frames = data[anim_offset + 6]
 
-    room_num = 13
+        # Valid animation check
+        if w > 0 and w < 200 and h > 0 and h < 200 and frames > 0 and frames < 50:
+            animations.append({
+                'width': w,
+                'height': h,
+                'frames': frames
+            })
+
+    return animations
+
+
+def extract_room_animations(data, room_num, output_path):
+    """Extract all animations from a specific room"""
     room_offset = room_num * 104
 
-    # Extract sprite data and palette
-    sprite_data = extract_sprite_data(data, room_offset)
+    # Extract sprite data and metadata location
+    sprite_data, sprite_end = extract_sprite_data(data, room_offset)
+    if not sprite_data or not sprite_end:
+        return 0
+
+    # Get palette
     palette = extract_palette(data, room_offset)
+    if not palette:
+        return 0
 
-    if not sprite_data or not palette:
-        print("Error: Could not extract sprite data or palette")
-        sys.exit(1)
+    # Get animation metadata
+    animations = get_animation_metadata(data, sprite_end)
+    if not animations:
+        return 0
 
-    print(f"Sprite data size: {len(sprite_data)} bytes")
-    print(f"Palette: OK\n")
+    # Create room directory
+    room_dir = output_path / f"room{room_num:02d}"
+    room_dir.mkdir(parents=True, exist_ok=True)
 
-    # Animation metadata from user-provided byte sequence
-    # Metadata is at 44-byte intervals starting at 0x25314B
-    # The sequence shows:
-    # Offset 0: 61x88, 10 frames
-    # Offset 44: 31x39, 1 frame
-    # Offset 88: 79x58, 9 frames
-    # Offset 132: 39x30, 10 frames
-
-    animations = [
-        {'name': 'anim0', 'width': 61, 'height': 88, 'frames': 10},  # Person walking
-        {'name': 'anim1', 'width': 31, 'height': 39, 'frames': 1},   # Signpost
-        {'name': 'anim2', 'width': 79, 'height': 58, 'frames': 9},   # Flies
-        {'name': 'anim3', 'width': 39, 'height': 30, 'frames': 10},  # Birds
-    ]
-
+    # Extract each animation
     offset = 0
-    for anim in animations:
-        name = anim['name']
+    extracted = 0
+
+    for anim_idx, anim in enumerate(animations):
         w = anim['width']
         h = anim['height']
         frames = anim['frames']
@@ -109,8 +121,7 @@ def main():
         needed = w * h * frames
 
         if offset + needed > len(sprite_data):
-            print(f"{name}: Not enough data (need {needed}, have {len(sprite_data) - offset})")
-            continue
+            break
 
         anim_data = sprite_data[offset:offset + needed]
 
@@ -123,17 +134,66 @@ def main():
             for y in range(h):
                 for x in range(w):
                     pixel_idx = frame_offset + (y * w) + x
-                    pixel_value = anim_data[pixel_idx]
-                    img.putpixel((frame * w + x, y), pixel_value)
+                    if pixel_idx < len(anim_data):
+                        pixel_value = anim_data[pixel_idx]
+                        img.putpixel((frame * w + x, y), pixel_value)
 
-        output_file = output_path / f"{name}.png"
+        output_file = room_dir / f"anim{anim_idx}.png"
         img.save(output_file)
 
-        print(f"{name}: {w}x{h}x{frames} frames -> {output_file.name}")
         offset += needed
+        extracted += 1
 
-    print(f"\nExtracted {len(animations)} animations to {output_path.absolute()}")
-    print(f"Used {offset} of {len(sprite_data)} bytes ({offset/len(sprite_data)*100:.1f}%)")
+    return extracted
+
+
+def main():
+    if len(sys.argv) < 2:
+        print("Extract all animations from ALFRED.1")
+        print("=" * 70)
+        print()
+        print("Usage: python extract_all_animations.py <alfred.1> [output_dir]")
+        print()
+        print("This will extract animations from all 56 rooms.")
+        print()
+        sys.exit(1)
+
+    alfred1_path = sys.argv[1]
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else "animations_all"
+
+    if not Path(alfred1_path).exists():
+        print(f"Error: File not found: {alfred1_path}")
+        sys.exit(1)
+
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    with open(alfred1_path, 'rb') as f:
+        data = f.read()
+
+    print("=" * 70)
+    print("Extracting all animations from ALFRED.1")
+    print("=" * 70)
+    print()
+
+    total_animations = 0
+    rooms_with_animations = 0
+
+    for room_num in range(56):
+        extracted = extract_room_animations(data, room_num, output_path)
+
+        if extracted > 0:
+            print(f"Room {room_num:2d}: {extracted} animation(s) extracted")
+            total_animations += extracted
+            rooms_with_animations += 1
+
+    print()
+    print("=" * 70)
+    print(f"Extraction complete!")
+    print(f"  Rooms with animations: {rooms_with_animations}/56")
+    print(f"  Total animations: {total_animations}")
+    print(f"  Output directory: {output_path.absolute()}")
+    print("=" * 70)
 
 
 if __name__ == "__main__":
