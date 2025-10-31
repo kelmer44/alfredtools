@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Extract all animations from all rooms in ALFRED.1
-Now prints width, height, and frame count for each animation.
+Now prints width, height, frame count, and metadata start address.
 """
 
 import struct
@@ -73,39 +73,39 @@ def get_animation_metadata(data, sprite_end_offset):
 
         w = data[anim_offset]
         h = data[anim_offset + 1]
-        frames = data[anim_offset + 6] + data[anim_offset + 7]
+        secAnimCount = data[anim_offset + 4]
+        frames = 0
+        for i in range(secAnimCount):
+            frames += data[anim_offset + 6 + i]
 
-        # Valid animation check
-        if w > 0 and w < 256 and h > 0 and h < 256 and frames > 0 and frames < 50:
+        if w > 0 and h > 0 and frames > 0:
             animations.append({
                 'width': w,
                 'height': h,
                 'frames': frames
             })
 
-    return animations
+    return animations, metadata_start
 
 
 def extract_room_animations(data, room_num, output_path):
     """Extract all animations from a specific room"""
     room_offset = room_num * 104
 
-    # Extract sprite data and metadata location
     sprite_data, sprite_end = extract_sprite_data(data, room_offset)
     if not sprite_data or not sprite_end:
         return 0
 
-    # Get palette
     palette = extract_palette(data, room_offset)
     if not palette:
         return 0
 
-    # Get animation metadata
-    animations = get_animation_metadata(data, sprite_end)
+    animations, metadata_start = get_animation_metadata(data, sprite_end)
     if not animations:
         return 0
 
-    # Create room directory
+    print(f"Room {room_num:02d}: Metadata start = 0x{metadata_start:08X}")
+
     room_dir = output_path / f"room{room_num:02d}"
     room_dir.mkdir(parents=True, exist_ok=True)
 
@@ -117,7 +117,7 @@ def extract_room_animations(data, room_num, output_path):
         h = anim['height']
         frames = anim['frames']
 
-        print(f"  Room {room_num:02d} - Animation {anim_idx}: {w}x{h}, {frames} frame(s)")
+        print(f"  Animation {anim_idx}: {w}x{h}, {frames} frame(s)")
 
         needed = w * h * frames
         if offset + needed > len(sprite_data):
