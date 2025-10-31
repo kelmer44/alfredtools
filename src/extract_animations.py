@@ -73,7 +73,7 @@ def get_animation_metadata(data, sprite_end_offset):
 
         w = data[anim_offset]
         h = data[anim_offset + 1]
-        frames = data[anim_offset + 6]
+        frames = data[anim_offset + 6] + data[anim_offset + 7]
 
         # Valid animation check
         if w > 0 and w < 200 and h > 0 and h < 200 and frames > 0 and frames < 50:
