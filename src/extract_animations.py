@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Extract all animations from all rooms in ALFRED.1
-Uses the discovered pattern: metadata is 112 bytes after Pair 8 sprite data ends
+Now prints width, height, and frame count for each animation.
 """
 
 import struct
@@ -59,13 +59,13 @@ def extract_sprite_data(data, room_offset):
 def get_animation_metadata(data, sprite_end_offset):
     """
     Get animation metadata starting 112 bytes after sprite data ends.
-    Each animation metadata is 44 bytes apart, up to 4 animations per room.
+    Each animation metadata is 44 bytes apart, up to 10 animations per room.
     Format: [width, height, ..., frames at +6, ...]
     """
     animations = []
     metadata_start = sprite_end_offset + 112
 
-    for anim_idx in range(4):
+    for anim_idx in range(10):
         anim_offset = metadata_start + (anim_idx * 44)
 
         if anim_offset + 12 > len(data):
@@ -76,7 +76,7 @@ def get_animation_metadata(data, sprite_end_offset):
         frames = data[anim_offset + 6] + data[anim_offset + 7]
 
         # Valid animation check
-        if w > 0 and w < 200 and h > 0 and h < 200 and frames > 0 and frames < 50:
+        if w > 0 and w < 256 and h > 0 and h < 256 and frames > 0 and frames < 50:
             animations.append({
                 'width': w,
                 'height': h,
@@ -109,7 +109,6 @@ def extract_room_animations(data, room_num, output_path):
     room_dir = output_path / f"room{room_num:02d}"
     room_dir.mkdir(parents=True, exist_ok=True)
 
-    # Extract each animation
     offset = 0
     extracted = 0
 
@@ -118,14 +117,14 @@ def extract_room_animations(data, room_num, output_path):
         h = anim['height']
         frames = anim['frames']
 
-        needed = w * h * frames
+        print(f"  Room {room_num:02d} - Animation {anim_idx}: {w}x{h}, {frames} frame(s)")
 
+        needed = w * h * frames
         if offset + needed > len(sprite_data):
             break
 
         anim_data = sprite_data[offset:offset + needed]
 
-        # Create horizontal strip image
         img = Image.new('P', (w * frames, h))
         img.putpalette(palette)
 
@@ -152,9 +151,7 @@ def main():
         print("Extract all animations from ALFRED.1")
         print("=" * 70)
         print()
-        print("Usage: python extract_all_animations.py <alfred.1> [output_dir]")
-        print()
-        print("This will extract animations from all 56 rooms.")
+        print("Usage: python extract_animations.py <alfred.1> [output_dir]")
         print()
         sys.exit(1)
 
@@ -183,11 +180,10 @@ def main():
         extracted = extract_room_animations(data, room_num, output_path)
 
         if extracted > 0:
-            print(f"Room {room_num:2d}: {extracted} animation(s) extracted")
+            print(f"Room {room_num:2d}: {extracted} animation(s) extracted\n")
             total_animations += extracted
             rooms_with_animations += 1
 
-    print()
     print("=" * 70)
     print(f"Extraction complete!")
     print(f"  Rooms with animations: {rooms_with_animations}/56")
