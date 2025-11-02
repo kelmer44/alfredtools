@@ -56,10 +56,12 @@ int extractAlfred3()
     {
         if ((bufferFile[index] == 'B') && (bufferFile[index + 1] == 'U') && (bufferFile[index + 2] == 'D') && (bufferFile[index + 3] == 'A'))
         {
+            printf("found buda");
             break;
         }
         else
         {
+            printf("index = %d\n", index);
             unsigned char count = bufferFile[index];
             unsigned char color = bufferFile[index + 1];
             unsigned int k;
@@ -73,11 +75,11 @@ int extractAlfred3()
         }
     }
 
-    printf("pic size =  %dm index3 = %d\n", picSize, index3);
+    printf("pic size =  %d,  index3 = %d, file size = %d\n", picSize, index3, size);
 
     unsigned char *palette = getPalette();
 
-    for (int jj = 0; jj < 2; jj++)
+    for (int jj = 0; jj < 3; jj++)
     {
         // int jj=0;
         // int w=51;
