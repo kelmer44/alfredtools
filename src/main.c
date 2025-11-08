@@ -6,7 +6,6 @@
 
 // Minimal CLI: create a simple gradient PNG using LodePNG
 // Usage: ./alfredcli [out.png]
-int extractAlfred1b();
 int extractAlfred1();
 void extractAlfredAnims();
 void extractAlfred3();
@@ -17,15 +16,17 @@ void extractAlfred7();
 void extractAlfred9();
 
 int main(int argc, char **argv) {
-    extractAlfred1b();
-    // extractAlfred1();
-    // extractAlfredAnims();
-    // extractAlfred3();
-    // extractAlfred4();
-    // extractAlfred5();
-    // extractAlfred6();
-    // extractAlfred7();
-    // extractAlfred9();
+    (void)argc;
+    (void)argv;
+    // extractAlfred1b();
+    extractAlfred1();
+    extractAlfredAnims();
+    extractAlfred3();
+    extractAlfred4();
+    extractAlfred5();
+    extractAlfred6();
+    extractAlfred7();
+    extractAlfred9();
     // const char *out = "out.png";
     // if (argc > 1) out = argv[1];
 

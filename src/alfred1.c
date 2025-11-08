@@ -115,7 +115,7 @@ int extractAlfred1() {
 
         // Try alternative RLE decompression
         int decompSize = 0;
-        int compIndex = 0;
+        uint32_t compIndex = 0;
 
         while (compIndex < imgHeader.size && decompSize < SCREEN_WIDTH * SCREEN_HEIGHT) {
             if (compIndex + 1 >= imgHeader.size) break;

@@ -31,7 +31,7 @@ int extractAlfred3()
 
     int maxAnim = 3;
 
-    char *name = "./files/alfred.3";
+    char *name = "./files/ALFRED.3";
 
     FILE *fp1 = fopen(name, "rb");
 
@@ -51,8 +51,8 @@ int extractAlfred3()
     int picSize = 10000 * 10000 * 4;
     unsigned char *pic = (unsigned char *)malloc(picSize);
 
-    int index = 0;
-    while (index < size)
+    unsigned int index = 0;
+    while (index < (unsigned int)size)
     {
         if ((bufferFile[index] == 'B') && (bufferFile[index + 1] == 'U') && (bufferFile[index + 2] == 'D') && (bufferFile[index + 3] == 'A'))
         {
@@ -101,7 +101,7 @@ int extractAlfred3()
         offset += jj == 0 ? 0 : nFrames[jj - 1] * dimensions[jj - 1][0] * dimensions[jj - 1][1];
         printf("frame=%d, w=%d, h=%d, nframes=%d, offset = %d * %d * %d = %d\n", jj, w, h, nframes, nFrames[jj - 1], dimensions[jj - 1][0], dimensions[jj - 1][1], offset);
 
-        unsigned int index = 0;
+        (void)index;
 
         // Setup LodePNG state for palette encoding
         LodePNGState state;
@@ -191,4 +191,5 @@ int extractAlfred3()
         if (png_data)
             free(png_data);
     }
+    return 0;
 }

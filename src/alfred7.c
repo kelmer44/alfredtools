@@ -5,7 +5,7 @@
 #include "lodepng.h"
 #include "functions.h"
 
-int n;
+static int n;
 // int count = 0;
 // int written = 0;
 
