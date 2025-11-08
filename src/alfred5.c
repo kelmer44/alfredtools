@@ -11,7 +11,7 @@ int extractAlfred5()
     unsigned char *finalbuffer = (unsigned char *)malloc(10000 * 10000 * 4);
     // QCoreApplication a(argc, argv);
 
-    FILE *fp1 = fopen("files/alfred.5", "rb");
+    FILE *fp1 = fopen("files/ALFRED.5", "rb");
 
     fseek(fp1, 0L, SEEK_END);
     int size = ftell(fp1);

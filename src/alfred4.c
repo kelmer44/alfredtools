@@ -15,9 +15,9 @@ int extractAlfred4()
     unsigned char *workingbuffer=(unsigned char *)malloc(10000*10000*4);
 
 	// Read input file
-	FILE *fp1 = fopen("files/alfred.4", "rb");
+	FILE *fp1 = fopen("files/ALFRED.4", "rb");
 	if (!fp1) {
-		fprintf(stderr, "Failed to open input file %s\n", "files/alfred.4");
+		fprintf(stderr, "Failed to open input file %s\n", "files/ALFRED.4");
 		exit(1);
 	}
 	fseek(fp1, 0L, SEEK_END);
@@ -146,4 +146,5 @@ int extractAlfred4()
 	free(finalbuffer);
 	free(workingbuffer);
 	free(palette);
+	return 0;
 }

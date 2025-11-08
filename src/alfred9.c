@@ -5,7 +5,6 @@
 #include "lodepng.h"
 #include "functions.h"
 
-int n;
 int count = 0;
 int written = 0;
 
@@ -37,7 +36,7 @@ int extractAlfred9()
         int nframes=60;
     */
 
-    FILE *fp1 = fopen("files/alfred.9", "rb");
+    FILE *fp1 = fopen("files/ALFRED.9", "rb");
 
     fseek(fp1, 0L, SEEK_END);
     int size = ftell(fp1);

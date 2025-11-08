@@ -154,7 +154,7 @@ void saveAnim(unsigned char *bufferFile, int indexCab, unsigned int offset, char
 
 int extractAlfredAnims()
 {
-    char *name = "./files/alfred.2";
+    char *name = "./files/ALFRED.2";
     pic = (unsigned char *)malloc(10000*10000*4);
     FILE *fp1 = fopen(name, "rb");
 
@@ -165,7 +165,7 @@ int extractAlfredAnims()
     }
 
     fseek(fp1, 0L, SEEK_END);
-    int size = ftell(fp1);
+    unsigned int size = ftell(fp1);
     fseek(fp1, 0L, SEEK_SET);
 
     unsigned char *bufferFile = (unsigned char *)malloc(size);
