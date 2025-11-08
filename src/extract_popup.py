@@ -1,176 +1,226 @@
 #!/usr/bin/env python3
 """
-Extract popup menu graphics from ALFRED.7
+Alfred Pelrock - Balloon & Action Icon Extractor
 
-After scroll arrows at 0x30A6E0:
-- Popup background: 640x60 pixels (38,400 bytes)
-- 7 popup frames: 60x54 pixels each (3,240 bytes each, 22,680 total)
+Extracts the thinking balloon popup and action icons from ALFRED.7
+These are shown when player long-presses on a hotspot.
+
+Location: 0xFE945 (1,042,757) - 4,766 bytes (RLE compressed)
+After decompression: 49,686 bytes = possibly 6 icons of 91x91
 """
 
 import sys
 from pathlib import Path
 from PIL import Image
 
-def extract_popup_graphics(alfred7_path, output_dir):
-    """Extract popup background and frame icons"""
+# Balloon/icon data
+BALLOON_OFFSET = 0xFE945
+BALLOON_SIZE = 0x129E  # 4,766 bytes compressed
 
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+def decompress_rle(data, offset, size):
+    """Decompress RLE data"""
+    result = bytearray()
+    pos = offset
+    end = offset + size
 
-    with open(alfred7_path, 'rb') as f:
-        data = f.read()
+    while pos + 2 <= min(end, len(data)):
+        if pos + 4 <= len(data) and data[pos:pos+4] == b'BUDA':
+            break
+        count = data[pos]
+        value = data[pos + 1]
+        result.extend([value] * count)
+        pos += 2
 
-    # Offsets and sizes
-    POPUP_START = 0x30A6E0
-    BG_WIDTH = 640
-    BG_HEIGHT = 60
-    BG_SIZE = BG_WIDTH * BG_HEIGHT  # 38,400 bytes
+    return bytes(result)
 
-    FRAME_WIDTH = 60
-    FRAME_HEIGHT = 54
-    FRAME_SIZE = FRAME_WIDTH * FRAME_HEIGHT  # 3,240 bytes
-    NUM_FRAMES = 7
-    FRAMES_SIZE = FRAME_SIZE * NUM_FRAMES  # 22,680 bytes
+def find_budas(data):
+    """Find BUDA markers"""
+    budas = []
+    pos = 0
+    while pos < len(data) - 4:
+        if data[pos:pos+4] == b'BUDA':
+            budas.append(pos)
+        pos += 1
+    return budas
 
-    print("Alfred Pelrock - Popup Menu Graphics Extractor")
-    print("="*70)
-    print()
+def is_valid_palette(data, offset):
+    """Check for VGA palette"""
+    if offset + 768 > len(data):
+        return False
+    pal_data = data[offset:offset+768]
+    return all(b <= 63 for b in pal_data) and len(set(pal_data)) > 10
 
-    # Extract popup background
-    print(f"Popup Background:")
-    print(f"  Offset: 0x{POPUP_START:06X}")
-    print(f"  Size: {BG_WIDTH}x{BG_HEIGHT} = {BG_SIZE} bytes")
-
-    bg_data = data[POPUP_START:POPUP_START + BG_SIZE]
-
-    # Save raw background
-    bg_raw = output_path / "popup_background.bin"
-    with open(bg_raw, 'wb') as f:
-        f.write(bg_data)
-    print(f"  Saved: {bg_raw}")
-
-    # Create grayscale preview
+def extract_palette(data, offset):
+    """Extract VGA palette"""
+    pal_data = data[offset:offset+768]
     palette = []
     for i in range(256):
-        palette.extend([i, i, i])
+        r = min(255, pal_data[i * 3] * 4)
+        g = min(255, pal_data[i * 3 + 1] * 4)
+        b = min(255, pal_data[i * 3 + 2] * 4)
+        palette.extend([r, g, b])
+    return palette
 
-    bg_img = Image.new('P', (BG_WIDTH, BG_HEIGHT))
-    bg_img.putpalette(palette)
-    bg_img.putdata(bg_data)
+def find_nearest_palette(data, budas, target_offset):
+    """Find nearest palette"""
+    best_palette = None
+    best_distance = float('inf')
 
-    bg_preview = output_path / "popup_background_preview.png"
-    bg_img.save(bg_preview)
-    print(f"  Preview: {bg_preview}")
-    print()
+    for buda in budas:
+        if is_valid_palette(data, buda + 4):
+            distance = abs(buda - target_offset)
+            if distance < best_distance:
+                best_distance = distance
+                best_palette = extract_palette(data, buda + 4)
 
-    # Extract popup frames
-    print(f"Popup Frames (7 action verb backgrounds):")
-    print(f"  Offset: 0x{POPUP_START + BG_SIZE:06X}")
-    print(f"  Size: {FRAME_WIDTH}x{FRAME_HEIGHT} per frame ({FRAME_SIZE} bytes)")
-    print()
+    return best_palette
 
-    frames_offset = POPUP_START + BG_SIZE
-    frames_data = data[frames_offset:frames_offset + FRAMES_SIZE]
-
-    # Save all frames as one file
-    frames_raw = output_path / "popup_frames_all.bin"
-    with open(frames_raw, 'wb') as f:
-        f.write(frames_data)
-    print(f"  All frames saved: {frames_raw}")
-    print()
-
-    # Extract individual frames
-    for i in range(NUM_FRAMES):
-        frame_offset = i * FRAME_SIZE
-        frame_data = frames_data[frame_offset:frame_offset + FRAME_SIZE]
-
-        # Save raw
-        frame_raw = output_path / f"popup_frame_{i}.bin"
-        with open(frame_raw, 'wb') as f:
-            f.write(frame_data)
-
-        # Create preview
-        frame_img = Image.new('P', (FRAME_WIDTH, FRAME_HEIGHT))
-        frame_img.putpalette(palette)
-        frame_img.putdata(frame_data)
-
-        frame_preview = output_path / f"popup_frame_{i}_preview.png"
-        frame_img.save(frame_preview)
-
-        print(f"  Frame {i}: {frame_raw.name} / {frame_preview.name}")
-
-    # Create combined strip preview
-    print()
-    print("Creating combined preview...")
-    strip_width = FRAME_WIDTH * NUM_FRAMES
-    strip_img = Image.new('P', (strip_width, FRAME_HEIGHT))
-    strip_img.putpalette(palette)
-
-    strip_pixels = []
-    for y in range(FRAME_HEIGHT):
-        for f in range(NUM_FRAMES):
-            frame_offset = f * FRAME_SIZE
-            for x in range(FRAME_WIDTH):
-                pixel_offset = frame_offset + (y * FRAME_WIDTH) + x
-                strip_pixels.append(frames_data[pixel_offset])
-
-    strip_img.putdata(strip_pixels)
-    strip_file = output_path / "popup_frames_strip_preview.png"
-    strip_img.save(strip_file)
-    print(f"  Strip preview: {strip_file}")
-
-    # Create info file
-    info_file = output_path / "popup_graphics_info.txt"
-    with open(info_file, 'w') as f:
-        f.write("Alfred Pelrock - Popup Menu Graphics\n")
-        f.write("="*70 + "\n\n")
-        f.write(f"Source: ALFRED.7\n\n")
-        f.write("POPUP BACKGROUND:\n")
-        f.write(f"  Offset: 0x{POPUP_START:06X} ({POPUP_START} decimal)\n")
-        f.write(f"  Dimensions: {BG_WIDTH}x{BG_HEIGHT} pixels\n")
-        f.write(f"  Size: {BG_SIZE} bytes (0x{BG_SIZE:X})\n")
-        f.write(f"  Description: Horizontal bar background for action menu\n\n")
-        f.write("POPUP FRAMES (Action Verb Backgrounds):\n")
-        f.write(f"  Offset: 0x{frames_offset:06X} ({frames_offset} decimal)\n")
-        f.write(f"  Dimensions: {FRAME_WIDTH}x{FRAME_HEIGHT} pixels per frame\n")
-        f.write(f"  Frame size: {FRAME_SIZE} bytes (0x{FRAME_SIZE:X})\n")
-        f.write(f"  Number of frames: {NUM_FRAMES}\n")
-        f.write(f"  Total size: {FRAMES_SIZE} bytes (0x{FRAMES_SIZE:X})\n")
-        f.write(f"  Description: Background frames for individual verb icons\n\n")
-        f.write("Format: 8-bit indexed color (256 colors)\n")
-        f.write("Palette: Apply game palette for correct colors\n\n")
-        f.write("Ghidra References:\n")
-        f.write("  render_action_popup_menu @ 0x1AD9A\n")
-        f.write("  Scroll arrows loaded from 0x309D80 (20x60 each)\n")
-        f.write("  Popup data starts at 0x30A6E0\n\n")
-        f.write("Usage:\n")
-        f.write("  Background displayed at Y=340 (0x154)\n")
-        f.write("  Frames shown when hovering over actions\n")
-        f.write("  Up to 10 verb icons visible at once\n")
-
-    print(f"\nInfo file: {info_file}")
-    print()
-    print("="*70)
-    print(f"Extraction complete!")
-    print(f"Output directory: {output_path.absolute()}")
-    print()
-    print("Note: Preview images use grayscale palette.")
-    print("Apply correct game palette for accurate colors.")
-
-if __name__ == "__main__":
+def main():
     if len(sys.argv) < 2:
-        print(__doc__)
-        print("\nUsage: python extract_popup_graphics.py <alfred.7> [output_dir]")
-        print("\nExample:")
-        print("  python extract_popup_graphics.py ALFRED.7")
-        print("  python extract_popup_graphics.py ALFRED.7 popup_graphics/")
+        print("Alfred Pelrock - Balloon & Action Icon Extractor")
+        print("=" * 70)
+        print()
+        print("Usage: python extract_balloon_icons.py <ALFRED.7> [output_dir]")
+        print()
+        print("Extracts the thinking balloon popup and action icons shown")
+        print("when player long-presses on a hotspot.")
+        print()
+        print(f"Location: 0x{BALLOON_OFFSET:06X} ({BALLOON_OFFSET:,})")
+        print(f"Size: {BALLOON_SIZE:,} bytes (RLE compressed)")
+        print()
         sys.exit(1)
 
     alfred7_path = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else "popup_graphics"
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else "balloon_icons"
 
     if not Path(alfred7_path).exists():
         print(f"Error: File not found: {alfred7_path}")
         sys.exit(1)
 
-    extract_popup_graphics(alfred7_path, output_dir)
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    # Read file
+    with open(alfred7_path, 'rb') as f:
+        data = f.read()
+
+    print("Alfred Pelrock - Balloon & Action Icon Extractor")
+    print("=" * 70)
+    print(f"File: {alfred7_path}")
+    print(f"Size: {len(data):,} bytes")
+    print()
+
+    # Find palette
+    print("Finding palette...")
+    budas = find_budas(data)
+    palette = find_nearest_palette(data, budas, BALLOON_OFFSET)
+
+    if not palette:
+        print("Warning: No palette found, using grayscale")
+        palette = []
+        for i in range(256):
+            palette.extend([i, i, i])
+    else:
+        print("✓ Found palette")
+    print()
+
+    # Decompress balloon data
+    print(f"Decompressing data from 0x{BALLOON_OFFSET:06X}...")
+    decompressed = decompress_rle(data, BALLOON_OFFSET, BALLOON_SIZE)
+    print(f"Compressed: {BALLOON_SIZE:,} bytes")
+    print(f"Decompressed: {len(decompressed):,} bytes")
+    print()
+
+    # Try different interpretations
+    print("=" * 70)
+    print("Extracting possible formats:")
+    print("=" * 70)
+
+    # Try as 6 icons of 91x91
+    if len(decompressed) == 49686:
+        icon_size = 8281  # 91x91
+        num_icons = 6
+
+        print(f"\n6 icons of 91x91 (8,281 bytes each):")
+        for i in range(num_icons):
+            offset = i * icon_size
+            if offset + icon_size <= len(decompressed):
+                icon_data = decompressed[offset:offset + icon_size]
+
+                # Create image
+                img = Image.new('P', (91, 91))
+                img.putpalette(palette)
+                img.putdata(icon_data)
+
+                output_file = output_path / f"icon_{i}_91x91.png"
+                img.save(output_file)
+
+                # RGBA with transparency
+                img_rgba = Image.new('RGBA', (91, 91))
+                for y in range(91):
+                    for x in range(91):
+                        pixel_idx = icon_data[y * 91 + x]
+                        if pixel_idx == 255:
+                            img_rgba.putpixel((x, y), (0, 0, 0, 0))
+                        else:
+                            r = palette[pixel_idx * 3]
+                            g = palette[pixel_idx * 3 + 1]
+                            b = palette[pixel_idx * 3 + 2]
+                            img_rgba.putpixel((x, y), (r, g, b, 255))
+
+                output_rgba = output_path / f"icon_{i}_91x91_trans.png"
+                img_rgba.save(output_rgba)
+
+                # 2x upscale
+                img_large = img_rgba.resize((182, 182), Image.NEAREST)
+                output_large = output_path / f"icon_{i}_91x91_2x.png"
+                img_large.save(output_large)
+
+                print(f"  Icon {i}: ✓ {output_file.name}")
+
+    # Try as single large image
+    for width, height in [(247, 201), (201, 247)]:
+        if width * height <= len(decompressed):
+            size = width * height
+            img_data = decompressed[:size]
+
+            img = Image.new('P', (width, height))
+            img.putpalette(palette)
+            img.putdata(img_data)
+
+            output_file = output_path / f"combined_{width}x{height}.png"
+            img.save(output_file)
+
+            # RGBA
+            img_rgba = Image.new('RGBA', (width, height))
+            for y in range(height):
+                for x in range(width):
+                    if y * width + x < len(img_data):
+                        pixel_idx = img_data[y * width + x]
+                        if pixel_idx == 255:
+                            img_rgba.putpixel((x, y), (0, 0, 0, 0))
+                        else:
+                            r = palette[pixel_idx * 3]
+                            g = palette[pixel_idx * 3 + 1]
+                            b = palette[pixel_idx * 3 + 2]
+                            img_rgba.putpixel((x, y), (r, g, b, 255))
+
+            output_rgba = output_path / f"combined_{width}x{height}_trans.png"
+            img_rgba.save(output_rgba)
+
+            print(f"\n{width}x{height} combined: ✓ {output_file.name}")
+
+    print()
+    print("=" * 70)
+    print(f"Extraction complete!")
+    print(f"Output: {output_path.absolute()}")
+    print()
+    print("Files created:")
+    print("  - icon_X_91x91.png : Individual icons (indexed)")
+    print("  - icon_X_91x91_trans.png : With transparency")
+    print("  - icon_X_91x91_2x.png : 2x upscaled")
+    print("  - combined_WxH.png : Full data as single image")
+    print("=" * 70)
+
+if __name__ == "__main__":
+    main()
