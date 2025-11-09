@@ -65,40 +65,61 @@ def create_font_image(chars, char_width, char_height, chars_per_row=16):
 
     return img
 
-def find_font_locations():
-    """Try to find font data in different ALFRED files"""
-    possible_files = ["ALFRED.4", "ALFRED.7", "ALFRED.9"]
-    font_locations = {}
+# Known font locations and sizes
+FONT_SPECS = {
+    'small': {
+        'file': "ALFRED.4",
+        'offset': 0x8F32,
+        'size': 0x800,      # 256 characters × 8 bytes
+        'char_size': 8,     # 8 bytes per character (8×8 pixels)
+        'width': 8,
+        'height': 8,
+        'chars': 256
+    },
+    'large': {
+        'file': "ALFRED.7",
+        'offset': 0x7DC8,
+        'size': 0x12C0,     # 96 characters × 48 bytes
+        'char_size': 0x30,  # 48 bytes per character (12×24 pixels)
+        'width': 12,
+        'height': 24,
+        'chars': 96
+    },
+    'computer': {
+        'file': "ALFRED.7",
+        'offset': 0x1AA0A,
+        'size': 0x70CA,     # Total screen data size
+        'char_size': 8,     # Assumed 8 bytes per character
+        'width': 8,
+        'height': 8,
+        'chars': 256
+    }
+}
 
-    # Known offsets to try
-    large_font_offsets = [0x7dc8, 0xfe945, 0x2137a8]  # Found these in various code references
-    small_font_offsets = [0x8f32]  # This one we know works
+def extract_font(font_type):
+    """Extract a specific font type using its specifications"""
+    spec = FONT_SPECS[font_type]
 
-    for file in possible_files:
-        try:
-            with open(file, 'rb') as f:
-                data = f.read()
+    try:
+        with open(spec['file'], 'rb') as f:
+            data = f.read()
 
-            print(f"Checking {file}...")
+        font_data = data[spec['offset']:spec['offset'] + spec['size']]
+        chars = []
 
-            # Check small font location (we know this one)
-            if len(data) >= 0x8f32 + 0x800:
-                sample = extract_small_font_char(data[0x8f32:0x8f32+0x800], 65)  # Try extracting 'A'
-                if is_valid_font_char(sample):
-                    font_locations[f"{file}_small"] = (file, 0x8f32)
+        # Extract each character
+        for i in range(spec['chars']):
+            if font_type == 'large':
+                char = extract_large_font_char(font_data, i)
+            else:
+                char = extract_small_font_char(font_data, i)
+            chars.append(char)
 
-            # Try all possible large font locations
-            for offset in large_font_offsets:
-                if len(data) >= offset + 0x12C0:
-                    sample = extract_large_font_char(data[offset:offset+0x12C0], 65)  # Try extracting 'A'
-                    if is_valid_font_char(sample):
-                        font_locations[f"{file}_large_{offset:x}"] = (file, offset)
+        return font_data, chars
 
-        except FileNotFoundError:
-            print(f"File {file} not found, skipping...")
-            continue
-
-    return font_locations
+    except FileNotFoundError:
+        print(f"Error: {spec['file']} not found")
+        return None, None
 
 def is_valid_font_char(pixels):
     """Check if an extracted character looks like it could be valid font data"""
@@ -112,42 +133,18 @@ def main():
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
 
-    # Try to find font data in different files
-    font_locations = find_font_locations()
+    # Extract each font type
+    for font_type, spec in FONT_SPECS.items():
+        print(f"\nExtracting {font_type} font from {spec['file']} at offset 0x{spec['offset']:x}")
 
-    # Process each found font location
-    for loc_name, (filename, offset) in font_locations.items():
-        print(f"\nProcessing {loc_name} from {filename} at offset 0x{offset:x}")
+        font_data, chars = extract_font(font_type)
+        if font_data and chars:
+            # Create and save visualization
+            font_img = create_font_image(chars, spec['width'], spec['height'], 16)
+            font_img.save(output_path / f'{font_type}_font.png')
 
-        with open(filename, 'rb') as f:
-            data = f.read()
-
-        if "_small" in loc_name:
-            # Extract small font (256 characters)
-            font_data = data[offset:offset + 0x800]
-            chars = []
-            for i in range(256):
-                char = extract_small_font_char(font_data, i)
-                chars.append(char)
-            font_img = create_font_image(chars, 8, 8, 16)
-
-            # Save files
-            font_img.save(output_path / f'{loc_name}.png')
-            with open(output_path / f'{loc_name}.bin', 'wb') as f:
-                f.write(font_data)
-
-        else:
-            # Extract large font (96 characters)
-            font_data = data[offset:offset + 0x12C0]
-            chars = []
-            for i in range(96):
-                char = extract_large_font_char(font_data, i)
-                chars.append(char)
-            font_img = create_font_image(chars, 12, 24, 16)
-
-            # Save files
-            font_img.save(output_path / f'{loc_name}.png')
-            with open(output_path / f'{loc_name}.bin', 'wb') as f:
+            # Save raw font data
+            with open(output_path / f'{font_type}_font.bin', 'wb') as f:
                 f.write(font_data)
 
 if __name__ == "__main__":
