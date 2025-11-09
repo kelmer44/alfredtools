@@ -116,6 +116,41 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
+    "blockList" : [
+        {
+            "offset" : 0,
+            "type": "PALETTE",
+        },
+        {
+            "offset" : 768,
+            "type" : "UNKNOWN",
+        },
+        {
+            "offset" : 5895,
+            "type": "RAW",
+            "width": 45
+        },
+        {
+            "offset" : 17738,
+            "type": "RAW",
+            "width": 49
+        },
+        {
+            "offset" : 22002,
+            "type": "RAW",
+            "width": 82
+        },
+        {
+            "offset" : 31842,
+            "type": "RAW",
+            "width": 86
+        },
+        {
+            "offset" : 36650,
+            "type": "RAW",
+            "width": 49
+        },
+    ],
 	"offset" : 36650
   },
   {
@@ -368,7 +403,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	"offset" : 1702
   },
   {
     "BUDA": 29,
@@ -512,7 +547,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 0
+	"offset" : 864
   },
   {
     "BUDA": 41,
@@ -620,7 +655,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 0
+	"offset" : 768
   },
   {
     "BUDA": 50,
@@ -752,7 +787,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 0
+	"offset" : 778
   },
   {
     "BUDA": 61,
@@ -848,7 +883,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 0
+	"offset" : 768
   },
   {
     "BUDA": 69,
@@ -1063,7 +1098,7 @@ metadata = [
     "START": "FINAL (After palette)",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1075,7 +1110,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1087,7 +1122,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1099,7 +1134,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1111,7 +1146,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1123,7 +1158,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1135,7 +1170,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1147,7 +1182,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  False,
+    "isContinued":  True,
 	"offset" : 0
   },
   {
@@ -1160,7 +1195,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 768
   },
   {
     "BUDA": 95,
@@ -2418,6 +2453,27 @@ def extract_palette(data, offset):
         palette.extend([r, g, b])
     return palette
 
+def save_bytes_as_png(data, palette, name, width):
+    size = 0
+    if(width == 640):
+        size =  640 * 400
+        height = 400
+        realHeight = height
+    else:
+        size = len(data)
+        realHeight = size / width
+        height = math.ceil(size / width)
+    # Create image
+    img_data = bytes(data[:size])
+    if len(img_data) < size:
+        img_data += bytes([0] * (size - len(img_data)))
+
+    img = Image.new('P', (width, height))
+    img.putpalette(palette)
+    img.putdata(img_data)
+
+    output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{budas[start_buda]}.png'
+    img.save(output_file)
 def main():
     alfred7 = sys.argv[1] if len(sys.argv) > 1 else "ALFRED.7"
     output_dir = sys.argv[2] if len(sys.argv) > 2 else "alfred7"

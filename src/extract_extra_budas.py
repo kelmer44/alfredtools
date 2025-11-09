@@ -50,8 +50,8 @@ def extract_palette(data, offset):
 
 def main():
     alfred7 = sys.argv[1] if len(sys.argv) > 1 else "ALFRED.7"
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else "standalone_budas"
-    output_dir_raw = sys.argv[2] if len(sys.argv) > 2 else "standalone_budas_raw"
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else "standalone_budas_4"
+    output_dir_raw = sys.argv[2] if len(sys.argv) > 2 else "standalone_budas_raw_4"
 
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -100,8 +100,8 @@ def main():
         print(f'Decompressing {budas[start_buda]} to {budas[start_buda + 1]} isPalette = {isPalette}')
         block = decompress_rle(data, budas[start_buda] + 4, budas[start_buda+1])
         output_file = output_path / f'buda{start_buda:03d}_offset_{budas[start_buda]}_isPalette{isPalette}.bin'
-        # with open(output_file, 'wb') as f:
-        #     f.write(block)
+        with open(output_file, 'wb') as f:
+            f.write(block)
 
         output_file_raw = output_path_raw / f'buda{start_buda:03d}_offset_{budas[start_buda]}_isPalette{isPalette}.bin'
         with open(output_file_raw, 'wb') as f:
