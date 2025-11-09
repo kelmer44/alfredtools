@@ -22,3 +22,12 @@ bin/
 # output
 output/
 
+alfred4_color/*
+alfred4_graphics/*
+alfred7/*
+alfred9_remap_tables/*
+alfred9_rooms/*
+backgrounds_color
+buda_scan
+confirmed_images
+cursors_enhanced
