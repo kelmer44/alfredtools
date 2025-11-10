@@ -97,9 +97,11 @@ def main():
             output_file = output_path / f"posiciones{room_num}.txt"
 
             with open(output_file, 'w') as f:
+                print(f"\nRoom {room_num} hotspots:")
                 for hotspot in hotspots:
-                    # Format: x,y,width,height,extra
-                    f.write(f"{hotspot['x']},{hotspot['y']},{hotspot['width']},{hotspot['height']},{hotspot['extra']}\n")
+                    # Format: x,y,width,height,extra,type
+                    f.write(f"{hotspot['x']},{hotspot['y']},{hotspot['width']},{hotspot['height']},{hotspot['extra']},{hotspot['type']}\n")
+                    print(f"  At ({hotspot['x']:3d},{hotspot['y']:3d}) size {hotspot['width']}x{hotspot['height']} - Type: {hotspot['type']:02X}h Extra: {hotspot['extra']:04X}h")
 
             print(f"Room {room_num:2d}: {len(hotspots):2d} hotspots -> {output_file.name}")
             total_hotspots += len(hotspots)

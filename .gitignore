@@ -31,3 +31,9 @@ backgrounds_color
 buda_scan
 confirmed_images
 cursors_enhanced
+standalone*/*
+animations*/*
+font
+hotspots
+popup_graphics
+walkboxes
