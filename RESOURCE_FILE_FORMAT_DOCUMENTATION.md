@@ -430,6 +430,104 @@ Result: End paragraph, then continue with NPC #5
 
 **Note:** These are Pair 12 offsets in ALFRED.1. Access via room directory → Room 2 → Pair 12.
 
+#### Conversation Tree Structure
+
+**Important:** Conversations use an **implicit tree structure** without explicit choice markers.
+
+**Tree Navigation System:**
+
+1. **No Explicit Choice Markers**
+   - There is NO special control code to indicate "present choices here"
+   - Choices are determined by the game engine based on dialogue line structure
+
+2. **Index-Based Branching**
+   - Each dialogue line has an INDEX byte (in `08 0D [INDEX] 00` pattern)
+   - Indices are NOT always sequential
+   - **Gap in indices = branching point**
+
+3. **Choice Identification**
+   - When multiple PLAYER lines (speaker 0x41) exist with non-sequential indices
+   - Example: Lines with indices 0x18, 0x1A, 0x1C = three player choices
+   - The engine presents all player lines in the current branch as selectable options
+
+4. **Dialogue Flow Example (Room 2):**
+
+```
+Index 0x0A: NPC says "Te apecete pasar un buen rato, guapo ?"
+            ↓
+Index 0x0B: PLAYER choice 1: "No se, Cuanto cobras ?"
+            ↓
+Index 0x0C: NPC responds: "Completo, 25000"
+            ↓
+Index 0x0D: PLAYER responds: "No me puedes hacer una tarifa especial?..."
+            ↓
+Index 0x0E: NPC responds: "Bueno ... Si prescindimos de la lencería..."
+            ↓
+Index 0x0F: PLAYER choice 1: "Todavía es muy caro para mi..."
+Index 0x10: PLAYER choice 2: "Yo no uso ese tipo de ropa..."
+            ↓ (player selects one)
+Index 0x10: (branch continues from choice)
+```
+
+5. **Choice Presentation Logic**
+   - Game engine scans forward from current position
+   - Collects all PLAYER (0x41) lines until hitting NPC response
+   - Non-sequential indices indicate alternative dialogue branches
+   - Player selection jumps to corresponding index and continues
+
+6. **Line Continuation (Long Text)**
+   - Same speaker can have multiple consecutive entries
+   - Uses `FD FB [SPEAKER]` for same speaker continuation
+   - OR text flows directly without `FD` between parts
+   - Example: Long NPC monologues split across multiple entries with same speaker ID
+
+**Display Timing and Formatting:**
+
+1. **Text Display Duration**
+   - Calculated based on character count
+   - Estimated formula: `display_time = (text_length / chars_per_second) + base_delay`
+   - Typical reading speed: 20-30 characters per second
+   - Base delay: ~1-2 seconds minimum
+
+2. **Line Wrapping**
+   - Maximum line width: **47 characters** (0x2F in Ghidra code)
+   - Wraps at word boundaries (space character)
+   - Breaks on control codes: `FD`, `F4`, `F8`
+
+3. **Screen Layout**
+   - Maximum lines per screen: **4-5 lines**
+   - Based on DAT_0005856b counter in `display_dialog_text()` function
+   - When screen fills, displays "continue" indicator (0xF6 code)
+   - Player must click to see next screen
+
+4. **Paragraph Breaks**
+   - `F4` code forces new paragraph/screen
+   - Often followed by speaker continuation: `F4 FB [SPEAKER]`
+   - Clears previous text before showing next section
+
+**Tree Structure Summary:**
+
+```
+Conversation Structure:
+├─ Opening line (NPC)
+├─ Branch 1: Player choice A
+│  ├─ NPC response to A
+│  ├─ Sub-branch 1.1: Player choice A1
+│  │  └─ NPC response to A1
+│  └─ Sub-branch 1.2: Player choice A2
+│     └─ NPC response to A2
+└─ Branch 2: Player choice B
+   └─ NPC response to B
+      └─ (continues...)
+
+Implementation:
+- All dialogue lines stored sequentially in Pair 12
+- INDEX byte determines position in tree
+- Engine tracks current index
+- Presents all player lines with valid indices as choices
+- Selection advances to chosen branch
+```
+
 ### Pair 11: VGA Palette
 
 **Size:** Always 0x300 (768 bytes)
