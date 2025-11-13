@@ -10,8 +10,8 @@ Conversations in Alfred Pelrock have **multiple entry points** based on the **sp
 
 ```c
 // Calculate which conversation entry point to use
-pcVar12 = (char *)(*(int *)(room_data_ptr + 0x3da + 
-          (uint)(byte)(*(char *)(room_data_ptr + 5) + -2 + 
+pcVar12 = (char *)(*(int *)(room_data_ptr + 0x3da +
+          (uint)(byte)(*(char *)(room_data_ptr + 5) + -2 +
                       *(char *)(room_data_ptr + 0x47a) + sprite_talk_count) * 4) + 2);
 ```
 
@@ -162,7 +162,7 @@ Lines with the **same choice_group_id** represent **alternative player responses
 **Example from Room 2:**
 - After NPC says "Bueno ... Si prescindimos..." (index 0x0E)
 - Player has multiple responses, all with choice_group_id = **0x03**:
-  - Index 0x0F (FD): "Todav}a es muy caro para mi" 
+  - Index 0x0F (FD): "Todav}a es muy caro para mi"
   - Index 0x27 (F4 FB): "Yo no uso ese tipo de ropa"
 
 These appear far apart in the file but are linked by their matching choice_group_id.
@@ -198,7 +198,7 @@ These appear far apart in the file but are linked by their matching choice_group
 
 **Choice Groups**: Lines are organized into choice groups by choice_group_id:
 - Group 0x01: 2 alternatives (indices 0x0B, 0x29)
-- Group 0x03: 2 alternatives (indices 0x0F, 0x27)  
+- Group 0x03: 2 alternatives (indices 0x0F, 0x27)
 - Group 0x04: 2 alternatives (indices 0x11, 0x25)
 - Group 0x05: 2 alternatives (indices 0x13, 0x23)
 
