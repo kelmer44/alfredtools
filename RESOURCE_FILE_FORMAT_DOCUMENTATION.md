@@ -6,10 +6,14 @@ Complete documentation of all resource file formats for Alfred Pelrock, a DOS po
 
 1. [File Overview](#file-overview)
 2. [ALFRED.1 - Main Game Data](#alfred1---main-game-data)
-3. [ALFRED.4 - UI Graphics](#alfred4---ui-graphics)
-4. [ALFRED.7 - Sprites and Cursors](#alfred7---sprites-and-cursors)
-5. [ALFRED.9 - Fonts and Remap Tables](#alfred9---fonts-and-remap-tables)
-6. [Common Structures](#common-structures)
+3. [ALFRED.2 - Character Talking Animations](#alfred2---character-talking-animations)
+4. [ALFRED.3 - Character Movement Animations](#alfred3---character-movement-animations)
+5. [ALFRED.4 - UI Graphics](#alfred4---ui-graphics)
+6. [ALFRED.5 - Shadow Layers](#alfred5---shadow-layers)
+7. [ALFRED.6 - Overlay Graphics (Pegatinas)](#alfred6---overlay-graphics-pegatinas)
+8. [ALFRED.7 - Sprites and Cursors](#alfred7---sprites-and-cursors)
+9. [ALFRED.9 - Fonts and Remap Tables](#alfred9---fonts-and-remap-tables)
+10. [Common Structures](#common-structures)
 
 ---
 
@@ -18,7 +22,11 @@ Complete documentation of all resource file formats for Alfred Pelrock, a DOS po
 | File | Size | Purpose | Primary Contents |
 |------|------|---------|------------------|
 | **ALFRED.1** | ~12.9 MB | Main game data | Backgrounds, room data, sprites, animations, palettes, text |
+| **ALFRED.2** | ~2.1 MB | Character animations | Talking animations, character sprites (RLE compressed) |
+| **ALFRED.3** | ~311 KB | Character animations | Character movement animations (walking, actions) |
 | **ALFRED.4** | ~43 KB | UI graphics | Popup icons, speech balloons |
+| **ALFRED.5** | ~1.7 MB | Shadow layers | Character shadow sprites for all rooms |
+| **ALFRED.6** | ~700 KB | Overlay graphics | "Pegatinas" (stickers/overlays) for room decorations |
 | **ALFRED.7** | ~3.6 MB | Additional sprites | Sprite data, cursor graphics |
 | **ALFRED.9** | ~146 KB | System data | Fonts, color remap tables, room configuration |
 | **JUEGO.EXE** | - | Game executable | Game logic, rendering engine |
@@ -65,9 +73,9 @@ struct RoomEntry {
 | **0-7** | varies | varies | **Background blocks** | RLE or raw | 8 blocks combined for 640×400 bg |
 | **8** | varies | varies | **Sprite pixel data** | RLE | Raw indexed bitmap data for sprites |
 | **9** | varies | varies | **Room objects** | varies | Object/animation definitions |
-| **10** | varies | varies | **Room data** | varies | Hotspots, walkboxes, exits, text, sprites |
+| **10** | varies | varies | **Room data** | varies | Hotspots, walkboxes, exits, sprites |
 | **11** | varies | 0x300 | **Palette** | Raw | 256-color VGA palette (768 bytes) |
-| **12** | varies | varies | **Additional data** | varies | Unknown/unused in most rooms |
+| **12** | varies | varies | **Text data** | Special | Descriptions and conversations with control codes |
 
 ### Pair 0-7: Background Blocks
 
@@ -243,18 +251,14 @@ struct Exit {
 **Location:** Offset `0x1BF` in Pair 10
 **Count:** Byte at offset `0x1BE`
 
-#### Text System
+#### Text System (Pair 10 - Legacy, see Pair 12 for actual text)
+
+**NOTE:** Text data is actually stored in **Pair 12**, not Pair 10. Pair 10 only contains sprite/hotspot metadata.
 
 **Text Pointer Table:**
 - **Location:** Offset `0x3DA` in Pair 10
-- **Format:** Array of `u32` absolute file pointers
-- **Building:** Scanned dynamically by searching for `0xFF` markers in text data
-
-**Text Data Format:**
-- Text strings are stored with `0xFF` byte markers
-- Each `0xFF` marker indicates the start of a new text entry
-- Text pointer = 2 bytes after the `0xFF` marker
-- Strings are null-terminated or terminated by next `0xFF`
+- **Format:** Array of `u32` absolute file pointers pointing to **Pair 12** data
+- **Building:** Scanned dynamically by searching for control code markers in Pair 12
 
 **Text Indexing:**
 Text descriptions are assigned to sprites/hotspots by **position in combined list**:
@@ -276,6 +280,155 @@ Text Index N+1: Second static hotspot
 - 4 selectable sprites → Text indices 0, 1, 2, 3
 - 6 static hotspots → Text indices 4, 5, 6, 7, 8, 9
 - Total: 10 text entries in pointer table
+
+### Pair 12: Text Data (Descriptions and Conversations)
+
+**Purpose:** All text data for room including descriptions and conversations
+**Format:** ASCII text with embedded control codes
+**Structure:** Two sections - Descriptions followed by Conversations
+**Encoding:** Latin-1 or DOS Code Page 437
+
+#### Section 1: Item/Hotspot Descriptions
+
+**Format:**
+```
+FF [ITEM_ID] 08 0D [INDEX] 00 [TEXT...] FD
+```
+
+**Structure Breakdown:**
+- `FF` (0xFF): Start of description marker
+- `ITEM_ID`: Hotspot/sprite identifier (0x21, 0x22, 0x23, etc.)
+- `08 0D`: Standard separator bytes
+- `INDEX`: Sequential text index (0x00, 0x01, 0x02...)
+- `00`: Null byte separator
+- `[TEXT...]`: ASCII text content
+- `FD` (0xFD): End of description marker
+
+**Example (Room 2, Description 0):**
+```
+Offset 0xB204A:
+FF 21 08 0D 00 00  4E 6F 20 65 73 74 7B ...
+|  |  |  |  |  |   |  |  |  |  |  |
+|  |  |  |  |  |   N  o     e  s  t  {
+|  |  |  |  |  |
+|  |  |  |  |  +--- Null separator
+|  |  |  |  +------ Text index: 0x00
+|  |  |  +--------- 0x0D separator
+|  |  +------------ 0x08 separator
+|  +--------------- Item ID: 0x21 (ASCII '!')
++------------------ Description start marker
+```
+
+#### Section 2: Conversations
+
+**Format:** Complex dialogue system with speaker identification and line management.
+
+**Basic Structure:**
+```
+[CHARACTER_PREFIX] [TEXT...] FD [SPEAKER_CHANGE] [SPEAKER_ID] 08 [SEPARATOR] [INDEX] 00 [NEXT_TEXT...]
+```
+
+**Control Codes:**
+
+| Code | Hex | Description | Format |
+|------|-----|-------------|--------|
+| **Line Terminators** |
+| `FD` | 0xFD | End of line/dialogue segment | Standalone byte |
+| | | |
+| **Speaker Control** |
+| `FC` | 0xFC | Speaker change (protagonist) | `FD FC [SPEAKER] 08 20 [INDEX] 00` |
+| `FB` | 0xFB | Continue same speaker (NPC) | `FD FB [SPEAKER] 08 0D [INDEX] 00` |
+| `F1` | 0xF1 | Special speaker marker | `FD F1 [SPEAKER] 08 0D [INDEX] 00` |
+| | | |
+| **Formatting** |
+| `F4` | 0xF4 | Paragraph break/end | Often followed by FB/FC/F1 |
+| `F8` | 0xF8 | Special formatting | `F8 [PARAM1] [PARAM2]` (skip 3 bytes total) |
+| `F7` | 0xF7 | Unknown formatting | Appears with F4 |
+| `F5` | 0xF5 | End of conversation | Usually at very end |
+| | | |
+| **Character Indicators** |
+| `82` | 0x82 | Character voice/style marker | Appears before some dialogue |
+| `83` | 0x83 | Character voice/style marker | Appears before some dialogue |
+| | | |
+| **Special Characters** |
+| `7F` | 0x7F | Accented 'ú' (u-acute) | Spanish text encoding |
+| `80` | 0x80 | Accented 'ñ' (n-tilde) | Spanish text encoding |
+
+**Speaker ID Values:**
+- `0x41` (ASCII 'A'): Alfred (protagonist) - uses 0x20 (space) separator
+- `0x01-0x09`: Other character IDs - use 0x0D separator
+- `0x0A-0x1F`: Extended character range
+
+**Separator Differences:**
+- **0x20 (space)**: Used after `FC` for protagonist (Alfred)
+- **0x0D (carriage return)**: Used after `FB`/`F1` for NPCs
+
+**Example (Room 2, Conversation Start):**
+```
+Offset 0xB21E6:
+83 20 54 65 20 61 70 65 63 65 ...
+|  |  |  |  |  |  |  |  |  |
+|  |  T  e     a  p  e  c  e
+|  +--- Space separator
++------ Character prefix 0x83
+```
+
+**Speaker Change Example:**
+```
+FD FC 41 08 20 0C 00  43 6F 6D 70 ...
+|  |  |  |  |  |  |   |  |  |  |
+|  |  |  |  |  |  |   C  o  m  p
+|  |  |  |  |  |  +--- Null separator
+|  |  |  |  |  +------ Text index 0x0C
+|  |  |  |  +--------- Space separator (0x20)
+|  |  |  +------------ 0x08 separator
+|  |  +--------------- Speaker: 0x41 ('A' = Alfred)
+|  +------------------ Speaker change marker
++---------------------- Line end
+
+Result: Switch to Alfred (protagonist), display text index 12
+```
+
+**Continue Same Speaker Example:**
+```
+FD FB 02 08 0D 0D 00  83 20 4E 6F ...
+|  |  |  |  |  |  |   |  |  |  |
+|  |  |  |  |  |  |   |  |  N  o
+|  |  |  |  |  |  +--- Null separator
+|  |  |  |  |  +------ Text index 0x0D
+|  |  |  |  +--------- 0x0D separator (NPC indicator)
+|  |  |  +------------ 0x08 separator
+|  |  +--------------- Speaker: 0x02 (NPC character 2)
+|  +------------------ Continue same speaker
++---------------------- Line end
+
+Result: Continue with NPC #2, display text index 13
+```
+
+**Paragraph Break Example:**
+```
+F4 FB 05 08 0D 23 00  45 73 20 ...
+|  |  |  |  |  |  |   |  |  |
+|  |  |  |  |  |  |   E  s  (space)
+|  |  |  |  |  |  +--- Null separator
+|  |  |  |  |  +------ Text index 0x23
+|  |  |  |  +--------- 0x0D separator
+|  |  |  +------------ 0x08 separator
+|  |  +--------------- Speaker: 0x05
+|  +------------------ Continue speaker marker
++---------------------- Paragraph end
+
+Result: End paragraph, then continue with NPC #5
+```
+
+#### Text Data Location (Room 2 Example)
+
+| Section | Start Offset | End Offset | Size | Content |
+|---------|--------------|------------|------|---------|
+| **Descriptions** | 0xB204A | 0xB21E4 | 410 bytes | 10 hotspot/sprite descriptions |
+| **Conversations** | 0xB21E6 | 0xB3078 | 3,730 bytes | Multi-speaker dialogue tree |
+
+**Note:** These are Pair 12 offsets in ALFRED.1. Access via room directory → Room 2 → Pair 12.
 
 ### Pair 11: VGA Palette
 
@@ -322,6 +475,189 @@ while not end_of_data:
 Input:  [05 FF 03 00 02 A5]
 Output: [FF FF FF FF FF 00 00 00 A5 A5]
 ```
+
+---
+
+## ALFRED.2 - Character Talking Animations
+
+**Size:** ~2.1 MB (approximate)
+**Purpose:** Character talking/dialogue animations with lip-sync frames
+**Palette:** Uses room-specific palettes from ALFRED.1
+**Compression:** RLE with BUDA markers
+
+### File Structure
+
+ALFRED.2 stores character talking animations organized in **55-byte directory entries**.
+
+#### Directory Entry Structure (55 bytes / 0x37)
+
+```c
+struct AnimEntry {
+    // First animation (e.g., mouth movements)
+    u16 offset_anim_a;      // +0x00-0x01: File offset for animation A (LE)
+    u8  padding1[7];        // +0x02-0x08: Padding/unknown
+    u8  width_a;            // +0x09: Width of animation A frames
+    u8  height_a;           // +0x0A: Height of animation A frames
+    u8  padding2[2];        // +0x0B-0x0C: Padding/unknown
+    u8  num_frames_a;       // +0x0D: Number of frames in animation A
+    u8  padding3[7];        // +0x0E-0x14: Padding/unknown
+
+    // Second animation (e.g., eye blinks, expressions)
+    u16 offset_anim_b;      // +0x15-0x16: File offset for animation B (LE)
+    u8  padding4[7];        // +0x17-0x1D: Padding/unknown
+    u8  width_b;            // +0x1E: Width of animation B frames
+    u8  height_b;           // +0x1F: Height of animation B frames
+    u8  padding5[2];        // +0x20-0x21: Padding/unknown
+    u8  num_frames_b;       // +0x22: Number of frames in animation B
+    u8  padding6[19];       // +0x23-0x35: Padding/unknown
+    u8  terminator;         // +0x36: Entry terminator (usually 0x00)
+};
+```
+
+### Data Organization
+
+**Directory Phase:**
+- Iterate through 55-byte entries from file start
+- Skip entries where `offset_anim_a == 0` (empty slots)
+- Each valid entry points to two animation sets (A and B)
+
+**Animation Data:**
+- Located at offsets specified in directory entries
+- RLE-compressed with BUDA markers
+- Each animation contains N frames of W×H pixels
+- Frames stored sequentially after decompression
+
+### Decompression Algorithm
+
+```python
+def decompress_rle(data, start_offset):
+    """Decompress RLE data until BUDA marker"""
+    output = bytearray()
+    offset = start_offset
+
+    while offset < len(data):
+        # Check for BUDA marker (end of compressed section)
+        if data[offset:offset+4] == b'BUDA':
+            break
+
+        # Read RLE pair
+        count = data[offset]
+        color = data[offset + 1]
+        output.extend([color] * count)
+        offset += 2
+
+    return output
+```
+
+### Frame Extraction
+
+**Animation A Layout:**
+```
+Total pixels = width_a × height_a × num_frames_a
+Frame 0: pixels[0 : width_a × height_a]
+Frame 1: pixels[width_a × height_a : 2 × width_a × height_a]
+...
+Frame N: pixels[(N-1) × width_a × height_a : N × width_a × height_a]
+```
+
+**Animation B Layout:**
+```
+Starts at offset: width_a × height_a × num_frames_a
+Total pixels = width_b × height_b × num_frames_b
+Frames indexed same as Animation A
+```
+
+### Usage Notes
+
+- **Animation A:** Typically mouth/lip-sync movements
+- **Animation B:** Typically eye blinks, facial expressions, or secondary motions
+- **Palette Index:** Entry index ÷ 55 determines which ALFRED.1 room palette to use
+- **Naming Convention:** `anim_{entry_index}_a.png` and `anim_{entry_index}_b.png`
+
+---
+
+## ALFRED.3 - Character Movement Animations
+
+**Size:** ~311 KB (approximate)
+**Purpose:** Character walking animations and movement cycles
+**Palette:** Uses default palette from ALFRED.1
+**Compression:** RLE with BUDA markers
+
+### File Structure
+
+ALFRED.3 contains sequential animation sets with different dimensions and frame counts. No directory structure—animations are stored one after another.
+
+#### Animation Sets
+
+| Set | Width | Height | Frames | Total Pixels | Description |
+|-----|-------|--------|--------|--------------|-------------|
+| **0** | 51 | 102 | 60 | 312,120 | Main character walking cycle (all directions) |
+| **1** | 130 | 55 | 18 | 128,700 | Wide character animation (possibly outro/cutscene) |
+| **2** | 51 | 100 | 25 | 127,500 | Character action animation |
+| **3** | 51 | 100 | 10 | 51,000 | Short character action |
+| **4-12** | 51 | 100 | 1 | 5,100 each | Static poses or single-frame actions |
+
+**Hardcoded Dimensions:**
+```c
+int nFrames[] = {60, 18, 25, 10, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+int dimensions[10][2] = {
+    {51, 102},  // Set 0
+    {130, 55},  // Set 1
+    {51, 100},  // Sets 2-9
+    // ... remaining sets all {51, 100}
+};
+```
+
+### Data Organization
+
+**Single Compressed Block:**
+- Entire file is one RLE-compressed data stream
+- Decompression continues until BUDA marker or EOF
+- Frame boundaries calculated from dimensions and frame counts
+
+**Offset Calculation:**
+```python
+offset = 0
+for set_index in range(num_sets):
+    if set_index > 0:
+        prev_frames = nFrames[set_index - 1]
+        prev_width = dimensions[set_index - 1][0]
+        prev_height = dimensions[set_index - 1][1]
+        offset += prev_frames * prev_width * prev_height
+
+    # Extract this animation set starting at 'offset'
+```
+
+### Frame Layout
+
+Each animation set is a horizontal sprite sheet:
+
+```
+Set 0 (60 frames, 51×102):
+┌─────┬─────┬─────┬─────┬ ... ─────┐
+│Frame│Frame│Frame│Frame│ ... │Frame│
+│  0  │  1  │  2  │  3  │ ... │ 59  │
+│51×102│51×102│51×102│51×102│...│51×102│
+└─────┴─────┴─────┴─────┴ ... ─────┘
+Total width: 51 × 60 = 3,060 pixels
+Total height: 102 pixels
+```
+
+### Extraction Process
+
+1. **Decompress entire file:** RLE → raw pixel buffer
+2. **For each animation set:**
+   - Calculate byte offset from previous sets
+   - Extract width × height × frames pixels
+   - Arrange as horizontal sprite sheet
+3. **Export as PNG:** With palette from ALFRED.1
+
+### Usage Notes
+
+- **Set 0 (60 frames):** Complete walking cycle with 8 directions + transitions
+- **Set 1 (18 frames):** Special cutscene or large character animation
+- **Sets 2-3:** Action animations (picking up objects, interacting)
+- **Sets 4-12:** Static poses or idle states
 
 ---
 
@@ -382,6 +718,201 @@ Frame 0: 0-27663        (247×112 = 27,664 bytes)
 Frame 1: 27664-55327
 Frame 2: 55328-82991
 Frame 3: 82992-110655
+```
+
+---
+
+## ALFRED.5 - Shadow Layers
+
+**Size:** ~1.7 MB (approximate)
+**Purpose:** Character shadow sprites for all 55 rooms
+**Palette:** Uses room-specific palettes from ALFRED.1
+**Compression:** RLE with BUDA markers
+
+### File Structure
+
+ALFRED.5 contains a directory of shadow sprites, one for each of the 55 rooms in the game.
+
+#### Directory Structure (6 bytes per entry)
+
+```c
+struct ShadowEntry {
+    u32 offset;     // +0x00-0x02: File offset (24-bit LE, 3 bytes)
+    u8  padding[3]; // +0x03-0x05: Padding/unknown
+};
+```
+
+**Total Entries:** 55 (one per room)
+**Directory Size:** 330 bytes (55 × 6)
+
+### Shadow Data Format
+
+Each shadow is a full-screen (640×400) overlay with RLE compression.
+
+#### Compressed Data Structure
+
+```
+[offset]:        Start of RLE compressed data
+    [count, color] pairs...
+    [count, color] pairs...
+    ...
+[offset+N]:      BUDA marker (0x42 0x55 0x44 0x41)
+```
+
+**Decompression:**
+```python
+def extract_shadow(data, entry_index):
+    # Read directory entry
+    entry_offset = entry_index * 6
+    shadow_offset = (data[entry_offset] |
+                     (data[entry_offset + 1] << 8) |
+                     (data[entry_offset + 2] << 16))
+
+    # Decompress RLE until BUDA marker
+    pixels = bytearray()
+    offset = shadow_offset
+
+    while offset < len(data):
+        if data[offset:offset+4] == b'BUDA':
+            break
+
+        count = data[offset]
+        color = data[offset + 1]
+        pixels.extend([color] * count)
+        offset += 2
+
+    return pixels  # Should be 640 × 400 = 256,000 bytes
+```
+
+### Usage Notes
+
+- **Dimensions:** Always 640×400 (full screen)
+- **Purpose:** Dynamic shadow overlay for character position
+- **Blending:** Likely uses palette darkening or alpha compositing
+- **Room Mapping:** Entry index directly corresponds to room number (0-54)
+- **Palette:** Uses the same palette as corresponding ALFRED.1 room
+
+### Visual Properties
+
+- Shadows are typically dark/semi-transparent colors (low palette indices)
+- Used to give depth perception to character in environment
+- May include ambient occlusion or environmental shadows
+
+---
+
+## ALFRED.6 - Overlay Graphics (Pegatinas)
+
+**Size:** ~700 KB (approximate)
+**Purpose:** "Pegatinas" (stickers/overlays) - decorative graphics layered on rooms
+**Palette:** Uses room-specific palettes based on lookup table
+**Compression:** Uncompressed raw bitmaps
+
+### File Structure
+
+ALFRED.6 contains variable-sized overlay graphics stored sequentially with metadata headers.
+
+#### Entry Header (6 bytes)
+
+```c
+struct PegatinaHeader {
+    u16 screen_x;   // +0x00-0x01: X position on screen (LE)
+    u16 screen_y;   // +0x02-0x03: Y position on screen (LE)
+    u8  width;      // +0x04: Width in pixels
+    u8  height;     // +0x05: Height in pixels
+    // Immediately followed by pixel data (width × height bytes)
+};
+```
+
+### Data Organization
+
+**Sequential Storage:**
+```
+[Entry 0 Header: 6 bytes][Entry 0 Pixels: w0×h0 bytes][Separator: 0xBF bytes]
+[Entry 1 Header: 6 bytes][Entry 1 Pixels: w1×h1 bytes][Separator: 0xBF bytes]
+...
+```
+
+**Entry Separator:**
+- One or more `0xBF` bytes between entries
+- Skip all consecutive `0xBF` bytes to find next entry
+- Entries with `width == 0` or `height == 0` are skipped
+
+**Special Offsets:**
+Some entries have hardcoded offsets (non-sequential):
+```c
+if (entry == 37) offset = 0x1B8C4;
+if (entry == 67) offset = 0x3F813;
+if (entry == 68) offset = 0x4115D;
+if (entry == 88) offset = 0x58969;
+```
+
+### Palette Mapping Table
+
+**Location:** Hardcoded in `alfred6.c`
+**Size:** 140 entries mapping pegatina index → palette number
+
+```c
+int tablapaletas[140] = {
+    0,0,0,0,0,0,0,       // Entries 0-6   → Palette 0
+    2,2,                 // Entries 7-8   → Palette 2
+    3,3,3,3,3,3,3,3,     // Entries 9-16  → Palette 3
+    4,4,4,4,4,           // Entries 17-21 → Palette 4
+    5,5,                 // Entries 22-23 → Palette 5
+    7,                   // Entry 24      → Palette 7
+    8,8,                 // Entries 25-26 → Palette 8
+    9,9,9,9,9,           // Entries 27-31 → Palette 9
+    12,12,               // Entries 32-33 → Palette 12
+    13,13,13,            // Entries 34-36 → Palette 13
+    12,                  // Entry 37      → Palette 12
+    15,15,15,15,15,15,15,15,15,15,15,15,  // Entries 38-49 → Palette 15
+    16,16,               // Entries 50-51 → Palette 16
+    17,17,               // Entries 52-53 → Palette 17
+    19,19,19,19,19,      // Entries 54-58 → Palette 19
+    // ... more entries
+};
+```
+
+**Palette Selection:**
+```python
+palette_index = tablapaletas[pegatina_index]
+palette_room = palette_index // 55  # Room number
+palette_pair = (palette_room * 13) + 11  # Pair 11 = palette
+```
+
+### Extraction Process
+
+1. **Read header:** 6 bytes (x, y, width, height)
+2. **Skip if empty:** `width == 0` or `height == 0`
+3. **Read pixels:** `width × height` bytes (raw indexed bitmap)
+4. **Select palette:** Use `tablapaletas` lookup
+5. **Output files:**
+   - `pegatina{NN}.png` - Image with palette
+   - `pegatina{NN}.txt` - Metadata (x, y, width, height)
+
+### Usage Notes
+
+- **Purpose:** Decorative overlays, furniture, objects on room backgrounds
+- **Layering:** Applied after background, before character sprites
+- **Positioning:** Absolute screen coordinates (x, y)
+- **Variable Size:** Each pegatina has individual dimensions
+- **Palette Context:** Different pegatinas use different room palettes for proper color matching
+
+### Metadata Format
+
+**Text File (`.txt`):**
+```
+<screen_x>
+<screen_y>
+<width>
+<height>
+```
+
+**Example (`pegatina00.txt`):**
+```
+120
+85
+64
+48
 ```
 
 ---
@@ -602,12 +1133,37 @@ The following Python scripts can extract data from these files:
 | `extract_walkboxes.py` | Walkable area definitions | JSON, Python |
 | `extract_exits.py` | Room connections/transitions | JSON, Python, text |
 
+### ALFRED.2 Extractors
+
+| Script | Extracts | Output |
+|--------|----------|--------|
+| `alfred2.c` | Character talking animations (A/B sets) | PNG sprite sheets |
+
+### ALFRED.3 Extractors
+
+| Script | Extracts | Output |
+|--------|----------|--------|
+| `alfred3.c` | Character movement/walking animations | PNG sprite sheets |
+
 ### ALFRED.4 Extractors
 
 | Script | Extracts | Output |
 |--------|----------|--------|
 | `extract_balloons.py` | Popup icons and speech balloons | PNG files (with palette) |
 | `extract_popup.py` | UI popup graphics | PNG files |
+| `alfred4.c` | UI graphics (alternate implementation) | PNG files |
+
+### ALFRED.5 Extractors
+
+| Script | Extracts | Output |
+|--------|----------|--------|
+| `alfred5.c` | Character shadow layers for all rooms | PNG files (640×400) |
+
+### ALFRED.6 Extractors
+
+| Script | Extracts | Output |
+|--------|----------|--------|
+| `alfred6.c` | Pegatinas (overlay graphics) | PNG + TXT metadata |
 
 ### ALFRED.7 Extractors
 
@@ -642,7 +1198,11 @@ The following Python scripts can extract data from these files:
 | File | Size (bytes) | Size (KB) | Size (MB) |
 |------|-------------|-----------|-----------|
 | ALFRED.1 | 12,915,352 | 12,613 | 12.32 |
+| ALFRED.2 | ~2,100,000 | ~2,050 | ~2.00 |
+| ALFRED.3 | ~311,000 | ~304 | ~0.30 |
 | ALFRED.4 | 43,866 | 42.8 | 0.04 |
+| ALFRED.5 | ~1,700,000 | ~1,660 | ~1.62 |
+| ALFRED.6 | ~700,000 | ~683 | ~0.67 |
 | ALFRED.7 | 3,637,248 | 3,552 | 3.47 |
 | ALFRED.9 | 149,772 | 146.3 | 0.14 |
 
@@ -676,6 +1236,8 @@ Documentation compiled through reverse engineering analysis using:
 ## Version History
 
 **Version 1.0** - Initial comprehensive documentation
+**Version 1.1** - Added ALFRED.2, 3, 5, 6 documentation from C extractors
+**Version 1.2** - Decoded Pair 12 text system with complete control code documentation
 **Date:** November 12, 2025
 **Author:** Reverse engineering analysis of Alfred Pelrock (1997)
 
@@ -685,13 +1247,26 @@ Documentation compiled through reverse engineering analysis using:
 
 1. **Hotspot System Discovery:** The sprite hotspot system uses byte offsets +33 (sprite_type), +34 (action_flags), and +38 (is_hotspot) to determine interactivity. Confirmed through Ghidra analysis of `check_mouse_on_sprites_and_hotspots()` function.
 
-2. **Text Indexing:** Text descriptions are NOT stored in sprite structures. They're indexed implicitly by the position in the combined list of selectable sprites and static hotspots. This was discovered through analysis of the `load_room_data()` function's text pointer table building mechanism.
+2. **Text Storage Location:** Text data is stored in **Pair 12**, not Pair 10. Pair 10 contains only metadata (sprites, hotspots, walkboxes, exits) and a pointer table at offset 0x3DA that references the actual text in Pair 12. This was confirmed through pattern analysis of control codes and cross-referencing with Ghidra's `display_dialog_text()` function.
 
-3. **BUDA Markers:** The "BUDA" signature appears throughout the data files as a compression marker. Origin of the name is unknown but likely related to the game's development environment or internal tools.
+3. **Text Control Codes:** The text system uses a sophisticated set of control codes for dialogue management:
+   - `0xFD`: Line terminator
+   - `0xFC`: Speaker change to protagonist (uses 0x20 separator)
+   - `0xFB`: Continue same NPC speaker (uses 0x0D separator)
+   - `0xF4`: Paragraph break
+   - `0xF8`: Special formatting (skip 3 bytes)
+   - `0x82/0x83`: Character voice/style indicators
+   These codes control speaker transitions, text formatting, and animation selection during conversations.
 
-4. **Palette Sharing:** ALFRED.4 uses the palette from ALFRED.1 Room 0, Pair 11. This indicates a centralized palette management system for UI consistency.
+4. **Speaker Identification:** In conversations, speaker 0x41 ('A') represents Alfred the protagonist and uses a space (0x20) separator, while NPCs use IDs 0x01-0x1F and a carriage return (0x0D) separator. This difference allows the engine to distinguish between player dialogue and NPC responses.
 
-5. **Coordinate Validation:** The game validates coordinates against screen bounds (640×400) when loading exits and hotspots, suggesting runtime safety checks in the engine.
+5. **Text Indexing:** Text descriptions are indexed implicitly by position in the combined list of `[selectable_sprites] + [static_hotspots]`. Each entry uses the format `FF [ID] 08 0D [INDEX] 00 [TEXT...] FD` where INDEX increments sequentially.
+
+6. **BUDA Markers:** The "BUDA" signature appears throughout the data files as a compression marker. Origin of the name is unknown but likely related to the game's development environment or internal tools.
+
+7. **Palette Sharing:** ALFRED.4 uses the palette from ALFRED.1 Room 0, Pair 11. This indicates a centralized palette management system for UI consistency.
+
+8. **Coordinate Validation:** The game validates coordinates against screen bounds (640×400) when loading exits and hotspots, suggesting runtime safety checks in the engine.
 
 ---
 
