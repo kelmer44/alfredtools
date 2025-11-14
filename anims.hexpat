@@ -9,7 +9,7 @@ struct Pair {
 };
 
 struct RoomHeader {
-    Pair pairs[10];
+    Pair pairs[13];
 };
 
 struct Headers {
@@ -18,6 +18,7 @@ struct Headers {
 
 Headers roomHeaders@0x00;
 
+u8 room2sounds[10] @727056;
 
 struct ThisAnimHeader {
     u16 x;                  // Bytes 0-1
@@ -73,6 +74,16 @@ u8 type;
     u16 extra;
 };
 
+struct Color {
+    u8 r;
+    u8 g;
+    u8 b;
+} [[hex::inline_visualize("color", r * 4, g * 4, b *4 , 255)]];
+struct Palette {
+    Color colors[256];
+} ;
+
+Palette room2palette @0xB1D4a;
 
 ThisAnimHeader chefSprite @0x253147;
 ThisAnimHeader burgerSprite @0x253173;
@@ -107,16 +118,30 @@ Hotspot planta2Hotspot @0xB1CB1;
 Hotspot unknown1Hotspot @0xB1CBA;
 Hotspot unknown2Hotspot @0xB1CC3;
 
-// Room 2 Text Descriptions
-// Indexed by order: [selectable_sprites] + [static_hotspots]
-// Text data starts after 0xFF marker (+ 2 bytes)
-char room2_text0_putaSprite[100] @0x000B2050;      // Index 0: puta sprite
-char room2_text1_cajeroSprite[100] @0x000B207B;    // Index 1: cajero sprite
-char room2_text2_freddySprite[100] @0x000B209A;    // Index 2: freddy sprite
-char room2_text3_walkerSprite[100] @0x000B20A9;    // Index 3: walker sprite
-char room2_text4_cajeroHotspot[100] @0x000B20C1;   // Index 4: cajero static hotspot
-char room2_text5_puertaHotspot[100] @0x000B20E4;   // Index 5: puerta hotspot
-char room2_text6_planta1Hotspot[100] @0x000B2102;  // Index 6: planta1 hotspot
-char room2_text7_planta2Hotspot[100] @0x000B211B;  // Index 7: planta2 hotspot
-char room2_text8_unknown1Hotspot[100] @0x000B2134; // Index 8: unknown1 hotspot
-char room2_text9_unknown2Hotspot[100] @0x000B2154; // Index 9: unknown2 hotspot
+// FF [ITEM_ID] 08 0D [INDEX] 00 [TEXT...] FD
+struct Description {
+    u8 start;
+    u8 itemId;
+    u16 magic;
+    u8 index;
+    u8 zero;
+    char data[while(std::mem::read_unsigned($, 1) != 0xFD)];
+    u8 terminator;
+};
+
+struct Texts {
+    Description puta;
+    Description cajeroSprite;
+    Description johnny;
+    Description walker;
+    Description cajero;
+    Description mcdowells;
+    Description planta1;
+    Description planta2;
+    Description outside;
+    Description outside2;
+};
+
+//u8 room2Texts[4142] @0xB204A;
+Texts room2Texts @0xB204A;
+u8 room3Start @0xB3078;
