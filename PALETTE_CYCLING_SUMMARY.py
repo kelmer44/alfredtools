@@ -21,7 +21,7 @@ def read_config(data, offset):
     """Read and parse 12-byte cycling config."""
     if offset + 12 > len(data):
         return None
-    
+
     cfg = data[offset:offset+12]
     return {
         'offset': offset,
@@ -103,9 +103,9 @@ configs_found = []
 for offset in range(0x4B800, 0x4BA00, 12):
     if offset + 12 > len(exe_data):
         break
-    
+
     cfg_data = exe_data[offset:offset+12]
-    
+
     # Validate: mode 1-10, RGB values 0-63
     if 1 <= cfg_data[1] <= 10:
         if all(0 <= cfg_data[i] <= 63 for i in range(5, 11)):
@@ -117,10 +117,10 @@ print()
 for i, cfg in enumerate(configs_found, 1):
     print(f"CONFIG #{i}:")
     print_config(cfg)
-    
+
     if cfg['offset'] == 0x0004B860:
         print("  *** THIS IS THE ROOM 2 CONFIG (McDowells sign) ***")
-    
+
     print()
 
 print("="*80)
