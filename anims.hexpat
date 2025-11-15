@@ -145,3 +145,25 @@ struct Texts {
 //u8 room2Texts[4142] @0xB204A;
 Texts room2Texts @0xB204A;
 u8 room3Start @0xB3078;
+
+
+struct Room21Anims {
+    ThisAnimHeader avion1;
+    ThisAnimHeader palmera;
+    ThisAnimHeader duna;
+    ThisAnimHeader camello;
+    ThisAnimHeader avion2;
+};
+
+
+struct Room9Anims {
+    ThisAnimHeader bibliotecaria;
+    ThisAnimHeader ordenador;
+    ThisAnimHeader raton;
+    ThisAnimHeader telefono;
+    ThisAnimHeader black;
+};
+
+
+Room9Anims room9anims @0x1ECDB7;
+Room21Anims room21anims @0x3B6181;
