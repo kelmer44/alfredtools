@@ -2,6 +2,7 @@
 #pragma endian little
 
 import std.mem;
+import std.core;
 
 struct Pair {
     u32 offset;
@@ -20,6 +21,113 @@ Headers roomHeaders@0x00;
 */
 
 /*u8 room2sounds[10] @727056;
+
+
+
+struct Hotspot {
+u8 type;
+    u16 x;
+    u16 y;
+    u8 w;
+    u8 h;
+    u16 extra;
+};
+*/
+struct Color {
+    u8 r;
+    u8 g;
+    u8 b;
+} [[hex::inline_visualize("color", r * 4, g * 4, b *4 , 255)]];
+struct Palette {
+    Color colors[256];
+} ;
+/*
+Palette room2palette @0xB1D4a;
+
+ThisAnimHeader chefSprite @0x253147;
+ThisAnimHeader burgerSprite @0x253173;
+ThisAnimHeader gatoSprite @0x25319F;
+
+ThisAnimHeader putaSprite @0xB187C;
+ThisAnimHeader cajeroSprite @0xB18A8;
+ThisAnimHeader freddySprite @0xB18D4;
+ThisAnimHeader walkerSprite @0xB1900;
+
+ThisAnimHeader ventanasmuseoSprite @0x126C06;
+
+u8 hostpotCountRoom0 @0x0230C6;
+Hotspot cajonHostpost @0x230C8;
+Hotspot twoHostpost @0x230D1;
+Hotspot librosHostpost @0x230DA;
+Hotspot fourHostpost @0x230E3;
+Hotspot fiveHostpost @0x230EC;
+Hotspot sixHostpost @0x230F5;
+Hotspot bedHotspot @0x230FE;
+Hotspot doorHotspot @0x23107;
+Hotspot documentacionHotspot @0x23110;
+Hotspot tarjetaHotspot @0x23119;
+Hotspot fotoHotspot @0x23122;
+Hotspot ventanaHotspot @0x2312B;
+
+u8 room2HostpotCount @0xB1C94;
+Hotspot cajeroHotspot @0xB1C96;
+Hotspot puertaHotspot @0xB1C9F;
+Hotspot planta1Hotspot @0xB1CA8;
+Hotspot planta2Hotspot @0xB1CB1;
+Hotspot unknown1Hotspot @0xB1CBA;
+Hotspot unknown2Hotspot @0xB1CC3;
+*/
+// FF [ITEM_ID] 08 0D [INDEX] 00 [TEXT...] FD
+struct Description {
+    u8 start;
+    u8 itemId;
+    u16 magic;
+    u8 index;
+    u8 zero;
+    char data[while(std::mem::read_unsigned($, 1) != 0xFD)];
+    u8 terminator;
+};
+/*
+struct Texts {
+    Description puta;
+    Description cajeroSprite;
+    Description johnny;
+    Description walker;
+    Description cajero;
+    Description mcdowells;
+    Description planta1;
+    Description planta2;
+    Description outside;
+    Description outside2;
+};
+
+//u8 room2Texts[4142] @0xB204A;
+Texts room2Texts @0xB204A;
+u8 room3Start @0xB3078;
+
+
+struct Room21Anims {
+    ThisAnimHeader avion1;
+    ThisAnimHeader palmera;
+    ThisAnimHeader duna;
+    ThisAnimHeader camello;
+    ThisAnimHeader avion2;
+};
+
+
+struct Room9Anims {
+    ThisAnimHeader bibliotecaria;
+    ThisAnimHeader ordenador;
+    ThisAnimHeader raton;
+    ThisAnimHeader telefono;
+    ThisAnimHeader black;
+};
+
+
+Room9Anims room9anims @0x1ECDB8;
+Room21Anims room21anims @0x3B6181;
+
+*/
 
 struct ThisAnimHeader {
     u16 x;                  // Bytes 0-1
@@ -67,7 +175,7 @@ struct ThisAnimHeader {
 };
 
 struct Hotspot {
-u8 type;
+    u8 type;
     u16 x;
     u16 y;
     u8 w;
@@ -75,101 +183,93 @@ u8 type;
     u16 extra;
 };
 
-struct Color {
-    u8 r;
-    u8 g;
-    u8 b;
-} [[hex::inline_visualize("color", r * 4, g * 4, b *4 , 255)]];
-struct Palette {
-    Color colors[256];
-} ;
+struct Walkbox {
+    u16 x;
+    u16 y;
+    u16 w;
+    u16 h;
+    u8 flags;
 
-Palette room2palette @0xB1D4a;
-
-ThisAnimHeader chefSprite @0x253147;
-ThisAnimHeader burgerSprite @0x253173;
-ThisAnimHeader gatoSprite @0x25319F;
-
-ThisAnimHeader putaSprite @0xB187C;
-ThisAnimHeader cajeroSprite @0xB18A8;
-ThisAnimHeader freddySprite @0xB18D4;
-ThisAnimHeader walkerSprite @0xB1900;
-
-ThisAnimHeader ventanasmuseoSprite @0x126C06;
-
-u8 hostpotCountRoom0 @0x0230C6;
-Hotspot cajonHostpost @0x230C8;
-Hotspot twoHostpost @0x230D1;
-Hotspot librosHostpost @0x230DA;
-Hotspot fourHostpost @0x230E3;
-Hotspot fiveHostpost @0x230EC;
-Hotspot sixHostpost @0x230F5;
-Hotspot bedHotspot @0x230FE;
-Hotspot doorHotspot @0x23107;
-Hotspot documentacionHotspot @0x23110;
-Hotspot tarjetaHotspot @0x23119;
-Hotspot fotoHotspot @0x23122;
-Hotspot ventanaHotspot @0x2312B;
-
-u8 room2HostpotCount @0xB1C94;
-Hotspot cajeroHotspot @0xB1C96;
-Hotspot puertaHotspot @0xB1C9F;
-Hotspot planta1Hotspot @0xB1CA8;
-Hotspot planta2Hotspot @0xB1CB1;
-Hotspot unknown1Hotspot @0xB1CBA;
-Hotspot unknown2Hotspot @0xB1CC3;
-
-// FF [ITEM_ID] 08 0D [INDEX] 00 [TEXT...] FD
-struct Description {
-    u8 start;
-    u8 itemId;
-    u16 magic;
-    u8 index;
-    u8 zero;
-    char data[while(std::mem::read_unsigned($, 1) != 0xFD)];
-    u8 terminator;
 };
 
-struct Texts {
-    Description puta;
-    Description cajeroSprite;
-    Description johnny;
-    Description walker;
-    Description cajero;
-    Description mcdowells;
-    Description planta1;
-    Description planta2;
-    Description outside;
-    Description outside2;
+struct Exit {
+    u16 targetRoom;
+    u8 flags;
+    u16 x;
+    u16 y;
+    u8 w;
+    u8 h;
+    u16 targetX;
+    u16 targetY;
+    u8 dir;
 };
 
-//u8 room2Texts[4142] @0xB204A;
-Texts room2Texts @0xB204A;
-u8 room3Start @0xB3078;
-
-
-struct Room21Anims {
-    ThisAnimHeader avion1;
-    ThisAnimHeader palmera;
-    ThisAnimHeader duna;
-    ThisAnimHeader camello;
-    ThisAnimHeader avion2;
+fn min(s32 a, s32 b) {
+    if (a > b)
+        return b;
+    else
+        return a;
 };
 
+fn max(s32 a, s32 b) {
+    if (a > b)
+        return a;
+    else
+        return b;
+};
 
-struct Room9Anims {
-    ThisAnimHeader bibliotecaria;
-    ThisAnimHeader ordenador;
-    ThisAnimHeader raton;
-    ThisAnimHeader telefono;
-    ThisAnimHeader black;
+struct RoomMetadata {
+    
+    u8 metadataPadding[5];
+    u8 numAnims;
+    u8 zeroes[92];
+    
+    u8 isRoom3 = (numAnims - 2) * 44 > 336;
+    
+    // Only define anims if numAnims > 2
+    if (numAnims > 2) {
+        if(isRoom3) {
+            ThisAnimHeader anims[numAnims - 3];
+            u8 finalAnim[40];
+        } 
+        else { 
+            ThisAnimHeader anims[numAnims - 2];
+        }
+    }
+    
+    // Conditional padding based on room index or numAnims
+    if (!isRoom3) {
+        u8 zeroes2[336 - (numAnims - 2) * 44];
+        u8 zeroes3[12];
+    }
+
+    u8 numExits;
+    Exit exits[numExits];
+    
+    if (numExits * 14 <= 84) {
+        u8 zeroes4[84 - numExits * 14];
+    }
+    
+    u8 numWalkboxes;
+    u8 unknown[4];
+    Walkbox boxes[numWalkboxes];
+    
+    if (numWalkboxes * 9 <= 603) {
+        u8 zeroes6[603 - numWalkboxes * 9];
+    }
+    
+    u8 zeroes7[7];
+    u8 numHotspots;
+    u8 unknown2[1];
+    Hotspot hotspots[numHotspots];
 };
 
 
-Room9Anims room9anims @0x1ECDB8;
-Room21Anims room21anims @0x3B6181;
+struct Descriptions {
+    
 
-*/
+};
+
 
 struct Room {
     Pair pairs[13];
@@ -183,13 +283,22 @@ struct Room {
     u8 bg8[pairs[7].size] @pairs[7].offset;
     u8 spritePixelData[pairs[8].size] @pairs[8].offset;
     u8 sounds[pairs[9].size] @pairs[9].offset;
-    u8 metadata[pairs[10].size] @pairs[10].offset;
-    u8 palette[pairs[11].size] @pairs[11].offset;
+    //u8 metadata[pairs[10].size] @pairs[10].offset;
+    RoomMetadata metadata @pairs[10].offset;
+    Palette palette @pairs[11].offset;
+    //u8 palette[pairs[11].size] @pairs[11].offset;
     u8 conversations[pairs[12].size] @pairs[12].offset;
 };
 struct RoomFile {
-    Room rooms[56];
+    //Room room0;
+    //Room room1;
+    //Room room2;
+    //Room room3;
+   Room rooms[56];
 };
+
+
+//ThisAnimHeader room3anims[8] @0xEB57A;
 
 
 RoomFile rooms @0x00000;
