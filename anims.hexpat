@@ -289,16 +289,9 @@ struct Room {
     //u8 palette[pairs[11].size] @pairs[11].offset;
     u8 conversations[pairs[12].size] @pairs[12].offset;
 };
-struct RoomFile {
-    //Room room0;
-    //Room room1;
-    //Room room2;
-    //Room room3;
-   Room rooms[56];
-};
 
 
 //ThisAnimHeader room3anims[8] @0xEB57A;
 
 
-RoomFile rooms @0x00000;
+Room rooms[56] @0x00000;
