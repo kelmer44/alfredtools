@@ -8,7 +8,7 @@ struct Pair {
     u32 size;
 };
 
-struct RoomHeader {
+/*struct RoomHeader {
     Pair pairs[13];
 };
 
@@ -17,8 +17,9 @@ struct Headers {
 };
 
 Headers roomHeaders@0x00;
+*/
 
-u8 room2sounds[10] @727056;
+/*u8 room2sounds[10] @727056;
 
 struct ThisAnimHeader {
     u16 x;                  // Bytes 0-1
@@ -165,5 +166,30 @@ struct Room9Anims {
 };
 
 
-Room9Anims room9anims @0x1ECDB7;
+Room9Anims room9anims @0x1ECDB8;
 Room21Anims room21anims @0x3B6181;
+
+*/
+
+struct Room {
+    Pair pairs[13];
+    u8 bg1[pairs[0].size] @pairs[0].offset;
+    u8 bg2[pairs[1].size] @pairs[1].offset;
+    u8 bg3[pairs[2].size] @pairs[2].offset;
+    u8 bg4[pairs[3].size] @pairs[3].offset;   
+    u8 bg5[pairs[4].size] @pairs[4].offset;
+    u8 bg6[pairs[5].size] @pairs[5].offset;
+    u8 bg7[pairs[6].size] @pairs[6].offset;
+    u8 bg8[pairs[7].size] @pairs[7].offset;
+    u8 spritePixelData[pairs[8].size] @pairs[8].offset;
+    u8 sounds[pairs[9].size] @pairs[9].offset;
+    u8 metadata[pairs[10].size] @pairs[10].offset;
+    u8 palette[pairs[11].size] @pairs[11].offset;
+    u8 conversations[pairs[12].size] @pairs[12].offset;
+};
+struct RoomFile {
+    Room rooms[56];
+};
+
+
+RoomFile rooms @0x00000;
