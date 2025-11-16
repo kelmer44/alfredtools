@@ -82,7 +82,7 @@ mark_visited(current_walkbox);  // Set flags to 0x01
 for (each other_walkbox in room) {
     if (other_walkbox == current_walkbox) continue;
     if (is_marked_visited(other_walkbox)) continue;
-    
+
     // Check if walkboxes overlap or are adjacent
     if (boxes_overlap_or_touch(current_box, other_walkbox)) {
         return other_walkbox_index;
@@ -134,7 +134,7 @@ current_box = start_box;
 while (current_box != dest_box) {
     // Find next adjacent walkbox
     next_box = get_adjacent_walkbox(current_box);
-    
+
     if (next_box == 0xFF) {
         // Dead end - backtrack
         path_index--;
@@ -165,7 +165,7 @@ movement_index = 0;
 
 for (each walkbox in path_buffer) {
     movement_step = {0, 0, 0, 0, 0};  // [flags, dx_low, dx_high, dy_low, dy_high]
-    
+
     // Calculate horizontal movement
     if (current_x < walkbox.x_min) {
         movement_step.dx = walkbox.x_min - current_x;
@@ -176,7 +176,7 @@ for (each walkbox in path_buffer) {
         movement_step.flags |= 0x02;  // Move left
         current_x = walkbox.x_max;
     }
-    
+
     // Calculate vertical movement
     if (current_y < walkbox.y_min) {
         movement_step.dy = walkbox.y_min - current_y;
@@ -187,7 +187,7 @@ for (each walkbox in path_buffer) {
         movement_step.flags |= 0x08;  // Move up
         current_y = walkbox.y_max;
     }
-    
+
     movement_buffer[movement_index++] = movement_step;
 }
 
@@ -208,18 +208,18 @@ for (each movement_step in movement_buffer) {
     flags = movement_step.flags;
     dx = movement_step.dx;
     dy = movement_step.dy;
-    
+
     // Break large movements into smaller chunks (max 6 pixels horizontal, 5 vertical)
     while (dx > 6) {
         add_compressed_step(flags & 0x03, 6, 0);
         dx -= 6;
     }
-    
+
     while (dy > 5) {
         add_compressed_step(flags & 0x0C, 0, 5);
         dy -= 5;
     }
-    
+
     // Add remaining movement
     if (dx > 0 || dy > 0) {
         // Pack direction and distance into 2 bytes
@@ -260,28 +260,28 @@ The compressed path is executed frame-by-frame in the game loop:
 ```c
 void execute_walking() {
     if (path_index >= path_length) return;
-    
+
     current_command = compressed_path[path_index];
-    
+
     if (current_command == 0xFF) {
         // Path complete
         walking_active = false;
         return;
     }
-    
+
     if (current_command == 0xFE) {
         // Unpack movement
         packed_data = compressed_path[path_index + 1];
         direction = (packed_data >> 4) & 0x0F;
         distance_x = (packed_data >> 0) & 0x07;
         distance_y = (packed_data >> 3) & 0x07;
-        
+
         // Apply movement to character position
         if (direction & 0x01) alfred_x += distance_x;
         if (direction & 0x02) alfred_x -= distance_x;
         if (direction & 0x04) alfred_y += distance_y;
         if (direction & 0x08) alfred_y -= distance_y;
-        
+
         path_index += 3;  // Skip command + 2 data bytes
     }
 }
@@ -294,7 +294,7 @@ The character sprite is updated based on movement direction:
 ```c
 void update_walk_animation() {
     direction = get_current_walk_direction();
-    
+
     // Animation frames based on direction
     if (direction & 0x01) {
         // Walking right
@@ -303,7 +303,7 @@ void update_walk_animation() {
         // Walking left
         animation_set = WALK_LEFT_FRAMES;
     }
-    
+
     if (direction & 0x04) {
         // Walking down (away from camera)
         animation_set = WALK_DOWN_FRAMES;
@@ -311,7 +311,7 @@ void update_walk_animation() {
         // Walking up (toward camera)
         animation_set = WALK_UP_FRAMES;
     }
-    
+
     // Cycle through animation frames
     frame_counter++;
     if (frame_counter >= animation_speed) {
