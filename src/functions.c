@@ -72,3 +72,67 @@ unsigned char *getPalette() {
 
 	return palette;
 }
+
+unsigned char *getRoomPalette(int room_num) {
+	/*
+	 * Extract palette from ALFRED.1 for a specific room.
+	 * Room structure: each room is 104 bytes (13 pairs * 8 bytes)
+	 * Pair 11 contains the palette (768 bytes = 256 colors * 3 bytes RGB)
+	 * Returns RGBA palette (256*4 bytes)
+	 */
+	FILE *fp = fopen("files/ALFRED.1", "rb");
+	if (!fp) {
+		fprintf(stderr, "getRoomPalette: Could not open ALFRED.1\n");
+		return NULL;
+	}
+
+	unsigned char *palette = (unsigned char *)malloc(256 * 4);
+	if (!palette) {
+		fprintf(stderr, "getRoomPalette: out of memory allocating palette\n");
+		fclose(fp);
+		return NULL;
+	}
+
+	// Room structure constants
+	const int ROOM_STRUCT_SIZE = 104;  // 13 pairs * 8 bytes
+	const int PAIR_SIZE = 8;           // offset (4) + size (4)
+	const int PALETTE_PAIR = 11;       // Pair 11 contains palette
+
+	// Calculate room offset
+	int room_offset = room_num * ROOM_STRUCT_SIZE;
+
+	// Calculate pair 11 offset within the room structure
+	int pair_offset = room_offset + (PALETTE_PAIR * PAIR_SIZE);
+
+	// Read pair 11 (offset and size)
+	fseek(fp, pair_offset, SEEK_SET);
+	unsigned int palette_offset, palette_size;
+	fread(&palette_offset, 4, 1, fp);
+	fread(&palette_size, 4, 1, fp);
+
+	// Check if valid palette (should be 768 bytes = 0x300)
+	if (palette_size != 0x300) {
+		fprintf(stderr, "getRoomPalette: Invalid palette size for room %d: %u (expected 768)\n",
+		        room_num, palette_size);
+		free(palette);
+		fclose(fp);
+		return NULL;
+	}
+
+	// Read palette data
+	fseek(fp, palette_offset, SEEK_SET);
+	unsigned char palette_data[768];
+	fread(palette_data, 1, 768, fp);
+
+	// Convert VGA 6-bit palette (0-63) to 8-bit (0-255)
+	// VGA colors need to be multiplied by 4
+	for (int i = 0; i < 256; i++) {
+		palette[i*4 + 0] = palette_data[i*3 + 0] * 4;  // R
+		palette[i*4 + 1] = palette_data[i*3 + 1] * 4;  // G
+		palette[i*4 + 2] = palette_data[i*3 + 2] * 4;  // B
+		palette[i*4 + 3] = 255;                         // A (opaque)
+	}
+
+	fclose(fp);
+	return palette;
+}

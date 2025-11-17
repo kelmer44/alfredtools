@@ -19,14 +19,14 @@ int main(int argc, char **argv) {
     (void)argc;
     (void)argv;
     // extractAlfred1b();
-    extractAlfred1();
-    extractAlfredAnims();
-    extractAlfred3();
-    extractAlfred4();
-    extractAlfred5();
+    // extractAlfred1();
+    // extractAlfredAnims();
+    // extractAlfred3();
+    // extractAlfred4();
+    // extractAlfred5();
     extractAlfred6();
-    extractAlfred7();
-    extractAlfred9();
+    // extractAlfred7();
+    // extractAlfred9();
     // const char *out = "out.png";
     // if (argc > 1) out = argv[1];
 

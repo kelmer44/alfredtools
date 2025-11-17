@@ -117,8 +117,8 @@ int extractAlfred6()
 				offset=0x58969;
 
 
-		xx=finalbuffer[0]+(finalbuffer[1]*256);
-		yy=finalbuffer[2]+(finalbuffer[3]*256);
+		xx=finalbuffer[offset+0]+(finalbuffer[offset+1]*256);
+		yy=finalbuffer[offset+2]+(finalbuffer[offset+3]*256);
 		ww=finalbuffer[offset+4];
 		hh=finalbuffer[offset+5];
 
@@ -127,12 +127,25 @@ int extractAlfred6()
 		if ((ww>0) && (hh>0))
 		{
 
-			unsigned char *palette = getPalette();
+			// Get room number from tablapaletas array
+			int room_num = 0;
+			if (j < 140) {
+				room_num = tablapaletas[j];
+			}
+
+			// Get palette for this room
+			unsigned char *palette = getRoomPalette(room_num);
+			if (!palette) {
+				fprintf(stderr, "Failed to get palette for pegatina %d (room %d)\n", j, room_num);
+				j++;
+				continue;
+			}
 
 			size_t img_size = (size_t)ww * (size_t)hh;
 			unsigned char *image_data = (unsigned char*)malloc(img_size);
 			if (!image_data) {
 				fprintf(stderr, "Out of memory allocating image buffer for pegatina %d\n", j);
+				free(palette);
 			} else {
 				for (unsigned int y = 0; y < hh; ++y) {
 					for (unsigned int x = 0; x < ww; ++x) {
@@ -173,7 +186,7 @@ int extractAlfred6()
 					snprintf(outname, sizeof(outname), "output/6/pegatina%02d.png", j);
 					error = lodepng_save_file(png, pngsize, outname);
 					if (error) fprintf(stderr, "lodepng save error for %s: %s\n", outname, lodepng_error_text(error));
-					else printf("Saved %s (%zu bytes)\n", outname, pngsize);
+					else printf("Saved %s (%zu bytes) [room %d]\n", outname, pngsize, room_num);
 				}
 
 				// write metadata txt file
@@ -181,7 +194,11 @@ int extractAlfred6()
 				snprintf(txtname, sizeof(txtname), "output/6/pegatina%02d.txt", j);
 				FILE *tf = fopen(txtname, "w");
 				if (tf) {
-					fprintf(tf, "%u\n%u\n%u\n%u\n", xx, yy, ww, hh);
+					fprintf(tf, "x=%u\n", xx);
+					fprintf(tf, "y=%u\n", yy);
+					fprintf(tf, "width=%u\n", ww);
+					fprintf(tf, "height=%u\n", hh);
+					fprintf(tf, "room=%d\n", room_num);
 					fclose(tf);
 				}
 
