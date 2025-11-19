@@ -33,14 +33,7 @@ u8 type;
     u16 extra;
 };
 */
-struct Color {
-    u8 r;
-    u8 g;
-    u8 b;
-} [[hex::inline_visualize("color", r * 4, g * 4, b *4 , 255)]];
-struct Palette {
-    Color colors[256];
-} ;
+
 /*
 Palette room2palette @0xB1D4a;
 
@@ -78,17 +71,7 @@ Hotspot unknown1Hotspot @0xB1CBA;
 Hotspot unknown2Hotspot @0xB1CC3;
 */
 // FF [ITEM_ID] 08 0D [INDEX] 00 [TEXT...] FD
-struct Description {
-    u8 start;
-    u8 itemId;
-    u16 magic;
-    u8 index;
-    u8 zero;
-    char data[while(
-        std::mem::read_unsigned($, 1) != 0xFD && std::mem::read_unsigned($, 1) != 0xF5
-    )];
-    u8 terminator;
-};
+
 /*
 struct Texts {
     Description puta;
@@ -130,6 +113,28 @@ Room9Anims room9anims @0x1ECDB8;
 Room21Anims room21anims @0x3B6181;
 
 */
+
+struct Color {
+    u8 r;
+    u8 g;
+    u8 b;
+} [[hex::inline_visualize("color", r * 4, g * 4, b *4 , 255)]];
+struct Palette {
+    Color colors[256];
+} ;
+
+struct Description {
+    u8 start;
+    u8 itemId;
+    u8 say;
+    u8 textColor;
+    u8 index;
+    u8 zero;
+    char data[while(
+        std::mem::read_unsigned($, 1) != 0xFD && std::mem::read_unsigned($, 1) != 0xF5
+    )];
+    u8 terminator;
+};
 
 struct ThisAnimHeader {
     u16 x;                  // Bytes 0-1
@@ -247,7 +252,7 @@ struct RoomMetadata {
     // Conditional padding based on room index or numAnims
     if (!isRoom3) {
         u8 zeroes2[336 - (numAnims - 2) * 44];
-        u8 zeroes3[12];
+        padding[12];
     }
 
     u8 numExits;
@@ -293,9 +298,6 @@ struct Room {
     RoomMetadata metadata @pairs[10].offset;
     Palette palette @pairs[11].offset;
     u8 texts[pairs[12].size] @pairs[12].offset;
-    //Description descriptions[metadata.numHotspots] @pairs[12].offset;
-    //u8 numDescriptions = metadata.numHotspots + metadata.numAnims - 2 -1;
-    //Description descriptions[numDescriptions] @pairs[12].offset;
     
    Description descriptions[while(
         $ < (pairs[12].offset + pairs[12].size) &&
