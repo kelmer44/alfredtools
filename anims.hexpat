@@ -84,7 +84,9 @@ struct Description {
     u16 magic;
     u8 index;
     u8 zero;
-    char data[while(std::mem::read_unsigned($, 1) != 0xFD)];
+    char data[while(
+        std::mem::read_unsigned($, 1) != 0xFD && std::mem::read_unsigned($, 1) != 0xF5
+    )];
     u8 terminator;
 };
 /*
@@ -150,7 +152,12 @@ struct ThisAnimHeader {
     u8 speedAnim2;          // Byte 19
     u8 speedAnim3;          // Byte 20
     u8 speedAnim4;          // Byte 21
-    u8 unknown_22_to_32[11]; // Bytes 22-32 (11 bytes)
+    //u8 unknown_22_to_32[11]; // Bytes 22-32 (11 bytes)
+    u16 movementFlagsAnim1;
+    u16 movementFlagsAnim2;
+    u16 movementFlagsAnim3;
+    u16 movementFlagsAnim4;
+    u8 unknown_30_to_32[3];           
     // Byte 33 (offset 0x21): Sprite type/layer - must be != 0xFF to be hotspot eligible
     u8 sprite_type;         // Byte 33
     // Byte 34 (offset 0x22): ACTION FLAGS bitmask
@@ -283,11 +290,27 @@ struct Room {
     u8 bg8[pairs[7].size] @pairs[7].offset;
     u8 spritePixelData[pairs[8].size] @pairs[8].offset;
     u8 sounds[pairs[9].size] @pairs[9].offset;
-    //u8 metadata[pairs[10].size] @pairs[10].offset;
     RoomMetadata metadata @pairs[10].offset;
     Palette palette @pairs[11].offset;
-    //u8 palette[pairs[11].size] @pairs[11].offset;
-    u8 conversations[pairs[12].size] @pairs[12].offset;
+    u8 texts[pairs[12].size] @pairs[12].offset;
+    //Description descriptions[metadata.numHotspots] @pairs[12].offset;
+    //u8 numDescriptions = metadata.numHotspots + metadata.numAnims - 2 -1;
+    //Description descriptions[numDescriptions] @pairs[12].offset;
+    
+   Description descriptions[while(
+        $ < (pairs[12].offset + pairs[12].size) &&
+        std::mem::read_unsigned($, 1) == 0xFF
+    )] @pairs[12].offset;
+    
+    
+
+    u32 descSize = sizeof(descriptions);
+    u32 convSize = pairs[12].size - sizeof(descriptions);
+    u32 convPos = pairs[12].offset + sizeof(descriptions);
+    
+    u8 conversations[convSize] @(convPos);
+
+    
 };
 
 
