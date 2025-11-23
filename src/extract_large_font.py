@@ -68,7 +68,7 @@ def create_font_image(chars, char_width, char_height, chars_per_row=16):
 # Known font locations and sizes
 FONT_SPECS = {
     'small': {
-        'file': "ALFRED.4",
+        'file': "files/ALFRED.4",
         'offset': 0x8F32,
         'size': 0x800,      # 256 characters × 8 bytes
         'char_size': 8,     # 8 bytes per character (8×8 pixels)
@@ -77,7 +77,7 @@ FONT_SPECS = {
         'chars': 256
     },
     'large': {
-        'file': "ALFRED.7",
+        'file': "files/ALFRED.7",
         'offset': 0x7DC8,
         'size': 0x12C0,     # 96 characters × 48 bytes
         'char_size': 0x30,  # 48 bytes per character (12×24 pixels)
@@ -86,7 +86,7 @@ FONT_SPECS = {
         'chars': 96
     },
     'computer': {
-        'file': "ALFRED.7",
+        'file': "files/ALFRED.7",
         'offset': 0x1AA0A,
         'size': 0x70CA,     # Total screen data size
         'char_size': 8,     # Assumed 8 bytes per character
