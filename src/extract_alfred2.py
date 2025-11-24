@@ -52,7 +52,8 @@ def decompress_rle(data, start, max_pixels):
         result.extend([color] * count)
         pos += 2
 
-    return bytes(result)
+    # pos+=4  # Skip BUDA marker if present
+    return bytes(result), pos
 
 def get_palette(palette_id):
     """Generate a default grayscale palette (replace with actual palette loading)"""
@@ -129,7 +130,7 @@ def extract_alfred2(filepath, output_dir):
             if current_offset + 2 <= len(data):
                 next_offset = struct.unpack('<H', data[current_offset:current_offset+2])[0]
                 if next_offset == 0:
-                    break
+                    continue
             else:
                 break
             continue
@@ -142,7 +143,7 @@ def extract_alfred2(filepath, output_dir):
         anim1 = header['anim1']
         if anim1['width'] > 0 and anim1['height'] > 0 and anim1['frames'] > 0:
             pixels_needed = anim1['width'] * anim1['height'] * anim1['frames']
-            pixels = decompress_rle(data, pixel_data_pos, pixels_needed)
+            pixels, pixel_data_pos = decompress_rle(data, pixel_data_pos, pixels_needed)
 
             output_file = output_path / f"anim_{animations_extracted:03d}_a.png"
             success = save_animation(pixels, anim1['width'], anim1['height'],
@@ -159,11 +160,12 @@ def extract_alfred2(filepath, output_dir):
         anim2 = header['anim2']
         if anim2['width'] > 0 and anim2['height'] > 0 and anim2['frames'] > 0:
             # Offset for anim2 is after anim1
-            anim2_offset = anim1['width'] * anim1['height'] * anim1['frames']
+            # anim2_offset = anim1['width'] * anim1['height'] * anim1['frames']
+            anim2_offset = pixel_data_pos
             pixels_needed = anim2['width'] * anim2['height'] * anim2['frames']
 
             # This is approximate - need to track actual RLE position
-            pixels = decompress_rle(data, pixel_data_pos + anim2_offset * 2, pixels_needed)
+            pixels, pixel_data_pos = decompress_rle(data, anim2_offset, pixels_needed)
 
             output_file = output_path / f"anim_{animations_extracted:03d}_b.png"
             success = save_animation(pixels, anim2['width'], anim2['height'],
