@@ -160,7 +160,9 @@ struct RoomMetadata {
     }
     
     u8 numWalkboxes;
-    u8 unknown[4];
+    u16 scaleThresshold;
+    u8 scaleDivisor;
+    u8 scaleMode;
     Walkbox boxes[numWalkboxes];
     
     if (numWalkboxes * 9 <= 603) {
