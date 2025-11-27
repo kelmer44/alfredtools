@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-CORRECT hybrid approach:
-- Lines 0-101: Raw read with stride 652 (no markers)
-- Lines 102-204: Remove markers, then stride 640
-- Lines 205-399: Raw read with stride 652 (no markers)
+Conservative SSN Frame Extractor
+
+Only remove markers with confirmed pattern: XX XX 01 00 FF
+(These match the original marker signature from the file)
+
+Leave XX XX 00/02/03 00 FF alone - they might be image data
 """
 from PIL import Image
 
@@ -19,85 +21,65 @@ for i in range(256):
     b = file_palette[i * 3 + 2] * 4
     palette.extend([r, g, b])
 
-print("Correct Hybrid Extraction")
+print("Conservative SSN Frame Extractor")
 print("=" * 80)
 
-start_offset = 0x5010
-result = bytearray(256000)
+# PASS 1: Extract with 255+5 pattern
+print("\nPass 1: Removing primary markers (255+5 pattern)...")
 
-# REGION 1: Lines 0-101 (stride 652, no markers)
-print("\nRegion 1: Lines 0-101 (stride 652)")
-for y in range(102):
-    src_offset = start_offset + (y * 652)
-    dst_offset = y * 640
+start = 0x5012
+pass1_data = bytearray()
+pos = start
+copied_bytes = 0
 
-    if src_offset + 640 <= len(data):
-        result[dst_offset:dst_offset + 640] = data[src_offset:src_offset + 640]
+while pos < len(data) and len(pass1_data) < 300000:
+    if copied_bytes >= 255:
+        copied_bytes = 0
+        pos += 5
 
-region1_end = start_offset + (102 * 652)
-print(f"  Lines 0-101 done, ended at 0x{region1_end:08X}")
+    pass1_data.append(data[pos])
+    pos += 1
+    copied_bytes += 1
 
-# REGION 2: Lines 102-204 (remove markers, then stride 640)
-print("\nRegion 2: Lines 102-204 (marker region)")
+print(f"  Extracted: {len(pass1_data)} bytes")
 
-# Start from where region 1 ended
-marker_region_start = region1_end
+# PASS 2: Remove ONLY markers with signature XX XX 01 00 FF
+print("\nPass 2: Removing only XX XX 01 00 FF markers (confirmed pattern)...")
 
-# Build clean data for this region by removing ALL markers
-pos = marker_region_start
-clean_region2 = bytearray()
+pass2_data = bytearray()
+i = 0
 markers_removed = 0
 
-# We need 103 lines * 640 pixels = 65,920 bytes after marker removal
-target_clean_bytes = 103 * 640
-
-while len(clean_region2) < target_clean_bytes and pos < len(data):
-    # Check for marker
-    if pos + 5 <= len(data) and data[pos+2:pos+5] == b'\x01\x00\xFF':
-        # Skip marker
-        pos += 5
-        markers_removed += 1
+while i < len(pass1_data):
+    # Check for SPECIFIC marker: ?? ?? 01 00 FF
+    if ( i + 5 <= len(pass1_data) and (pass1_data[i+2:i+5] == b'\x01\x00\xFF')):
+            # This is the confirmed marker pattern - skip it
+            i += 5
+            markers_removed += 1
+    # if ( i + 5 <= len(pass1_data) and (pass1_data[i+2:i+5] == b'\x02\x00\xFF')):
+    #         # This is the confirmed marker pattern - skip it
+    #         i += 6
+    #         markers_removed += 1
+        # elif(pass1_data[i+2:i+5] == b'\x02\x00\xFF'):
+        #     i += 5
+        #     markers_removed += 1
     else:
-        # Copy byte
-        clean_region2.append(data[pos])
-        pos += 1
+        pass2_data.append(pass1_data[i])
+        i += 1
 
-print(f"  Removed {markers_removed} markers")
-print(f"  Clean data: {len(clean_region2)} bytes")
-print(f"  Ended at file offset: 0x{pos:08X}")
+    if len(pass2_data) >= 256000:
+        break
 
-# Now read these 103 lines with stride 640 (no padding!)
-for y in range(103):
-    src_offset = y * 640
-    dst_offset = (102 + y) * 640
+print(f"  Removed {markers_removed} markers with 01 00 FF signature")
+print(f"  Final data: {len(pass2_data)} bytes")
 
-    if src_offset + 640 <= len(clean_region2):
-        result[dst_offset:dst_offset + 640] = clean_region2[src_offset:src_offset + 640]
-
-# REGION 3: Lines 205-399 (stride 652, no markers)
-print("\nRegion 3: Lines 205-399 (stride 652)")
-
-region3_start = pos
-for y in range(195):  # Lines 205-399
-    src_offset = region3_start + (y * 652)
-    dst_offset = (205 + y) * 640
-
-    if src_offset + 640 <= len(data):
-        result[dst_offset:dst_offset + 640] = data[src_offset:src_offset + 640]
-
-region3_end = region3_start + (194 * 652) + 640
-print(f"  Lines 205-399 done, ended at 0x{region3_end:08X}")
-
-# Save
+# Save frame
 img = Image.new('P', (640, 400))
 img.putpalette(palette)
-img.putdata(result)
-img.save('frame_CORRECT_HYBRID.png')
+img.putdata(pass2_data[:256000])
+img.save('frame_CONSERVATIVE.png')
 
 print("\n" + "=" * 80)
-print("Saved frame_CORRECT_HYBRID.png")
-print("This should have:")
-print("  - Lines 0-101: Clean")
-print("  - Lines 102-204: Unwarped (markers removed)")
-print("  - Lines 205-399: Clean")
+print("Saved: frame_CONSERVATIVE.png")
+print("\nThis keeps potential image data with 00/02/03 signatures")
 print("=" * 80)
