@@ -32,27 +32,40 @@ pass1_data = bytearray()
 pos = start
 copied_bytes = 0
 
-while pos < len(data) and len(pass1_data) < 300000:
-    if copied_bytes >= 255:
+while pos < len(data) and len(pass1_data) < 127070:
+# while pos < len(data) and len(pass1_data) < 300000:
+    if  copied_bytes >= 255:
         copied_bytes = 0
+        print(f"  Marker found at source offset: {pos}, pass1data = {len(pass1_data)}, marker bytes: {data[pos:pos+5].hex(" ")}")
         pos += 5
 
     pass1_data.append(data[pos])
     pos += 1
     copied_bytes += 1
 
-print(f"  Extracted: {len(pass1_data)} bytes")
+print(f"  Copied bytes between markers: {copied_bytes}")
+print(f"  Extracted: {len(pass1_data)} bytes, position: {pos}")
 
 # PASS 2: Remove ONLY markers with signature XX XX 01 00 FF
 print("\nPass 2: Removing only XX XX 01 00 FF markers (confirmed pattern)...")
 
+
+
+output_file_raw ='frame_CONSERVATIVE.bin'
+with open(output_file_raw, 'wb') as f:
+    f.write(pass1_data)
+
+
 pass2_data = bytearray()
+# pass1_data
 i = 0
 markers_removed = 0
 
 while i < len(pass1_data):
+    if(i == 127065):
+          print(f"data at marker start: {pass1_data[i:i+5].hex(" ")}")
     # Check for SPECIFIC marker: ?? ?? 01 00 FF
-    if ( i + 5 <= len(pass1_data) and (pass1_data[i+2:i+5] == b'\x01\x00\xFF')):
+    if (i + 5 <= len(pass1_data) and (pass1_data[i] == b'\xFF' and pass1_data[i+5] == b'\xFF')):
             # This is the confirmed marker pattern - skip it
             i += 5
             markers_removed += 1
