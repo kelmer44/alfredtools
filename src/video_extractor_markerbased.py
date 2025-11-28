@@ -45,16 +45,22 @@ def extract_frame_variable_markers(ssn_path, output_path):
     variable_markers = 0
 
     target_pixels = 640 * 400
-
+    first_marker = 0x5012 + 255
     while len(frame_data) < target_pixels and pos + 5 < len(data):
         # Read marker (we're positioned AT the marker)
-        marker = data[pos:pos+5]
-        data_length = marker[4]  # Last byte = data length
 
-        print(f"  Marker found at source offset: {pos}, marker bytes: {data[pos:pos+5].hex(" ")}")
+        marker = data[pos:pos+5]
+        if(pos == frame_start):
+            data_length = 255  # First marker is always 255
+        else:
+            data_length = marker[4]  # Last byte = data length
+
+        # if(data_length > 0):
+        print(f"  Marker found at source offset: {pos}, marker bytes: {data[pos:pos+5].hex(" ")}, length: {data_length}")
 
         # Move past marker
-        pos += 5
+        if(pos != frame_start):
+            pos += 5
 
         # Read data bytes
         if pos + data_length > len(data):
