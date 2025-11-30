@@ -1,115 +1,171 @@
 #!/usr/bin/env python3
 """
-SSN Video Frame Extractor: First Frame and First Delta
-Exports the first frame and the first delta-applied frame from ESCENAX.SSN
+Extract the missing RLE frame at 0x00046000
+This is the frame that creates the "smoothing" effect!
 """
 
-
+import struct
+from pathlib import Path
 from PIL import Image
-import sys
-sys.path.append('src')
-from extract_buda_7 import decompress_rle
 
-def extract_palette(data):
-    """Extract and convert VGA palette to 8-bit RGB"""
-    file_palette = data[0x0009:0x0009 + 768]
-    palette = []
-    for i in range(256):
-        r = file_palette[i * 3 + 0] * 4
-        g = file_palette[i * 3 + 1] * 4
-        b = file_palette[i * 3 + 2] * 4
-        palette.extend([r, g, b])
-    return palette
+def decode_rle(data, start_pos, max_size=256000):
+    """
+    Decode RLE format (Type 1)
+    Based on Ghidra decompilation of decode_rle_frame
 
-def decode_block_copy_frame(data, chunk_offset):
+    Format:
+    - If byte & 0xC0 == 0xC0: count = byte & 0x3F, next byte is value
+    - Else: count = 1, current byte is value
     """
-    Decode a Type 2 (block copy) frame
-    Args:
-        data: Full file data
-        chunk_offset: Offset to chunk header
-    Returns:
-        bytearray of 256,000 pixels
-    """
-    frame_buffer = bytearray([0x00] * 256000)
-    pos = chunk_offset + 0x0D
-    while pos + 5 < len(data):
-        dest_lo = data[pos]
-        dest_mid = data[pos + 1]
-        dest_hi = data[pos + 2]
+    result = bytearray()
+    pos = start_pos
+
+    while len(result) < max_size and pos < len(data):
+        count_byte = data[pos]
+        pos += 1
+
+        if (count_byte & 0xC0) == 0xC0:
+            # RLE: count in lower 6 bits, next byte is value
+            count = count_byte & 0x3F
+            if pos >= len(data):
+                break
+            value = data[pos]
+            pos += 1
+            result.extend([value] * count)
+        else:
+            # Literal: count is 1, this byte is the value
+            result.append(count_byte)
+
+    # Pad to exact size
+    if len(result) < max_size:
+        result.extend([0] * (max_size - len(result)))
+
+    return bytes(result[:max_size])
+
+def decode_block_copy(data, pos):
+    """Decode block copy format (Type 2)"""
+    frame = bytearray([0x00] * 256000)
+    while pos + 5 <= len(data):
+        dest = data[pos] | (data[pos+1] << 8) | (data[pos+2] << 16)
         length = data[pos + 4]
         if length == 0:
             break
-        dest_offset = dest_lo | (dest_mid << 8) | (dest_hi << 16)
-        print(f"Decoding block copy: dest={dest_offset:06X}, length={length}")
-
-        if dest_offset + length > 256000:
+        if dest + length > 256000:
             break
         pos += 5
-        pixel_data = data[pos:pos + length]
-        frame_buffer[dest_offset:dest_offset + length] = pixel_data
+        frame[dest:dest+length] = data[pos:pos+length]
         pos += length
-    return frame_buffer
+    return bytes(frame)
+
+def extract_palette(data):
+    """Extract VGA palette"""
+    palette = []
+    for i in range(256):
+        offset = 0x09 + i * 3
+        palette.extend([data[offset]*4, data[offset+1]*4, data[offset+2]*4])
+    return palette
 
 def main():
     ssn_file = "files/ESCENAX.SSN"
+    output_dir = "bedroom_complete"
+
+    if not Path(ssn_file).exists():
+        print(f"Error: {ssn_file} not found")
+        return
+
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
+
     with open(ssn_file, 'rb') as f:
         data = f.read()
+
     palette = extract_palette(data)
 
+    print("="*80)
+    print("EXTRACTING COMPLETE BEDROOM ANIMATION SEQUENCE")
+    print("="*80)
+    print()
 
-    # Frame extraction order (from ssn_format_summary.md)
-    delta_offsets = [
-        # 0xF0000,
-        0x64000,
-        0x69000,
-        0x6E000,
-        0x73000,
-        0x78000,
-        0x7D000,
-        0x82000,
-        0x87000
-    ]
-
-
-    # Extract background (frame 0)
-    chunk0 = bytearray()
+    # Extract background (Chunk 0)
+    print("Frame 0: Background at 0x00005000")
+    chunk0_data = bytearray()
     for i in range(13):
-        chunk0.extend(data[0x5000 + i*0x5000 : 0x5000 + (i+1)*0x5000])
-    background = decode_block_copy_frame(chunk0, 0)
+        chunk0_data.extend(data[0x5000 + i*0x5000 : 0x5000 + (i+1)*0x5000])
+    frame0 = decode_block_copy(chunk0_data, 0x0D)
 
-    # Save frame 0 (background)
     img = Image.new('P', (640, 400))
     img.putpalette(palette)
-    img.putdata(background)
-    img.save('frame0.png')
-    print('Exported: frame0.png')
+    img.putdata(frame0)
+    img.save(output_path / "frame_00_background.png")
+    print("  → Saved: frame_00_background.png")
 
-    # # XOR the frame at 0x46000 as the first delta
-    first_delta_offset = 0xF0000
+    # Store for XOR accumulation
+    accumulated = bytearray(frame0)
 
-    first_delta = decode_block_copy_frame(data, first_delta_offset)
-    accumulated = bytearray(background)
+    # Extract RLE frame (Chunk 1) - THE MISSING FRAME!
+    print("\nFrame 1: RLE Delta at 0x00046000 (THE MISSING FRAME!)")
+    chunk1_data = bytearray()
+    for i in range(6):
+        chunk1_data.extend(data[0x46000 + i*0x5000 : 0x46000 + (i+1)*0x5000])
+
+    print("  → Decoding RLE data...")
+    delta1 = decode_rle(chunk1_data, 0x0D)
+
+    non_zero = sum(1 for b in delta1 if b != 0)
+    print(f"  → Non-zero pixels: {non_zero} / 256000 ({non_zero/256000*100:.1f}%)")
+
+    # Apply XOR
+    print("  → Applying XOR with background...")
     for i in range(256000):
-        accumulated[i] ^= first_delta[i]
+        accumulated[i] ^= delta1[i]
+
     img = Image.new('P', (640, 400))
     img.putpalette(palette)
     img.putdata(accumulated)
-    img.save('frame1.png')
-    print('Exported: frame1.png')
+    img.save(output_path / "frame_01_rle_delta.png")
+    print("  → Saved: frame_01_rle_delta.png")
+    print("  → THIS IS THE FRAME THAT CREATES THE 'SMOOTHING' EFFECT!")
 
-    # Export subsequent frames: start from accumulated
-    for idx, offset in enumerate(delta_offsets):
-        print(f'Applying delta {idx+2} at offset {hex(offset)}')
-        delta = decode_block_copy_frame(data, offset)
+    # Extract remaining 8 deltas (Chunks 2-9)
+    delta_offsets = [
+        0x64000,  # Chunk 2
+        0x69000,  # Chunk 3
+        0x6E000,  # Chunk 4
+        0x73000,  # Chunk 5
+        0x78000,  # Chunk 6
+        0x7D000,  # Chunk 7
+        0x82000,  # Chunk 8
+        0x87000,  # Chunk 9
+    ]
+
+    for idx, offset in enumerate(delta_offsets, start=2):
+        print(f"\nFrame {idx}: Delta at 0x{offset:08X}")
+        delta = decode_block_copy(data, offset + 0x0D)
+
+        # Apply XOR
         for i in range(256000):
             accumulated[i] ^= delta[i]
+
         img = Image.new('P', (640, 400))
         img.putpalette(palette)
         img.putdata(accumulated)
-        img.save(f'frame{idx+2}.png')
-        print(f'Exported: frame{idx+2}.png')
+        img.save(output_path / f"frame_{idx:02d}_delta.png")
+        print(f"  → Saved: frame_{idx:02d}_delta.png")
 
-    print("All frames exported (frame0.png ... frame10.png)")
+    print("\n" + "="*80)
+    print("EXTRACTION COMPLETE!")
+    print("="*80)
+    print(f"""
+Total frames extracted: 10
+  - Frame 0: Clean background
+  - Frame 1: RLE delta (the "smoothing" frame)
+  - Frames 2-9: Animation deltas (torch flickering)
+
+Output directory: {output_path.absolute()}
+
+Now compare frame_00_background.png and frame_01_rle_delta.png
+You should see the "smoothing" effect between them!
+    """)
 
 if __name__ == "__main__":
     main()
