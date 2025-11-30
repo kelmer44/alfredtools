@@ -1,0 +1,58 @@
+// ImHex pattern for Alfred SSN Video Format (ESCENAX.SSN)
+// Offsets and fields as identified in your extraction script
+
+// File header (0x0000)
+struct SsnHeader {
+    char magic[9];              // 0x0000: File header (unused or zeroed)
+    uint8_t palette[768];       // 0x0009: VGA palette (256 colors × 3 bytes RGB)
+    // 0x0309: Padding/unused
+};
+
+// Chunks start at 0x5000, aligned to 0x1000 boundaries
+// Each chunk has a 13-byte header
+
+// Frame chunk offsets (first 9 frames):
+// 0x5000: Frame 0 (key frame, full image)
+// 0x6000: Frame 1 (delta)
+// 0x7000: Frame 2 (delta)
+// 0x8000: Frame 3 (delta)
+// 0x9000: Frame 4 (delta)
+// 0xA000: Frame 5 (delta)
+// 0xB000: Frame 6 (delta)
+// 0xC000: Frame 7 (delta)
+// 0xD000: Frame 8 (delta)
+
+// Example for marking chunks in ImHex:
+// @0x5000 struct SsnChunk frame0;
+// @0x6000 struct SsnChunk frame1;
+// ...
+// @0xD000 struct SsnChunk frame8;
+struct SsnChunkHeader {
+    uint32_t chunk_size;        // +0x00: Chunk size (including header)
+    uint16_t reserved1;         // +0x04: Unknown/reserved
+    uint16_t reserved2;         // +0x06: Unknown/reserved
+    uint8_t chunk_type;         // +0x08: Chunk type (1 = RLE, 2 = Block Copy)
+    uint32_t frame_data_offset; // +0x09: Offset to frame data (usually 0x0D)
+    // +0x0D: Frame data begins here
+};
+
+// Block copy command (Type 2)
+struct BlockCopyCommand {
+    uint24_t dest_offset;       // 3 bytes: Destination offset in frame buffer (little-endian)
+    uint8_t padding;            // Always 0x00
+    uint8_t length;             // Number of bytes to copy (1-255, 0=end marker)
+    uint8_t data[length];       // Pixel data (palette indices)
+};
+
+// A chunk is a header followed by block copy commands (until length==0)
+struct SsnChunk {
+    SsnChunkHeader header;
+    BlockCopyCommand commands[];
+};
+
+// The whole file
+struct SsnFile {
+    SsnHeader header;
+    // Chunks start at 0x5000, aligned to 0x1000 boundaries
+    SsnChunk chunks[];
+};
