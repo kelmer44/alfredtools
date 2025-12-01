@@ -1,0 +1,203 @@
+.   .   .   .   .   .
+
+
+/f  0   IN_FIREZ.SMP
+
+/c  0   30
+/t  17  19  411 23  ­ Huumm !
+/t  24  27  411 23  ­ Uf !
+
+
+/f  38  PASO1ZZZ.SMP
+/f  45  PASO2ZZZ.SMP
+/f  53  PASO1ZZZ.SMP
+/f  60  PASO2ZZZ.SMP
+
+
+/t  68  70  270 17  ­ Huumm !
+/t  71  78  60  17  <­ Me vuelven loca los hombres con uniforme !
+/t  79  87  180 17  ­ Como se entere tu padre me mata !
+/t  92  100 100 17  <­ Calla tonto ! No tengas miedo.
+/t  101 109 90  17  <Est  de campa¤a para conquistar Persia.
+/t  110 118 90  17  <­ Como no me beses pronto me voy a morir !
+/t  119 127 140 17  ­ Me est s poniendo como un carruaje !
+/t  128 134 115 17  <­ Pues venga, no te cortes !
+
+
+/c  174 31
+/t  162 169 100 10  ­ Lo sab¡a !
+/t  170 177 59  10  ­ Eres peor que tu madre !
+/t  178 186 59  10  ­ No se te puede dejar sola !
+/f  154 PUERTAZZ.SMP
+/f  160 POM!ZZZZ.SMP
+
+
+
+/t  201 203 82  27  <­ Mi padre !
+/t  204 208 264 43  ­ Tu padre !
+/t  209 214 82  27  <No, no es lo que parece...
+/t  215 217 264 43  Yo, yo... yo la quiero
+/t  218 221 82  27  <­ Tu te callas !... Papi, ­ ‚l me oblig¢ !
+/t  222 229 264 43  ­ Pero que falsa !
+/t  230 237 4   43  ­ Fue ella la que me provoc¢, se¤or fara¢n !
+/t  238 246 10  43  Todo el mundo sabe como es su hija...
+/t  247 256 4   43  ­ Es que se pone unos vestiditos tan ce¤idos !
+/t  257 265 82  27  <­ Machista !
+/t  266 274 4   27  <C¢mo si no me pudiese poner lo que me saleöde las narices. ¨ Lo ves papi ?
+/t  275 282 4   27  <La t¡pica respuesta del acosador sexual.
+/t  283 294 4   27  <Y claro mi papi estaba fuera,             öy ‚l controlaba la guardia...
+
+
+
+/t  295 308 4   10  ­¨ C¢mo puedes ser tan embustera y tan mentirosaöy tan f cil y tan desvergonzada y tan...?!
+/t  309 323 4   10  ¨ Acaso te crees que me chupo el dedo ?
+/t  324 328 334 153 <No, papi...
+/t  329 333 33  153 <¨ que tal tu campa¤a por Persia ?
+/t  334 340 33  153 <¨ has conquistado mucho territorio ?
+/t  344 351 4   10  ­ No cambies de tema !
+/t  352 360 0   10  ¨ no se me va a dar ninguna explicaci¢n a esto ?
+
+
+
+/t  361 364 43  23  <Esto...
+/t  365 368 43  23  <bueno...
+/t  369 372 43  23  <esto que hay luna llena y...
+/t  373 376 43  23  <t£ ya me conoces...
+/t  377 380 43  23  <yo soy muy influnciable... y...
+/t  381 384 43  23  <bueno la luna...
+/t  385 388 43  23  <tiene mucho influjo...
+/t  389 397 43  23  <y me encontraba tan solita...
+
+
+
+/t  401 406 52  4   ¨ C¢mo ?
+/t  407 412 52  4   ¨ Y eso te parece excusa para enrollarteöcon un cualquiera ?
+/t  413 420 52  4   ­­ T£ lo que eres es una FLECHA PERDIDA !!
+
+
+/t  421 426 1   1   En cuanto a t¡. Te confio la custodia de miö£nica hija y te aprovechas de mi confianzaöy de ella...
+/t  427 432 100 6   Yo no... obedec¡a ordenes...
+/t  433 436 100 6   ella me lo pidi¢, y...
+/t  437 444 1   1   ­ Calla esclavo. Habla s¢lo cuando te pregunte !ö­ Aqu¡ el £nico que da ¢rdenes soy yo !
+
+
+
+
+/t  445 452 47  13  ­ Y ahora voy a ordenar que te envien a laöMAQUINA ANGELICAL !
+/t  453 460 47  13  ­­ GUARDIAS !!
+/t  461 470 47  13  ­­ A la m quina con ‚l !
+
+
+
+/t  471 478 236 30  ­ No !
+/t  479 486 200 30  ­ A la m quina no !
+/t  487 496 23  30  ­ Piedad !
+
+
+/t  506 510 12  9   En cuanto a t¡.
+/t  511 515 12  9   No s¢lo me has deshonrado sino queöadem s me has mentido.
+/t  516 520 12  9   Y eso si que no te lo perdono porque meödemuestra que no est s arrepentida.
+/t  521 527 12  9   As¡ que prep rate y encomienda tu alma porqueöpara ocultar mi verguenza
+/t  528 535 12  9   te condeno a estar encerrada en la pir mideöhasta que mueras.
+
+
+
+/t  537 547 86  21  <¨ Encerrada de por vida ? ¨ Sola ?
+/t  548 558 86  21  <¨ Entre ara¤as y ratones ? ­ NOOOO !
+/t  559 570 100 21  <­­­ POR FAVOR !!!
+
+
+
+/c  570 32
+
+/f  671 ETHERZZZ.SMP
+
+/t  670 674 1   1   <Chica joven, atractiva, morena de ojos azules,  öenclaustrada pero con ganas de salir de marcha,
+/t  675 679 1   1   <desea contactar con joven de 20 a 30 a¤os,      ösimilares caracter¡sticas y que le guste viajaröen el tiempo y en el espacio.
+/t  680 686 1   1   <Discreci¢n. Resc tame, no te arrepentir s.      ö­ Que se cumpla mi invocaci¢n, Tuthan-Mam¢n !
+
+
+
+
+
+/x  17  VOC3_0ZZ.PCM
+/x  24  VOC1_1ZZ.PCM
+
+/x  68  VOC3_0ZZ.PCM
+/x  71  VOC3_1ZZ.PCM
+/x  79  VOC3_2ZZ.PCM
+/x  92  VOC3_3ZZ.PCM
+/x  101 VOC3_4ZZ.PCM
+/x  110 VOC3_5ZZ.PCM
+/x  119 VOC3_6ZZ.PCM
+/x  128 VOC3_7ZZ.PCM
+
+/x  162 VOC4_0ZZ.PCM
+/x  170 VOC4_1ZZ.PCM
+/x  178 VOC4_2ZZ.PCM
+
+/x  201 VOC5_0ZZ.PCM
+/x  204 VOC5_1ZZ.PCM
+/x  209 VOC5_2ZZ.PCM
+/x  215 VOC5_3ZZ.PCM
+/x  218 VOC5_4ZZ.PCM
+/x  222 VOC5_5ZZ.PCM
+/x  230 VOC5_6ZZ.PCM
+/x  238 VOC5_7ZZ.PCM
+/x  247 VOC5_8ZZ.PCM
+/x  257 VOC5_9ZZ.PCM
+/x  266 VOC5_10Z.PCM
+/x  275 VOC5_11Z.PCM
+/x  283 VOC5_12Z.PCM
+
+/x  295 VOC7_0ZZ.PCM
+/x  309 VOC7_1ZZ.PCM
+/x  324 VOC7_2ZZ.PCM
+/x  329 VOC7_3ZZ.PCM
+/x  334 VOC7_4ZZ.PCM
+/x  339 VOC7_5ZZ.PCM
+/x  344 VOC7_6ZZ.PCM
+/x  352 VOC7_7ZZ.PCM
+
+/x  361 VOC8_0ZZ.PCM
+/x  365 VOC8_1ZZ.PCM
+/x  369 VOC8_2ZZ.PCM
+/x  373 VOC8_3ZZ.PCM
+/x  377 VOC8_4ZZ.PCM
+/x  381 VOC8_5ZZ.PCM
+/x  385 VOC8_6ZZ.PCM
+/x  389 VOC8_7ZZ.PCM
+
+/x  401 VOC9_0ZZ.PCM
+/x  407 VOC9_1ZZ.PCM
+/x  413 VOC9_2ZZ.PCM
+
+/x  421 VOC10_0Z.PCM
+/x  427 VOC10_1Z.PCM
+/x  433 VOC10_2Z.PCM
+/x  437 VOC10_3Z.PCM
+
+/x  445 VOC11_0Z.PCM
+/x  453 VOC11_1Z.PCM
+/x  461 VOC11_2Z.PCM
+
+/x  471 VOC12_0Z.PCM
+/x  479 VOC12_1Z.PCM
+/x  487 VOC12_2Z.PCM
+
+/x  506 VOC13_0Z.PCM
+/x  511 VOC13_1Z.PCM
+/x  516 VOC13_2Z.PCM
+/x  521 VOC13_3Z.PCM
+/x  528 VOC13_4Z.PCM
+
+/x  537 VOC14_0Z.PCM
+/x  548 VOC14_1Z.PCM
+/x  559 VOC14_2Z.PCM
+
+/x  670 VOC16_0Z.PCM
+/x  675 VOC16_1Z.PCM
+/x  680 VOC16_2Z.PCM
+
+
+*
