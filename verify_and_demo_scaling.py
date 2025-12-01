@@ -122,7 +122,7 @@ def extract_background(data, room_offset):
     return bytes(combined)
 
 def get_scaling_params(data, room_num):
-    """Extract scaling parameters from room data at offset 0x214"""
+    """Extract scaling parameters from room data at offset 0x213"""
     ROOM_STRUCT_SIZE = 104
     room_offset = room_num * ROOM_STRUCT_SIZE
 
@@ -145,23 +145,35 @@ def get_scaling_params(data, room_num):
 
     return None
 
-def calculate_scaling(y_pos, y_threshold, scale_divisor, scale_mode):
+def calculate_scaling(y_pos, y_threshold, scale_divisor, scale_mode, sprite_height=102):
     """
     Calculate scaling values based on Y position.
     Verified against Ghidra decompilation at 0x00015570 (load_room_data).
+    
+    IMPORTANT: The game calculates scaling based on the TOP of the sprite,
+    not the feet. So if y_pos is the feet position, we subtract the sprite
+    height to get the top position for the calculation.
 
     Returns (scale_down, scale_up) tuple.
     """
     if scale_mode == 0x00:  # Normal scaling
-        if y_threshold < y_pos:
-            # Player is below threshold (foreground) - no scaling
+        # Calculate using TOP of sprite (y_pos is feet position)
+        y_top = y_pos - sprite_height
+        
+        if y_threshold < y_top:
+            # Player below threshold (foreground) - no scaling
             scale_down = 0
             scale_up = 0
         else:
-            # Player is above threshold (background) - apply scaling
-            scale_delta = (y_threshold - y_pos) // scale_divisor
+            # Player above threshold (background) - apply scaling
+            scale_delta = (y_threshold - y_top) // scale_divisor
             scale_down = scale_delta
             scale_up = scale_delta // 2
+    elif scale_mode == 0x01:  # Alternative scaling mode (multiplier of 15)
+        scale_delta = (y_threshold - y_pos) // scale_divisor
+        # In this mode, scale_down uses a multiplier of 15
+        scale_down = scale_delta * 15
+        scale_up = 0
     elif scale_mode == -1:  # 0xFF - Maximum scaling
         scale_down = 0x5e
         scale_up = 0x2f
@@ -337,7 +349,7 @@ def main():
     # Test three positions
     test_positions = [
         ("Top (far back)", 100, 320),
-        ("Middle", 200, 320),
+        ("Middle", 250, 60),
         ("Bottom (foreground)", 370, 320)
     ]
 
