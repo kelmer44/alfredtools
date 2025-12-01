@@ -29,6 +29,10 @@ ALFRED3_PATH = "files/ALFRED.3"
 ALFRED5_PATH = "files/ALFRED.5"
 ALFRED9_PATH = "files/ALFRED.9"
 
+# Character palette offsets in ALFRED.9
+CHAR_PALETTE_OFFSET = 0x7b00  # 768 bytes - character's base palette
+CHAR_SHADOW_REMAP_OFFSET = 0x7e00  # 256 bytes - shadow remap table
+
 # Constants
 SCREEN_WIDTH = 640
 SCREEN_HEIGHT = 400
@@ -142,15 +146,60 @@ def extract_shadow_map(alfred5_data, room_number):
     return pixels
 
 
-def load_character_shadow_remap():
-    """Load the fixed character shadow palette remap table from ALFRED.9
+def load_character_palette():
+    """Load the character's base palette from ALFRED.9
     
-    The character uses a fixed 256-byte palette remap table stored at
-    offset 0x7e00 in ALFRED.9. This is used globally across all rooms.
-    There is only ONE shadow level for the character.
+    Returns 768 bytes (256 colors × 3 RGB bytes)
     """
     with open(ALFRED9_PATH, 'rb') as f:
-        f.seek(0x7e00)  # Fixed offset for character shadow remap
+        f.seek(CHAR_PALETTE_OFFSET)
+        palette = f.read(768)
+    
+    return palette
+
+
+def map_char_palette_to_room(char_palette, room_palette):
+    """Create mapping from character palette indices to room palette indices
+    
+    For each character color, finds the closest matching color in the room palette
+    """
+    mapping = bytearray(256)
+    
+    for char_idx in range(256):
+        char_r = char_palette[char_idx * 3]
+        char_g = char_palette[char_idx * 3 + 1]
+        char_b = char_palette[char_idx * 3 + 2]
+        
+        # Find closest color in room palette
+        best_idx = 0
+        best_dist = 999999
+        
+        for room_idx in range(256):
+            room_r = room_palette[room_idx * 3]
+            room_g = room_palette[room_idx * 3 + 1]
+            room_b = room_palette[room_idx * 3 + 2]
+            
+            dist = (char_r - room_r)**2 + (char_g - room_g)**2 + (char_b - room_b)**2
+            if dist < best_dist:
+                best_dist = dist
+                best_idx = room_idx
+        
+        mapping[char_idx] = best_idx
+    
+    return mapping
+
+
+def load_character_shadow_remap(room_number):
+    """Load the room-specific character shadow palette remap table from ALFRED.9
+    
+    Each room has its own 256-byte shadow remap table.
+    Pattern: ALFRED.9 offset = 0x200 + (room_number * 1024)
+    There is only ONE shadow level for the character.
+    """
+    remap_offset = 0x200 + (room_number * 1024)
+    
+    with open(ALFRED9_PATH, 'rb') as f:
+        f.seek(remap_offset)
         remap_table = f.read(256)
     
     return remap_table
@@ -304,8 +353,8 @@ def create_shadow_demo(room_number, output_dir="shadow_demo"):
     palette = extract_palette(alfred1_data, room_offset)
     shadow_map = extract_shadow_map(alfred5_data, room_number)
     
-    # Load the fixed character shadow remap table from ALFRED.9
-    palette_remap = load_character_shadow_remap()
+    # Load room-specific character shadow remap from ALFRED.9
+    palette_remap = load_character_shadow_remap(room_number)
 
     if not palette:
         print("ERROR: Could not extract palette")
