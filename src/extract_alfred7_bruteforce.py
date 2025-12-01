@@ -655,7 +655,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 768
+	  "offset" : 768
   },
   {
     "BUDA": 50,
@@ -691,7 +691,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	  "offset" : 176
   },
   {
     "BUDA": 53,
@@ -787,7 +787,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 778
+	  "offset" : 778
   },
   {
     "BUDA": 61,
@@ -1003,7 +1003,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	 "offset" : 100
   },
   {
     "BUDA": 79,
@@ -1099,7 +1099,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 0
+	  "offset" : 768
   },
   {
     "BUDA": 87,
@@ -1111,7 +1111,7 @@ metadata = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 88,
@@ -1182,8 +1182,8 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  True,
-	"offset" : 0
+    "isContinued":  False,
+	  "offset" : 0
   },
   {
     "BUDA": 94,
@@ -1195,7 +1195,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 768
+	  "offset" : 768
   },
   {
     "BUDA": 95,
@@ -1351,7 +1351,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 768
   },
   {
     "BUDA": 108,
@@ -1363,7 +1363,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 172
   },
   {
     "BUDA": 109,
@@ -1423,7 +1423,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 114,
