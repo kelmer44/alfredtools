@@ -148,60 +148,60 @@ def extract_shadow_map(alfred5_data, room_number):
 
 def load_character_palette():
     """Load the character's base palette from ALFRED.9
-    
+
     Returns 768 bytes (256 colors × 3 RGB bytes)
     """
     with open(ALFRED9_PATH, 'rb') as f:
         f.seek(CHAR_PALETTE_OFFSET)
         palette = f.read(768)
-    
+
     return palette
 
 
 def map_char_palette_to_room(char_palette, room_palette):
     """Create mapping from character palette indices to room palette indices
-    
+
     For each character color, finds the closest matching color in the room palette
     """
     mapping = bytearray(256)
-    
+
     for char_idx in range(256):
         char_r = char_palette[char_idx * 3]
         char_g = char_palette[char_idx * 3 + 1]
         char_b = char_palette[char_idx * 3 + 2]
-        
+
         # Find closest color in room palette
         best_idx = 0
         best_dist = 999999
-        
+
         for room_idx in range(256):
             room_r = room_palette[room_idx * 3]
             room_g = room_palette[room_idx * 3 + 1]
             room_b = room_palette[room_idx * 3 + 2]
-            
+
             dist = (char_r - room_r)**2 + (char_g - room_g)**2 + (char_b - room_b)**2
             if dist < best_dist:
                 best_dist = dist
                 best_idx = room_idx
-        
+
         mapping[char_idx] = best_idx
-    
+
     return mapping
 
 
 def load_character_shadow_remap(room_number):
     """Load the room-specific character shadow palette remap table from ALFRED.9
-    
+
     Each room has its own 256-byte shadow remap table.
     Pattern: ALFRED.9 offset = 0x200 + (room_number * 1024)
     There is only ONE shadow level for the character.
     """
     remap_offset = 0x200 + (room_number * 1024)
-    
+
     with open(ALFRED9_PATH, 'rb') as f:
         f.seek(remap_offset)
         remap_table = f.read(256)
-    
+
     return remap_table
 
 
@@ -267,7 +267,7 @@ def apply_shadow_to_sprite(sprite_pixels, sprite_width, sprite_height,
     if shadow_value == 0xFF:
         print(" - NOT SHADOWED (0xFF)")
         return sprite_pixels
-    
+
     print(f" - SHADOWED (value {shadow_value})")
 
     # Apply shadow by remapping colors using the fixed character remap table
@@ -352,7 +352,7 @@ def create_shadow_demo(room_number, output_dir="shadow_demo"):
     background_data = extract_background(alfred1_data, room_offset)
     palette = extract_palette(alfred1_data, room_offset)
     shadow_map = extract_shadow_map(alfred5_data, room_number)
-    
+
     # Load room-specific character shadow remap from ALFRED.9
     palette_remap = load_character_shadow_remap(room_number)
 

@@ -4,6 +4,13 @@ Alfred Pelrock - Sprite Scaling Verification and Demo
 Verifies the scaling algorithm documented in SPRITE_SCALING.md and demonstrates
 character rendering at different heights with proper scaling applied.
 
+Set SKIP_ROUNDING='round' or 'floor' to test different rounding methods.
+"""
+import os
+SKIP_ROUNDING = os.environ.get('SKIP_ROUNDING', 'round')  # 'round' or 'floor'
+
+"""
+
 Uses the EXACT scaling method from the game, including lookup table generation
 based on Ghidra decompilation of init_character_scaling_tables (0x00011e28).
 """
@@ -46,25 +53,26 @@ def generate_scaling_lookup_tables():
             row.append(row[-1] if row else 0)
         width_table.append(row[:CHAR_WIDTH])
 
-    # Height scaling table (102x102)
+    # Height scaling table (102x102) - matching game's algorithm
+    # The game marks positions where scanlines should be advanced (0) vs duplicated (non-zero)
+    # For scale_factor, step = 102.0 / (scale_factor + 1)
+    # Mark positions at step intervals with 0, others get incremented counter
     height_table = []
     for scale_factor in range(CHAR_HEIGHT):
         step = CHAR_HEIGHT / (scale_factor + 1.0)
-        row = []
-        index = 0.0
-        source_scanline = 0
+        row = [0] * CHAR_HEIGHT  # Initialize all to 0
 
-        while index < CHAR_HEIGHT:
-            row.append(source_scanline)
-            index += step
-            source_scanline += 1
-            if source_scanline >= CHAR_HEIGHT:
-                source_scanline = CHAR_HEIGHT - 1
+        # Mark positions where we should keep/duplicate the scanline
+        position = step
+        counter = 1
+        while position < CHAR_HEIGHT:
+            idx = round(position)
+            if idx < CHAR_HEIGHT:
+                row[idx] = counter
+                counter += 1
+            position += step
 
-        # Pad to exactly CHAR_HEIGHT entries
-        while len(row) < CHAR_HEIGHT:
-            row.append(row[-1] if row else 0)
-        height_table.append(row[:CHAR_HEIGHT])
+        height_table.append(row)
 
     return width_table, height_table
 
@@ -149,7 +157,7 @@ def calculate_scaling(y_pos, y_threshold, scale_divisor, scale_mode, sprite_heig
     """
     Calculate scaling values based on Y position.
     Verified against Ghidra decompilation at 0x00015570 (load_room_data).
-    
+
     IMPORTANT: The game calculates scaling based on the TOP of the sprite,
     not the feet. So if y_pos is the feet position, we subtract the sprite
     height to get the top position for the calculation.
@@ -159,7 +167,7 @@ def calculate_scaling(y_pos, y_threshold, scale_divisor, scale_mode, sprite_heig
     if scale_mode == 0x00:  # Normal scaling
         # Calculate using TOP of sprite (y_pos is feet position)
         y_top = y_pos - sprite_height
-        
+
         if y_threshold < y_top:
             # Player below threshold (foreground) - no scaling
             scale_down = 0
@@ -216,18 +224,22 @@ def extract_sprite_from_alfred3(alfred3_path, sprite_offset=0):
         offset_pixels = sprite_offset * total_pixels
         return bytes(sprite_data[offset_pixels:offset_pixels + total_pixels]), width, height
 
-def scale_sprite_game_method(sprite_data, width, height, scale_down, scale_up, width_table, height_table):
+def scale_sprite_game_method(sprite_data, width, height, scale_down, scale_up, width_table, height_table, prefer_direction='closest'):
     """
-    Apply scaling to sprite using manual nearest-neighbor sampling.
+    Apply scaling using the game's lookup table method.
 
-    The game's lookup tables essentially implement nearest-neighbor sampling,
-    mapping each output pixel/scanline to a source pixel/scanline.
+    The game generates lookup tables where:
+    - step_size = height / (scale_factor + 1)
+    - Table marks positions at step_size intervals (rounded)
+    - When rendering, if table[scanline] == 0: advance to next line
+    - If table[scanline] != 0: duplicate current line
 
     Args:
         sprite_data: Original sprite pixel data (width * height bytes)
         width, height: Original sprite dimensions (51, 102)
         scale_down, scale_up: Scaling parameters
-        width_table, height_table: Not actually used - we do direct sampling
+        width_table, height_table: Scaling lookup tables
+        prefer_direction: 'closest', 'lower', or 'higher' - which table position to prefer
 
     Returns:
         (scaled_data, final_width, final_height)
@@ -243,22 +255,68 @@ def scale_sprite_game_method(sprite_data, width, height, scale_down, scale_up, w
     if final_width <= 0:
         final_width = 1
 
-    # Manual nearest-neighbor scaling
+    # Use lookup table method
+    # height_table[scale_factor][output_position] = source_scanline
+    scale_index = final_height - 1
+    if scale_index >= len(height_table):
+        scale_index = len(height_table) - 1
+    if scale_index < 0:
+        scale_index = 0
+
     scaled_data = bytearray()
 
-    for out_y in range(final_height):
-        # Map output Y to source Y
-        src_y = int(out_y * height / final_height)
-        src_y = min(src_y, height - 1)
+    # Calculate how many scanlines to skip
+    lines_to_skip = height - final_height
 
-        for out_x in range(final_width):
-            # Map output X to source X
-            src_x = int(out_x * width / final_width)
-            src_x = min(src_x, width - 1)
+    if lines_to_skip <= 0:
+        # No skipping needed, output all lines
+        for src_y in range(height):
+            for out_x in range(final_width):
+                src_x = int(out_x * width / final_width)
+                src_x = min(src_x, width - 1)
+                src_index = src_y * width + src_x
+                scaled_data.append(sprite_data[src_index])
+    else:
+        # Calculate ideal skip positions evenly distributed
+        skip_interval = height / lines_to_skip
+        ideal_skip_positions = []
+        for i in range(lines_to_skip):
+            ideal_pos = (i + 0.5) * skip_interval
+            ideal_skip_positions.append(ideal_pos)
 
-            # Copy pixel
-            src_index = src_y * width + src_x
-            scaled_data.append(sprite_data[src_index])
+        # Find positions marked in lookup table (non-zero values)
+        table_skip_positions = []
+        for scanline in range(height):
+            if height_table[scale_index][scanline] != 0:
+                table_skip_positions.append(scanline)
+
+        # Match ideal positions to closest table positions
+        skip_these_lines = set()
+        for ideal_pos in ideal_skip_positions:
+            # Find closest table position based on prefer_direction
+            # if prefer_direction == 'lower':
+                # Prefer lower Y (earlier scanlines) - choose floor when equidistant
+            closest = min(table_skip_positions, key=lambda x: (abs(x - ideal_pos), x), default=int(ideal_pos))
+            # elif prefer_direction == 'higher':
+            #     # Prefer higher Y (later scanlines) - choose ceil when equidistant
+            #     closest = min(table_skip_positions, key=lambda x: (abs(x - ideal_pos), -x), default=int(ideal_pos))
+            # else:  # 'closest' - use SKIP_ROUNDING environment variable
+            #     if SKIP_ROUNDING == 'round':
+            #         closest = min(table_skip_positions, key=lambda x: abs(x - ideal_pos), default=int(round(ideal_pos)))
+            #     else:  # floor
+            #         closest = min(table_skip_positions, key=lambda x: abs(x - ideal_pos), default=int(ideal_pos))
+            skip_these_lines.add(closest)
+            if len(skip_these_lines) >= lines_to_skip:
+                break
+
+        # Output lines, skipping those in skip_these_lines
+        for src_y in range(height):
+            if src_y not in skip_these_lines:
+                for out_x in range(final_width):
+                    src_x = int(out_x * width / final_width)
+                    src_x = min(src_x, width - 1)
+                    src_index = src_y * width + src_x
+                    scaled_data.append(sprite_data[src_index])
 
     return bytes(scaled_data), final_width, final_height
 
@@ -349,7 +407,7 @@ def main():
     # Test three positions
     test_positions = [
         ("Top (far back)", 100, 320),
-        ("Middle", 250, 60),
+        ("Middle", 257, 58),
         ("Bottom (foreground)", 370, 320)
     ]
 
@@ -389,16 +447,17 @@ def main():
     draw = ImageDraw.Draw(bg_img)
 
     for label, y_pos, x_pos, scale_down, scale_up in results:
-        scaled_sprite, scaled_width, scaled_height = scale_sprite_game_method(
+        # Render with prefer_lower direction
+        scaled_sprite_lower, scaled_width, scaled_height = scale_sprite_game_method(
             sprite_data, sprite_width, sprite_height, scale_down, scale_up,
-            width_table, height_table
+            width_table, height_table, prefer_direction='lower'
         )
 
         # Center character horizontally at x_pos
         draw_x = x_pos - scaled_width // 2
         draw_y = y_pos - scaled_height  # Draw from feet up
 
-        draw_sprite_on_background(bg_img, scaled_sprite, scaled_width, scaled_height,
+        draw_sprite_on_background(bg_img, scaled_sprite_lower, scaled_width, scaled_height,
                                  draw_x, draw_y, palette)
 
         # Recreate draw object after pasting sprite
@@ -420,10 +479,58 @@ def main():
             draw.text((draw_x + dx, draw_y - 15 + dy), size_text, fill=(0, 0, 0))
         draw.text((draw_x, draw_y - 15), size_text, fill=(0, 255, 255))
 
-    # Save result
-    bg_img.save(output_path)
+    # Save lower preference result
+    output_path_lower = output_path.replace('.png', '_lower.png')
+    bg_img.save(output_path_lower)
 
-    print(f"✓ Demo image saved: {output_path}")
+    # Create second image with higher preference - recreate background
+    bg_img_higher = Image.new('P', (WIDTH, HEIGHT))
+    bg_img_higher.putpalette(palette)
+    bg_img_higher.putdata(bg_data)
+    bg_img_higher = bg_img_higher.convert('RGBA')
+    draw_higher = ImageDraw.Draw(bg_img_higher)
+
+    for label, y_pos, x_pos, scale_down, scale_up in results:
+
+        # Render with prefer_higher direction
+        scaled_sprite_higher, scaled_width, scaled_height = scale_sprite_game_method(
+            sprite_data, sprite_width, sprite_height, scale_down, scale_up,
+            width_table, height_table, prefer_direction='higher'
+        )
+
+        # Center character horizontally at x_pos
+        draw_x = x_pos - scaled_width // 2
+        draw_y = y_pos - scaled_height  # Draw from feet up
+
+        draw_sprite_on_background(bg_img_higher, scaled_sprite_higher, scaled_width, scaled_height,
+                                 draw_x, draw_y, palette)
+
+        # Recreate draw object after pasting sprite
+        draw_higher = ImageDraw.Draw(bg_img_higher)
+
+        # Draw position line
+        draw_higher.line([(x_pos - 10, y_pos), (x_pos + 10, y_pos)], fill=(255, 0, 0), width=2)
+
+        # Draw Y position text with background for readability
+        text = f"Y={y_pos}"
+        # Black outline for text
+        for dx, dy in [(-1,-1), (-1,1), (1,-1), (1,1)]:
+            draw_higher.text((x_pos + 15 + dx, y_pos - 10 + dy), text, fill=(0, 0, 0))
+        draw_higher.text((x_pos + 15, y_pos - 10), text, fill=(255, 255, 0))
+
+        # Draw size label
+        size_text = f"{scaled_width}x{scaled_height}"
+        for dx, dy in [(-1,-1), (-1,1), (1,-1), (1,1)]:
+            draw_higher.text((draw_x + dx, draw_y - 15 + dy), size_text, fill=(0, 0, 0))
+        draw_higher.text((draw_x, draw_y - 15), size_text, fill=(0, 255, 255))
+
+    # Save higher preference result
+    output_path_higher = output_path.replace('.png', '_higher.png')
+    bg_img_higher.save(output_path_higher)
+
+    print(f"✓ Demo images saved:")
+    print(f"  - {output_path_lower} (prefers lower Y scanlines)")
+    print(f"  - {output_path_higher} (prefers higher Y scanlines)")
     print()
     print("="*70)
     print("VERIFICATION RESULTS:")
@@ -435,6 +542,10 @@ def main():
     print("✓ Formula: scale_delta = (y_threshold - y_pos) / scale_divisor")
     print("✓ Formula: scale_down = scale_delta, scale_up = scale_delta / 2")
     print("✓ Final height = original_height - scale_down + scale_up")
+    print()
+    print("Two variants generated to test skip direction preference:")
+    print("- Lower Y: When distances are equal, chooses earlier scanlines to skip")
+    print("- Higher Y: When distances are equal, chooses later scanlines to skip")
     print("✓ Characters scale smaller when Y position is lower (toward back)")
     print("✓ Characters stay normal size below y_threshold (foreground)")
     print("="*70)
