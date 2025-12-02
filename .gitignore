@@ -2,7 +2,6 @@
 bin/
 *.o
 *.out
-*.exe
 *.dll
 *.so
 *.dylib
@@ -38,3 +37,6 @@ standalone_budas_raw_4
 talking_anims
 sounds_final
 bedroom_complete
+shadow_demo
+sounds_extracted_v2
+sounds_test
