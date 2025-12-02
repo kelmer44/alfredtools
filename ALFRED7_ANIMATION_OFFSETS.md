@@ -54,7 +54,7 @@ The file handle for ALFRED.7 is stored at:
 - **Address**: `0x4f908` (named `file_handle_alfred7`)
 - **Part of file handle array** starting at `0x4f8f0`:
   - +0x00: alfred.1
-  - +0x04: alfred.2  
+  - +0x04: alfred.2
   - +0x08: alfred.3
   - +0x0C: alfred.4
   - +0x10: alfred.5
