@@ -56,6 +56,42 @@ void render_scene() {
 
 Unlike idle animations, the ambient sound system is **NOT reset by mouse movement**. The frame counter continues regardless of player input.
 
+## Sound Slot Architecture
+
+The game uses 17 sound slots (0-16) organized into two groups:
+
+### Global Sound Slots (0-7)
+
+Loaded once at game startup in `game_initialization`:
+
+| Slot | Filename | Purpose |
+|------|----------|---------|
+| 0 | 11ZZZZZZ.SMP | UI/system sound |
+| 1 | 41ZZZZZZ.SMP | UI/system sound |
+| 2 | 56ZZZZZZ.SMP | UI/system sound |
+| 3 | GATITOZZ.SMP | Kitten meow |
+| 4-7 | (unused) | Reserved |
+
+These persist across room changes.
+
+### Room-Specific Sound Slots (8-16)
+
+Loaded from room data when entering each room:
+
+| Slot | Room Data Index | Used for Ambient |
+|------|-----------------|------------------|
+| 8 | 0 | No - room event sounds |
+| 9 | 1 | No - room event sounds |
+| 10 | 2 | No - room event sounds |
+| 11 | 3 | No - room event sounds |
+| **12** | **4** | **Yes - ambient** |
+| **13** | **5** | **Yes - ambient** |
+| **14** | **6** | **Yes - ambient** |
+| **15** | **7** | **Yes - ambient** |
+| 16 | 8 | No - room event sounds |
+
+**CRITICAL**: Only slots **12-15** (room data indices 4-7) are used for ambient playback!
+
 ## Room Sound Data
 
 ### Storage Format
@@ -64,7 +100,7 @@ Each room has 10 bytes of sound data stored in ALFRED.1 (Pair 9):
 
 ```
 Byte 0:    Music track ID (for room music)
-Bytes 1-9: Ambient sound slot indices (9 slots)
+Bytes 1-9: Sound indices for slots 8-16
 ```
 
 ### Sound Loading
@@ -76,24 +112,6 @@ for (i = 0; i < 9; i++) {
     load_sound_file(SOUND_FILENAMES[room_data[i+1]], slot: i + 8);
 }
 ```
-
-### Which Slots Are Actually Used
-
-**CRITICAL**: Only slots **12, 13, 14, 15** are used for ambient playback!
-
-This corresponds to room data bytes **5, 6, 7, 8** (indices 4-7 in the 9-byte array).
-
-| Room Data Index | Sound Slot | Used for Ambient |
-|-----------------|------------|------------------|
-| 0 | 8 | No |
-| 1 | 9 | No |
-| 2 | 10 | No |
-| 3 | 11 | No |
-| **4** | **12** | **Yes** |
-| **5** | **13** | **Yes** |
-| **6** | **14** | **Yes** |
-| **7** | **15** | **Yes** |
-| 8 | 16 | No |
 
 ## Sound Index Mapping
 
@@ -237,25 +255,36 @@ uint16 random() {
 | Multiplier | 0x41C64E6D | 1103515245 (glibc standard) |
 | Increment | 0x3039 | 12345 (glibc standard) |
 | Modulus | 2^32 | Implicit via 32-bit overflow |
-| **Initial Seed** | **Non-zero** | Seeded at startup (likely from DOS timer) |
+| State Address | 0x0004c3f0 | In BSS section (uninitialized data) |
 
-### Sound Sequence is NON-Deterministic!
+### Sound Sequence is DETERMINISTIC but RNG Seed Unknown
 
-**Key Discovery**: Empirical testing proved the RNG is seeded with a non-zero value:
+**Key Discovery**: The ambient sound sequence is **completely deterministic** - it's the same
+every time the game is launched in DOSBox. However, simulating with seed=0 does NOT produce
+the observed sequence.
 
-| Seed | Sequence |
-|------|----------|
-| 0 (if BSS-only) | BIRD→CAT→HORN→CAT→HORN→HORN |
-| ~2765 (observed) | BIRD→BIRD→CAT→HORN→CAT→BIRD |
+**Observed vs Predicted (seed=0):**
 
-The observed sequence **BIRD→BIRD→CAT→HORN→CAT→BIRD** does NOT appear in the RNG stream starting from seed=0. Testing found multiple seeds that produce the correct sequence, with seed ~2765 being closest to observed timings.
+| Seed | First 6 Sounds |
+|------|----------------|
+| 0 (expected BSS default) | BIRD→CAT→CAT→BIRD→BIRD→HORN |
+| 3515 (matches observed) | BIRD→BIRD→CAT→HORN→CAT→BIRD at ~5.2, 8.6, 10.3, 13.8, 19.0, 22.5s |
+| **User Observed** | BIRD→BIRD→CAT→HORN→CAT→BIRD at ~5, 9, 10, 15, 19, 24s |
 
-**Possible seed sources in original DOS game:**
-- BIOS tick counter at 0040:006C (~18.2 Hz)
-- DOS TIME function (INT 21h, AH=2Ch)
-- PIT counter read
+**Timing Model:**
+- Timer ISR runs at 18.2 Hz, incrementing `ambient_sound_frame_counter`
+- `render_scene` calls RNG every frame and checks `(counter & 0x1F) == 0x1F`
+- Multiple RNG calls per potential trigger opportunity (gate + slot selection)
 
-**For ScummVM**: Use `g_system->getMillis()` as seed for authentic non-deterministic behavior.
+**Why Seed != 0:**
+The RNG state is in the BSS section at 0x0004c3f0. In DOS, BSS memory is NOT necessarily
+zeroed - it contains whatever was in memory previously. The determinism comes from DOSBox
+always loading the executable into the same memory state.
+
+**For ScummVM Implementation:**
+- Option 1: Use seed=0 for clean/predictable behavior
+- Option 2: Use `g_system->getMillis()` for varied sequences each playthrough
+- Option 3: Use seed=3515 to approximate original DOSBox behavior
 
 ### First Sounds in Room 0 (with seed ~2765)
 
@@ -490,6 +519,50 @@ idle_timer_screensaver++;
 | 0x00051690 | idle_timer_screensaver | Timer for sliding puzzle screensaver (threshold 1090) |
 | 0x0004fb94 | current_room_number | Current room ID |
 | 0x0004fa55 | current_music_track_id | Current CD audio track |
+
+## Detailed Investigation Notes
+
+### RNG Seed Mystery (December 2024)
+
+During reverse engineering, we discovered a discrepancy between simulated and observed behavior:
+
+**Observed Behavior (DOSBox recording):**
+- Sequence: BIRD→BIRD→CAT→HORN→CAT→BIRD
+- Times: ~5s, ~9s, ~10s, ~15s, ~19s, ~24s
+- **Deterministic**: Same sequence every time game is launched
+
+**Simulated Behavior (seed=0):**
+- Sequence: BIRD→CAT→CAT→BIRD→BIRD→HORN
+- Times: ~5.2s, ~13.9s, ~22.6s, ~26.1s, ~27.8s, ~29.5s
+- **Does NOT match observed!**
+
+**Investigation findings:**
+1. **RNG algorithm verified**: Disassembly at 0x0002b12f confirms ANSI C LCG with standard constants
+2. **State in BSS**: RNG state at 0x0004c3f0 is in uninitialized data section
+3. **No explicit seeding**: Only one xref to state address (get_rng_state_ptr)
+4. **Counter increment locations**:
+   - Timer ISR at 0x00015250 (continuous)
+   - render_scene at 0x00015f04 (after trigger)
+
+**Exhaustive seed search found:**
+- Seeds 799, 1122, 2986, 3363, 3376, 3515, 3561, 3939, 4420, 4632 produce matching sequence
+- Seed 3515 has closest timing match (error ~3.6s total)
+
+**Conclusion:**
+The RNG state is NOT zero at game start. In DOS/DOSBox, BSS memory contains residual data
+from previous memory contents. The determinism comes from DOSBox consistently loading the
+executable into the same memory layout.
+
+### Counter Increment Mechanics
+
+The `ambient_sound_frame_counter` is incremented in TWO places:
+
+1. **Timer ISR (0x00015250)**: Increments continuously at ~18.2 Hz (DOS INT 0x1C)
+2. **render_scene (0x00015f04)**: Increments after successful sound trigger
+
+The trigger condition `(counter & 0x1F) == 0x1F` means sounds can trigger when counter
+equals 31, 63, 95, 127, etc. After triggering, counter is incremented to move past the
+trigger point (becomes 32, 64, 96, 128, etc.).
 
 ## Related Functions
 

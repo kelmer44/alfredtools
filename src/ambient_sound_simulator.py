@@ -22,16 +22,20 @@ RNG DETAILS:
 - Standard ANSI C LCG (same as glibc rand())
 - Multiplier: 0x41C64E6D (1103515245)
 - Increment: 0x3039 (12345)
-- Seed: NOT 0! Game initializes RNG with non-zero seed at startup.
-        Likely seeded from DOS timer or system time.
-        Empirical testing found seed ~2765 matches observed behavior.
+- State Address: 0x0004c3f0 (in BSS section)
 - Formula: state = (state * 0x41C64E6D + 0x3039) & 0xFFFFFFFF
 - Returns: (state >> 16) & 0x7FFF (15-bit value 0-32767)
 
-NOTE: With seed=0, the sequence is: BIRD→CAT→HORN→CAT→HORN→HORN...
-      But observed game behavior was: BIRD→BIRD→CAT→HORN→CAT→BIRD
-      This confirms the seed is non-zero. For ScummVM, recommend using
-      system time as seed to match original non-deterministic behavior.
+RNG SEED MYSTERY (December 2024):
+The game produces DETERMINISTIC sequences (same every launch), but NOT
+matching seed=0 predictions.
+
+  Observed:  BIRD→BIRD→CAT→HORN→CAT→BIRD at ~5s, 9s, 10s, 15s, 19s, 24s
+  Seed=0:    BIRD→CAT→CAT→BIRD→BIRD→HORN at ~5s, 14s, 23s, 26s, 28s, 30s
+
+Exhaustive search found seed=3515 produces the observed sequence with
+closest timing (error ~3.6s). The actual seed value is determined by
+uninitialized BSS memory state in DOSBox.
 
 SOUND SELECTION:
 - Random slot from 12-15: (random() & 3) + 12
@@ -42,6 +46,7 @@ Usage:
     python ambient_sound_simulator.py --info        # Show all room configs
     python ambient_sound_simulator.py --simulate 0  # Simulate room 0
     python ambient_sound_simulator.py --export      # Export for ScummVM
+    python ambient_sound_simulator.py --seed 3515   # Test specific seed
 """
 
 import struct
@@ -63,7 +68,8 @@ class GameRNG:
     - Modulus: 2^32 (implicit via 32-bit overflow)
 
     The game stores the state at address 0x0004c3f0 (rng_state).
-    Since this is in BSS, it's initialized to 0 on program start.
+    This is in BSS, so the initial value depends on memory state at startup.
+    For DOSBox, this produces deterministic (but non-zero) sequences.
     """
 
     # LCG constants (from JUEGO.EXE @ 0x0002b12f)
@@ -71,7 +77,7 @@ class GameRNG:
     INCREMENT = 0x3039       # 12345
 
     def __init__(self, seed=None):
-        """Initialize RNG with seed (default None = use system time like original game)"""
+        """Initialize RNG with seed. Use seed=3515 to approximate original DOSBox behavior."""
         if seed is None:
             import time
             seed = int(time.time() * 1000) & 0xFFFF  # Low 16 bits of milliseconds
