@@ -22,9 +22,16 @@ RNG DETAILS:
 - Standard ANSI C LCG (same as glibc rand())
 - Multiplier: 0x41C64E6D (1103515245)
 - Increment: 0x3039 (12345)
-- Seed: 0 (BSS section initialized to zero in DOS)
+- Seed: NOT 0! Game initializes RNG with non-zero seed at startup.
+        Likely seeded from DOS timer or system time.
+        Empirical testing found seed ~2765 matches observed behavior.
 - Formula: state = (state * 0x41C64E6D + 0x3039) & 0xFFFFFFFF
 - Returns: (state >> 16) & 0x7FFF (15-bit value 0-32767)
+
+NOTE: With seed=0, the sequence is: BIRD→CAT→HORN→CAT→HORN→HORN...
+      But observed game behavior was: BIRD→BIRD→CAT→HORN→CAT→BIRD
+      This confirms the seed is non-zero. For ScummVM, recommend using
+      system time as seed to match original non-deterministic behavior.
 
 SOUND SELECTION:
 - Random slot from 12-15: (random() & 3) + 12
@@ -63,8 +70,11 @@ class GameRNG:
     MULTIPLIER = 0x41C64E6D  # 1103515245
     INCREMENT = 0x3039       # 12345
 
-    def __init__(self, seed=0):
-        """Initialize RNG with seed (default 0 = game default)"""
+    def __init__(self, seed=None):
+        """Initialize RNG with seed (default None = use system time like original game)"""
+        if seed is None:
+            import time
+            seed = int(time.time() * 1000) & 0xFFFF  # Low 16 bits of milliseconds
         self.state = seed & 0xFFFFFFFF
 
     def random(self):
@@ -102,8 +112,9 @@ COUNTER_MASK = 0x1F  # 31 - check every 32 ticks
 AMBIENT_SLOT_OFFSET = 12  # Slots 12-15 used for ambient
 AMBIENT_SLOT_COUNT = 4  # Only 4 slots
 
-# RNG seed (BSS initialized to 0)
-DEFAULT_RNG_SEED = 0
+# RNG seed (NOT 0 - game seeds with system time or similar)
+# Empirical testing shows seed ~2765 matches observed behavior
+DEFAULT_RNG_SEED = None  # Use system time for ScummVM compatibility
 
 # Sound filename array from JUEGO.EXE at 0x48dd8 (indices 0-95)
 SOUND_FILENAMES = [

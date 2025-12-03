@@ -220,7 +220,7 @@ The game uses the **standard ANSI C / glibc LCG** (Linear Congruential Generator
 // State pointer: get_rng_state_ptr @ 0x0002b129
 // State variable: rng_state @ 0x0004c3f0
 
-uint32 rng_state = 0;  // BSS section = initialized to ZERO!
+uint32 rng_state;  // Seeded at startup with non-zero value
 
 uint16 random() {
     // Standard glibc rand() constants
@@ -237,28 +237,40 @@ uint16 random() {
 | Multiplier | 0x41C64E6D | 1103515245 (glibc standard) |
 | Increment | 0x3039 | 12345 (glibc standard) |
 | Modulus | 2^32 | Implicit via 32-bit overflow |
-| **Initial Seed** | **0** | BSS section initialized to zero |
+| **Initial Seed** | **Non-zero** | Seeded at startup (likely from DOS timer) |
 
-### DETERMINISTIC Sound Sequence!
+### Sound Sequence is NON-Deterministic!
 
-**Key Discovery**: The RNG seed is **ALWAYS 0** because it's stored in the BSS section, which DOS initializes to zero. This means:
+**Key Discovery**: Empirical testing proved the RNG is seeded with a non-zero value:
 
-1. The sound sequence is **completely deterministic**
-2. The same sounds play in the **exact same order** every time
-3. This explains why you always hear Bird → Cat at game start!
+| Seed | Sequence |
+|------|----------|
+| 0 (if BSS-only) | BIRD→CAT→HORN→CAT→HORN→HORN |
+| ~2765 (observed) | BIRD→BIRD→CAT→HORN→CAT→BIRD |
 
-### First Sounds in Room 0 (Calculated)
+The observed sequence **BIRD→BIRD→CAT→HORN→CAT→BIRD** does NOT appear in the RNG stream starting from seed=0. Testing found multiple seeds that produce the correct sequence, with seed ~2765 being closest to observed timings.
 
-With seed=0 and Room 0 slots [HORN_6ZZ, BIRD_1_1, BIRD_1_2, CAT_1ZZZ]:
+**Possible seed sources in original DOS game:**
+- BIOS tick counter at 0040:006C (~18.2 Hz)
+- DOS TIME function (INT 21h, AH=2Ch)
+- PIT counter read
 
-| Tick | Time | RNG1 | Passes? | RNG2 | Slot | Sound |
-|------|------|------|---------|------|------|-------|
-| 31 | 1.71s | varies | varies | - | - | (depends on RNG state) |
-| 63 | 3.47s | ... | ... | ... | ... | ... |
-| 95 | 5.23s | ... | ... | ... | ... | BIRD_1_1 or similar |
-| 127 | 6.99s | ... | ... | ... | ... | CAT_1ZZZ or similar |
+**For ScummVM**: Use `g_system->getMillis()` as seed for authentic non-deterministic behavior.
 
-Run `python ambient_sound_simulator.py --analyze 0` to see the exact sequence!
+### First Sounds in Room 0 (with seed ~2765)
+
+With Room 0 slots [HORN_6ZZ, BIRD_1_1, BIRD_1_2, CAT_1ZZZ]:
+
+| # | Time | Sound | Notes |
+|---|------|-------|-------|
+| 1 | ~5s | BIRD_1_1 or BIRD_1_2 | First ambient sound |
+| 2 | ~7-9s | BIRD (other variant) | May overlap with previous |
+| 3 | ~10-12s | CAT_1ZZZ | |
+| 4 | ~15s | HORN_6ZZ (car horn) | |
+| 5 | ~17-19s | CAT_1ZZZ | |
+| 6 | ~19-24s | BIRD | |
+
+Run `python ambient_sound_simulator.py --analyze 0` to see sequences with different seeds!
 
 ### Overlapping Sounds
 
