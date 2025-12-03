@@ -147,16 +147,16 @@ def detect_format(data):
     """Detect audio format from file header"""
     if len(data) < 16:
         return ('too_small', 11025, 0)
-    
+
     byte0, byte1 = data[0], data[1]
     magic_4 = data[0:4]
-    
+
     if magic_4 == b'RIFF':
         sample_rate = struct.unpack('<I', data[0x18:0x1c])[0] if len(data) >= 0x20 else 11025
         if not (4000 <= sample_rate <= 48000):
             sample_rate = 11025
         return ('riff_wav', sample_rate, 0)
-    
+
     if byte0 == 0x01 and byte1 == 0x2e:
         sample_rate = 11025
         if len(data) >= 0x20:
@@ -164,7 +164,7 @@ def detect_format(data):
             if 4000 <= rate <= 48000:
                 sample_rate = rate
         return ('ail_miles', sample_rate, 80)
-    
+
     if byte0 == 0x01 and 0x40 <= byte1 <= 0x7f:
         sample_rate = 11025
         if len(data) >= 0x14:
@@ -172,10 +172,10 @@ def detect_format(data):
             if 4000 <= rate <= 48000:
                 sample_rate = rate
         return ('ail_other', sample_rate, 80)
-    
+
     if len(data) <= 100:
         return ('silence', 11025, 0)
-    
+
     return ('raw_pcm', 11025, 0)
 
 
@@ -195,58 +195,58 @@ def load_sonidos_index(sonidos_path):
     """Load file index from SONIDOS.DAT"""
     with open(sonidos_path, 'rb') as f:
         data = f.read()
-    
+
     if data[0:4] != b'PACK':
         raise ValueError(f"Invalid SONIDOS.DAT magic: {data[0:4]}")
-    
+
     file_count = struct.unpack('<I', data[4:8])[0]
-    
+
     offset = 8
     files = {}
-    
+
     for _ in range(file_count):
         name_end = data.find(b'\x00', offset)
         filename = data[offset:name_end].decode('ascii', errors='ignore')
         offset = name_end + 1
-        
+
         file_offset = struct.unpack('<I', data[offset:offset+4])[0]
         file_size = struct.unpack('<I', data[offset+4:offset+8])[0]
         offset += 8
-        
+
         files[filename.upper()] = {
             'offset': file_offset,
             'size': file_size,
             'data': data[file_offset:file_offset+file_size]
         }
-    
+
     return files
 
 
 def extract_sound_to_wav(sound_name, sonidos_index, output_path):
     """Extract a single sound file and convert to WAV"""
     sound_name_upper = sound_name.upper()
-    
+
     if sound_name_upper not in sonidos_index:
         return None, f"Not found in SONIDOS.DAT"
-    
+
     sound_data = sonidos_index[sound_name_upper]['data']
-    
+
     if len(sound_data) <= 100:
         return None, "Silence/placeholder"
-    
+
     fmt, sample_rate, header_size = detect_format(sound_data)
-    
+
     if fmt == 'riff_wav':
         # Already WAV, just copy
         with open(output_path, 'wb') as f:
             f.write(sound_data)
         return output_path, f"RIFF/WAV {sample_rate}Hz"
-    
+
     if fmt in ('ail_miles', 'ail_other'):
         audio_data = sound_data[header_size:]
     else:
         audio_data = sound_data
-    
+
     save_as_wav(audio_data, output_path, sample_rate)
     return output_path, f"{fmt} {sample_rate}Hz"
 
@@ -255,16 +255,16 @@ def get_room_sounds(alfred1_data, room_num):
     """Get sound mapping for a room"""
     room_dir_offset = room_num * ROOM_ENTRY_SIZE
     pair9_ptr = room_dir_offset + PAIR_9_OFFSET
-    
+
     sound_data_offset = struct.unpack('<I', alfred1_data[pair9_ptr:pair9_ptr+4])[0]
     sound_data_size = struct.unpack('<I', alfred1_data[pair9_ptr+4:pair9_ptr+8])[0]
-    
+
     if sound_data_offset == 0 or sound_data_size < 10:
         return None
-    
+
     music_track_id = alfred1_data[sound_data_offset]
     sound_indices = list(alfred1_data[sound_data_offset + 1:sound_data_offset + 10])
-    
+
     return {
         'room_num': room_num,
         'music_track': music_track_id,
@@ -277,41 +277,41 @@ def extract_room_sounds(room_num, output_dir, alfred1_path, sonidos_path):
     """Extract all sounds for a specific room"""
     with open(alfred1_path, 'rb') as f:
         alfred1_data = f.read()
-    
+
     room_info = get_room_sounds(alfred1_data, room_num)
     if room_info is None:
         print(f"Room {room_num}: No sound data")
         return
-    
+
     output_path = Path(output_dir) / f"room_{room_num:02d}"
     output_path.mkdir(parents=True, exist_ok=True)
-    
+
     print(f"\n{'='*60}")
     print(f"Room {room_num}")
     print(f"Music: Track {room_info['music_track']} - {room_info['music_name']}")
     print(f"{'='*60}")
-    
+
     # Load SONIDOS.DAT index
     sonidos_index = load_sonidos_index(sonidos_path)
-    
+
     # Extract each sound
     extracted = []
     for slot, idx, smp_name in room_info['sounds']:
         if idx == 0 or smp_name == "NO_SOUND.SMP":
             print(f"  Slot {slot}: (empty)")
             continue
-        
+
         wav_name = Path(smp_name).stem + '.wav'
         out_file = output_path / wav_name
-        
+
         result, info = extract_sound_to_wav(smp_name, sonidos_index, out_file)
-        
+
         if result:
             print(f"  Slot {slot}: {smp_name} -> {wav_name} ({info})")
             extracted.append(wav_name)
         else:
             print(f"  Slot {slot}: {smp_name} - SKIP ({info})")
-    
+
     # Write info file
     info_file = output_path / "room_info.txt"
     with open(info_file, 'w') as f:
@@ -325,7 +325,7 @@ def extract_room_sounds(room_num, output_dir, alfred1_path, sonidos_path):
             else:
                 f.write(f"  Slot {slot}: {smp_name}\n")
         f.write(f"\nExtracted files: {len(extracted)}\n")
-    
+
     print(f"\nExtracted {len(extracted)} sound files to: {output_path}")
     return extracted
 
@@ -334,20 +334,20 @@ def list_all_rooms(alfred1_path):
     """List sounds for all rooms"""
     with open(alfred1_path, 'rb') as f:
         alfred1_data = f.read()
-    
+
     print("="*80)
     print("Alfred Pelrock - Room Sound Mapping")
     print("="*80)
-    
+
     for room_num in range(NUM_ROOMS):
         room_info = get_room_sounds(alfred1_data, room_num)
         if room_info is None:
             print(f"\nRoom {room_num:2d}: No sound data")
             continue
-        
+
         active_sounds = [s for s in room_info['sounds'] if s[1] != 0]
         print(f"\nRoom {room_num:2d}: Music={room_info['music_track']} ({room_info['music_name']})")
-        
+
         if active_sounds:
             for slot, idx, name in active_sounds:
                 print(f"    Slot {slot}: [{idx:2d}] {name}")
@@ -359,30 +359,30 @@ def main():
     if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)
-    
+
     alfred1_path = "files/ALFRED.1"
     sonidos_path = "files/SONIDOS.DAT"
-    
+
     if sys.argv[1] == '--list':
         list_all_rooms(alfred1_path)
         return
-    
+
     if sys.argv[1] == '--all':
         output_dir = sys.argv[2] if len(sys.argv) > 2 else "room_sounds"
         for room_num in range(NUM_ROOMS):
             extract_room_sounds(room_num, output_dir, alfred1_path, sonidos_path)
         return
-    
+
     try:
         room_num = int(sys.argv[1])
     except ValueError:
         print(f"Error: Invalid room number: {sys.argv[1]}")
         sys.exit(1)
-    
+
     if room_num < 0 or room_num >= NUM_ROOMS:
         print(f"Error: Room number must be 0-{NUM_ROOMS-1}")
         sys.exit(1)
-    
+
     output_dir = sys.argv[2] if len(sys.argv) > 2 else "room_sounds"
     extract_room_sounds(room_num, output_dir, alfred1_path, sonidos_path)
 
