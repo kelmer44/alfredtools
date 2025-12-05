@@ -21,12 +21,13 @@ The original game uses:
 
 ```cpp
 // Global frame counter - increments every frame (~18.2 Hz / 55ms per frame)
-// IMPORTANT: Only reset at game start, NOT when entering rooms
+// NEVER RESET - runs continuously from game start
+// Overflow is harmless because trigger uses bitmask (see below)
 uint32 _gameFrameCounter = 0;
 
 // Called every game frame
 void updateFrameCounter() {
-    _gameFrameCounter++;
+    _gameFrameCounter++;  // Let it overflow naturally - doesn't matter
 }
 
 // Check if trigger condition is met
@@ -40,6 +41,10 @@ bool isPassingSpriteTrigger() {
 - Trigger fires when lower 10 bits are all 1s
 - This happens every 1024 frames = **56.2 seconds**
 - Counter is GLOBAL - not reset per room
+- **Overflow safe**: The `& 0x3FF` mask uses only bottom 10 bits, so the trigger
+  works correctly regardless of total counter value (even after overflow)
+- A `uint32` would overflow after ~2.7 days of continuous play, but the mask
+  makes this irrelevant - no reset needed
 
 ---
 
