@@ -61,7 +61,7 @@ Hex: 48 00 FC 00 49 84 A4 25 02 00 03 0B 00 00 0F 02
 ### 3. Z-Depth Location
 - **Always at offset 0x21** (byte 33)
 - Sprite 0: Z-depth = 1
-- Sprite 1: Z-depth = 1  
+- Sprite 1: Z-depth = 1
 - Sprite 2: Z-depth = 1
 - Range: 0-255, where 0xFF = disabled
 
@@ -129,7 +129,7 @@ Let me recount. The hex dump shows:
 0x10: 00 00 02 03  00 00 00 05  00 00 00 00  00 00 00 00
       |-----|----  |-----|----  |-----|----  |-----|----
       0x10-11     0x12-13       0x14-15      0x16-17
-      
+
 0x20: 17 01 10 00  00 01 00 00  00 00 00 00
       |--|--|----- -|----|----  |-----------|
       20 21 22-23  24-25         rest
