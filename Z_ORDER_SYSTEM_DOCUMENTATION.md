@@ -110,41 +110,54 @@ Each sprite has a **Z-depth value** stored in its sprite structure:
 
 ```
 SPRITE/ANIMATION STRUCTURE (room_data_ptr + sprite_id * 0x2C):
-+0x00-0x05: Unknown header
-+0x06: Pointer to sprite graphic data
+File format (44 bytes as stored in ALFRED.1):
+
++0x00-0x05: Unknown header (zeros in file)
++0x06-0x09: Sprite graphic data pointer (zeros in file, overwritten at runtime)
 +0x0A: X coordinate (short)
-+0x0C: Y coordinate (short)  
++0x0C: Y coordinate (short)
 +0x0E: Sprite width (byte)
 +0x0F: Sprite height (byte)
 +0x10: Stride/bytes per row (short)
 +0x12: Number of animation sequences (byte)
-+0x13: Current animation sequence index (byte)
-+0x14 + seq_idx: Number of frames in sequence (byte)
-+0x18 + seq_idx: Loop count for sequence (byte, 0xFF = no loop)
-+0x1C + frame_idx: Frame delay/duration (byte)
-+0x20: Current frame index in sequence (byte)
++0x13: Current animation sequence index (byte) - runtime
++0x14-0x17: Number of frames in each sequence (4 bytes, one per sequence)
++0x18-0x1B: Loop count for each sequence (4 bytes, 0xFF = infinite)
++0x1C+: Frame delay/duration array (variable length, 1 byte per total frame)
++0x20: Current frame index in sequence (byte) - runtime
 +0x21: Current Z-depth layer (byte, 0xFF = disabled) ⭐ KEY FIELD
-+0x22 + frame_idx*2: Movement flags (16-bit)
-+0x2D: Frame delay counter (byte)
-+0x2E: Loop counter (byte)
-+0x31: Disable after sequence flag (byte)
++0x22-0x29: Movement flags (16-bit per sequence, NOT per frame) ⭐ CORRECTED
++0x2A-0x2B: Unknown (2 bytes)
+
+Runtime-only fields (not in 44-byte file structure):
++0x2D: Frame delay counter (byte) - engine adds this
++0x2E: Loop counter (byte) - engine adds this
++0x31: Disable after sequence flag (byte) - engine adds this
 ```
+
+**Note**: The structure is 44 bytes in the file, but the engine allocates additional runtime fields beyond offset 0x2B for animation state tracking.
 
 ### 3. Z-Depth Modification During Animation
 
 The Z-depth value can **change dynamically** during sprite animation through movement flags:
 
-#### Movement Flags Structure (16-bit value at sprite_struct[0x22 + frame_index*2])
+#### Movement Flags Structure (16-bit value at sprite_struct[0x22 + sequence_index*2])
+
+**CRITICAL**: Movement flags are stored **per sequence**, not per frame!
+- `movement_flags = *(ushort *)(sprite_ptr + current_anim_sequence * 2 + 0x22)`
+- All frames in a sequence share the same movement behavior
 
 ```
-Bits 0-2:   Movement amount (0-7 pixels per frame)
-Bit 3:      Enable flag for X-axis movement (0x08)
-Bit 4:      X direction flag (0x10): 0=left/subtract, 1=right/add
-Bits 5-7:   Movement type/speed for Y-axis (0xE0)
-Bit 8:      Y direction flag (0x100): 0=up/subtract, 1=down/add
-Bit 9:      Enable flag for Y-axis movement (0x200)
-Bit 13:     Z-depth direction (0x2000): 0=back, 1=forward ⭐
-Bit 14:     Enable Z-depth movement (0x4000) ⭐
+Bits 0-2:    X movement amount (0-7 pixels per frame)
+Bit 3:       Enable flag for X-axis movement (0x08)
+Bit 4:       X direction flag (0x10): 0=left/subtract, 1=right/add
+Bits 5-7:    Y movement type/speed (0xE0)
+Bit 8:       Y direction flag (0x100): 0=up/subtract, 1=down/add
+Bit 9:       Enable flag for Y-axis movement (0x200)
+Bits 10-12:  Z movement amount (0x1C00): 0-7 depth units per frame
+Bit 13:      Z-depth direction (0x2000): 0=back, 1=forward ⭐
+Bit 14:      Enable Z-depth movement (0x4000) ⭐
+Bit 15:      Unused/Unknown
 ```
 
 **Z-Depth Movement Code** (from `update_npc_sprite_animations`):
@@ -215,7 +228,7 @@ bVar14 = (byte)((uint)iVar17 >> 8);
 while (bVar14 < bVar16) {  // Loop through all sprite slots
     // KEY CHECK: Skip Alfred's sprite slot (local_1c = current room/alfred index)
     if ((bVar14 != local_1c) &&
-        (iVar19 = room_sprite_data_ptr + (uint)bVar14 * 0x2c, 
+        (iVar19 = room_sprite_data_ptr + (uint)bVar14 * 0x2c,
          *(char *)(iVar19 + 0x21) != -1)) {
         // Process sprite animation and add to render queue
         ...
@@ -277,7 +290,7 @@ The key is in `update_npc_sprite_animations` rendering section:
 for (local_28 = 0; local_28 < local_34; local_28 = local_28 + 1) {
     // Get sprite at this queue position
     iVar17 = (uint)local_28 * 0xe;
-    
+
     if ((character_flag == 0x01) && (z_depth != 0xFF)) {
         // Render scaled character sprite (Alfred or NPCs)
         render_character_sprite_scaled(...);
@@ -343,13 +356,15 @@ This allows Alfred to:
 - Walk **behind** sprites when he's "above" them (lower Y, lower Z-depth)
 - Walk **in front of** sprites when "below" them (higher Y, higher Z-depth)
 
-### 7. Per-Frame Z-Depth Changes
+### 7. Per-Sequence Z-Depth Changes
 
-**Critical Discovery**: The Z-depth can change **every frame** of an animation sequence through the movement flags. This allows:
+**Critical Discovery**: The Z-depth can change **per animation sequence** (not per frame!) through the movement flags. This allows:
 
-- **Animated sprites to move between depth layers** as they animate
-- **Characters/NPCs to walk "around" objects** by changing Z-depth mid-animation
-- **Dynamic depth transitions** (e.g., a character walking behind a pillar, then in front)
+- **Animated sprites to move between depth layers** when switching sequences
+- **Characters/NPCs to walk "around" objects** by using different sequences for different depth
+- **Dynamic depth transitions** (e.g., a character switching from "walking behind" to "walking in front" sequence)
+
+**Correction**: Movement flags are per-sequence, so all frames in a sequence share the same movement behavior. To create complex depth transitions, use multiple sequences with different movement flags.
 
 ## Practical Applications
 
@@ -379,9 +394,9 @@ To make a sprite move from background to foreground during animation:
 ```
 Frame 0: Z-depth = 50, Movement flags = 0x6000
          (Bits 13-14 = 11 binary = move forward, Z enabled)
-         
+
 Frame 1-10: Z-depth automatically increments by movement amount
-         
+
 Frame 11: Z-depth = ~60+, Movement flags = 0x0000
          (Stop Z movement)
 ```
