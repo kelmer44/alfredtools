@@ -34,12 +34,11 @@ struct Description {
 };
 
 struct ThisAnimHeader {
-    u16 x;                  // Bytes 0-1
+    16 x;                  // Bytes 0-1
     u16 y;                  // Bytes 2-3
     u8 w;                   // Byte 4
     u8 h;                   // Byte 5
-    u8 extra;               // Byte 6
-    u8 unknown1;            // Byte 7
+    u16 stride;
     u8 numAnims;            // Byte 8
     u8 unknown3;            // Byte 9
     u8 numFramesAnim1;      // Byte 10
@@ -54,12 +53,18 @@ struct ThisAnimHeader {
     u8 speedAnim2;          // Byte 19
     u8 speedAnim3;          // Byte 20
     u8 speedAnim4;          // Byte 21
-    //u8 unknown_22_to_32[11]; // Bytes 22-32 (11 bytes)
-    u16 movementFlagsAnim1;
+    u8 skipp;               // Byte 22
+    u8 zorder;              // Byte 23
+    u16 movementFlags1;     // Byte 24-25
+    u16 movementFlags2;    // Byte 26-27
+    u16 movementFlags3;   // Byte 28-29
+    u16 movementFlags4;   // Byte 30-31
+    u8 unknown40403043;   // Byte 32
+    /*u16 movementFlagsAnim1;
     u16 movementFlagsAnim2;
     u16 movementFlagsAnim3;
     u16 movementFlagsAnim4;
-    u8 unknown_30_to_32[3];           
+    u8 unknown_30_to_32[3];     */      
     // Byte 33 (offset 0x21): Sprite type/layer - must be != 0xFF to be hotspot eligible
     u8 sprite_type;         // Byte 33
     // Byte 34 (offset 0x22): ACTION FLAGS bitmask
@@ -276,6 +281,11 @@ struct ConversationElement {
     }
 };
 
+struct Sound {
+    u8 trackNumber;
+    u8 roomFx[8];
+
+};
 
 struct Room {
     Pair pairs[13];
@@ -288,7 +298,7 @@ struct Room {
     u8 bg7[pairs[6].size] @pairs[6].offset;
     u8 bg8[pairs[7].size] @pairs[7].offset;
     u8 spritePixelData[pairs[8].size] @pairs[8].offset;
-    u8 sounds[pairs[9].size] @pairs[9].offset;
+    Sound sounds @pairs[9].offset;
     RoomMetadata metadata @pairs[10].offset;
     Palette palette @pairs[11].offset;
     //u8 texts[pairs[12].size] @pairs[12].offset;

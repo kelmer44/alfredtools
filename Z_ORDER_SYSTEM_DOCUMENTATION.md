@@ -4,15 +4,15 @@
 
 **What determines sprite layering?**
 - Each sprite has a **Z-depth value** (byte at offset +0x21, range 0-255)
-- **Lower Z = Background** (rendered first)
-- **Higher Z = Foreground** (rendered last)
+- **Higher Z = Background** (rendered first)
+- **Lower Z = Foreground** (rendered last)
 - Value **0xFF = Disabled** (not rendered)
 
 **How Alfred interacts:**
 - Alfred is **excluded from normal sprite queue**
 - His **Y-position determines his effective Z-depth**
-- Lower Y (higher on screen) = behind objects
-- Higher Y (lower on screen) = in front of objects
+- Lower Y (higher on screen) = lower Z = in front of objects
+- Higher Y (lower on screen) = higher Z = behind objects
 
 **Dynamic Z-changes:**
 - Z-depth can change **per animation frame** using movement flags
@@ -43,7 +43,7 @@
 │            └─ character_flag (0 = normal sprite)        │
 │                                                          │
 │ 2. Sort render queue by Z-depth (bubble sort)           │
-│    ├─ Ascending order: low Z → high Z                   │
+│    ├─ Descending order: high Z → low Z                  │
 │    └─ Result: back-to-front rendering order             │
 │                                                          │
 │ 3. Render all sprites in sorted order                   │
@@ -103,8 +103,8 @@ Each sprite has a **Z-depth value** stored in its sprite structure:
 - **Location**: `sprite_struct[0x21]` (byte offset 0x21 in the sprite data structure)
 - **Value Range**: 0-255 (byte value)
 - **Special Value**: `0xFF` = sprite is disabled/not rendered
-- **Lower values** = further back in the scene
-- **Higher values** = closer to the front/camera
+- **Higher values** = further back in the scene (background)
+- **Lower values** = closer to the front/camera (foreground)
 
 ### 2. Sprite Data Structure
 
@@ -195,10 +195,11 @@ Each entry in the render queue contains:
 After all sprites are added to the queue, the game performs a **bubble sort**:
 
 ```c
-// Bubble sort by Z-depth (ascending order - back to front)
+// Bubble sort by Z-depth (DESCENDING order - high to low)
 for (pass = sprite_count; pass != 1; pass--) {
     for (i = sprite_count - 1; i > 0; i--) {
-        // Compare Z-depth values
+        // Compare Z-depth values: if previous < current, SWAP
+        // This moves HIGHER values toward the START of the array
         if (render_queue[i-1].z_depth < render_queue[i].z_depth) {
             // Swap entries if out of order
             swap(render_queue[i-1], render_queue[i]);
@@ -207,9 +208,9 @@ for (pass = sprite_count; pass != 1; pass--) {
 }
 ```
 
-**Sorting Order**: Sprites are sorted in **ascending Z-depth order**, meaning:
-- Sprites with **lower Z values** are rendered **first** (appear in back)
-- Sprites with **higher Z values** are rendered **last** (appear in front)
+**Sorting Order**: Sprites are sorted in **DESCENDING Z-depth order** (highest to lowest), meaning:
+- Sprites with **higher Z values** are rendered **first** (appear in back)
+- Sprites with **lower Z values** are rendered **last** (appear in front)
 
 ### 5. Alfred's Position in Z-Order
 
@@ -378,13 +379,13 @@ This allows Alfred to:
 
 #### Example 1: Making a Sprite Always In Front
 ```
-Offset +0x21: Set to 255 (0xFF is disabled, so use 254 or 0xFE)
+Offset +0x21: Set to 0 or 1 (low value)
 Result: Sprite will always render in front of everything
 ```
 
 #### Example 2: Making a Sprite Always In Back
 ```
-Offset +0x21: Set to 0 or 1
+Offset +0x21: Set to 254 or 0xFE (0xFF is disabled, so use 254)
 Result: Sprite will always render behind everything
 ```
 
@@ -414,9 +415,9 @@ Movement flag bit pattern:
 Sprite (table) at Y=200, Z=100
 
 Alfred walks from Y=150 → Y=250:
-- At Y=150: Alfred appears behind table (Y<200)
-- At Y=200: Alfred at same depth as table
-- At Y=250: Alfred appears in front of table (Y>200)
+- At Y=150: Alfred Z≈75 (lower Y = lower Z) → appears IN FRONT of table
+- At Y=200: Alfred Z≈100 → same depth as table
+- At Y=250: Alfred Z≈125 (higher Y = higher Z) → appears BEHIND table
 
 No code change needed - automatic based on Y-position!
 ```
