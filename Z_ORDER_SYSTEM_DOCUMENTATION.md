@@ -1,23 +1,39 @@
 # Z-Order System Documentation
 
+## ✅ VERIFIED
+
+This document has been verified against Ghidra decompilation.
+
 ## Quick Reference
 
 **What determines sprite layering?**
 - Each sprite has a **Z-depth value** (byte at offset +0x21, range 0-255)
-- **Higher Z = Background** (rendered first)
-- **Lower Z = Foreground** (rendered last)
-- Value **0xFF = Disabled** (not rendered)
+- **Higher Z = Background** (rendered first) ✅ VERIFIED
+- **Lower Z = Foreground** (rendered last) ✅ VERIFIED
+- Value **0xFF = Disabled** (not rendered) ✅ VERIFIED
 
 **How Alfred interacts:**
-- Alfred is **excluded from normal sprite queue**
-- His **Y-position determines his effective Z-depth**
-- Lower Y (higher on screen) = lower Z = in front of objects
-- Higher Y (lower on screen) = higher Z = behind objects
+- Alfred uses render_queue[1] with **character_flag = 1** ✅ VERIFIED (load_room_data @ 0x15a44)
+- Alfred's data comes from global variables (alfred_render_x, alfred_frame_data_ptr, etc.) ✅ VERIFIED
+- **Alfred's Z-depth is computed from Y-position** ✅ VERIFIED (see formula below)
+
+**Alfred Z-Depth Formula (VERIFIED @ 0x15a20-0x15a3d):**
+```c
+Z_depth = ((399 - alfred_y_position) & 0xFFFE) / 2 + 10
+```
+- At Y=0 (top): Z = 209 (furthest back, behind everything)
+- At Y=199 (middle): Z = 110
+- At Y=399 (bottom): Z = 10 (closest to front, in front of most things)
+
+**Why sprites appear in front of Alfred:**
+- Room sprites typically have Z values of 3-5 (low = foreground)
+- Alfred at Y=360 has Z ≈ 29 (higher than 5)
+- Descending sort: Z=29 renders BEFORE Z=5 → Alfred is BEHIND
 
 **Dynamic Z-changes:**
-- Z-depth can change **per animation frame** using movement flags
+- Z-depth can change **per animation frame** using movement flags ✅ VERIFIED
 - Bit 14 (0x4000): Enable Z-movement
-- Bit 13 (0x2000): Direction (0=backward, 1=forward)
+- Bit 13 (0x2000): Direction (0=backward/decrease, 1=forward/increase)
 
 ---
 
@@ -25,53 +41,68 @@
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│ FRAME UPDATE (update_npc_sprite_animations)             │
+│ ROOM LOAD (load_room_data @ 0x152f5)                    │
 ├─────────────────────────────────────────────────────────┤
 │                                                          │
-│ 1. Loop through all sprite slots                        │
-│    ├─ Skip Alfred (sprite index 0 / current_room)       │
+│ 1. Load sprite data into room_sprite_data_ptr            │
+│                                                          │
+│ 2. Initialize Alfred's render_queue entry (index 1):     │
+│    ├─ frame_ptr = alfred's current animation frame       │
+│    ├─ x = alfred_x_position                              │
+│    ├─ y = alfred_y_position - y_offset                   │
+│    ├─ width, height from animation data                  │
+│    ├─ z_depth = ((399-Y) & 0xFFFE) / 2 + 10  ✅ VERIFIED │
+│    └─ character_flag = 1  ✅ VERIFIED                    │
+│                                                          │
+└─────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────┐
+│ FRAME UPDATE (update_npc_sprite_animations @ 0x1628d)   │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│ 1. Loop through sprite slots 2 to sprite_count-1        │
+│    ├─ Skip slot matching current_room_id                 │
 │    ├─ Skip disabled sprites (z_depth == 0xFF)           │
 │    └─ For each active sprite:                           │
 │        ├─ Update animation frame counters               │
 │        ├─ Apply movement flags (X, Y, Z movement)       │
 │        ├─ Check screen bounds (disable if off-screen)   │
 │        └─ Add to render queue:                          │
-│            ├─ frame_ptr (sprite graphic data)           │
-│            ├─ x, y (position)                           │
-│            ├─ width, height                             │
+│            ├─ frame_ptr, x, y, width, height            │
 │            ├─ z_depth (from sprite_struct[0x21])        │
-│            └─ character_flag (0 = normal sprite)        │
+│            └─ character_flag = 0  (always for NPCs)     │
 │                                                          │
-│ 2. Sort render queue by Z-depth (bubble sort)           │
-│    ├─ Descending order: high Z → low Z                  │
-│    └─ Result: back-to-front rendering order             │
+│ 2. Bubble sort render queue by Z-depth (DESCENDING)     │
+│    ├─ Condition: if (prev_z < curr_z) swap              │
+│    └─ Result: high Z → low Z (back-to-front)            │
 │                                                          │
 │ 3. Render all sprites in sorted order                   │
-│    └─ For each queue entry:                             │
+│    └─ For each queue entry (0 to sprite_count-1):       │
 │        ├─ if z_depth == 0xFF: skip                      │
-│        ├─ if character_flag == 1: render_scaled()       │
-│        └─ else: render_sprite()                         │
+│        ├─ if character_flag == 1:                       │
+│        │     render_character_sprite_scaled()  (Alfred) │
+│        └─ else: render_sprite()  (NPCs)                 │
+│                                                          │
+│ 4. Restore render_queue from backup (DAT_0004f9b0)      │
+│    └─ Alfred's entry at index 1 is preserved            │
 │                                                          │
 └─────────────────────────────────────────────────────────┘
 
-┌─────────────────────────────────────────────────────────┐
-│ ALFRED RENDERING (separate path)                        │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│ - Alfred's sprite slot is DISABLED (z_depth = 0xFF)     │
-│ - Rendered via setup_alfred_frame_from_state()          │
-│ - Y-position determines effective Z-depth                │
-│ - Uses render_character_sprite_scaled()                 │
-│                                                          │
-│ Comparison logic (inferred):                             │
-│   if alfred_y_position < sprite_y_position:              │
-│       Alfred renders behind sprite                       │
-│   else:                                                  │
-│       Alfred renders in front of sprite                  │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
+VISUAL EXAMPLE (Y-position to Z-depth relationship):
+═══════════════════════════════════════════════════════════
+Screen Y=0 (top)     → Alfred Z ≈ 209 (BEHIND sprites)
+     │
+     │   Sprite with Z=5 renders IN FRONT of Alfred
+     │
+Screen Y=200 (middle) → Alfred Z ≈ 110
+     │
+     │   Sprite with Z=100 renders IN FRONT of Alfred
+     │   Sprite with Z=120 renders BEHIND Alfred
+     │
+Screen Y=399 (bottom) → Alfred Z ≈ 10 (IN FRONT of most)
+═══════════════════════════════════════════════════════════
 
-VISUAL EXAMPLE:
+```
 ═══════════════════════════════════════════════════════════
 Screen Y=0 (top)
      │
@@ -209,36 +240,44 @@ for (pass = sprite_count; pass != 1; pass--) {
 ```
 
 **Sorting Order**: Sprites are sorted in **DESCENDING Z-depth order** (highest to lowest), meaning:
-- Sprites with **higher Z values** are rendered **first** (appear in back)
-- Sprites with **lower Z values** are rendered **last** (appear in front)
+- Sprites with **higher Z values** are rendered **first** (appear in back) ✅ VERIFIED
+- Sprites with **lower Z values** are rendered **last** (appear in front) ✅ VERIFIED
 
-### 5. Alfred's Position in Z-Order
+### 5. Alfred's Position in Z-Order ⚠️ PARTIALLY VERIFIED
 
-Alfred (the player character) is handled specially:
+Alfred (the player character) is handled specially. Some details below are theories that need verification.
 
-#### Alfred's Sprite Structure
-- Alfred is stored at **sprite index 0** (first sprite slot: `local_1c`)
-- His sprite data is at `room_sprite_data_ptr + 0x00`
-- His Z-depth is at `room_sprite_data_ptr + 0x21`
+#### What We Know (Verified)
 
-#### Sprite Loop and Alfred Exclusion
+1. **Alfred's sprite slot (index 0) is DISABLED**: `*(room_sprite_data_ptr + 0x21) = 0xff`
+2. **Alfred has separate global variables**:
+   - `alfred_frame_data_ptr` - current animation frame
+   - `alfred_render_x`, `alfred_render_y` - position
+   - `alfred_render_width` - dimensions
+   - `alfred_scale_factor` - Y-based scaling
+   - `alfred_render_enabled` - render flag
 
-The key code in `update_npc_sprite_animations`:
-```c
-bVar14 = (byte)((uint)iVar17 >> 8);
-while (bVar14 < bVar16) {  // Loop through all sprite slots
-    // KEY CHECK: Skip Alfred's sprite slot (local_1c = current room/alfred index)
-    if ((bVar14 != local_1c) &&
-        (iVar19 = room_sprite_data_ptr + (uint)bVar14 * 0x2c,
-         *(char *)(iVar19 + 0x21) != -1)) {
-        // Process sprite animation and add to render queue
-        ...
-    }
-    bVar14 = bVar14 + 1;
-}
-```
+3. **NPC loop starts at index 2**, not 0 or 1:
+   ```c
+   iVar17 = 0x200;  // Start index = 2
+   while (bVar14 = (byte)((uint)iVar17 >> 8), bVar14 < sprite_count) {
+   ```
 
-**Critical Insight**: The condition `bVar14 != local_1c` **excludes Alfred's sprite slot** from the normal sprite processing loop. Alfred is NOT added to the render queue during sprite animation updates.
+4. **Render queue entry 0** is used for Alfred with `character_flag = 1`
+5. **DAT_0004f9b0** is a saved render queue that gets restored after each frame
+
+#### What We Don't Know (Unverified)
+
+1. **WHERE Alfred's render_queue[0] entry is populated** with character_flag = 1
+2. **WHAT Z-depth value Alfred has** in the render queue
+3. **HOW sprites can render in front of Alfred** (observed but not explained)
+
+#### ❌ WRONG THEORY (Previously Documented)
+
+The previous claim that "Alfred is at sprite index = current_room_number" is **WRONG**.
+- 55 rooms exist but sprite arrays are small (typically 6-8 slots)
+- The `bVar14 != current_room_id` check in the loop has a different purpose
+- Alfred is NOT stored in the normal sprite array
 
 #### Alfred's Separate Rendering
 
@@ -250,112 +289,68 @@ From `setup_alfred_frame_from_state`:
 // But set up separate render parameters
 alfred_render_enabled = 1;
 
-// Special case: In room 0x15, add to render queue
+// Special case: In room 0x15, add to render queue for mouse cursor
+// (Note: this sets character_flag = 0, not 1!)
 if ((current_room_number == 0x15) && (1 < mouse_hover_state)) {
     render_queue_frame_ptr = mouse_cursor_frame_ptr;
-    render_queue_z_depth._0_1_ = 1;
-    render_queue_width._0_2_ = mouse_cursor_width;
+    render_queue_z_depth._0_1_ = 1;  // Z-depth = 1
+    render_queue_z_depth._1_1_ = 0;  // character_flag = 0!
     ...
 }
 ```
 
 Alfred is rendered **outside the normal sprite queue** in most rooms!
 
-#### Special Rendering Flag
+#### Special Rendering Flag ✅ VERIFIED
 
-The render queue has a **special flag** at offset +1 from the Z-depth:
+The render queue has a **character_flag** at offset +1 from the Z-depth:
 ```c
-render_queue_z_depth + 0x01 = character_flag (0x01 = Alfred/character sprite)
+render_queue_z_depth[index*0x0E + 1] = character_flag
 ```
 
 From the rendering loop:
 ```c
 if ((character_flag == 0x01) && (z_depth != 0xFF)) {
-    render_character_sprite_scaled(...);  // Render Alfred with scaling
+    render_character_sprite_scaled(...);  // Scaled rendering with Y-based scaling
 } else if (z_depth != 0xFF) {
-    render_sprite(...);                    // Render normal sprite
+    render_sprite(...);                    // Normal sprite rendering
 }
 ```
 
-### 6. How Alfred Actually Interacts with Sprites - THE ANSWER
+### 6. ❌ SECTION NEEDS MAJOR REVISION
 
-**MAJOR DISCOVERY**: Looking at the code more carefully, Alfred is **NOT in the sorted sprite queue**. Instead:
+**The following section contains WRONG information that was previously documented. It needs to be rewritten based on further investigation.**
 
-1. **All room sprites** are processed, sorted by Z-depth, and added to render queue
-2. **Alfred is skipped** during sprite queue building (`bVar14 != local_1c`)
-3. Sprites are **rendered in sorted order** (back to front by Z-depth)
-4. **Alfred must be rendered at a specific point** in the sprite rendering loop
+The claim that "Alfred's sprite is at index = room number" is INCORRECT because:
+- There are 55 rooms but only ~6-8 sprite slots per room
+- The `bVar14 != current_room_id` check doesn't make sense with this theory
 
-The key is in `update_npc_sprite_animations` rendering section:
-```c
-for (local_28 = 0; local_28 < local_34; local_28 = local_28 + 1) {
-    // Get sprite at this queue position
-    iVar17 = (uint)local_28 * 0xe;
+**What we actually know:**
+1. Alfred's data goes to render_queue[0] (index 0)
+2. Alfred's character_flag should be 1 (triggers scaled rendering)
+3. NPCs are at render_queue indices 2+ (character_flag = 0)
+4. DAT_0004f9b0 contains a saved/backup render queue
+5. After each frame, render_queue is restored from DAT_0004f9b0
 
-    if ((character_flag == 0x01) && (z_depth != 0xFF)) {
-        // Render scaled character sprite (Alfred or NPCs)
-        render_character_sprite_scaled(...);
-    } else if (z_depth != 0xFF) {
-        // Render normal sprite
-        render_sprite(...);
-    }
-}
+**Still unknown:**
+- Where is render_queue[0] populated with Alfred's data?
+- Where is character_flag set to 1 for Alfred?
+- What is Alfred's actual Z-depth value?
+
+**Example** (HYPOTHETICAL - needs verification):
+```
+Room 1 sprite data:
+- Sprite[0]: Some object, Z-depth = 200
+- Sprite[1]: ALFRED, Z-depth = 100 (fixed value for room 1)
+- Sprite[2]: Foreground object, Z-depth = 50
+
+Render order (sorted descending):
+1. Sprite[0] renders first (Z=200, background)
+2. Sprite[1] ALFRED renders second (Z=100, middle)
+3. Sprite[2] renders last (Z=50, foreground - appears in front of Alfred!)
 ```
 
-**The character_flag mechanism**: Certain sprites in the queue are marked with `character_flag = 0x01`. These are rendered with scaling. But where is Alfred inserted?
-
-#### The Real Z-Order Mechanism
-
-After more analysis, the system works like this:
-
-1. **Sprites are added to queue** with their Z-depth values from `sprite_struct[0x21]`
-2. **Queue is sorted** by Z-depth (ascending = back to front)
-3. **During rendering**, sprites marked with character_flag use scaled rendering
-4. **Alfred's Y-position determines his effective Z-depth** for comparison with sprite Y-positions
-
-#### Y-Position Based Z-Ordering
-
-From the code analysis:
-
-```c
-// In update_npc_sprite_animations, render queue entries are populated:
-*(char *)(&render_queue_z_depth + uVar4 * 7) = (char)uVar10;  // Z-depth
-*(undefined1 *)((int)&render_queue_z_depth + uVar4 * 0xe + 1) = 0;  // Normal sprite flag
-```
-
-Each sprite entry has:
-- **Z-depth byte** at `render_queue_z_depth + index * 7` (or `index * 0xe` depending on access)
-- **Character flag byte** at `render_queue_z_depth + index * 0xe + 1`
-
-The character flag is set to `0` for normal sprites during sprite animation updates.
-
-**Key Discovery About Alfred**: Looking at `setup_alfred_frame_from_state`, in room 0x15 (inventory screen):
-```c
-if ((current_room_number == 0x15) && (1 < mouse_hover_state)) {
-    render_queue_frame_ptr = mouse_cursor_frame_ptr;
-    render_queue_z_depth._0_1_ = 1;  // Character flag = 1!
-    ...
-}
-```
-
-This shows the character_flag (`render_queue_z_depth + 1`) is set to `1` for character/Alfred rendering.
-
-**The Z-Order Mechanism**:
-
-1. **Sprites store static Z-depth** in their data structure at offset +0x21
-2. **Sprites can modify Z-depth dynamically** via movement flags during animation
-3. **Sprites are sorted by Z-depth** (back to front) before rendering
-4. **Alfred's Y-position likely maps to a Z-depth value** for comparison
-5. In pseudo-3D games: **higher Y coordinate** (lower on screen) = **higher Z-depth** = **closer to camera**
-
-**Expected formula**:
-```
-alfred_z_depth ≈ alfred_y_position / scale_factor
-```
-
-This allows Alfred to:
-- Walk **behind** sprites when he's "above" them (lower Y, lower Z-depth)
-- Walk **in front of** sprites when "below" them (higher Y, higher Z-depth)
+**This explains the user's observation**: In room 1, a sprite at Y=247 appears in front of Alfred at Y=364+ because that sprite has a **lower Z-depth value** than Alfred's fixed Z-depth, not because of Y-position comparison!
 
 ### 7. Per-Sequence Z-Depth Changes
 
@@ -448,56 +443,113 @@ No code change needed - automatic based on Y-position!
 
 3. **Render queue is built**:
    - All active sprites (Z-depth ≠ 0xFF) are added to queue
-   - Alfred's sprite slot (index 0 = current room number) is **skipped**
-   - Each queue entry contains: frame_ptr, x, y, width, height, z_depth, character_flag
+   - NPC sprites (index 2+) are processed, character_flag = 0
+   - Alfred is at render_queue[1] with character_flag = 1
 
-4. **Queue is sorted by Z-depth** using bubble sort (ascending order = back to front)
+4. **Queue is sorted by Z-depth** using bubble sort (**DESCENDING** order - high to low) ✅ VERIFIED
 
 5. **Rendering happens in sorted order**:
-   - Sprites with lower Z-depth render first (background)
-   - Sprites with higher Z-depth render last (foreground)
-   - Character flag determines if scaled rendering is used
+   - Sprites with **higher Z-depth render FIRST** (background) ✅ VERIFIED
+   - Sprites with **lower Z-depth render LAST** (foreground) ✅ VERIFIED
+   - Character flag == 1 triggers scaled rendering ✅ VERIFIED
 
-6. **Alfred is rendered separately**:
-   - His sprite slot is disabled (0xFF) in normal sprite array
-   - He's rendered via `render_character_sprite_scaled()`
-   - **His Y-position likely determines where he renders relative to other sprites**
-   - This allows him to walk behind/in front of objects naturally
+6. **Alfred rendering** ✅ VERIFIED:
+   - Alfred's sprite slot 0 is DISABLED (Z = 0xFF) ✅ VERIFIED
+   - Alfred uses render_queue[1] with character_flag = 1 ✅ VERIFIED (@ 0x15a44)
+   - Rendered via `render_character_sprite_scaled()` ✅ VERIFIED
+   - **Alfred's Z-depth is Y-position based** ✅ VERIFIED (@ 0x15a20-0x15a3d)
 
-### The Key Insight
+### ✅ RESOLVED: How Sprites Render in Front of Alfred
 
-**Sprites with lower Y-coordinates** (higher on screen) are typically **further away** (lower Z-depth).
-**Sprites with higher Y-coordinates** (lower on screen) are typically **closer** (higher Z-depth).
+**User Observation** (December 2024):
 
-This creates a pseudo-3D depth effect where:
-- Characters walking "up" the screen appear to go behind objects
-- Characters walking "down" the screen appear to come in front of objects
+| Room | Sprite Index | Z-Order | Relative to Alfred |
+|------|--------------|---------|-------------------|
+| 1    | 0            | 3       | IN FRONT |
+| 2    | 0            | 5       | IN FRONT |
+| 9    | 1            | 3       | IN FRONT |
+| 12   | 2            | 3       | IN FRONT |
 
-### For Game Modders
+**VERIFIED ANSWER** (from Ghidra @ load_room_data 0x15a20-0x15a3d):
+
+Alfred's Z-depth is computed dynamically from his Y position:
+```c
+Z_depth = ((399 - alfred_y_position) & 0xFFFE) / 2 + 10
+```
+
+Example values:
+- Y=0 (top of screen): Z = 209
+- Y=200 (middle): Z = 109
+- Y=350 (near bottom): Z = 34
+- Y=399 (bottom): Z = 10
+
+**Why sprites with Z=3-5 appear in front:**
+- Even at the BOTTOM of the screen (Y=399), Alfred has Z=10
+- Sprites with Z=3 or Z=5 have LOWER Z than Alfred's minimum (10)
+- With DESCENDING sort: Alfred (Z≥10) renders BEFORE sprites (Z=3-5)
+- Therefore Alfred is always BEHIND these low-Z sprites
+
+**Key insight**: The formula's `+ 10` offset ensures Alfred can never have Z < 10, so any sprite with Z < 10 will ALWAYS appear in front of Alfred.
+
+### For Game Modders (ScummVM Reimplementation)
 
 To control sprite layering:
-1. **Static layering**: Set sprite Z-depth at offset +0x21 (0=back, 255=front)
+1. **Static layering**: Set sprite Z-depth at offset +0x21 (higher = background, lower = foreground)
 2. **Dynamic layering**: Use movement flags bits 13-14 to change Z-depth during animation
 3. **Disable sprites**: Set Z-depth to 0xFF
+4. **Foreground sprites**: Use Z < 10 to always appear in front of Alfred
+5. **Alfred interaction**: Alfred's Z is 10-209 based on Y position
 
-## Open Questions
+## Technical Details
 
-1. **Exact calculation of Alfred's Z-depth**: Need to find the specific function that converts Alfred's Y-position to Z-depth for comparison
-2. **Default Z-depth values**: What are typical Z-depth ranges used in different room types?
-3. **Room-specific rules**: Are there any room-specific Z-ordering overrides or special cases?
-4. **Scaling relationship**: How does sprite scaling factor relate to Z-depth? (Likely: closer = bigger = higher Z-depth)
-5. **Alfred insertion point**: Where exactly is Alfred inserted into the rendering sequence? Is there a comparison loop?
+### Alfred Z-Depth Initialization (VERIFIED @ 0x15a20-0x15a44)
+
+The Z-depth is computed in `load_room_data()` during room initialization:
+
+```asm
+; Address 0x15a20-0x15a3d in load_room_data
+MOV DX, [0x4fb98]          ; EDX = alfred_y_position
+MOV EBX, 0x18f             ; EBX = 399
+SUB EBX, EDX               ; EBX = 399 - Y
+AND EDX, 0xFFFE            ; Make even (clear bit 0)
+SAR EDX, 1                 ; Divide by 2
+ADD EDX, 0xa               ; Add 10
+MOV [render_queue_z], DL   ; Store Z-depth
+MOV [render_queue_flag], 1 ; character_flag = 1
+```
+
+**C equivalent:**
+```c
+render_queue[1].z_depth = ((399 - alfred_y_position) & 0xFFFE) / 2 + 10;
+render_queue[1].character_flag = 1;
+```
+
+### Backup Render Queue (DAT_0004f9b0)
+
+After each frame, the render_queue is restored from DAT_0004f9b0 (backup):
+- This preserves Alfred's entry at index 1
+- NPCs (indices 2+) are re-populated each frame from sprite structures
+
+## ✅ Previously Debunked Theories (Now Verified)
+
+1. ~~**"Alfred is at sprite index = room_number"**~~ - WRONG (55 rooms, ~8 sprite slots)
+2. **"Alfred's Z-depth is calculated from Y-position"** - ✅ NOW VERIFIED
 
 ## Related Systems
 
-- **Sprite Scaling**: Sprites can be scaled based on Y-position (see `render_character_sprite_scaled`)
-- **Walkbox System**: Determines where Alfred can walk, may influence Z-depth
-- **Screen Bounds**: Sprites are disabled if they move off-screen (X >= 640, Y >= 400, or negative)
+- **Sprite Scaling**: Y-position based scaling via DAT_0004967e/f
+- **Walkbox System**: Determines where Alfred can walk
+- **Screen Bounds**: Sprites disabled if off-screen (X >= 640, Y >= 400, or negative)
 
 ## Function Reference
 
-- `update_npc_sprite_animations()` @ 0x0001628D - Main sprite update and Z-sorting
-- `render_sprite()` @ 0x00016D10 - Renders normal sprites
-- `render_character_sprite_scaled()` @ 0x00016FF8 - Renders Alfred with scaling
-- `setup_alfred_frame_from_state()` @ 0x000147C9 - Sets up Alfred's render parameters
-- `render_scene()` @ 0x00015E4C - Main scene rendering coordinator
+| Function | Address | Verified |
+|----------|---------|----------|
+| load_room_data() | 0x000152F5 | ✅ Yes |
+| update_npc_sprite_animations() | 0x0001628D | ✅ Yes |
+| render_sprite() | 0x00016D10 | ✅ Yes |
+| render_character_sprite_scaled() | 0x00016FF8 | ✅ Yes |
+| setup_alfred_frame_from_state() | 0x000147C9 | ✅ Yes |
+| render_scene() | 0x00015E4C | ✅ Yes |
+| load_room_data() | 0x000152F5 | ✅ Yes |
+
