@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
-Alfred Pelrock - Background Extractor with Palettes
+Alfred Pelrock - Background Extractor with Palettes (FIXED)
 Extracts backgrounds and applies their correct palettes
+
+Fixed: Blocks are 640-pixel-wide horizontal strips (50 scanlines each)
 """
 
 import struct
@@ -10,7 +12,11 @@ from pathlib import Path
 from PIL import Image
 
 def decompress_rle_block(data, offset, size):
-    """Decompress a single block - handles both RLE and uncompressed"""
+    """Decompress a single block - handles both RLE and uncompressed
+
+    RLE format: 16-bit words where low byte = count, high byte = color value
+    Note: The game writes one final pixel after hitting BUDA marker
+    """
     # Check for uncompressed markers
     if size == 0x8000 or size == 0x6800:
         # Uncompressed block - read directly
@@ -20,15 +26,25 @@ def decompress_rle_block(data, offset, size):
     result = bytearray()
     pos = offset
     end = offset + size
+    last_value = 0
 
     while pos + 2 <= min(end, len(data)):
-        if pos + 4 <= len(data) and data[pos:pos+4] == b'BUDA':
-            break
-
+        # Read the RLE pair
         count = data[pos]
         value = data[pos + 1]
+        last_value = value
+
+        # Write pixels for this pair
         result.extend([value] * count)
+
+        # Advance to next pair
         pos += 2
+
+        # Check if next 4 bytes are BUDA marker
+        if pos + 4 <= len(data) and data[pos:pos+4] == b'BUDA':
+            # Game writes one final pixel after BUDA marker
+            result.append(last_value)
+            break
 
     return bytes(result)
 
@@ -56,7 +72,10 @@ def extract_palette(data, room_offset):
     return None
 
 def extract_background(data, room_offset):
-    """Extract background by combining first 8 blocks"""
+    """Extract background by combining first 8 blocks (horizontal strips)"""
+    WIDTH = 640
+    HEIGHT = 400
+
     pairs = []
 
     # Read pairs 0-7 (background blocks)
@@ -68,8 +87,9 @@ def extract_background(data, room_offset):
         if offset > 0 and size > 0 and offset < len(data):
             pairs.append((offset, size))
 
-    # Decompress and combine all blocks
+    # Decompress all blocks and combine as horizontal strips
     combined = bytearray()
+
     for offset, size in pairs:
         block_data = decompress_rle_block(data, offset, size)
         combined.extend(block_data)
@@ -133,13 +153,13 @@ def extract_all_backgrounds(alfred1_path, output_dir):
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: python extract_with_palettes.py <alfred.1> [output_dir]")
+        print("Usage: python extract_backgrounds_fixed.py <alfred.1> [output_dir]")
         print("\nExample:")
-        print("  python extract_with_palettes.py alfred.1 backgrounds_color/")
+        print("  python extract_backgrounds_fixed.py alfred.1 backgrounds_fixed/")
         sys.exit(1)
 
     alfred1_path = sys.argv[1]
-    output_dir = sys.argv[2] if len(sys.argv) > 2 else "backgrounds_color"
+    output_dir = sys.argv[2] if len(sys.argv) > 2 else "backgrounds_fixed"
 
     if not Path(alfred1_path).exists():
         print(f"Error: File not found: {alfred1_path}")
