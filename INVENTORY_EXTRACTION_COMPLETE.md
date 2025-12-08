@@ -21,6 +21,18 @@ Each folder contains:
 
 ## Key Findings
 
+### Description Display System
+
+When you click an inventory item in the settings menu (accessed via right-click):
+
+1. **`render_action_popup_menu`** @ 0x0001AD9A sets `DAT_0004fba0` to the clicked object ID
+2. **`main_menu_handler`** @ 0x00012918 calls a function from table @ 0x486fe
+3. That function displays the description using the object ID as index
+
+**Mapping**: Object ID (0-112) → Description at offset: `0x4715D + description_offsets[ID]`
+
+The descriptions are stored sequentially starting at 0x4715D. Each description begins with the pattern `FD 00 08 [color]`.
+
 ### Icon Remapping Formula
 
 Found in `render_inventory_items` @ 0x00012F06:
