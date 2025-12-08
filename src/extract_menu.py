@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """
-Systematically extract BUDA ranges to find 640x400 screens
+Extract the right-click settings/load/save menu screen from ALFRED.7
+
+The menu palette is located at offset 0x7984 in ALFRED.7 (768 bytes, VGA 6-bit format).
+This was discovered through Ghidra analysis and pattern matching against known correct values.
+
+The menu image data is assembled from multiple compressed and uncompressed blocks.
 """
 
 import sys
@@ -34,24 +39,6 @@ def extract_palette(data, offset):
         palette.extend([r, g, b])
     return palette
 
-
-def find_budas(data):
-    budas = []
-    # budas.append(0)
-    pos = 0
-    while pos < len(data) - 4:
-        if data[pos:pos+4] == b'BUDA':
-            budas.append(pos)
-        pos += 1
-    return budas
-
-def is_valid_palette(data, offset):
-    if offset + 768 > len(data):
-        return False
-    pal_data = data[offset:offset+768]
-    return all(b <= 63 for b in pal_data) and len(set(pal_data)) > 10
-
-
 def main():
     alfred7 = sys.argv[1] if len(sys.argv) > 1 else "files/ALFRED.7"
     output_dir = sys.argv[2] if len(sys.argv) > 2 else "menu"
@@ -62,19 +49,17 @@ def main():
     with open(alfred7, 'rb') as f:
         data = f.read()
 
-
     # Find all palette BUDAs
     budas = find_budas(data)
     print(f"Found {len(budas)} BUDAs\n")
 
-    # Find all palette BUDAs
-    palettes = {}
-    for i, buda in enumerate(budas):
-        if is_valid_palette(data, buda + 4):
-            palettes[i] = extract_palette(data, buda + 4)
-            print(f"BUDA {i}: palette")
+    # Menu palette is at offset 0x2884c2 in ALFRED.7 (VGA 6-bit format)
+    # This was found by searching for the correct DOSBox palette values (converted to 6-bit)
+    # It's located right after the menu image data ends
+    MENU_PALETTE_OFFSET = 0x2884c2
+    palette = extract_palette(data, MENU_PALETTE_OFFSET)
+    print(f"✓ Loaded menu palette from offset {hex(MENU_PALETTE_OFFSET)}")
 
-    # Now try combining consecutive BUDAs to get 640x400 images
     TARGET_SIZE = 640 * 400
     combined = bytearray()
     combined.extend(data[2405266:2405266 + 65536])
@@ -82,20 +67,27 @@ def main():
     combined.extend(data[2500220:2500220 + 32768])
     combined.extend(decompress_rle(data, 2500220 + 32768, 2500220 + 32768 + 30288))
     combined.extend(data[2563266:2563266 + 92162])
-    palettes[len(palettes)] = extract_palette(data, 2563266 + 92162)
+    # palettes[len(palettes)] = extract_palette(data, 2563266 + 92162)
 
     menuEnd = 2563266 + 92162
     img_data = bytes(combined[:TARGET_SIZE])
     if len(img_data) < TARGET_SIZE:
         img_data += bytes([0] * (TARGET_SIZE - len(img_data)))
 
-    for i in range(0, 7170):
-        palette = extract_palette(data, menuEnd + i)
-        img = Image.new('P', (640, 400))
-        img.putpalette(palette)
-        img.putdata(img_data)
-        output_file = output_path / f"menu_{i}.png"
-        img.save(output_file)
+
+    img = Image.new('P', (640, 400))
+    img.putpalette(palette)
+    img.putdata(img_data)
+    output_file = output_path / f"menu.png"
+    img.save(output_file)
+
+    # for i in range(0, 7170):
+    #     palette = extract_palette(data, menuEnd + i)
+    #     img = Image.new('P', (640, 400))
+    #     img.putpalette(palette)
+    #     img.putdata(img_data)
+    #     output_file = output_path / f"menu_{i}.png"
+    #     img.save(output_file)
     # for i, palette in enumerate(palettes.values()):
     #   img = Image.new('P', (640, 400))
     #   img.putpalette(palette)
