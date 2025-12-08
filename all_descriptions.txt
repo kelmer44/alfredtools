@@ -1,0 +1,339 @@
+ID   0 @ 0x4715D Color:0x0F
+Historia de la Princesa╚Zenna y su╚amante insatisfecho╚╚Escrito por Terence╚Remoix
+================================================================================
+ID   1 @ 0x471B5 Color:0x07
+Nombre: ╚Alfred Pelrock╚Edad: 22╚Estado civil: Deseoso╚Profesion:╚Vendedor de hamburguesas
+================================================================================
+ID   2 @ 0x47221 Color:0x0F
+La tipica tarjeta por╚la que te sacan╚commisiones en todos╚los cajeros
+================================================================================
+ID   3 @ 0x4726B Color:0x0F
+Una pequeÇa foto de╚Alfred
+================================================================================
+ID   4 @ 0x47289 Color:0x0F
+Un ladrillo
+================================================================================
+ID   5 @ 0x47298 Color:0x0F
+1000 pesetas
+================================================================================
+ID   6 @ 0x472A8 Color:0x0F
+Una alargadera con un╚extremo suelto
+================================================================================
+ID   7 @ 0x472D0 Color:0x0F
+Un amuleto egipcio con╚forma de escarabajo alado
+================================================================================
+ID   8 @ 0x47304 Color:0x0F
+Dice:╚OM OM RASKAMAMOM
+================================================================================
+ID   9 @ 0x4731E Color:0x0F
+Es una carta de la╚Asociacion Ra-Amoniana╚para la Srta.╚Manoli Brote.
+================================================================================
+ID  10 @ 0x47367 Color:0x0F
+Un carnet de biblioteca.╚Valido para sacar hasta╚3 libros
+================================================================================
+ID  11 @ 0x473A4 Color:0x07
+Titulo:╚ Canticos espirituales en╚formato *.zip          ╚╚Autor: Doctor Chip ╚╚Genero: Poesia
+================================================================================
+ID  12 @ 0x47410 Color:0x07
+Titulo:╚ Pasion Flagrante                                ╚╚Autor: Corin Tellado    ╚╚Genero: Romantico
+================================================================================
+ID  13 @ 0x47484 Color:0x07
+Titulo:╚ El Valenciano en los╚comienzos del╚siglo XXI    ╚╚Autor: Jaume i Pascual  ╚╚Genero: Nationalista
+================================================================================
+ID  14 @ 0x474FB Color:0x07
+Titulo:╚ El sistema inmunologico╚de los cefalopodos (v.I)╚╚Autor: Dr. Tedio Plomez  ╚╚Genero: Biologia
+================================================================================
+ID  15 @ 0x4756F Color:0x07
+Titulo:╚ Dos y dos son 5                                 ╚╚Autor: Joan Josep Climent╚Colomer  ╚╚Genero: Matematicas
+================================================================================
+ID  16 @ 0x475F0 Color:0x07
+Titulo:╚ La parte creativa.                              ╚╚Autor: Nacho Taulet Peman╚╚Genero: Arte
+================================================================================
+ID  17 @ 0x47660 Color:0x07
+Titulo:╚ Aprenda Egipcio en╚10 dias                      ╚╚Autor: Varios autores  ╚╚Genero: libro de texto
+================================================================================
+ID  18 @ 0x476D8 Color:0x07
+Titulo:╚ Gato por liebre                                 ╚╚Autor: Karlos Arguiñano ╚╚Genero: Cocina
+================================================================================
+ID  19 @ 0x47749 Color:0x07
+Titulo:╚ Enrique de╚Ofterdingeng                         ╚╚Autor: Novalis   ╚╚Genero: Novela
+================================================================================
+ID  20 @ 0x477B3 Color:0x07
+Titulo:╚ Codigo maquina puro                             ╚╚Autor: Programadores╚reunidos╚╚Genero: Informatica
+================================================================================
+ID  21 @ 0x4782E Color:0x07
+Titulo:╚ Te parto la cara╚capuyo                         ╚╚Autor: Johnny Rapper  ╚╚Genero: Critica Social
+================================================================================
+ID  22 @ 0x478A5 Color:0x07
+Titulo:╚ En la jungla de Londres                         ╚╚Autor: ╚╚Coronel Tapioca    ╚╚Genero: Aventuras
+================================================================================
+ID  23 @ 0x4791F Color:0x07
+Titulo:╚ El ultimo paso en la ╚cuadratura del circulo    ╚╚Autor: Anonimo╚╚Genero: Filosofia
+================================================================================
+ID  24 @ 0x47989 Color:0x07
+Titulo:╚ Enciclopedia de bolsillo                        ╚╚Autor: Prof. Lumbreras  ╚╚Genero: Enciclopedia
+================================================================================
+ID  25 @ 0x47A00 Color:0x07
+Titulo:╚ Sigueme y revienta                              ╚╚Autor: M. Indurain  ╚╚Genero: Deporte
+================================================================================
+ID  26 @ 0x47A6E Color:0x07
+Titulo:╚ Oh tu,╚bella flor del╚jardin                    ╚╚Autor: La Abeja Maya ╚╚Genero: Poesia
+================================================================================
+ID  27 @ 0x47ADC Color:0x07
+Titulo:╚ Cuentos corrientes                              ╚╚Autor: Pepe Lopez  ╚╚Genero: Novela
+================================================================================
+ID  28 @ 0x47B48 Color:0x07
+Titulo:╚ Mas madera!                                     ╚╚Autor: R. Gepetto   ╚╚Genero: Bricolage
+================================================================================
+ID  29 @ 0x47BB8 Color:0x07
+Titulo:╚ Conversaciones con╚Mr. Roca                     ╚╚Autor: Francisca Gando  ╚╚Genero: Epistolar
+================================================================================
+ID  30 @ 0x47C2C Color:0x07
+Titulo:╚ No se nada ni╚me importa                        ╚╚Autor: Socrates   ╚╚Genero: Filosofia
+================================================================================
+ID  31 @ 0x47C9A Color:0x07
+Titulo:╚ Historias cortas                                ╚╚Autor: Tachenko  ╚╚Genero: Ficcion
+================================================================================
+ID  32 @ 0x47D05 Color:0x07
+Titulo:╚ Tu eliges: Tu madre o yo                        ╚╚Autor: Anon. ╚╚Genero: Picologia
+================================================================================
+ID  33 @ 0x47D6E Color:0x07
+Titulo:╚ Yoga Sutra                                      ╚╚Autor: Patanjali ╚╚Genero: Filosofia
+================================================================================
+ID  34 @ 0x47DDB Color:0x07
+Titulo:╚ Como hacerse rico en╚10 minutos                 ╚╚Autor: El Dioni    ╚╚Genero: Libro de bolsillo
+================================================================================
+ID  35 @ 0x47E52 Color:0x07
+Titulo:╚ Pasion flagrante                                ╚╚Autor: Corin Tellado y╚Jesus Gil  ╚╚Genero: Romantica
+================================================================================
+ID  36 @ 0x47ED0 Color:0x07
+Titulo:╚ El poder curativo de╚la mierda comun            ╚╚Autor:╚ Sri Ramchrinaraska  ╚╚Genero: Esoterico
+================================================================================
+ID  37 @ 0x47F48 Color:0x07
+Titulo:╚ Psicologia de la╚motivacion inmotivada          ╚╚Autor: Dr. Chemi  ╚╚Genero: Psicologia
+================================================================================
+ID  38 @ 0x47FB7 Color:0x07
+Titulo:╚ El contrato social╚de aprendizaje               ╚╚Autor: Rousseau  ╚╚Genero: Ensayo
+================================================================================
+ID  39 @ 0x48021 Color:0x07
+Titulo:╚ Vida sexual del╚escarabajo de la╚Patagonia      ╚╚Autor:  Dr. Tedio Plomez  ╚╚Genero: Botanica
+================================================================================
+ID  40 @ 0x48096 Color:0x07
+Titulo:╚ Me se cuadre coño!                              ╚╚Autor: Sargento Cienfuegos ╚╚Genero: Etica militar
+================================================================================
+ID  41 @ 0x48111 Color:0x07
+Titulo:╚ Aqui nadie se acuesta╚sin cenar (v. 1)          ╚╚Autor: Fidel Castro  ╚╚Genero: politica
+================================================================================
+ID  42 @ 0x48181 Color:0x07
+Titulo:╚ Master joinery in 5╚days                        ╚╚Autor: Prof. Pinocho  ╚╚Genero: Handbook
+================================================================================
+ID  43 @ 0x481F2 Color:0x07
+Titulo:╚ Piernas de Ciertopelo                           ╚╚Autor: Chichi Mondongo  ╚╚Genero: Erotica
+================================================================================
+ID  44 @ 0x48264 Color:0x07
+Titulo:╚ Eso no es lo que╚quise dar a entender           ╚╚Autor: Jesus de Nazareth╚╚Genero: Religion
+================================================================================
+ID  45 @ 0x482D7 Color:0x07
+Titulo:╚ Castigos a piratas╚informaticos                 ╚╚Autor: Torquemada  ╚╚Genero: Inquisicion
+================================================================================
+ID  46 @ 0x48348 Color:0x07
+Titulo:╚ Confiesa,╚bruja asquerosa                       ╚╚Autor: Torquemada   ╚╚Genero: Inquisicion
+================================================================================
+ID  47 @ 0x483BA Color:0x07
+Titulo:╚ El cochecito lere                               ╚╚Autor: Paco Costas   ╚╚Genero: Motor
+================================================================================
+ID  48 @ 0x48427 Color:0x07
+Titulo:╚ Cuentos de amor╚y desidia                       ╚╚Autor: Jardiel Poncela  ╚╚Genero: Teatro
+================================================================================
+ID  49 @ 0x48498 Color:0x07
+Titulo:╚ Nuevas aventuras╚de Zaratustra                  ╚╚Autor: Anon. ╚╚Genero: Aventura
+================================================================================
+ID  50 @ 0x48500 Color:0x07
+Titulo:╚ Gatos: Solos o con╚ketchup                      ╚╚Autor: Sam Rocker's dog  ╚╚Genero: Cocina
+================================================================================
+ID  51 @ 0x48572 Color:0x07
+Titulo:╚ Aprenda metafisica╚en 5 dias                    ╚╚Autor: Prof. Pinocho  ╚╚Genero: Libro de bolsillo
+================================================================================
+ID  52 @ 0x485EC Color:0x07
+Titulo:╚ Conozcase a si mismo╚en 5 dias                  ╚╚Autor: Prof. Pinocho  ╚╚Genero: Libro de bolsillo
+================================================================================
+ID  53 @ 0x48666 Color:0x07
+Titulo:╚ Otra vuelta╚de tuerca                           ╚╚Autor: Pepe el fontanero ╚╚Genero: Bricolage
+================================================================================
+ID  54 @ 0x486DB Color:0x07
+Titulo:╚ Sexo oral y por escrito                         ╚╚Autor: Franz Masturmann  ╚╚Genero: Sexologia
+================================================================================
+ID  55 @ 0x48750 Color:0x07
+Titulo:╚ La Tierra:╚Un planeta limpio                    ╚╚Autor: Juan, el basurero  ╚╚Genero: Ciencia Ficcion
+================================================================================
+ID  56 @ 0x487CC Color:0x07
+Titulo:╚ Liberad a Brian!                                ╚╚Autor: Roger Rabbit  ╚╚Genero: Historica
+================================================================================
+ID  57 @ 0x4883D Color:0x07
+Titulo:╚ La vida es una mierda                           ╚╚Autor: Juanjo Dido   ╚╚Genero: Ensayo
+================================================================================
+ID  58 @ 0x488AB Color:0x07
+Titulo:╚ La musica amansa╚a las fieras                   ╚╚Autor: Wagner  ╚╚Genero: Musica
+================================================================================
+ID  59 @ 0x48913 Color:0x0F
+Un libro de recetas╚magicas Ra-Amonianas
+================================================================================
+ID  60 @ 0x4893F Color:0x0F
+Un bote de tomate
+================================================================================
+ID  61 @ 0x48954 Color:0x0F
+Un bote de mostaza
+================================================================================
+ID  62 @ 0x4896A Color:0x0F
+Salsa ultra picante╚Cuidadin !!╚Puede hacerte pupita╚en el duodeno sexual
+================================================================================
+ID  63 @ 0x489B7 Color:0x0F
+Receta de las╚hamburguesas McDowells
+================================================================================
+ID  64 @ 0x489DF Color:0x0F
+Un papiro con╚una inscripcion╚jeroglifica
+================================================================================
+ID  65 @ 0x48A0C Color:0x0F
+Una guitarra española
+================================================================================
+ID  66 @ 0x48A25 Color:0x0F
+Un pez disecado
+================================================================================
+ID  67 @ 0x48A38 Color:0x0F
+Un osito de peluche
+================================================================================
+ID  68 @ 0x48A4F Color:0x0F
+Unos discos antiguos
+================================================================================
+ID  69 @ 0x48A67 Color:0x0F
+Un cerebro de mono╚guardado en un liquido
+================================================================================
+ID  70 @ 0x48A94 Color:0x0F
+Novelas del salvaje╚oeste
+================================================================================
+ID  71 @ 0x48AB1 Color:0x0F
+Una paleta
+================================================================================
+ID  72 @ 0x48ABF Color:0x0F
+Caramelos de todos╚los sabores
+================================================================================
+ID  73 @ 0x48AE1 Color:0x0F
+Una caracola
+================================================================================
+ID  74 @ 0x48AF1 Color:0x0F
+un sombrero
+================================================================================
+ID  75 @ 0x48B00 Color:0x0F
+150000 pesetas
+================================================================================
+ID  76 @ 0x48B12 Color:0x0F
+Una calabaza para╚meter agua dentro
+================================================================================
+ID  77 @ 0x48B39 Color:0x0F
+Henna roja para el pelo
+================================================================================
+ID  78 @ 0x48B54 Color:0x0F
+Piramides de recuerdo
+================================================================================
+ID  79 @ 0x48B6D Color:0x0F
+Un chupa-chup de higo╚chumbo
+================================================================================
+ID  80 @ 0x48B8D Color:0x0F
+Un amuleto egipcio ╚con forma de╚escarabajo alado
+================================================================================
+ID  81 @ 0x48BC2 Color:0x0F
+El pelo de una╚princesa Egipcia
+================================================================================
+ID  82 @ 0x48BE5 Color:0x0F
+Un mogollon de╚pasta
+================================================================================
+ID  83 @ 0x48BFD Color:0x0F
+Una replica de Elvis?
+================================================================================
+ID  84 @ 0x48C16 Color:0x0F
+Aunque no sean piramides╚se puede decir╚que son monumentos
+================================================================================
+ID  85 @ 0x48C54 Color:0x0F
+Un girasol
+================================================================================
+ID  86 @ 0x48C62 Color:0x0F
+Una calabaza llena╚de agua
+================================================================================
+ID  87 @ 0x48C80 Color:0x0F
+Una motosierra
+================================================================================
+ID  88 @ 0x48C92 Color:0x0F
+Libro de recetas magicas╚Ra-Amonianas II╚Version mejorada
+================================================================================
+ID  89 @ 0x48CCF Color:0x0F
+Una bota usada
+================================================================================
+ID  90 @ 0x48CE1 Color:0x0F
+Una autentica piedra╚egipcia
+================================================================================
+ID  91 @ 0x48D01 Color:0x0F
+Una piedra egipcia╚para construir╚piramides
+================================================================================
+ID  92 @ 0x48D30 Color:0x0F
+Un poco de barro
+================================================================================
+ID  93 @ 0x48D44 Color:0x0F
+Licor de arena
+================================================================================
+ID  94 @ 0x48D56 Color:0x0F
+Crema para el sol
+================================================================================
+ID  95 @ 0x48D6B Color:0x0F
+Banda sonora de╚Alfred Pelrock
+================================================================================
+ID  96 @ 0x48D8D Color:0x0F
+Un album con las╚pantallas de╚Alfred Pelrock
+================================================================================
+ID  97 @ 0x48DBD Color:0x0F
+Plano de la piramide╚donde esta╚la Princesa
+================================================================================
+ID  98 @ 0x48DEC Color:0x0F
+Plano detallado de╚la piramide donde╚esta la princesa
+================================================================================
+ID  99 @ 0x48E25 Color:0x0F
+Es una peluca de una╚princesa Egipcia
+================================================================================
+ID 100 @ 0x48E4E Color:0x0F
+Una pequeña llave
+================================================================================
+ID 101 @ 0x48E63 Color:0x0F
+Un trozo de papel con╚unos numeritos
+================================================================================
+ID 102 @ 0x48E8B Color:0x0F
+Autenticas naranjas╚de Nules
+================================================================================
+ID 103 @ 0x48EAB Color:0x0F
+Un mogollón de╚naranjas de Nules
+================================================================================
+ID 104 @ 0x48ECF Color:0x0F
+No se haga el loco:╚Llameme !!!╚╚Precios de locura╚Tlf: 07-14-96-1514343
+================================================================================
+ID 105 @ 0x48F1B Color:0x0F
+Folletos explicativos╚sobre el SIDA
+================================================================================
+ID 106 @ 0x48F42 Color:0x0F
+Un pin que acredita╚mi sabiduria
+================================================================================
+ID 107 @ 0x48F66 Color:0x0F
+Una bayeta para frotar╚lamparas magicas
+================================================================================
+ID 108 @ 0x48F91 Color:0x0F
+Parches ultra-fuertes
+================================================================================
+ID 109 @ 0x48FAA Color:0x0F
+Pegamento que te cagas
+================================================================================
+ID 110 @ 0x48FC4 Color:0x0F
+Una replica de Alfred╚pinchada
+================================================================================
+ID 111 @ 0x48FE6 Color:0x0F
+Una cinta del Rey Elvis
+================================================================================
+ID 112 @ 0x49001 Color:0x0F
+Una caja de condone
+================================================================================
