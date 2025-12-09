@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Create Room 0 city lights animation using the actual palette cycling values.
-
+stored at 0x4B780 in JUEGO.EXE.
 Room 0 has a window to the city at night with building windows that turn on/off.
 Uses Mode 6 ROTATE with 6 palette indices (200-205) cycling every ~5 seconds.
 """
@@ -75,7 +75,7 @@ def create_palette_rotation(base_palette, start_index, count, frames=2):
         List of modified palettes
     """
     palettes = []
-    
+
     # Extract the colors that will rotate
     rotating_colors = []
     for i in range(count):
@@ -86,11 +86,11 @@ def create_palette_rotation(base_palette, start_index, count, frames=2):
             base_palette[idx * 3 + 2]
         )
         rotating_colors.append(color)
-    
+
     # Create rotation frames
     for frame in range(frames):
         new_palette = list(base_palette)
-        
+
         # Rotate the colors
         for i in range(count):
             idx = start_index + i
@@ -99,9 +99,9 @@ def create_palette_rotation(base_palette, start_index, count, frames=2):
             new_palette[idx * 3] = rotated_color[0]
             new_palette[idx * 3 + 1] = rotated_color[1]
             new_palette[idx * 3 + 2] = rotated_color[2]
-        
+
         palettes.append(new_palette)
-    
+
     return palettes
 
 def main():
@@ -138,11 +138,11 @@ def main():
     # Byte 3 = 90 (0x5A) = ~5 second delay at 18 FPS
     start_index = 200  # 0xC8
     rotation_count = 6
-    
+
     print(f"Creating rotation animation for palette indices {start_index}-{start_index+rotation_count-1}...")
     print(f"  Mode: 6 (ROTATE {rotation_count} colors)")
     print(f"  Delay: 90 frames (~5 seconds at 18 FPS)")
-    
+
     # Print the colors being rotated
     print(f"\nColors in rotation:")
     for i in range(rotation_count):

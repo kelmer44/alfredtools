@@ -65,6 +65,18 @@ Palette palMapa @ 909329;
 RleChunk menu[8] @ 910093;
 Palette menuPalette @ 1038141;
 // buda 76
+u8 cursor1[288] @ 0x0FDDFD;
+
+u8 cursor2[288] @ 0x0FDCDD;
+
+u8 cursor3[288] @ 0x0FDF1D;
+
+u8 cursor4[288] @ 0x0FE33D;
+
+u8 cursor5[288] @ 0x367EF0;
+
+
+  
 
 RleChunk cuadradoMenu @ 1042757;
 
@@ -87,7 +99,7 @@ RleChunk tiposBebiendo @ 1473364;
 RleChunk tiposBebidos @ 1512060;
 RleChunk smoke @ 1526432;
 RleChunk cocodrilo @ 1556540; // 111
-RleChunk trampilla @ 1583702;
+RleChunk trampilla @ 1583706;
 
 u8 alfredHablaObreros[148464] @ 1600956; // 208 width
 RleChunk alfredTrampilla @  1749420; //95 width
@@ -125,6 +137,7 @@ u8 settingsMenu4[32768] @  2500216;
 RleChunk settingsMenuRLE5 @ 2532984;
 u8 settingsMenu67[92160] @ 2563266;
 
+Palette settingsMenuPalette @ 2655426;
 
 RleChunk soundControls2[4] @ 2662588; //159
 RleChunk code3 @ 2669050;
@@ -139,7 +152,7 @@ RleChunk humo2 @ 3006794;
 RleChunk flechas @ 3037008;
 RleChunk alfredCama34234 @ 3038454;
 RleChunk conChica[8] @ 3058226;
-Palette conChicaPalette @ 3185276; //194
+Palette conChicaPalette @ 3185280; //194
 u8 flechitas[1300] @ 3186048; //+772; witdh = 20
 u8 flechitas2[8100] @ 3186048 + 1300; // width = 28
 u8 othericons[26798] @ 3195448; // 3186048 + 1300 + 8100;
@@ -147,7 +160,6 @@ RleChunk piernas @ 3222246; //multiple sizes
 u8 unknownimage[256000] @ 3271454;
 RleChunk credits @ 3527454;
 
-//many budas
-Palette settingsMenuPalette @ 0x2884c2;
 
 // buda 113
+u8 englishBookTitles[0x3519] @ 0x14C53F;
