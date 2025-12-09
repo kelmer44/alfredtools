@@ -88,5 +88,6 @@ RleChunk tiposBebidos @ 1512060;
 RleChunk smoke @ 1526432;
 RleChunk cocodrilo @ 1556540;
 RleChunk trampilla @ 1583702;
-
+u8 alfredHablaObreros[148464] @ 1600956; // 208 width
+RleChunk alfredTrampilla @  1749420; //95 width
 // buda 113

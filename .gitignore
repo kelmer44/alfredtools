@@ -40,3 +40,10 @@ bedroom_complete
 shadow_demo
 sounds_extracted_v2
 sounds_test
+room_sounds
+sfx_output
+src/__pycache__
+inventory_complete
+test_bg_fixed
+test_bg_output
+test_debug
