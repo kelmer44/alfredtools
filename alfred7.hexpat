@@ -63,7 +63,7 @@ Palette palTabla @ 724711;
 RleChunk mapa[8] @ 725485;
 Palette palMapa @ 909329;
 RleChunk menu[8] @ 910093;
-
+Palette menuPalette @ 1038141;
 // buda 76
 
 RleChunk cuadradoMenu @ 1042757;
@@ -77,17 +77,77 @@ RleChunk unknown1 @ 1341235;
 RleChunk unknown2 @ 1347767;
 // buda 97
 
-RleChunk cuadroOk[8] @ 1387148;
-Palette palCuadroOk @ 1425352;
-RleChunk alfredCama2 @ 1426116;
+RleChunk cuadroOk[8] @ 1387148; //98-105
+Palette palCuadroOk @ 1425352; //106
+RleChunk alfredCama2 @ 1426116; //106
 
 Palette palRoom28 @ 0x1610CE;
 RleChunk nadadoras @ 1446862;
 RleChunk tiposBebiendo @ 1473364;
 RleChunk tiposBebidos @ 1512060;
 RleChunk smoke @ 1526432;
-RleChunk cocodrilo @ 1556540;
+RleChunk cocodrilo @ 1556540; // 111
 RleChunk trampilla @ 1583702;
+
 u8 alfredHablaObreros[148464] @ 1600956; // 208 width
 RleChunk alfredTrampilla @  1749420; //95 width
+
+RleChunk alfredClimbing @ 1761234;
+RleChunk alfredClimbing2 @ 1766378;
+
+u8 alfredSaleTrampilla @ 0x1B02D4;
+RleChunk alfredMunheco1 @ 2060922; //incomplete!
+RleChunk alfredMunheco2 @ 2115632;
+RleChunk balloon @2176936;
+RleChunk iconosMusica @ 2201882;
+RleChunk iconoAltavoz @ 2208286;
+RleChunk iconoMusic @2210448;
+RleChunk iconoFX @2212846;
+RleChunk blankGUI @ 2214708;
+RleChunk musicPlayer @ 2214760; // two sizes
+
+RleChunk black[8] @ 2227418;
+Palette somePalette @ 2229480;
+RleChunk alfredFight @ 2230266;
+RleChunk otrolibro[8] @ 2253656;
+Palette otrolibroPalette @ 2284678;
+RleChunk unknown @ 2285446;
+RleChunk alfredCama4 @2285694; //144
+RleChunk censored[8] @2306538;
+Palette censoredPalette @ 2321060;
+RleChunk code @ 2321828; //153
+RleChunk code2 @ 2361388;
+RleChunk artwork @ 2381082;
+
+u8 settingsMenu12[65536] @ 2405266;
+RleChunk settingsMenuRLE3 @ 2470802;
+u8 settingsMenu4[32768] @  2500216;
+RleChunk settingsMenuRLE5 @ 2532984;
+u8 settingsMenu67[92160] @ 2563266;
+
+
+RleChunk soundControls2[4] @ 2662588; //159
+RleChunk code3 @ 2669050;
+RleChunk code4 @ 2688168;
+RleChunk discoAlfred[8] @ 2727564;
+Palette discoAlfredPal @ 2833276;
+RleChunk pergamino[8] @ 2834044;
+Palette pergaminoPalette @ 2971800;
+RleChunk alfredDescamisa @ 2972568; //181
+RleChunk overlayMapa @ 2980872;
+RleChunk humo2 @ 3006794;
+RleChunk flechas @ 3037008;
+RleChunk alfredCama34234 @ 3038454;
+RleChunk conChica[8] @ 3058226;
+Palette conChicaPalette @ 3185276; //194
+u8 flechitas[1300] @ 3186048; //+772; witdh = 20
+u8 flechitas2[8100] @ 3186048 + 1300; // width = 28
+u8 othericons[26798] @ 3195448; // 3186048 + 1300 + 8100;
+RleChunk piernas @ 3222246; //multiple sizes
+u8 unknownimage[256000] @ 3271454;
+RleChunk credits @ 3527454;
+
+//many budas
+Palette settingsMenuPalette @ 0x2884c2;
+
 // buda 113

@@ -1458,15 +1458,15 @@ metadata = [
     "START": "FINAL",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
-    "isContinued":  True,
-	"offset" : 0
+    "isContinued":  False,
+	  "offset" : 290730
   },
   {
     "BUDA": 117,
     "OFFSET": 2115628,
     "TYPE": "ANIM",
     "DESC": "ALFREDMUNHECO",
-    "WIDTH": 117,
+    "WIDTH": 177,
     "START": "0",
     "OFFSET RLE DEC": " COMPLETO",
     "isPalette" : False,
@@ -1494,7 +1494,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  True,
+    "isContinued":  False,
 	"offset" : 0
   },
   {
@@ -1506,7 +1506,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  True,
+    "isContinued":  False,
 	"offset" : 0
   },
   {
@@ -1518,7 +1518,7 @@ metadata = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  True,
+    "isContinued":  False,
 	"offset" : 0
   },
   {
@@ -1543,14 +1543,14 @@ metadata = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 124,
     "OFFSET": 2214756,
     "TYPE": "IMAGE",
     "DESC": "?",
-    "WIDTH": 201,
+    "WIDTH": 213,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
@@ -1778,12 +1778,12 @@ metadata = [
     "OFFSET": 2284674,
     "TYPE": "ANIM",
     "DESC": "PALETTE",
-    "WIDTH": 1,
+    "WIDTH": 20,
     "START": "NaN",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 768
   },
   {
     "BUDA": 144,
@@ -1903,7 +1903,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 768
   },
   {
     "BUDA": 154,
@@ -2143,7 +2143,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  True,
-	"offset" : 0
+	"offset" : 768
   },
   {
     "BUDA": 174,
@@ -2239,7 +2239,7 @@ metadata = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 768
   },
   {
     "BUDA": 182,
@@ -2390,24 +2390,25 @@ metadata = [
     "OFFSET": 3185276,
     "TYPE": "ANIMS",
     "DESC": "PIERNAS, MANOS",
-    "WIDTH": 114,# 55,
+    "WIDTH": 114,
+    # 55,
     "START": "MEDIO",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	   "offset" : 36970
   },
   {
     "BUDA": 195,
     "OFFSET": 3271450,
     "TYPE": "IMAGE",
     "DESC": "CREDITOS",
-    "WIDTH": 240,
+    "WIDTH": 480,
     "START": "FINAL",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 256000
   }
 ]
 
