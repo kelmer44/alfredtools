@@ -37,7 +37,7 @@ The color values are stored in 6-bit format (0-63) and need to be multiplied by 
 
 - **Minimum RGB (6-bit)**: (12, 20, 8)
 - **Minimum RGB (8-bit)**: (48, 80, 32) - Dark green
-- **Maximum RGB (6-bit)**: (36, 44, 8)  
+- **Maximum RGB (6-bit)**: (36, 44, 8)
 - **Maximum RGB (8-bit)**: (144, 176, 32) - Bright green
 
 ### Animation Details
@@ -102,8 +102,8 @@ c8 06 00 5a e0 04 00 04 67 07 00 01
   - Bytes 2-5: Pointer to 12-byte config structure (little-endian dword)
 - **Terminator**: `0xFFFF` marks end of table
 
-**Note**: The exact file-to-memory address mapping is complex due to DOS EXE segment relocation. 
-Multiple dispatch tables exist in the 0x4B780-0x4B850 region, but precise mapping to the 
+**Note**: The exact file-to-memory address mapping is complex due to DOS EXE segment relocation.
+Multiple dispatch tables exist in the 0x4B780-0x4B850 region, but precise mapping to the
 palette cycling configs requires further analysis of the segment base address used at runtime.
 
 ## Related Files
@@ -141,7 +141,7 @@ This information was discovered through:
 
 ### Configuration Structure Differences
 
-**Mode 1 (FADE)**: 
+**Mode 1 (FADE)**:
 - Byte 0: Single palette index
 - Bytes 2-4: Current RGB (6-bit)
 - Bytes 5-7: Min RGB (6-bit)
@@ -156,7 +156,7 @@ This information was discovered through:
 
 ### Other Rooms
 
-Scanning JUEGO.EXE found approximately 260 potential palette cycling configs in the 0x40000-0x50000 range. 
+Scanning JUEGO.EXE found approximately 260 potential palette cycling configs in the 0x40000-0x50000 range.
 However, many are false positives (data that coincidentally matches the validation criteria).
 
 The actual palette cycling table that maps room numbers to configs is located in the 0x4B700-0x4B900 region,
