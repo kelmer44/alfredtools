@@ -130,40 +130,12 @@ This information was discovered through:
 3. **Binary pattern search** for RGB min/max values in JUEGO.EXE
 4. **Manual analysis** of the 12-byte config structure
 
-## Summary of Discoveries
+## Other Rooms
 
-### Known Palette Cycling Configurations
-
-| Room | File Offset | Mode | Description | Palette Range | Script |
-|------|-------------|------|-------------|---------------|--------|
-| 2 | 0x4B860 | 1 (Fade) | McDowells sign | Index 250 | `create_mcdowells_fade.py` |
-| 0 | 0x4B88C | 6 (Rotate) | City lights | Indices 200-205 | `create_room0_city_lights.py` |
-
-### Configuration Structure Differences
-
-**Mode 1 (FADE)**:
-- Byte 0: Single palette index
-- Bytes 2-4: Current RGB (6-bit)
-- Bytes 5-7: Min RGB (6-bit)
-- Bytes 8-10: Max RGB (6-bit)
-- Byte 11: Speed/direction flags
-
-**Mode 6 (ROTATE)**:
-- Byte 0: Starting palette index
-- Byte 1: Number of palette entries to rotate
-- Byte 3: Delay in frames between rotations
-- Remaining bytes: State/configuration (purpose TBD)
-
-### Other Rooms
-
-Scanning JUEGO.EXE found approximately 260 potential palette cycling configs in the 0x40000-0x50000 range.
-However, many are false positives (data that coincidentally matches the validation criteria).
-
-The actual palette cycling table that maps room numbers to configs is located in the 0x4B700-0x4B900 region,
-but exact identification requires:
-1. Determining the DOS EXE segment base address used at runtime
-2. Mapping memory addresses to file offsets
-3. Correlating with Ghidra's decompiled references to `DAT_000486a4`
+The cycling table at `0x486a4` (memory address) likely contains entries for other rooms with palette animations. These need to be:
+1. Mapped to file offsets in JUEGO.EXE
+2. Extracted and documented
+3. Visualized with similar animation scripts
 
 ## Technical Notes
 
