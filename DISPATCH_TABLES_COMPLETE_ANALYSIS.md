@@ -42,7 +42,7 @@ This table handles **room-specific initialization** when a room is first loaded.
 | Room(s) | Handler Address | Purpose/Notes |
 |---------|----------------|---------------|
 | 0, 4 | `0x1561F` | General initialization - falls through to standard setup |
-| 2 | `0x15C22` | Special mode for room transitions |
+| 2 | `0x15C22` | **TBD** - Handler address to be analyzed |
 | 3 | `0x15889` | Skip scaling calculation, jump directly to sprite setup |
 | 5 | `0x15A3D` | Player sprite setup |
 | 7 | `0x1587A` | Disable scaling (sets scale_min=0, scale_max=0) |
@@ -96,6 +96,28 @@ Sets up 4 sprite pointers with fixed offsets from base graphics memory.
 ```
 Sets up sprite position data, shared by all 4 rooms (51, 52, 53, 54).
 
+#### Room 2 Handler - To Be Analyzed
+**Handler**: `0x15C22` (within `load_room_data`)
+
+**Note**: The actual room 2 handler needs further analysis.
+
+However, there IS interesting code at `0x15BB0-0x15C8D` that runs for ALL rooms when game mode (`0x52ffd`) equals 1. This code checks if the previous room was 0x1C (28) and if so, loads a special **palette** (768 bytes = 256 colors × 3 bytes RGB):
+
+```asm
+00015BC0: XOR    EAX, EAX
+00015BC2: MOV    AL, [0x0005178c]        ; Previous room number
+00015BC7: CMP    EAX, 0x1C               ; Was it room 28?
+00015BCA: JNZ    0x00015BFA              ; Skip if not
+
+; Load alternative palette from ALFRED.7 (at runtime memory 0x1610ce)
+00015BD9: MOV    EDX, 0x1610ce           ; Palette data location
+00015BEE: MOV    EDX, 0x300              ; 768 bytes (VGA palette)
+```
+
+**Purpose**: When leaving room 28 (likely after picking up an object or triggering an event), the game loads an **alternative palette** for the next room, creating a visual state change. This is a narrative/game-state technique - the world looks different after certain events in room 28.
+
+**Technical**: 768 bytes = 256 VGA palette entries × 3 bytes (RGB), loaded from ALFRED.7 into runtime memory at `0x1610ce`.
+
 ### Rooms WITHOUT Custom Handlers
 These rooms use only the default initialization path:
 1, 6, 8, 10, 11, 14, 15, 16, 18, 20, 21, 23, 25, 29, 31, 33, 35, 42-47, 55+
@@ -144,7 +166,7 @@ This table configures **animated palette effects** for rooms that have color-cyc
 |------|---------------|----------------------|
 | 0 | `0x0004b88c` | **City lights** - 6-color rotation for window lights |
 | 2 | `0x0004b860` | **McDowells sign** - Green fade effect on restaurant logo |
-| 9 | Config TBD | Office palette animation |
+| 9 | Config TBD | Office palette animation | shiny stuff
 | 17 | Config TBD | Palette effect |
 | 18 | Config TBD | Palette effect |
 | 19 | Config TBD | Palette effect |
