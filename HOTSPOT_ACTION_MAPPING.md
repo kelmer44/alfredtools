@@ -11,7 +11,7 @@ Located in room data starting at `room_sprite_data_ptr + 0x47a` (count) and `0x4
 
 ```
 Offset +0 (0x47d): X position      (2 bytes)
-Offset +2 (0x47f): Y position      (2 bytes)  
+Offset +2 (0x47f): Y position      (2 bytes)
 Offset +4 (0x481): Width           (1 byte)
 Offset +5 (0x482): Height          (1 byte)
 Offset +6 (0x483): EXTRA/ID field  (2 bytes) ⭐ THIS IS THE KEY!
@@ -54,7 +54,7 @@ CALL dword ptr [EAX + 0x47bf2]     ; Call the action function
 2. Game reads extra=261 from hotspot structure
 3. Searches dispatch table at 0x47bf0 for entry with ID=261
 4. Finds matching entry and calls the associated function
-5. That function places **pegatina #2** (sprite at offset 182 in alfred.6) into the scene
+5. That function places **pegatina #91** into the scene
 
 ## Relevant Functions
 
