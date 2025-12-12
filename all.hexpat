@@ -34,7 +34,7 @@ struct Description {
 };
 
 struct ThisAnimHeader {
-    16 x;                  // Bytes 0-1
+    u16 x;                  // Bytes 0-1
     u16 y;                  // Bytes 2-3
     u8 w;                   // Byte 4
     u8 h;                   // Byte 5
@@ -108,7 +108,7 @@ struct Walkbox {
 
 struct Exit {
     u16 targetRoom;
-    u8 flags;
+    u8 isEnabled;
     u16 x;
     u16 y;
     u8 w;

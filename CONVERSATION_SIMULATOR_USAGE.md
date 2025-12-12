@@ -2,18 +2,25 @@
 
 ## Basic Usage
 
-The conversation simulator lets you interactively experience conversations as they appear in the game.
+The conversation simulator lets you interactively experience conversations as they appear in the game. It now automatically extracts conversation data from ALFRED.1 files.
 
-### From Resource File
+### From ALFRED.1 File (Recommended)
 
 ```bash
-# Simulate a conversation from a resource file
-python simulate_conversation.py ALFRED1 12345
+# Simulate a conversation from a specific room
+python simulate_conversation.py ALFRED.1 2
 
 # Where:
-#   ALFRED1 = resource file name
-#   12345 = byte offset to conversation data
+#   ALFRED.1 = resource file
+#   2 = room number
 ```
+
+The simulator will:
+1. Read the ALFRED.1 file
+2. Extract resource pair 12 (conversations) for the specified room
+3. Calculate sprite and hotspot counts from pair 10
+4. Skip past sprite/hotspot descriptions
+5. Start the conversation simulation
 
 ### From Hex Data
 
@@ -53,46 +60,64 @@ python simulate_conversation.py --hex "08 0D 48 6F 6C 61 FD FB 01 08 0D 53 69 FD
 
 ## Finding Conversation Data
 
-To use the simulator, you need to extract conversation data from the game's resource files.
+The simulator now automatically handles this! Just provide the ALFRED.1 file and room number.
 
-### Method 1: Extract from Resource Pair 12
+### How Conversations Are Located
 
-Conversations are stored in resource pair 12 (e.g., `ALFRED1` file).
+Conversations are stored in **resource pair 12** of each room. The structure is:
+
+```
+Pair 12 Structure:
+├─ Sprite/Hotspot Descriptions (variable count)
+│  ├─ Each: 0xFF + 4 bytes + text + 0xFD
+│  └─ Count = sprite_count + hotspot_count (from pair 10)
+│
+└─ Conversation Data (starts after descriptions)
+   ├─ Speaker markers (0x08)
+   ├─ Dialogue markers (0xFB/0xF1)
+   ├─ Text content
+   └─ Control bytes
+```
+
+### Extraction Process
+
+The simulator:
+1. Reads pair 12 from ALFRED.1 for the specified room
+2. Reads pair 10 to get sprite_count (offset 0x05 - 2)
+3. Reads pair 10 to get hotspot_count (offset 0x47A)
+4. Skips `sprite_count + hotspot_count` descriptions
+5. Conversation data starts immediately after
+
+### Manual Extraction (Optional)
+
+If you want to extract conversation data manually:
 
 ```python
 # Example: Extract Room 2 conversation data
 import struct
 
-with open('ALFRED1', 'rb') as f:
-    # Resource pair 12 structure varies by room
-    # You'll need to find the correct offset for your target conversation
-    f.seek(offset_to_conversation)
-    conversation_data = f.read(4096)
+def read_room_pair(data, room_num, pair_num):
+    room_offset = room_num * 104
+    pair_offset_pos = room_offset + (pair_num * 8)
+    offset = struct.unpack('<I', data[pair_offset_pos:pair_offset_pos+4])[0]
+    size = struct.unpack('<I', data[pair_offset_pos+4:pair_offset_pos+8])[0]
+    return data[offset:offset+size]
 
-with open('conversation_room2.bin', 'wb') as out:
-    out.write(conversation_data)
+with open('ALFRED.1', 'rb') as f:
+    alfred1_data = f.read()
+
+pair12 = read_room_pair(alfred1_data, 2, 12)  # Room 2, pair 12
+pair10 = read_room_pair(alfred1_data, 2, 10)  # For counts
+
+sprite_count = pair10[5] - 2
+hotspot_count = pair10[0x47A]
+description_count = sprite_count + hotspot_count
+
+# Skip descriptions to find conversation start
+# (See simulator source code for full implementation)
 ```
 
-Then run:
-```bash
-python simulate_conversation.py conversation_room2.bin
-```
-
-### Method 2: Use Existing Tools
-
-If you have extraction tools:
-
-```bash
-# Extract conversation from Room 2
-./extract_conversations.py ALFRED1 --room 2 > room2_conv.bin
-
-# Simulate it
-python simulate_conversation.py room2_conv.bin
-```
-
-## Example Session
-
-```
+## Example Session```
 ============================================================
 CONVERSATION START
 ============================================================

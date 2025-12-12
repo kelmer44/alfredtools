@@ -84,14 +84,14 @@ Renamed variables in `handle_conversation_tree`:
    - Middle: Text segments within dialogue
    - Inner: Animation/timing for each segment
 
-3. **Animation Code Duplication**: 
+3. **Animation Code Duplication**:
    - **YES** - All animation advancement code is repeated within the conversation loop
    - `update_npc_sprite_animations()` runs every frame during conversations
    - Frame counters increment, sequences advance, sprites move
    - The game world remains fully animated during dialogue
    - The conversation loop essentially becomes the main game loop temporarily
 
-4. **Choice Detection Algorithm**: 
+4. **Choice Detection Algorithm**:
    - 0xFB/0xF1 markers don't always mean "player choice"
    - Must count occurrences of each choice index
    - If index appears once: auto-dialogue (ALFRED speaks automatically)

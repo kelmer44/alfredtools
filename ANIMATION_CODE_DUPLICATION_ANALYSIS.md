@@ -12,21 +12,21 @@ When the conversation loop calls `render_scene()`, it executes the **entire** re
 ```c
 void render_scene(int show_dialog_overlay) {
     // ... various setup ...
-    
+
     copy_background_to_front_buffer();
-    
+
     // THIS IS THE KEY CALL - runs during conversations too!
     update_npc_sprite_animations(current_room);
-    
+
     check_mouse_on_sprites_and_hotspots();
     update_mouse_button_state();
-    
+
     if (show_dialog_overlay == 1) {
         render_dialog_choices_overlay();  // Only during conversations
     }
-    
+
     // ... cursor drawing ...
-    
+
     present_frame_to_screen();
     update_palette_cycling();
 }
@@ -54,15 +54,15 @@ sprite->frame_delay_counter++;
 if (sprite->frame_delay_counter == sprite->frame_delays[current_sequence][current_frame]) {
     sprite->current_frame++;
     sprite->frame_delay_counter = 0;
-    
+
     // Check if sequence is complete
     if (sprite->current_frame == sprite->frame_counts[current_sequence]) {
         // Reset or advance sequence
         sprite->current_frame = 0;
-        
+
         if (sprite->loop_counts[current_sequence] != 0xFF) {
             sprite->loop_counter++;
-            
+
             if (sprite->loop_counter == sprite->loop_counts[current_sequence]) {
                 sprite->current_sequence++;  // Next sequence
                 sprite->loop_counter = 0;
@@ -82,7 +82,7 @@ if (sprite->movement_flags[current_frame] != 0) {
             sprite->x -= amount;
         }
     }
-    
+
     // Y-axis movement
     if (flags & 0x200) {  // Y movement enabled
         int amount = (flags >> 5) & 0x07;
@@ -92,7 +92,7 @@ if (sprite->movement_flags[current_frame] != 0) {
             sprite->y -= amount;
         }
     }
-    
+
     // Z-depth movement
     if (flags & 0x4000) {  // Z movement enabled
         int amount = (flags >> 10) & 0x07;
@@ -127,16 +127,16 @@ Main Game Loop (SUSPENDED)
 handle_conversation_tree() [TAKES OVER]
     ↓
     while (conversation_active) {  ← OUTER LOOP
-        
+
         // Display and advance through text
         while (more_text_segments) {  ← MIDDLE LOOP
-            
+
             // Show each segment with animation
             while (!time_expired && !click) {  ← INNER LOOP
-                
+
                 wait_or_process_input();
                 setup_alfred_frame_from_state();
-                
+
                 render_scene(0);  ← CALLS FULL ANIMATION CODE
                     ↓
                     update_npc_sprite_animations()  ← HERE!
@@ -144,28 +144,28 @@ handle_conversation_tree() [TAKES OVER]
                         - Advance animation frames
                         - Process movement
                         - Apply sprite changes
-                    
+
                 process_game_state(1);
-                
+
             }  // End animation loop
-            
+
         }  // End text segments
-        
+
         // Handle choices
         if (has_choices) {
             while (!choice_selected) {  ← CHOICE LOOP
-                
+
                 wait_or_process_input();
                 process_game_state(0);
                 setup_alfred_frame_from_state();
-                
+
                 render_scene(1);  ← CALLS FULL ANIMATION CODE AGAIN
                     ↓
                     update_npc_sprite_animations()  ← AND HERE!
-                
+
             }  // End choice loop
         }
-        
+
     }  // End conversation
     ↓
     Return to Main Game Loop
@@ -180,7 +180,7 @@ while (game_running) {
     process_game_state(0);
     setup_alfred_frame_from_state();
     render_scene(0);  // Calls update_npc_sprite_animations()
-    
+
     // Handle idle animations, etc.
 }
 ```
@@ -193,7 +193,7 @@ while (conversation_active) {
         wait_or_process_input();
         render_scene(0);  // SAME CALL - Calls update_npc_sprite_animations()
     }
-    
+
     // Choice selection phase (if needed)
     while (waiting_for_choice) {
         wait_or_process_input();
