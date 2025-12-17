@@ -1,0 +1,38 @@
+FE 01 FC 41 08 20 0A 00 * Te apecete pasar un buen rato, guapo ? FD
+    FB 01 08 0D 0B 00 No se, * Cuanto cobras ? FD
+        FC 41 08 20 0C 00 Completo, 25000 FD
+        FB 02 08 0D 0D 00 * No me puedes hacer una tarifa especial ?. Estoy muy desesperado FD
+        FC 41 08 20 0E 00 Bueno ... Si prescindimos de la lencer*a sexy, podr*a dej*rtelo en 20000 FD
+        FB 03 08 0D 0F 00 Todav*a es muy caro para mi. * Que m*s me puedes rebajar ? FD
+            FC 41 08 20 10 00 Eliminando el calentamiento: 15000 FD
+            FB 04 08 0D 11 00 Lo siento. Todav*a no llego FD
+                FC 41 08 20 12 00 * Que tal un franc*s ?. Solo 10000 FD
+                    FB 05 08 0D 13 00 A*n es mucho para m* FD
+                        FC 41 08 20 14 00 Deprisa y con la luz apagada: 5000 FD
+                            FB 06 08 0D 15 00 Solo dispongo de 4000 FD
+                                FC 41 08 20 16 00 Venga, de acuerdo. Pero tu pones los condones FD
+                                    FB 07 08 0D 17 00 Estooo ... Ahora mismo no tengo. Voy a buscarlos FD
+                                        FC 41 08 20 18 00 No vuelvas sin ellos F8 48 01
+                                    FB 07 08 0D 19 00 * Los con qu* ? FD
+                                        FC 41 08 20 1A 00 *Los con qu*? Pero tu no sabes que en 1981 se identific* a cinco personas enfermas con una patolog*a hasta entonces desconocida que era de origen v*rico seg*n las tesis oficiales (aunque yo me reservo mi opini*n: despu*s si te interesa te la doy) y que se la denomin* con el nombre de SIDA. * Tus padres no te han hablado del SIDA y de preservativos ?. * En la escuela tampoco ? FD
+                                        FB 08 08 0D 1B 00 Pues no FD
+                                        FC 41 08 20 1C 00 Entonces, * tu no sabes que el 23 de abril de 1984 el Dr Gallo anunci* en una rueda de prensa el descubrimiento del retrovirus productor del SIDA al que llam* HTLV-III, pero que en realidad el aut*ntico descubridor fue el Dr Montaigner, director del equipo de investigaci*n del Instituto Pasteur, que le hab*a pasado al Dr Gallo unas fotografias de un virus que habia llamado LAV y que despu*s ser*an usurpadas por el Dr Gallo para hacer pasar el descubrimiento como propio, hechos por los que el Estado franc*s demand* al gobierno de los Estados Unidos reclamando el derecho de la patente y el m*rito del descubrimiento del retrovirus, al que se rebautiz* finalmente con el ahora tan popular nombre de VIH, es decir, Virus de la Immunodeficiencia Humana ?. FD
+                                        FB 09 08 0D 1D 00 * Eso es lo de la bomba bacteriol*gica de Mururoa ? FD
+                                        FC 41 08 20 1E 00 * Ignorante !. Las bombas que han estallado en el atol*n de Mururoa no son bacteriol*gicas, sino at*micas, producidas por la reacci*n en cadena de la fisi*n del *tomo, como se deduce de los trabajos de f*sicos de la talla de Einstein y Openheimer (entre otros). Pero no quiero aburrirte con esto ... FD
+                                        FB 0A 08 0D 1F 00 Es que todav*a tengo pendiente la f*sica de quinto... FD
+                                        FC 41 08 20 20 00 De lo que yo te hablaba es de un virus que como se explica en todas las campa*as informativas sobre el SIDA es de transmisi*n sexual o sangu*nea. En *stas, se habla de grupos de riesgo, pero para m* eso en el fondo esconde conductas estigmatizantes de ciertos comportamientos sociales como son la prostituci*n, los drogadictos y los homosexuales. No obstante, mas vale prevenir que curar. Sobretodo en este caso en el que se habla de la incurabilidad de la enfermedad, y los cient*ficos no se acaban de poner de acuerdo en el tratamiento. As* que "PONTELO" F8 48 01
+                            FB 06 08 0D 21 00 Para no verte, prefiero no pagar FD
+                                FC 41 08 20 22 00 Tu te lo pierdes F4
+                    FB 05 08 0D 23 00 Es que no se idiomas FD
+                        FC 41 08 20 24 00 Griego si que sabr*s, maripili F4
+            FB 04 08 0D 25 00 Acabo de acordarme que pertenezco a un club de castidad FD
+                FC 41 08 20 26 00 S* claro, con esa cara de vicioso. * Ala, pos a misa ! F4
+        FB 03 08 0D 27 00 Yo no uso ese tipo de ropa, * eh ! FD
+            FC 41 08 20 28 00 Pues si no te pones ese tipo de ropa llevar*s los pantalones cagados F4
+FB 01 08 0D 29 00 No puedo. Estoy buscando a una princesa FD
+    FC 41 08 20 2A 00 S*, es la t*pica excusa. * MARICON ! F4
+F7 FC 41 08 20 2B 00 * Has conseguido los condones ? FD
+    F1 01 08 0D 2C 00 Estoy en ello FD
+        FC 41 08 20 2D 00 As* me gusta: que seas perseverante F4
+    F1 01 08 0D 2E 00 No los hay de mi tama*o, nena FD
+        FC 41 08 20 2F 00 * Tan peque*a la tienes ?. * Eh tu, mir*n ! S* t* cabez*n, el de tres dimensiones. Te excita mirar * verdad ?. Est*s aqu* espi*ndonos para ver un poco de morbo. Te pongo cachondo, estoy buena *eh? Pues si quieres verme en pelotas, como este pringao no consigue condones, pulsa 250 veces la tecla x F8 49 01
