@@ -315,7 +315,7 @@ struct Room {
     u32 convPos = pairs[12].offset + sizeof(descriptions);
     
    // u8 conversations[convSize] @(convPos);
-    ConversationElement elements[while($ < pairs[12].offset + pairs[12].size)] @(convPos);
+   // ConversationElement elements[while($ < pairs[12].offset + pairs[12].size)] @(convPos);
     
 };
 
@@ -324,3 +324,61 @@ struct Room {
 
 
 Room rooms[56] @0x00000;
+struct DialogLine {
+u8 type;
+u8 idx;
+u8 colorIndicator;
+u8 color;
+u8 lineNumber;
+u8 separator;
+ConvText text;
+u8 end;
+if(end == 0xF8) {
+u8 action1;
+u8 action2;
+}
+};
+
+struct Conversation {
+
+DialogLine teapetece;
+DialogLine nosecuando;
+DialogLine completo;
+DialogLine tarifa;
+DialogLine bueno;
+DialogLine todavia;
+DialogLine calentamiento;
+DialogLine nollego;
+DialogLine frances;
+DialogLine aunmucho;
+DialogLine luzapagada;
+DialogLine solo4000;
+DialogLine tupones;
+DialogLine notengo;
+DialogLine novuelvas;
+DialogLine losconque;
+DialogLine chapa1;
+DialogLine puesno;
+DialogLine chapa2;
+DialogLine mururoa;
+DialogLine chapa3;
+DialogLine fisica;
+DialogLine chapa4;
+DialogLine paranoverte;
+DialogLine tutelopierdes;
+DialogLine idiomas;
+DialogLine griego;
+DialogLine castidad;
+DialogLine vicioso;
+DialogLine ropa;
+DialogLine pantalonescagados;
+DialogLine princesa;
+DialogLine maricon;
+DialogLine hasconseguido;
+DialogLine enello;
+DialogLine perseverante;
+DialogLine tamano;
+DialogLine pequena;
+};
+
+Conversation conv @ 0xB21DE;
