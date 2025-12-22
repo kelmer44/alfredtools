@@ -19,7 +19,8 @@ u8 GUIText[0xE6] @ 0x49202;
 char adios[0x2D] @ 0x492E8;
 u8 processingText[0x30D] @ 0x49C48;
 u8 credits[0x9EC] @ 0x49F60;
-u8 randomText[0x2F83] @ 0x441DA;
+u8 randomText[12143] @ 0x441DA;
+u8 izDer[19] @ 0x47149;
 
 struct DOSHeader {
     char signature[2] [[hex::spec_name("e_magic")]];
