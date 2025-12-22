@@ -653,6 +653,220 @@ palette_offset = *(room_entry + 0x30);
 
 ---
 
+## Walk Target Calculation Algorithm
+
+### Overview
+
+When the player clicks somewhere on screen, the game calculates where Alfred should walk to. This is used for:
+1. Determining the actual walk destination when clicking on the floor
+2. **Determining exit cursor zones** - the cursor turns into "exit" when the calculated walk target would land on an exit trigger area
+
+### Function: `calculate_walk_target_from_point` (0x0001a0e0)
+
+Original Ghidra name: `check_hotspot_hover`
+
+#### Source Point Determination
+
+The function first determines the "source point" from which to calculate the walk target:
+
+```c
+// If hovering over a sprite (mouse_hover_state == 1)
+// AND sprite has action flags OR is animated (frames != 1)
+if (mouse_hover_state == 0x01 && (sprite.action_flags != 0 || sprite.frame_count != 1)) {
+    // Use sprite center-bottom as source
+    source_x = sprite.x + sprite.width / 2;
+    source_y = sprite.y + sprite.height;  // Bottom edge
+}
+// If hovering over a hotspot (mouse_hover_state == 2)
+else if (mouse_hover_state == 0x02) {
+    // Use hotspot center-bottom as source
+    source_x = hotspot.x + hotspot.width / 2;
+    source_y = hotspot.y + hotspot.height;  // Bottom edge
+}
+// Otherwise use mouse position (passed as parameters)
+else {
+    source_x = mouse_x;
+    source_y = mouse_y;
+}
+```
+
+#### Distance Calculation Per Walkbox
+
+For each walkbox, calculate Manhattan distance with **direction tracking**:
+
+```c
+// X distance calculation
+if (source_x < walkbox.x) {
+    // Source is LEFT of walkbox
+    x_distance = walkbox.x - source_x;
+    x_direction = 1;  // Need to move RIGHT
+}
+else if (source_x > walkbox.x + walkbox.width) {
+    // Source is RIGHT of walkbox (strictly greater than right edge)
+    // Distance to the rightmost pixel (x + width - 1)
+    x_distance = source_x - (walkbox.x + walkbox.width - 1);
+    x_direction = 0;  // Need to move LEFT
+}
+else {
+    // Source is inside walkbox horizontally (source_x is in [walkbox.x, walkbox.x + walkbox.width])
+    x_distance = 0;
+    // direction doesn't matter when distance is 0
+}
+
+// Y distance calculation (same logic)
+if (source_y < walkbox.y) {
+    y_distance = walkbox.y - source_y;
+    y_direction = 1;  // Need to move DOWN
+}
+else if (source_y > walkbox.y + walkbox.height) {
+    // Source is BELOW walkbox (strictly greater than bottom edge)
+    // Distance to the bottommost pixel (y + height - 1)
+    y_distance = source_y - (walkbox.y + walkbox.height - 1);
+    y_direction = 0;  // Need to move UP
+}
+else {
+    y_distance = 0;
+}
+
+total_distance = x_distance + y_distance;
+```
+
+#### Final Target Calculation
+
+After finding the walkbox with minimum distance:
+
+```c
+// Apply distances with direction to get final target
+if (best_x_direction == 1) {
+    target_x = source_x + best_x_distance;  // Move right
+} else {
+    target_x = source_x - best_x_distance;  // Move left
+}
+
+if (best_y_direction == 1) {
+    target_y = source_y + best_y_distance;  // Move down
+} else {
+    target_y = source_y - best_y_distance;  // Move up
+}
+```
+
+### Complete ScummVM Implementation
+
+```cpp
+Common::Point calculateWalkTarget(Common::Array<WalkBox> &walkboxes,
+                                   int sourceX, int sourceY,
+                                   int mouseHoverState,
+                                   int hotspotSpriteIndex) {
+
+    // Step 1: Determine actual source point
+    if (mouseHoverState == 1) {
+        // Hovering over sprite - check if it has action flags or is animated
+        Sprite *sprite = getSprite(hotspotSpriteIndex);
+        if (sprite->actionFlags != 0 || sprite->frameCount != 1) {
+            sourceX = sprite->x + sprite->width / 2;
+            sourceY = sprite->y + sprite->height;
+        }
+    }
+    else if (mouseHoverState == 2) {
+        // Hovering over hotspot - use hotspot center-bottom
+        Hotspot *hotspot = getHotspot(hotspotSpriteIndex);
+        sourceX = hotspot->x + hotspot->width / 2;
+        sourceY = hotspot->y + hotspot->height;
+    }
+    // else: use sourceX, sourceY as passed (mouse position)
+
+    // Step 2: Find nearest walkbox
+    uint32 minDistance = 0xFFFF;
+    int bestXDistance = 0;
+    int bestYDistance = 0;
+    int bestXDirection = 0;  // 0 = left/subtract, 1 = right/add
+    int bestYDirection = 0;  // 0 = up/subtract, 1 = down/add
+
+    for (size_t i = 0; i < walkboxes.size(); i++) {
+        int xDistance = 0;
+        int xDirection = 0;
+        int yDistance = 0;
+        int yDirection = 0;
+
+        // Calculate X distance with direction
+        if (sourceX < walkboxes[i].x) {
+            xDistance = walkboxes[i].x - sourceX;
+            xDirection = 1;  // RIGHT
+        }
+        else if (sourceX > walkboxes[i].x + walkboxes[i].w) {
+            // KEY: subtract 1 from right edge
+            xDistance = sourceX - (walkboxes[i].x + walkboxes[i].w - 1);
+            xDirection = 0;  // LEFT
+        }
+        // else: sourceX is inside, xDistance = 0
+
+        // Calculate Y distance with direction
+        if (sourceY < walkboxes[i].y) {
+            yDistance = walkboxes[i].y - sourceY;
+            yDirection = 1;  // DOWN
+        }
+        else if (sourceY > walkboxes[i].y + walkboxes[i].h) {
+            // KEY: subtract 1 from bottom edge
+            yDistance = sourceY - (walkboxes[i].y + walkboxes[i].h - 1);
+            yDirection = 0;  // UP
+        }
+        // else: sourceY is inside, yDistance = 0
+
+        uint32 totalDistance = xDistance + yDistance;
+
+        if (totalDistance < minDistance) {
+            minDistance = totalDistance;
+            bestXDistance = xDistance;
+            bestYDistance = yDistance;
+            bestXDirection = xDirection;
+            bestYDirection = yDirection;
+        }
+    }
+
+    // Step 3: Calculate final target point
+    Common::Point target;
+
+    if (bestXDirection == 1) {
+        target.x = sourceX + bestXDistance;
+    } else {
+        target.x = sourceX - bestXDistance;
+    }
+
+    if (bestYDirection == 1) {
+        target.y = sourceY + bestYDistance;
+    } else {
+        target.y = sourceY - bestYDistance;
+    }
+
+    return target;
+}
+```
+
+### Key Differences from Naive Implementation
+
+1. **Edge calculation**: When source is to the RIGHT of walkbox, use `(x + width - 1)` not `(x + width)`
+2. **Direction tracking**: Store direction flags (0/1) alongside distances
+3. **Sprite/Hotspot source**: Use center-bottom of sprite/hotspot, not mouse position
+4. **Apply direction at end**: Don't calculate target during distance loop, apply directions after finding minimum
+
+### Walkbox Data Structure
+
+Location: `room_sprite_data_ptr + 0x218`
+Count: `room_sprite_data_ptr + 0x213` (1 byte)
+Entry size: 9 bytes
+
+```c
+struct WalkBox {
+    uint16 x;       // +0x00
+    uint16 y;       // +0x02
+    uint16 width;   // +0x04
+    uint16 height;  // +0x06
+    uint8  flags;   // +0x08 (visited flag at runtime stored at +0x220)
+};
+```
+
+---
+
 ## Ghidra Labels Renamed During Analysis
 
 The following data labels were renamed in Ghidra for clarity:
@@ -667,3 +881,9 @@ The following data labels were renamed in Ghidra for clarity:
 | `0x00047c18` | `PICK_UP_ACTION_DISPATCH_TABLE` |
 | `0x00047d24` | `ROOM_SCRIPT_DISPATCH_TABLE` |
 | `0x00047e58` | `F8_ACTION_DISPATCH_TABLE` |
+
+### Functions Renamed
+
+| Address | New Name |
+|---------|----------|
+| `0x0001a0e0` | `calculate_walk_target_from_point` |
