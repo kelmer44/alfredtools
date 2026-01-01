@@ -204,16 +204,71 @@ alfred.3, alfred.4, alfred.5, alfred.6, alfred.7, alfred.8, alfred.9,
 alfred.a, alfred.b, sound.cfg, salvajoc.xxx, kk.s3m, 1.s3m, 2.s3m...
 ```
 
+## ALFRED.8 Default State System (VERIFIED)
+
+### Overview
+ALFRED.8 is a 649-byte file containing **default room state values** in a packed format. At game startup, the `apply_alfred8_room_defaults` function (VA 0x14a27) reads this file and patches the corresponding values into ALFRED.1.
+
+### ALFRED.8 Format
+```
+[room:2 LE][offset:2 LE][type:1][data:varies]
+...
+Terminator: 0xFFFF (room) or 0xC9CA (alternate)
+```
+
+Type values:
+- **0x01**: 1-byte value
+- **0x04**: 4-byte value (two uint16 X,Y coordinates)
+- **0x12**: 14-byte special data block
+
+### Key Entries Found
+| Room | Offset | Type | Value | Meaning |
+|------|--------|------|-------|---------|
+| 0 | 0x1c1 | byte | 0 | Exit disabled |
+| 0 | 0x47d | 4byte | (191, 243) | Hotspot position |
+| 14 | 0x213 | byte | 1 | Default walkbox count = 1 |
+| 14 | 0x221 | 0x12 | ... | Walkbox modification data |
+| 15 | 0x47d | 4byte | (414, 82) | Hotspot position |
+
+### Hotspot Disable Pattern
+Hotspots are disabled by setting their position to (640, 400) - offscreen. Several rooms have hotspots at these "disabled" coordinates in ALFRED.8.
+
+### Function: apply_alfred8_room_defaults (VA 0x14a27)
+Called during `load_dual_layer_data` (after "Actualizando ALFRED.1" message).
+- Reads ALFRED.8 and ALFRED.9 into memory buffers
+- Iterates through packed entries
+- For each entry: seeks to room offset in ALFRED.1 and writes the data
+- Uses `write_data_to_alfred1` function (VA 0x2a6b7) to perform the writes
+
+## Save/Load Menu System
+
+### Menu Button Table (VA 0x486f8)
+Format: 10 bytes per entry - x:2, y:2, w:1, h:1, func_ptr:4
+
+| Entry | Rect | Function | Purpose |
+|-------|------|----------|---------|
+| 0 | (140,115,60x60) | 0x12da7 | ? |
+| 1 | (222,107,60x60) | 0x12e71 | ? |
+| 2 | (304,99,60x60) | 0x12e87 | ? |
+| 3 | (386,91,60x60) | 0x12e9d | ? |
+| 4 | (132,188,75x23) | 0x132e4 | **SAVE** |
+| 5 | (134,222,72x25) | 0x13002 | **LOAD** |
+| 6 | (134,259,72x25) | 0x13c92 | ? |
+| 7 | (134,294,70x25) | 0x12f3f | **QUIT?** |
+| 8 | (217,293,32x32) | 0x141aa | ? |
+| 9 | (468,88,22x32) | 0x12ee6 | ? |
+
+### Conversation State Array
+- Location: 0x4fba4 (224 bytes = 56 rooms × 4 slots)
+- Indexed by: `room_number * 4 + branch_slot`
+- Non-zero value = branch taken, affects text display in `load_room_and_init_alfred`
+
 ## Next Steps for Complete Analysis
 
-1. Find the actual save/load functions by:
-   - Tracing file write operations
-   - Finding sprintf call that builds "SALVAJOC.%03d"
+1. Decompile save/load functions at 0x132e4 and 0x13002 (currently not recognized by Ghidra)
 
-2. Determine exact state array sizes and offsets
+2. Map remaining F8 actions to state changes
 
-3. Map which F8 actions modify which state
+3. Document full SALVAJOC.XXX format including all state sections
 
-4. Verify walkbox modification mechanism in Room 14
-
-5. Test save/load cycle to confirm all state is preserved
+4. Test save/load cycle to verify state persistence
