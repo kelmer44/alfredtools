@@ -223,7 +223,10 @@ enum SpeakerID : u8 {
 // Variable-length text until control byte
 // Variable-length text until control byte (0xFD)
 struct ConvText {
-    u8 text_bytes[while(std::mem::read_unsigned($, 1) != 0xFD)];
+    u8 text_bytes[while(
+    std::mem::read_unsigned($, 1) != 0xFD && 
+    std::mem::read_unsigned($, 1) != 0xF8 && 
+    std::mem::read_unsigned($, 1) != 0xF4)];
 } [[sealed]];
 
 
@@ -323,7 +326,7 @@ struct Room {
 //ThisAnimHeader room3anims[8] @0xEB57A;
 
 
-Room rooms[56] @0x00000;
+//Room rooms[56] @0x00000;
 struct DialogLine {
 u8 type;
 u8 idx;
