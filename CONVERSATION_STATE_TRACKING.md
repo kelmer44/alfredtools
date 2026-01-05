@@ -13,22 +13,34 @@ The Alfred Pelrock game tracks conversation progress using **two separate mechan
 
 ### Location in Code
 - `handle_conversation_tree` at **0x00018690**
-- Choice disabling happens at **0x00018c48**
+- Choice disabling logic at **0x00018c38-0x00018c48**
+- Repeatable check at **0x00018c3d**: `CMP [ESI-2], 0xF1`
 
 ### How It Works
 
 When a player selects a conversation choice:
 
-1. The choice marker byte at that position changes from `0xFB` (or `0xF1`) to `0xFA`
+1. **The FA marker is written at position+2** (where 0x08 text color command is), NOT replacing FB!
 2. This change is written **directly to ALFRED.1 file** at runtime
-3. A 6-byte journal record is written to the save journal file (file handle 0x0004f914)
+3. A 6-byte journal record is written to ALFRED.A (file handle 0x0004f914)
+4. **F1 markers are NEVER disabled** - code at 0x18c3d checks if marker-2 == 0xF1 and skips
 
-### Text Data Structure
+### Two Types of Choice Markers
+
+| Marker | Count | Behavior | Purpose |
+|--------|-------|----------|--------|
+| **0xFB** | 1180 | ONE-TIME: Gets disabled after selection | Story-critical choices |
+| **0xF1** | 192 | REPEATABLE: Never disabled | Info/repeat questions |
+
+### Text Data Structure (CORRECTED)
 
 ```
 Before selection:  FD FB <choice#> 08 0D <voice_id_lo> <voice_id_hi> "Text..."
-After selection:   FD FA <choice#> 08 0D <voice_id_lo> <voice_id_hi> "Text..."
-                      ^^ Changes from FB to FA
+After selection:   FD FB <choice#> FA 0D <voice_id_lo> <voice_id_hi> "Text..."
+                                   ^^ FA written HERE (at +2), replacing 0x08
+
+Repeatable choice: FD F1 <choice#> 08 0D <voice_id_lo> <voice_id_hi> "Text..."
+                      ^^ F1 marker - selecting this does NOT write FA
 ```
 
 ### Journal Record Format (6 bytes at 0x0004fb70)
@@ -40,11 +52,25 @@ After selection:   FD FA <choice#> 08 0D <voice_id_lo> <voice_id_hi> "Text..."
 | +0x04 | 1 | length | Always 1 (single byte) |
 | +0x05 | 1 | value | Always 0xFA (disabled marker) |
 
-### Code Flow
+### Code Flow (Ghidra Analysis)
+
+```asm
+; At 0x00018c38 - Check if this is a repeatable F1 marker
+00018c38: MOV AL,byte ptr [ESI + -0x2]   ; Get marker 2 bytes before current pos
+00018c3d: CMP EAX,0xf1                   ; Is it F1 (repeatable)?
+00018c42: JZ 0x00018d0e                  ; Skip disabling if F1!
+
+; At 0x00018c48 - Write FA to disable (only for FB markers)
+00018c48: MOV byte ptr [ESI],0xfa        ; Write FA at position+2 (where 0x08 was)
+```
 
 ```c
-// At 0x00018c48 in handle_conversation_tree:
-*current_text_ptr = 0xFA;  // Mark as disabled
+// Equivalent C code:
+if (current_text_ptr[-2] == 0xF1) {
+    // F1 marker = repeatable choice, skip disabling
+    goto skip_disable;
+}
+*current_text_ptr = 0xFA;  // Write FA at position+2 (the 0x08 byte)
 offset = current_text_ptr - room_text_data_ptr;
 
 // Write to ALFRED.1 file
@@ -53,17 +79,24 @@ write_data_to_alfred1(current_text_ptr, 1, file_handle_alfred1);
 
 // Write journal record
 _DAT_0004fb70 = current_room_number;
-_DAT_0004fb72 = offset;
-DAT_0004fb74 = 1;      // length
-DAT_0004fb75 = 0xFA;   // value
+_DAT_0004fb72 = offset;  // Points to the FA position (+2 from FB)
+DAT_0004fb74 = 1;        // length
+DAT_0004fb75 = 0xFA;     // value
 write_data_to_alfred1(&DAT_0004fb70, 6, DAT_0004f914);  // journal file
 ```
 
 ### Effect on Choice Display
 
-When parsing choices (around 0x000189a1), if the marker is `0xFA`, the choice is skipped:
+When parsing choices (around 0x000189a1-0x000189a6):
+```asm
+000189a1: CMP EAX,0xfa    ; Check if byte at +2 is FA (disabled)
+000189a6: JNZ 0x000189aa  ; If not FA, don't decrement counter
+000189a8: DEC DH          ; FA found - decrement visible choice count
+```
+
+- Code reads byte at marker+2 to check for FA
 - Choice counter decrements for each `0xFA` encountered
-- If all choices in a branch become `0xFA`, conversation auto-proceeds to response
+- If all choices in a branch have `0xFA` at +2, conversation auto-proceeds
 
 ---
 
@@ -164,16 +197,24 @@ How does the game restore conversation state when starting a new game?
 #### ALFRED.B Format (Pair 12 - Text Data)
 - Contains 1180 entries across 28 rooms
 - Each entry: `[room:2][offset:2][length:1][value:1]`
-- **All entries write 0x08** (speaker ID byte), NOT the FB marker!
+- **All entries write 0x08** (text color command byte)
 - Uses offset 0x60 (Pair 12) in room directory
 
-### Critical Finding
+### Critical Finding - ALFRED.B Purpose (VERIFIED)
 
-**ALFRED.B does NOT restore FB markers!**
+**ALFRED.B restores the 0x08 byte that FA overwrites!**
 
-- Every ALFRED.B entry writes `0x08` to the speaker ID position
-- The FB/FA marker is at `offset - 2` from the speaker ID
-- ALFRED.B restores speaker IDs, not conversation enable/disable state
+- Structure: `FB [idx] 08 0D [text...]`
+- When disabled: `FB [idx] FA 0D [text...]` (0x08 → FA)
+- ALFRED.B targets exactly these positions to restore 0x08
+- This re-enables the conversation choices on game startup
+
+### Why This Works
+
+1. FA is written at FB+2 (where 0x08 was)
+2. ALFRED.B stores 0x08 values for all 1180 FB marker positions
+3. On startup, ALFRED.B patches restore 0x08, "undoing" all FA markers
+4. Result: All FB choices become enabled again
 
 ### Actual New Game Mechanism
 
@@ -188,32 +229,55 @@ The `verify_cd_authenticity()` call in `game_initialization()` suggests the orig
 
 ## 5. Summary Tables
 
+### Choice Marker Types (VERIFIED)
+
+| Marker | Count | Position+2 | Behavior |
+|--------|-------|------------|----------|
+| **0xFB** | 1180 | 0x08 → FA when disabled | ONE-TIME: Disabled after selection |
+| **0xF1** | 192 | 0x08 (never changes) | REPEATABLE: Can select multiple times |
+
+### Binary Structure (VERIFIED)
+
+```
+Enabled:   FB [idx] 08 0D [voice_lo] [voice_hi] [text...]
+                    ^^ text color command
+
+Disabled:  FB [idx] FA 0D [voice_lo] [voice_hi] [text...]
+                    ^^ FA overwrites 0x08
+
+Repeatable: F1 [idx] 08 0D [voice_lo] [voice_hi] [text...]
+            ^^ F1 marker - code at 0x18c3d skips FA write
+```
+
 ### State Tracking Mechanisms
 
 | Level | Marker | Storage | Persistence |
 |-------|--------|---------|-------------|
-| Choice/Branch | `0xFB` → `0xFA` | Direct in ALFRED.1 text | Written to file |
+| Choice/Branch | `0xFB+2` → `0xFA` | Direct in ALFRED.1 text | Written to file |
 | Root | `0xFE` | `conversation_branch_state_array[room*4+slot]` | Save journal |
 
 ### Control Code Markers
 
-| Byte | Meaning |
-|------|---------|
-| `0xFE` | Conversation root marker |
-| `0xFB` | Dialog choice (enabled) |
-| `0xFA` | Dialog choice (disabled/used) |
-| `0xF1` | Alternative choice marker |
-| `0xF7` | Branch/root end marker |
-| `0xFD` | Text line terminator |
-| `0xFC` | Speaker/room identifier |
+| Byte | Meaning | Notes |
+|------|---------|-------|
+| `0xFE` | Conversation root marker | Starts a conversation tree |
+| `0xFB` | One-time dialog choice | Gets disabled (FA at +2) after selection |
+| `0xF1` | Repeatable dialog choice | Never disabled, can select multiple times |
+| `0xFA` | Disabled marker | Written at FB+2 to disable choice |
+| `0x08` | Text color command | At FB+2, overwritten by FA when disabled |
+| `0x0D` | Text color value | Always follows 0x08, not overwritten |
+| `0xF7` | Branch/root end marker | |
+| `0xFD` | Text line terminator | |
+| `0xFC` | Speaker/room identifier | |
 
 ### File Roles
 
 | File | Purpose | State Reset Role |
 |------|---------|------------------|
-| ALFRED.1 | Main game data | Modified at runtime with FA markers |
-| ALFRED.8 | Room defaults | Restores sprite/object state (Pair 10) |
-| ALFRED.B | Conversation defaults | Restores speaker IDs only (Pair 12) |
+| ALFRED.1 | Main game data | Modified at runtime (FA written at FB+2) |
+| ALFRED.8 | Room defaults | Restores exits, hotspots, walkboxes (82 records) |
+| ALFRED.B | Conversation resets | Restores 0x08 at FA positions (1180 records) |
+| ALFRED.A | Change journal | Tracks FA writes, deleted on clean exit |
 
 ---
 
@@ -234,10 +298,12 @@ The `verify_cd_authenticity()` call in `game_initialization()` suggests the orig
 
 | Address | Comment |
 |---------|---------|
-| 0x00018c48 | MARK CHOICE AS DISABLED: Writes 0xFA to the 0xFB/0xF1 marker |
+| 0x00018c38 | CHECK F1 REPEATABLE: If marker at [ESI-2] is 0xF1, skip disabling |
+| 0x00018c48 | WRITE FA AT FB+2: Disables by writing 0xFA where 0x08 was |
 | 0x00018c6a | PERSIST TO ALFRED.1: Seeks to text data offset |
 | 0x00018c7e | WRITE 0xFA MARKER to ALFRED.1 file |
 | 0x00018cbb | JOURNAL ENTRY: Writes 6-byte record to save journal |
+| 0x000189a1 | CHECK DISABLED: If byte at marker+2 is 0xFA, skip choice |
 | 0x000157ce | ROOT SKIP CHECK: conversation_branch_state_array[room*4 + slot] |
 | 0x0001b688 | STORE ROOT STATE: marks entire conversation roots as disabled |
 | 0x0001b717 | UPDATE TEXT POINTER: updates pointer table to skip disabled root |
@@ -246,13 +312,21 @@ The `verify_cd_authenticity()` call in `game_initialization()` suggests the orig
 
 ## 7. Key Insights
 
-1. **No Topic IDs**: The game uses physical byte offsets, not named topic identifiers
+1. **FA Placement (CRITICAL)**: FA is written at FB+2 (the 0x08 byte), NOT replacing FB!
 
-2. **Positional Tracking**:
-   - Individual choices: Modified in-place at their byte offset in ALFRED.1
+2. **Two Marker Types**:
+   - **0xFB** (1180): One-time choices, disabled after selection
+   - **0xF1** (192): Repeatable choices, never disabled
+
+3. **ALFRED.B Purpose**: Restores 0x08 bytes that FA overwrote, effectively re-enabling conversations
+
+4. **No Topic IDs**: The game uses physical byte offsets, not named topic identifiers
+
+5. **Positional Tracking**:
+   - Individual choices: FA written at FB+2 in ALFRED.1
    - Root trees: Index-based array (`room * 4 + slot`)
 
-3. **NPC Mapping**: Sprite order in room data determines conversation root assignment
+6. **NPC Mapping**: Sprite order in room data determines conversation root assignment
 
 4. **File Modification**: ALFRED.1 is modified at runtime - not just memory!
 

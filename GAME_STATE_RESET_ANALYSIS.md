@@ -4,14 +4,17 @@
 
 After extensive analysis of the Alfred Pelrock game's code and data files, here is the definitive understanding of how game state reset works:
 
-### Key Finding: NO DYNAMIC FB RESTORATION EXISTS
+### Key Finding: FA OVERWRITES 0x08, NOT FB!
 
-Neither ALFRED.8 nor ALFRED.B contains records to restore FB conversation markers. The game **does NOT reset conversation state (FB markers) on startup**.
+When a conversation choice is disabled:
+- FA is written at **FB+2** (where the 0x08 text color command is)
+- The FB marker itself remains unchanged
+- ALFRED.B restores the 0x08 bytes that FA overwrote
 
-| File | Records | Restores FB? | Purpose |
-|------|---------|--------------|---------|
-| ALFRED.8 | 82 | **0** | Room metadata (exits, hotspots, walkboxes) |
-| ALFRED.B | 1180 | **0** | Text color bytes (0x08) |
+| File | Records | Purpose |
+|------|---------|--------|
+| ALFRED.8 | 82 | Room metadata (exits, hotspots, walkboxes) |
+| ALFRED.B | 1180 | **Restores 0x08 bytes overwritten by FA** |
 
 ## The Three Categories of Game State
 
@@ -31,44 +34,47 @@ When loading a save: The game reads these from the save file and restores them t
 
 On startup: `apply_alfred8_room_defaults` reads ALFRED.8 and patches these values into ALFRED.1, restoring the default room configurations.
 
-### Category 3: Conversation Text State (FB/FA markers in ALFRED.1)
-- FB = Available conversation choice
-- FA = Used/exhausted conversation choice  
+### Category 3: Conversation Text State (FB/F1/FA markers in ALFRED.1)
 
-**CRITICAL: These are NEVER reset by any startup code!**
+Two types of choice markers:
+- **FB** = One-time choice (1180 total) - gets disabled after selection
+- **F1** = Repeatable choice (192 total) - never disabled
+- **FA** = Disabled marker - written at FB+2 to disable a choice
+
+Structure: `FB [idx] 08 0D [text...]` → `FB [idx] FA 0D [text...]` when disabled
 
 ## How Conversation State Actually Works
 
 ### During Gameplay (handle_conversation_tree at 0x00018690):
-1. Player selects a conversation choice marked with FB
-2. FB is changed to FA in ALFRED.1 (via write_data_to_alfred1)
-3. A journal record is written to ALFRED.A: `[room:2][offset:2][1][0xFA]`
-4. Memory array at conversation_branch_state_array is updated
+1. Player selects a conversation choice
+2. Code checks at 0x18c3d: Is marker at position-2 == 0xF1? If yes, skip (repeatable)
+3. For FB markers: FA is written at position+2 (the 0x08 byte) in ALFRED.1
+4. A journal record is written to ALFRED.A: `[room:2][offset:2][1][0xFA]`
+5. The offset in journal points to the FA position (FB+2), not the FB itself
 
 ### The Journal (ALFRED.A) Purpose:
-- **Write-only during gameplay** - stores FA conversions
-- **Deleted on normal exit** - `thunk_FUN_00031f2d("alfred.a")` called at end of `game_initialization`
-- **NOT read for revert purposes** - No code reads journal to restore FB markers
+- **Write-only during gameplay** - stores FA write locations
+- **Deleted on normal exit** - `thunk_FUN_00031f2d("alfred.a")` called at end
+- **NOT read for revert purposes** - No code reads journal to restore values
 
-### The ALFRED.B Purpose:
-All 1180 records restore `0x08` (text color command) at offsets 2 bytes after FB markers:
+### The ALFRED.B Purpose (CORRECTED):
+All 1180 records restore `0x08` at the exact positions where FA gets written:
 ```
-Text structure: FB [choice_idx] 08 0D [text...]
-                              ^^ ALFRED.B targets this byte
+Before disable: FB [idx] 08 0D [text...]
+After disable:  FB [idx] FA 0D [text...]  <- FA overwrites 0x08
+ALFRED.B:       Restores 08 at this position on startup!
 ```
-This restores text formatting, NOT the FB marker itself.
+**ALFRED.B DOES reset conversation state by restoring the 0x08 bytes!**
 
-## Why FB Markers Don't Need Resetting
+## How Conversation Reset Works
 
-The game's design assumes:
+The game's design:
 
-1. **Fresh Install = Fresh State**: ALFRED.1 is extracted from PACKET.001 during installation with all FB markers intact.
+1. **On startup**: `apply_alfred8_room_defaults` applies ALFRED.B patches
+2. **ALFRED.B restores 0x08**: Overwrites any FA markers back to 0x08
+3. **Result**: All FB choices become enabled again (0x08 at +2, not FA)
 
-2. **No "New Game" Feature**: The game has no way to start over except reinstalling.
-
-3. **Save Games Store Memory State**: The conversation_branch_state_array (224 bytes at 0x0004fba4) tracks which conversations are exhausted. This is saved/loaded separately from ALFRED.1.
-
-4. **ALFRED.1 Modifications Accumulate**: As you play, FA markers accumulate in ALFRED.1 across sessions. This is intentional - the file reflects your total game progress.
+4. **F1 markers are never touched**: They don't get FA written, don't need restoration
 
 ## The Real Reset Flow
 
