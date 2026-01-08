@@ -81,7 +81,7 @@ The game's design:
 ```
 INSTALL:
   PACKET.001 → extract → ALFRED.1 (pristine, all FB)
-  
+
 STARTUP (every time):
   open_all_resource_files()     → Opens ALFRED.A (creates if needed)
   load_alfred8_and_alfred9()    → Patches room data defaults to ALFRED.1
