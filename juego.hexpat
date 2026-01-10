@@ -10,6 +10,14 @@ import std.string;
 import type.guid;
 import type.time;
 
+struct RandomText {
+    u8 fd;
+    char data[while(
+        std::mem::read_unsigned($, 1) != 0xFD
+    )];
+
+};
+
 
 u8 songNames[0x393] @ 0x49893;
 u8 roomNames[0x537] @ 0x49315;
@@ -19,7 +27,9 @@ u8 GUIText[0xE6] @ 0x49202;
 char adios[0x2D] @ 0x492E8;
 u8 processingText[0x30D] @ 0x49C48;
 u8 credits[0x9EC] @ 0x49F60;
-u8 randomText[12143] @ 0x441DA;
+
+RandomText randomText[196] @ 0x441DA;
+//u8 randomText[12143] @ 0x441DA;
 u8 izDer[19] @ 0x47149;
 
 struct DOSHeader {
