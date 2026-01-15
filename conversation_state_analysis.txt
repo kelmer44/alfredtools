@@ -1,0 +1,58 @@
+Room 2 text data: offset 0x0B204A, size 4142
+
+Analyzing Room 2 conversation structure:
+============================================================
+
+FE (primary root) markers found: 1
+  Offset +0x0194: FE 01 (root index 1)
+
+F7 FC (secondary root) markers found: 1
+  Offset +0x0E72
+
+F8 action markers found: 3
+  Offset +0x042B: F8 0148 ...A  No vuelvas sin ellos
+  Offset +0x0CA9: F8 0148 ...miento. As} que "PONTELO"
+  Offset +0x102A: F8 0149 ...ulsa 250 veces la tecla x
+
+
+============================================================
+ANALYSIS CONCLUSIONS:
+============================================================
+
+Based on the structure, here's how the system works:
+
+1. PRIMARY ROOTS (FE markers):
+   - FE [index] marks a conversation root
+   - Index is 1-based (FE 01 = root 1)
+   - The game builds a text pointer table at room_sprite_data_ptr + 0x3DA
+
+2. STATE STORAGE:
+   - conversation_branch_state_array at 0x0004fba4
+   - 224 bytes total = 56 rooms × 4 slots per room
+   - State value 0 = original state
+   - State value N = skip to Nth F7 branch
+
+3. F8 0x0148 ACTION (disable current root):
+   - Triggered when conversation reaches this marker
+   - The engine tracks which root index is currently being parsed
+   - F8 0x0148 handler stores a non-zero value for that root's slot
+   - On next room load, the text pointer is updated to skip forward
+
+4. HOW THE ENGINE KNOWS WHICH ROOT:
+   - In handle_conversation_tree, it calculates:
+     text_index = sprite_count - 2 + hotspot_count + queued_sprite_talk_count
+   - This maps to the text pointer table entry
+   - The FE marker's index byte identifies the slot (0-3 per room)
+
+5. FOR SCUMMVM IMPLEMENTATION:
+   - Track current FE index during conversation parsing
+   - When F8 0x0148 is encountered, mark that root as disabled
+   - On room load, check state array and skip to alternate branch if needed
+
+
+
+Detailed FE analysis for Room 2:
+
+Root index 1 at +0x0194:
+  Starts with:  
+  Te apecete pasar un buen rato, guapo ?û...
