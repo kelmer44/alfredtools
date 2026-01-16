@@ -5,7 +5,7 @@
 Alfred Pelrock uses a palette cycling system to create animated visual effects without modifying pixel data. The game modifies VGA palette entries in real-time to create effects like:
 
 - Fading neon signs (McDowells restaurant)
-- Rotating/shimmering lights (city windows at night)  
+- Rotating/shimmering lights (city windows at night)
 - Shiny/glowing objects (gems, buttons)
 - Water/fire effects
 
@@ -146,7 +146,7 @@ every frame:
         current_rgb -= speed_per_channel
         if current_r <= min_r:
             direction = UP
-    
+
     outport(0x3C8, palette_index)  // Set palette index
     outport(0x3C9, current_r)      // Set R
     outport(0x3C9, current_g)      // Set G
@@ -159,16 +159,16 @@ every frame:
     frame_counter++
     if frame_counter >= delay:
         frame_counter = 0
-        
+
         // Save last color
         saved = palette[start_index + count - 1]
-        
+
         // Shift all colors down
         for i = count-1 to 1:
             palette[start_index + i] = palette[start_index + i - 1]
             outport(0x3C8, start_index + i)
             outport(0x3C9, palette[...])
-        
+
         // Wrap first color
         palette[start_index] = saved
         outport(0x3C8, start_index)
