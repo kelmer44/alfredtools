@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Alfred Pelrock game engine uses **three main dispatch tables** to handle room-specific behaviors. Each table serves a distinct purpose in the game's architecture and is called at different points in the game loop.
+The Alfred Pelrock game engine uses **four main dispatch tables** to handle room-specific behaviors. Each table serves a distinct purpose in the game's architecture and is called at different points in the game loop.
 
 ---
 
@@ -13,6 +13,7 @@ The Alfred Pelrock game engine uses **three main dispatch tables** to handle roo
 | **Room Init** | `0x484e4` | `0x4b6e4` | Room initialization logic | `load_room_data()` | Once per room load |
 | **Palette Cycling** | `0x486a4` | `0x4b8a4` | Animated palette effects | `load_room_data()` | Setup once, runs per frame |
 | **Passing Sprites** | `0x48630` | `0x4b830` | Background animations | `render_scene()` | Every frame when active |
+| **Main Loop Events** | `0x485bc` | `0x4b7bc` | Room-specific per-frame logic | `main_game_loop()` | Every frame |
 
 ---
 
@@ -257,15 +258,27 @@ bool is_passing_sprite_trigger() {
 
 ### Rooms with Passing Animations (7 rooms)
 
-| Room | Handler Address | Raw Offset | Animation | Has Latch | Latch Variable |
-|------|----------------|------------|-----------|-----------|----------------|
-| 9 | `0x0001167a` | `0x167a` | **Mouse** running L→R | YES | `0x95EB` |
-| 21 | `0x000107c2` | `0x07c2` | **Camel** walking R→L | NO | N/A |
-| 29 | `0x00011919` | `0x1919` | Unknown animation | TBD | TBD |
-| 31 | `0x00011d66` | `0x1d66` | Unknown animation | TBD | TBD |
-| 46 | `0x00011a29` | `0x1a29` | Newspaper/animation | YES | `0x95FA/FB` |
-| 47 | `0x00011b41` | `0x1b41` | Unknown animation | TBD | TBD |
-| 50 | `0x00011c4e` | `0x1c4e` | Unknown animation | TBD | TBD |
+| Room | Handler Address | Raw Offset | Animation | Trigger Type | Counter/Latch |
+|------|----------------|------------|-----------|--------------|---------------|
+| 21 | `0x000107c2` | `0x07c2` | **Camel** R→L | frame_counter & 0x3FF | None (simple) |
+| 9 | `0x0001167a` | `0x167a` | **Mouse** L→R | frame_counter & 0x3FF | `0x95EB`, `0x964E` |
+| 29 | `0x00011919` | `0x1919` | **Background sprite** bidirectional | counter > 150 | `0x95F5-0x95F9` |
+| 31 | `0x00011d66` | `0x1d66` | **Background sprite** X:63→268 | counter > 200 | `0x9624-0x9625` |
+| 46 | `0x00011a29` | `0x1a29` | **Background sprite** bidirectional | counter > 250 | `0x95FA-0x95FE` |
+| 47 | `0x00011b41` | `0x1b41` | **Background sprite** bidirectional | counter > 200 | `0x95FF-0x9603` |
+| 50 | `0x00011c4e` | `0x1c4e` | **Background sprite** bidirectional | counter > 200 | `0x961E-0x9622` |
+
+### Sprite Offset Fields (at sprite_data_ptr + offset)
+
+| Offset | Field | Description |
+|--------|-------|-------------|
+| +0xBA | X position (slot 0) | 16-bit X coordinate |
+| +0xD0 | Animation state (slot 0) | Current animation frame |
+| +0xD1 | Animation ID (slot 0) | Animation sequence to play |
+| +0xE6 | X position (slot 1) | 16-bit X coordinate |
+| +0xFD | Animation ID (slot 1) | Animation sequence to play |
+| +0x112 | X position (slot 2) | 16-bit X coordinate |
+| +0x129 | Animation ID (slot 2) | Animation sequence to play |
 
 ### Detailed Handler Examples
 
@@ -381,20 +394,137 @@ Sprites move using **animation movement flags** (16-bit value per animation sequ
 
 ---
 
+## Table 4: Main Game Loop Dispatch (0x485bc)
+
+### Purpose
+This table handles **room-specific per-frame logic** called from `main_game_loop()`. Unlike the passing sprite table, this handles various room-specific behaviors: cutscene triggers, one-shot events, periodic ambient events, and complex state machines.
+
+### Technical Details
+- **Virtual Address**: `0x485bc`
+- **File Offset**: `0x4b7bc`
+- **Entry Format**: 6 bytes - `[u16 room_number][u32 handler_offset]`
+- **Terminator**: `0xFFFF`
+- **Called From**: `main_game_loop()` at address `0x103dd` every frame
+- **Handler Relocation**: Raw offset values need `+0x10000` (code segment base)
+
+### Table Location in Code
+```asm
+; main_game_loop at 0x10337
+; Dispatch call at 0x103dd:
+mov  eax, dword ptr [passing_sprite_dispatch_table + 0x14]  ; Note: +0x14 offset from 0x48630
+                                                              ; = 0x48630 + 0x14 = actual 0x485bc
+```
+
+### Room Entries (18 entries)
+
+| Room | Handler | Raw Offset | Purpose |
+|------|---------|------------|---------|
+| 1 | `0x000118ad` | `0x18ad` | Shared handler - ambient events |
+| 2 | `0x000118ad` | `0x18ad` | Shared handler - ambient events |
+| 3 | `0x000118ad` | `0x18ad` | Shared handler - ambient events |
+| 8 | `0x000118ad` | `0x18ad` | Shared handler - ambient events |
+| 12 | `0x000118ad` | `0x18ad` | Shared handler - ambient events |
+| 14 | `0x000118ad` | `0x18ad` | Shared handler - ambient events |
+| 17 | `0x000118ad` | `0x18ad` | Shared handler - ambient events |
+| 15 | `0x00011de5` | `0x1de5` | One-shot flag event |
+| 19 | `0x000115ef` | `0x15ef` | TBD |
+| 24 | `0x00025cd7` | `0x15cd7` | TBD (note: different segment) |
+| 26 | `0x0001087c` | `0x087c` | Periodic ambient event |
+| 30 | `0x0001094b` | `0x094b` | Inventory item check |
+| 36 | `0x0001098f` | `0x098f` | Complex cutscene trigger |
+| 48 | `0x00010d4c` | `0x0d4c` | Dialog/cutscene sequence |
+| 51 | `0x000113dc` | `0x13dc` | Shared handler |
+| 52 | `0x000113dc` | `0x13dc` | Shared handler |
+| 53 | `0x000113dc` | `0x13dc` | Shared handler |
+| 54 | `0x000113dc` | `0x13dc` | Shared handler |
+
+### Shared Handler Pattern (Rooms 1,2,3,8,12,14,17)
+
+The shared handler at `0x118ad` fires every ~7.5 minutes using a different frame counter mask:
+
+```c
+// Trigger condition for shared handler
+// Fires every 8192 frames (~7.5 minutes at 18.2 Hz)
+bool is_ambient_trigger() {
+    return (game_frame_counter & 0x1FFF) == 0x1FFF;
+}
+```
+
+These rooms likely share common ambient sound/animation events (e.g., periodic bird sounds, clock chimes).
+
+### Key Handler Behaviors
+
+#### Room 15: One-Shot Event
+- **Handler**: `0x11de5`
+- **Latch**: `0x9653`
+- **Behavior**: Fires once when entering room, sets flag to prevent re-trigger
+
+#### Room 30: Inventory Check
+- **Handler**: `0x1094b`
+- **Check**: `inventory_array + 0x63`
+- **Behavior**: Triggers event when player has specific inventory item
+
+#### Room 36: Complex Cutscene
+- **Handler**: `0x1098f`
+- **Behavior**: Multi-stage state machine for cutscene triggering
+
+#### Rooms 51-54: Shared Handler
+- **Handler**: `0x113dc`
+- **Behavior**: Shared logic for related rooms (possibly same location)
+
+---
+
+## Rooms 0-15 Per-Frame Handler Coverage
+
+This section summarizes which rooms in the 0-15 range have per-frame handlers in Tables 3 and 4.
+
+| Room | Table 3 (Passing Sprites) | Table 4 (Main Loop) | Notes |
+|------|--------------------------|---------------------|-------|
+| 0 | ❌ None | ❌ None | City lights via palette cycling only |
+| 1 | ❌ None | ✅ `0x118ad` (shared) | Ambient events every ~7.5 min |
+| 2 | ❌ None | ✅ `0x118ad` (shared) | Ambient events every ~7.5 min |
+| 3 | ❌ None | ✅ `0x118ad` (shared) | Ambient events every ~7.5 min |
+| 4 | ❌ None | ❌ None | - |
+| 5 | ❌ None | ❌ None | - |
+| 6 | ❌ None | ❌ None | - |
+| 7 | ❌ None | ❌ None | - |
+| 8 | ❌ None | ✅ `0x118ad` (shared) | Ambient events every ~7.5 min |
+| 9 | ✅ `0x1167a` (mouse) | ❌ None | Mouse runs L→R every ~56 sec |
+| 10 | ❌ None | ❌ None | - |
+| 11 | ❌ None | ❌ None | - |
+| 12 | ❌ None | ✅ `0x118ad` (shared) | Ambient events every ~7.5 min |
+| 13 | ❌ None | ❌ None | - |
+| 14 | ❌ None | ✅ `0x118ad` (shared) | Ambient events every ~7.5 min |
+| 15 | ❌ None | ✅ `0x11de5` (one-shot) | Event fires once per room entry |
+
+**Summary for Rooms 0-15:**
+- **Table 3**: Only Room 9 has a passing sprite handler (mouse animation)
+- **Table 4**: Rooms 1, 2, 3, 8, 12, 14 share ambient handler; Room 15 has one-shot event
+- **Neither**: Rooms 0, 4, 5, 6, 7, 10, 11, 13 have no per-frame handlers
+
+---
+
 ## Key Variables Reference
 
 | Address | Name | Type | Purpose |
 |---------|------|------|---------|
+| `0x11738` | game_frame_counter | u32 | Global frame counter (never reset) |
 | `0x4fb94` | current_room_number | u16 | Current room ID |
 | `0x4967e` | scale_min | u8 | Minimum sprite scaling factor |
 | `0x4967f` | scale_max | u8 | Maximum sprite scaling factor |
+| `0xFAC8` | sprite_data_ptr | u32 | Base pointer to sprite data array |
 | `0x4f7b4-0x4f7c0` | sprite_ptr_array | u32[4] | 4 pointers to sprite graphics |
 | `0x4fa94` | graphics_base | u32 | Base pointer to loaded graphics |
 | `0x4f8ea` | palette_cycling_enabled | u8 | 1 = cycling active |
 | `0x4f8ec` | palette_cycling_config | u32 | Pointer to 12-byte config |
-| `0x95EB` | room9_mouse_latch | bool | Prevents mouse re-trigger |
-| `0x95FA` | passing_anim_counter | u8 | Frame counter for rooms 46/47/50 |
-| `0x95FB` | passing_anim_latch | bool | Latch for rooms 46/47/50 |
+| `0x95EB` | room9_mouse_latch | bool | Prevents room 9 mouse re-trigger |
+| `0x964E` | room9_mouse_state | u8 | Room 9 mouse animation state |
+| `0x95F5-0x95F9` | room29_passing_state | struct | Room 29 passing animation state |
+| `0x95FA-0x95FE` | room46_passing_state | struct | Room 46 passing animation state |
+| `0x95FF-0x9603` | room47_passing_state | struct | Room 47 passing animation state |
+| `0x961E-0x9622` | room50_passing_state | struct | Room 50 passing animation state |
+| `0x9624-0x9625` | room31_passing_state | struct | Room 31 passing animation state |
+| `0x9653` | room15_oneshot_flag | bool | Room 15 one-shot event flag |
 
 ---
 
@@ -402,10 +532,18 @@ Sprites move using **animation movement flags** (16-bit value per animation sequ
 
 | Function | Address | Purpose |
 |----------|---------|---------|
+| `main_game_loop()` | `0x10337` | Main game loop, dispatches Table 4 handlers |
 | `load_room_data()` | `0x152f5` | Loads room, dispatches init and palette setup |
-| `render_scene()` | Address TBD | Renders room, dispatches passing sprite handlers |
+| `render_scene()` | `0x161fc` | Renders room, dispatches Table 3 passing sprite handlers |
 | `update_palette_cycling()` | `0x16804` | Updates VGA palette every frame |
-| `main_game_loop()` | Address TBD | Increments frame counter, main game loop |
+
+### Handler Code Region
+
+All Table 3 and Table 4 handlers are located in an **undefined code region** between:
+- **Start**: `0x107c2` (first handler - room 21 camel)
+- **End**: `0x11e25` (last handler ends before `init_sprite_scaling_tables`)
+
+This region contains 22+ handlers that are NOT defined as functions in Ghidra.
 
 ---
 
@@ -421,26 +559,53 @@ Sprites move using **animation movement flags** (16-bit value per animation sequ
 6. Continue to render loop
 ```
 
-### 2. Per-Frame Rendering Sequence
+### 2. Per-Frame Main Loop Sequence
 ```
-1. Increment global frame counter (never reset!)
+1. main_game_loop() at 0x10337 is called
+2. Increment global frame counter at 0x11738 (NEVER reset!)
+3. Check Table 4 (0x485bc) for current room → call handler if found
+   → Handles cutscenes, inventory checks, ambient events
+   → Some handlers use (frame_counter & 0x1FFF) == 0x1FFF (~7.5 min trigger)
+4. Process input, update game state
+5. Call render_scene() at 0x161fc
+```
+
+### 3. Per-Frame Rendering Sequence
+```
+1. render_scene() is called from main loop
 2. If palette cycling enabled (0x4f8ea == 1):
    → update_palette_cycling() reads config at 0x4f8ec
    → Modifies VGA palette registers
-3. render_scene() is called
-4. Check Table 3 (0x48630) for current room → call handler if found
-5. Handler checks (frame_counter & 0x3FF) == 0x3FF
-6. If trigger fires and latch clear → enable sprite, set position
-7. Render all enabled sprites with proper z-order
+3. Check Table 3 (0x48630) for current room → call handler if found
+4. Handler checks (frame_counter & 0x3FF) == 0x3FF (~56 sec trigger)
+5. If trigger fires and latch clear → enable sprite, set position
+6. Render all enabled sprites with proper z-order
 ```
 
-### 3. Testing Checklist
+### 4. Testing Checklist
+
+**Table 2 - Palette Cycling:**
 - [ ] Verify Room 2 McDowells sign fades green correctly
 - [ ] Verify Room 0 city lights rotate (6 colors, ~5 sec delay)
+
+**Table 3 - Passing Sprites:**
 - [ ] Verify Room 21 camel appears every ~56 seconds, walks R→L
 - [ ] Verify Room 9 mouse appears every ~56 seconds, runs L→R
-- [ ] Verify mouse latch prevents overlapping triggers
-- [ ] Verify frame counter is never reset (global state)
+- [ ] Verify Room 29 background animation triggers at counter > 150
+- [ ] Verify Room 31 sprite moves X:63→268
+- [ ] Verify Room 46 animation triggers at counter > 250
+- [ ] Verify Room 47 animation triggers at counter > 200
+- [ ] Verify Room 50 animation triggers at counter > 200
+- [ ] Verify latch flags prevent overlapping triggers
+
+**Table 4 - Main Loop Events:**
+- [ ] Verify Rooms 1,2,3,8,12,14,17 shared handler fires every ~7.5 min
+- [ ] Verify Room 15 one-shot event only fires once
+- [ ] Verify Room 30 inventory item check works correctly
+- [ ] Verify Room 36 cutscene trigger state machine
+
+**General:**
+- [ ] Verify frame counter at 0x11738 is never reset (global state)
 - [ ] Verify rooms without handlers use default initialization
 
 ---
