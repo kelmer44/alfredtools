@@ -30,6 +30,9 @@ RleChunk cuadroCama[8] @ 0x00;
 Palette palCuadro @ 0x7984;
 
 u8 largeFontData[4608] @ 0x7DC8;
+u8 alfredElectrocuta1[17640 - 5895] @ 31108 + 5895;
+u8 alfredElectrocuta2[31514 - 22002] @ 31108 + 22002;
+u8 alfredElectrocuta3[0x108AE - 31514] @ 31108 + 31514;
 RleChunk alfredCombRight @ 0x108AE;
 RleChunk alfredCombLeft @ 0x15958;
 RleChunk computer[8] @ 0x1A9EE;
@@ -46,7 +49,6 @@ RleChunk llamita @ 381450;
 RleChunk chicaSeLava2 @ 381826;
 RleChunk reloj @ 397666;
 RleChunk alfredCama @ 398559;
-
 
 RleChunk alfredCirculo[4] @ 411587;
 

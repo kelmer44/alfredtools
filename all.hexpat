@@ -34,8 +34,8 @@ struct Description {
 };
 
 struct ThisAnimHeader {
-    u16 x;                  // Bytes 0-1
-    u16 y;                  // Bytes 2-3
+    s16 x;                  // Bytes 0-1
+    s16 y;                  // Bytes 2-3
     u8 w;                   // Byte 4
     u8 h;                   // Byte 5
     u16 stride;
