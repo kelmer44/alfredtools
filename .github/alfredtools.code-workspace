@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../scummvm"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"stdio.h": "c",
+			"ios": "c",
+			"lodepng.h": "c",
+			"stdlib.h": "c",
+			"functions.h": "c"
+		},
+		"sarif-viewer.connectToGithubCodeScanning": "off"
+	}
+}
