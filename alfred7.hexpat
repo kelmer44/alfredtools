@@ -39,6 +39,8 @@ RleChunk computer[8] @ 0x1A9EE;
 Palette palComputer @ 198050;
 // buda 17
 
+u8 libros[0x3526] @ 0x309E0;
+
 RleChunk pareja @ 236645;
 RleChunk faraonCamina @ 261450;
 RleChunk faraonLevantaMano @ 280359;
