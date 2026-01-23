@@ -9,19 +9,19 @@ import math
 from PIL import Image
 
 metadata = [
-#   {
-#     "BUDA": 0,
-#     "OFFSET": 0,
-#     "TYPE": "IMAGE",
-#     "DESC": "CUADROCAMA",
-#     "WIDTH": 640,
-#     "offset": 0,
-#     "START": "0",
-#     "OFFSET RLE DEC": "COMPLETO",
-#     "isPalette" : False,
-#     "isContinued":  True,
+  # {
+  #   "BUDA": 0,
+  #   "OFFSET": 0,
+  #   "TYPE": "IMAGE",
+  #   "DESC": "CUADROCAMA",
+  #   "WIDTH": 640,
+  #   "offset": 0,
+  #   "START": "0",
+  #   "OFFSET RLE DEC": "COMPLETO",
+  #   "isPalette" : False,
+  #   "isContinued":  True,
 	# "offset" : 0,
-#   },
+  # },
   {
     "BUDA": 0,
     "OFFSET": 260,
@@ -2412,6 +2412,28 @@ metadata = [
   }
 ]
 
+direct = [
+  {
+  "start": 37000,
+  "width": 45,
+  "height": 87,
+  "nframes": 3
+  },
+  {
+  "start": 48792,
+  "width": 49,
+  "height": 88,
+  "nframes": 1
+  },
+  {
+    "start": 53106,
+    "width": 82,
+    "height": 58,
+    "nframes": 2
+  }
+]
+
+
 def decompress_rle(data, offset, end_offset):
     # size = end_offset - offset
     # if size == 0x8000 or size == 0x6800:
@@ -2497,6 +2519,65 @@ def main():
 
     print(f"\nFound {len(palettes)} palettes\n")
     print("="*70)
+
+
+# Extract direct entries first
+    output_base_direct = Path(f'{output_dir}/direct')
+    output_base_direct.mkdir(parents=True, exist_ok=True)
+
+    for idx, entry in enumerate(direct):
+        start_offset = entry["start"]
+        width = entry["width"]
+        height = entry["height"]
+        nframes = entry.get("nframes", 1)
+
+        # Find nearest palette
+        pal_buda = 7  # Default
+        for p_idx in palettes.keys():
+            pal_buda = p_idx
+            break
+
+        palette_data = palettes[pal_buda]
+
+        frame_size = width * height
+        total_size = frame_size * nframes
+
+        print(f"Direct entry {idx}: offset={start_offset}, w={width}, h={height}, frames={nframes}, size={total_size}")
+
+        # Extract raw bytes directly
+        raw_data = data[start_offset:start_offset + total_size]
+
+        output_path_direct = Path(f'{output_base_direct}/entry_{idx}')
+        output_path_direct.mkdir(parents=True, exist_ok=True)
+        if nframes == 1:
+            # Single frame
+            img_data = bytes(raw_data)
+            if len(img_data) < frame_size:
+                img_data += bytes([0] * (frame_size - len(img_data)))
+
+            img = Image.new('P', (width, height))
+            img.putpalette(palette_data)
+            img.putdata(img_data)
+
+            output_file = output_path_direct / f'direct_{idx}_offset_{start_offset}.png'
+            img.save(output_file)
+        else:
+            # Multiple frames
+            for frame_idx in range(nframes):
+                frame_start = frame_idx * frame_size
+                frame_end = frame_start + frame_size
+                frame_data = raw_data[frame_start:frame_end]
+
+                img_data = bytes(frame_data)
+                if len(img_data) < frame_size:
+                    img_data += bytes([0] * (frame_size - len(img_data)))
+
+                img = Image.new('P', (width, height))
+                img.putpalette(palette_data)
+                img.putdata(img_data)
+
+                output_file = output_path_direct / f'direct_{idx}_frame_{frame_idx}_offset_{start_offset + frame_start}.png'
+                img.save(output_file)
 
 
     for start_buda in range(len(budas) - 1):
