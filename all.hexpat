@@ -282,7 +282,8 @@ struct ConvText {
     u8 text_bytes[while(
     std::mem::read_unsigned($, 1) != 0xFD && 
     std::mem::read_unsigned($, 1) != 0xF8 && 
-    std::mem::read_unsigned($, 1) != 0xF4)];
+    std::mem::read_unsigned($, 1) != 0xF4 &&
+    std::mem::read_unsigned($, 1) != 0xF0)];
 } [[sealed]];
 
 
@@ -382,20 +383,20 @@ struct Room {
 //ThisAnimHeader room3anims[8] @0xEB57A;
 
 
-Room rooms[20] @0x00000;
+Room rooms[5] @0x00000;
 struct DialogLine {
-u8 type;
-u8 idx;
-u8 colorIndicator;
-u8 color;
-u8 lineNumber;
-u8 separator;
-ConvText text;
-u8 end;
-if(end == 0xF8) {
-u8 action1;
-u8 action2;
-}
+    u8 type;
+    u8 idx;
+    u8 colorIndicator;
+    u8 color;
+    u8 lineNumber;
+    u8 separator;
+    ConvText text;
+    u8 end;
+    if(end == 0xF8) {
+        u8 action1;
+        u8 action2;
+    }
 };
 
 struct Conversation {
@@ -441,3 +442,41 @@ DialogLine pequena;
 };
 
 Conversation conv @ 0xB21DE;
+
+
+struct Guardia {
+    DialogLine quedeseaCaballero;
+    DialogLine entrarQuesiNo;
+    DialogLine loSientoAbreALas9;
+    DialogLine bonitaNoche;
+    DialogLine enEfecto;
+    DialogLine concepcionDeterminista;
+    DialogLine cuestionInteresante;
+    DialogLine vivimosAlienados;
+    DialogLine noesLoMasGrave;
+    DialogLine queEsNuestraDependenciaElectricidad;
+    DialogLine NoExistenciaEfimera;
+    DialogLine queEsNecesitarManosHumanas;
+    DialogLine NoExistenciaEfimera2;
+    DialogLine terceraDimension;
+    DialogLine noSiga;
+    DialogLine ustedDira;
+    DialogLine casiSonLas9;
+    DialogLine hastaLas9;
+    DialogLine faltan5mins;
+    DialogLine pesado;
+    DialogLine porfavor;
+    DialogLine deberAnteTodo;
+    DialogLine comoMeEnfade;
+    DialogLine jaQueMiedo;
+    DialogLine lastima;
+    DialogLine verguenza;
+    DialogLine porfavor2;
+    DialogLine no;
+    DialogLine PORFAVOR3;
+    DialogLine queNo;
+    DialogLine vaVenga;
+    DialogLine estabien;
+};
+
+Guardia g@ 0x127484;
