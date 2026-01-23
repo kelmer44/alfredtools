@@ -4,8 +4,8 @@
 
 ### library_computer_handler (0x10E2E)
 
-**Address**: 0x10E2E (Ghidra)  
-**Dispatch**: F8 Action 270 (0x010E)  
+**Address**: 0x10E2E (Ghidra)
+**Dispatch**: F8 Action 270 (0x010E)
 **Purpose**: Main handler for the library computer interface in Room 9
 
 **To create the function in Ghidra:**
@@ -56,7 +56,7 @@ Look for:
 
 ### Display Book Data (JUEGO.EXE)
 
-**Address**: 0x473A8 - 0x48903  
+**Address**: 0x473A8 - 0x48903
 **Purpose**: Pre-formatted book display text with formatting codes
 
 Look for xrefs to this region from:
@@ -169,16 +169,16 @@ Expected pseudocode in the handler:
 void search_books(char search_letter, int search_type) {
     byte book_buffer[108];
     int result_count = 0;
-    
+
     file_seek(alfred7_handle, 0x309E0, SEEK_SET);
-    
+
     for (int i = 0; i < 125; i++) {
         file_read(alfred7_handle, book_buffer, 108);
-        
-        char* search_field = search_type == 0 ? 
+
+        char* search_field = search_type == 0 ?
             &book_buffer[0] :   // title offset
             &book_buffer[55];   // author offset
-        
+
         // Compare first letter (case-insensitive)
         if (toupper(search_field[0]) == search_letter) {
             results[result_count++] = i;
@@ -194,21 +194,21 @@ Expected pseudocode:
 ```c
 void memorize_book(int book_index) {
     byte book_buffer[108];
-    
+
     // Read the book entry
     file_seek(alfred7_handle, 0x309E0 + (book_index * 108), SEEK_SET);
     file_read(alfred7_handle, book_buffer, 108);
-    
+
     char shelf_letter = book_buffer[105];
     byte shelf_row = book_buffer[106];
     byte status = book_buffer[107];
-    
+
     // Only physical books can be memorized
     if (status == 0x02) {
         g_memorized_book_shelf = shelf_letter;
         g_memorized_book_row = shelf_row;
         g_has_memorized_book = true;
-        
+
         // Display Alfred's dialog
         char dialog[100];
         sprintf(dialog, str_MemorizarDialog, shelf_letter);

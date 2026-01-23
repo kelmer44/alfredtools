@@ -47,7 +47,7 @@ Complete documentation and implementation of the library computer system in Alfr
 #### 1. library_books.h (NEW - Complete Rewrite)
 - **Before**: 26 books with incorrect format
 - **After**: 125 books with correct structure
-- **New fields**: 
+- **New fields**:
   - `shelfLetter` (A-Z or space)
   - `shelfRow` (1-3 or 0)
   - `hasPhysicalCopy` (true/false)
@@ -175,19 +175,19 @@ When player memorizes a physical book:
 
 ## Testing Notes
 
-**Build**: ✅ Successful  
-**Compilation**: No errors  
-**Warnings**: Minor (non-critical)  
+**Build**: ✅ Successful
+**Compilation**: No errors
+**Warnings**: Minor (non-critical)
 **Runtime**: Not yet tested (requires ScummVM game integration)
 
 ## References
 
 - `action_dispatch_tables_extracted.json` - Action 270 entry
-- `library_books.json` - Machine-readable book database  
+- `library_books.json` - Machine-readable book database
 - ALFRED.7 file (0x309E0 - 0x33F05)
 - JUEGO.EXE UI strings (0x49038+)
 
 ---
 
-**Date**: January 23, 2026  
+**Date**: January 23, 2026
 **Status**: Documentation complete, ScummVM implementation functional, Ghidra work pending

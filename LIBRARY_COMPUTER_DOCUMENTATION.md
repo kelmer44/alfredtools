@@ -137,9 +137,9 @@ private:
         STATE_SHOW_RESULTS,
         STATE_EXIT
     };
-    
+
     int _memorizedBookIndex;  // Book player memorized (-1 if none)
-    
+
     void handleMainMenu();
     void handleSearchInput();
     void handleResultsDisplay();
@@ -226,7 +226,7 @@ Books use CP437 (DOS) encoding:
 
 Many books are parodies or references to Spanish culture:
 - **Karlos Arguiñano**: Famous Spanish TV chef
-- **Corin Tellado**: Prolific Spanish romance novelist  
+- **Corin Tellado**: Prolific Spanish romance novelist
 - **Chiquito de la Calzada**: Spanish comedian known for invented words
 - **Doctor Chip**: Reference to Spanish computer magazine
 - **Jaume i Pascual**: Parody name for Valencian nationalism books
