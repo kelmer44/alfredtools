@@ -1,0 +1,49 @@
+Room-Specific Dispatch Table (from JUEGO.EXE)
+============================================================
+Memory Address: 0x48630
+File Offset: 0x4B830
+
+Entry format: 6 bytes
+  - bytes 0-1: room_number (int16 LE, -1 = end)
+  - bytes 2-5: function_ptr (16-bit near pointer, segment is always 0)
+
+NOTE: These are 16-bit NEAR pointers (offset only, segment=0000).
+They are relative to the current code segment base.
+To get absolute addresses in the executable, need to add segment base.
+
+Entries:
+------------------------------------------------------------
+[  0] File 0x4B830: room =  21, func_ptr = 0x007C2
+[  1] File 0x4B836: room =   9, func_ptr = 0x0167A
+[  2] File 0x4B83C: room =  29, func_ptr = 0x01919
+[  3] File 0x4B842: room =  46, func_ptr = 0x01A29
+[  4] File 0x4B848: room =  47, func_ptr = 0x01B41
+[  5] File 0x4B84E: room =  50, func_ptr = 0x01C4E
+[  6] File 0x4B854: room =  31, func_ptr = 0x01D66
+[  7] File 0x4B85A: room = -1 (END OF TABLE)
+
+============================================================
+SUMMARY
+============================================================
+Total entries: 7
+
+ROOM 7 ENTRY:
+  NOT FOUND in this table
+  
+  NOTE: Room 7 (statue room with palette fade) is NOT registered
+  in this room-specific dispatch table. This means either:
+  1. Room 7's palette fade is handled elsewhere (not per-frame)
+  2. There's another dispatch table for room 7
+  3. The palette fade is triggered by a different mechanism
+
+POINTERS IN 0x22xxx RANGE:
+  None found
+
+ALL FUNCTION POINTERS (sorted by address):
+  0x007C2 -> room 21
+  0x0167A -> room 9
+  0x01919 -> room 29
+  0x01A29 -> room 46
+  0x01B41 -> room 47
+  0x01C4E -> room 50
+  0x01D66 -> room 31

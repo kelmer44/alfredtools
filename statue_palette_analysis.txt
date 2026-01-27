@@ -1,0 +1,131 @@
+======================================================================
+STATUE PALETTE FADE EFFECT ANALYSIS - FINAL REPORT
+======================================================================
+Target: JUEGO.EXE - Alfred Pelrock (1997)
+Effect: Palette fade when using Amulet (item 7) on Statue (hotspot 353) in Room 7
+
+======================================================================
+1. ITEM TABLE ENTRY VERIFICATION - CONFIRMED CORRECT
+======================================================================
+
+Location: Memory 0x48118, File offset 0x4B318
+Entry 6 (file offset 0x4B348):
+  Raw bytes: 61 01 07 00 C1 2C 01 00
+  item1 = 353 (0x161) - Statue hotspot in room 7  
+  item2 = 7   (0x7)   - Egyptian amulet inventory item
+  func_ptr = 0x12CC1 - Handler code address
+  Code file offset: 0x16EC1
+
+======================================================================
+2. HANDLER ANALYSIS
+======================================================================
+
+The handler at 0x12CC1 contains:
+- STI (0xFB) - Enable interrupts (unusual function start)
+- Calls to file_seek (0x2A342) and file_read (0x2A43E)
+- Call to play_sound (0x2A60D)
+- Call to get_current_room_number (0x2A218)
+
+This handler appears to load and play audio/graphics resources,
+but does NOT contain direct palette manipulation code!
+
+The palette fade effect is likely implemented ELSEWHERE:
+1. In a conversation handler triggered after the item interaction
+2. In a room-specific script for room 7
+3. As a special effect called during conversation root 1
+
+======================================================================
+3. FUNCTION BOUNDARY ISSUE IN GHIDRA
+======================================================================
+
+Ghidra incorrectly identifies 0x12CC1 as being inside:
+- show_action_menu_popup (0x124AD-0x12917) 
+- render_inventory_items (body: 0x12C95-0x12F3E)
+
+The item handler function pointers are LABELS within compiled 
+code blocks, not standalone functions. This is because:
+- The dispatch uses indirect calls: CALL dword ptr [EAX*8 + 0x4811C]
+- Handlers share common prologues/epilogues
+
+======================================================================
+4. PALETTE MANIPULATION CODE LOCATIONS
+======================================================================
+
+VGA palette ports (0x3C8/0x3C9) are accessed at:
+- update_palette_cycling (0x16804-0x16A0B) - Standard cycling
+- set_vga_palette (0x244E8) - Full palette set
+- Various locations in 0x2C4CB-0x2FA26 range (inline palette writes)
+
+Direct port access pattern found:
+  BA C8 03 00 00  ; MOV DX, 0x3C8
+  32 C0           ; XOR AL, AL
+  EE              ; OUT DX, AL
+  42              ; INC DX (now 0x3C9)
+  8A C4           ; MOV AL, AH (R)
+  EE              ; OUT DX, AL
+  8A C1           ; MOV AL, CL (G)
+  EE              ; OUT DX, AL
+  8A C5           ; MOV AL, CH (B)
+  EE              ; OUT DX, AL
+
+======================================================================
+5. ROOM 7 IS NOT IN STANDARD PALETTE CYCLING
+======================================================================
+
+Rooms with palette cycling: 0, 2, 9, 17, 18, 19, 21, 25, 32, 33, 38, 39, 46
+Room 7 is ABSENT - confirming the statue effect is a SPECIAL effect.
+
+======================================================================
+6. EFFECT CHARACTERISTICS (from user)
+======================================================================
+
+- 13 frames duration
+- Gradient fade shifting palette entries toward red
+- Palette resets after conversation root 1
+- Not part of standard cycling system
+
+======================================================================
+7. CALLS TO SET_VGA_PALETTE FROM CODE
+======================================================================
+
+Found calls to set_vga_palette (0x244E8) from:
+- 0x129C4 (main_menu_handler)
+- 0x12FEC (exit_menu_and_restore_game)
+- 0x15B5E (load_room_and_init_alfred)
+- 0x15C5E (load_room_and_init_alfred)
+- 0x1B61F (load_room_graphics_and_palette_dynamic)
+- 0x264CC (play_fight_animation)
+And several others in display/rendering code.
+
+None of these are specifically in the statue handler path.
+
+======================================================================
+8. NEXT STEPS FOR INVESTIGATION
+======================================================================
+
+1. Use DOSBox debugger to set breakpoint at 0x12CC1 and trace
+   actual execution when using amulet on statue in room 7
+
+2. Search conversation text data for room 7 to find control codes
+   that might trigger the palette effect
+
+3. Look for the value 13 (0x0D) in conjunction with palette code
+   to find the frame loop
+
+4. Check if the effect is triggered by conversation markers like
+   0xF8 (special effect trigger) in the text data
+
+5. Examine what happens after the handler returns - the effect
+   might be in the calling code path
+
+======================================================================
+9. DISPATCH MECHANISM VERIFIED
+======================================================================
+
+execute_complex_item_script_table (0x191E9) dispatches handlers:
+  CALL dword ptr [EAX*8 + 0x4811C]
+
+For entry 6: index=6, offset=48, func_ptr at 0x4814C = 0x12CC1
+
+======================================================================
+
