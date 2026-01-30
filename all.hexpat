@@ -383,7 +383,7 @@ struct Room {
 //ThisAnimHeader room3anims[8] @0xEB57A;
 
 
-Room rooms[5] @0x00000;
+Room rooms[10] @0x00000;
 struct DialogLine {
     u8 type;
     u8 idx;
