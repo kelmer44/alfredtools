@@ -251,14 +251,14 @@ budas = [
   {
     "BUDA": 17,
     "OFFSET": 198046,
-    "TYPE": "?",
+    "TYPE": "RAW",
     "DESC": "?",
     "WIDTH": 1,
     "START": "?",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 14692,
   },
   {
     "BUDA": 18,
@@ -342,7 +342,7 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 25,
@@ -2422,8 +2422,29 @@ direct = [
 
 raw = [
   {
-    "start": 0x00007C84,
-    "size": 324
+    "start": 31876,
+    "size": 324,
+    "name": "unknown"
+  },
+  {
+    "start": 0xBE69,
+    "size": 0x2F,
+    "name": "unknown"
+  },
+  {
+    "start": 0xF49A,
+    "size": 0x1414,
+    "name": "unknown"
+  },
+  {
+    "start": 0x308A2,
+    "size": 0x13E,
+    "name": "unknown"
+  },
+  {
+    "start": 0x309E0,
+    "size": 0x3526,
+    "name": "libros"
   }
 ]
 
@@ -2489,7 +2510,7 @@ def save_bytes_as_png(data, palette, name, width):
     img.putpalette(palette)
     img.putdata(img_data)
 
-    output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{budas[start_buda]}.png'
+    output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{budas[start_buda] + budas[offset]}.png'
     img.save(output_file)
 def main():
     alfred7 = sys.argv[1] if len(sys.argv) > 1 else "ALFRED.7"
@@ -2505,14 +2526,15 @@ def main():
     output_base_raw = Path(f'{output_dir}/raw')
     output_base_raw.mkdir(parents=True, exist_ok=True)
     for idx, entry in enumerate(raw):
-      start_offset = entry["start"]
-      size = entry["size"]
-      output_path_raw = output_base_raw / f'entry_{idx}_{start_offset:06X}'
-      output_path_raw.mkdir(parents=True, exist_ok=True)
-      raw_data = data[start_offset:start_offset+size]
-      output_file = output_path_raw / f'raw_{idx}_offset_{start_offset:06X}.bin'
-      with open(output_file, 'wb') as f:
-        f.write(raw_data)
+        start_offset = entry["start"]
+        size = entry["size"]
+        name = entry.get("name", "noname")
+        output_path_raw = output_base_raw / f'entry_{idx}_{start_offset}'
+        output_path_raw.mkdir(parents=True, exist_ok=True)
+        raw_data = data[start_offset:start_offset+size]
+        output_file = output_path_raw / f'raw_{idx}_{name}_{start_offset}.bin'
+        with open(output_file, 'wb') as f:
+            f.write(raw_data)
 
     with open(alfred7, 'rb') as f:
         data = f.read()
@@ -2645,27 +2667,33 @@ def main():
         pal_buda = 7
 
       if pal_buda:
-        size = 0
-        if(type == "IMAGE" and width == 640):
-          size =  640 * 400
-          height = 400
-          realHeight = height
+        if type == "RAW":
+          # Save decompressed data as .bin
+          output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.bin'
+          with open(output_file, 'wb') as f:
+            f.write(combined)
         else:
-          size = len(combined)
-          realHeight = size / width
-          height = math.ceil(size / width)
-        print(f"SAVING BUDA {start_buda}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
-        # Create image
-        img_data = bytes(combined[:size])
-        if len(img_data) < size:
-          img_data += bytes([0] * (size - len(img_data)))
+          size = 0
+          if(type == "IMAGE" and width == 640):
+            size =  640 * 400
+            height = 400
+            realHeight = height
+          else:
+            size = len(combined)
+            realHeight = size / width
+            height = math.ceil(size / width)
+          print(f"SAVING BUDA {start_buda}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
+          # Create image
+          img_data = bytes(combined[:size])
+          if len(img_data) < size:
+            img_data += bytes([0] * (size - len(img_data)))
 
-        img = Image.new('P', (width, height))
-        img.putpalette(palettes[pal_buda])
-        img.putdata(img_data)
+          img = Image.new('P', (width, height))
+          img.putpalette(palettes[pal_buda])
+          img.putdata(img_data)
 
-        output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.png'
-        img.save(output_file)
+          output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.png'
+          img.save(output_file)
 
 if __name__ == "__main__":
     main()

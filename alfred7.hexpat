@@ -26,28 +26,32 @@ struct RleChunk {
 };
 
 
-RleChunk cuadroCama[8] @ 0x00;
-Palette palCuadro @ 0x7984;
-
-u8 largeFontData[4608] @ 0x7DC8;
-u8 alfredElectrocuta1[17640 - 5895] @ 31108 + 5895;
-u8 alfredElectrocuta2[31514 - 22002] @ 31108 + 22002;
-u8 alfredElectrocuta3[0x108AE - 31514] @ 31108 + 31514;
-RleChunk alfredCombRight @ 0x108AE;
-RleChunk alfredCombLeft @ 0x15958;
-RleChunk computer[8] @ 0x1A9EE;
-Palette palComputer @ 198050;
+RleChunk cuadroCama[8] @ 0x00; // verified
+Palette palCuadro @ 0x7984; //verified
+u8 unknown0[0x144] @ 0x7C84;
+u8 largeFontData[4800] @ 0x7DC8; //verified
+u8 alfredElectrocuta1[11745] @ 37000; // verified
+u8 unknownbetweenalfreds[0x2F] @ 0xBE69;
+u8 alfredElectrocuta2[4312] @ 48792; // verified
+u8 alfredElectrocuta3[9512] @ 53106; // verified
+u8 unknownAfterElectrocuta[0x1414] @ 0xF49A;
+RleChunk alfredCombRight @ 0x108AE; //verified
+RleChunk alfredCombLeft @ 0x15958; //verified
+RleChunk computer[8] @ 0x1A9EE; //verified
+Palette palComputer @ 198050; //verified
 // buda 17
+u8 unknownAntesLibros[0x13E] @ 0x308A2;
+u8 libros[0x3526] @ 0x309E0; //verified
+RleChunk unknownBuda @ 0x33F06;
 
-u8 libros[0x3526] @ 0x309E0;
-
-RleChunk pareja @ 236645;
-RleChunk faraonCamina @ 261450;
-RleChunk faraonLevantaMano @ 280359;
-RleChunk pareja2 @ 298589;
-RleChunk guardia @ 341229;
-RleChunk chicaSeLava @ 360832;
-RleChunk llamita @ 381450;
+RleChunk pareja @ 236645; // verified
+RleChunk faraonCamina @ 261449; // verified
+RleChunk faraonLevantaMano @ 280359; // verified
+RleChunk pareja2 @ 298589; // verified
+RleChunk guardia @ 341229; // verified
+RleChunk chicaSeLava @ 360832; //verified
+RleChunk dunno @ 0x58185;
+RleChunk llamita @ 381449;
 RleChunk chicaSeLava2 @ 381826;
 RleChunk reloj @ 397666;
 RleChunk alfredCama @ 398559;
@@ -93,6 +97,7 @@ RleChunk unknown1 @ 1341235;
 RleChunk unknown2 @ 1347767;
 // buda 97
 
+u8 englishBookTitles[0x3519] @ 0x14C53F;
 RleChunk cuadroOk[8] @ 1387148; //98-105
 Palette palCuadroOk @ 1425352; //106
 RleChunk alfredCama2 @ 1426116; //106
@@ -163,7 +168,3 @@ u8 othericons[26798] @ 3195448; // 3186048 + 1300 + 8100;
 RleChunk piernas @ 3222246; //multiple sizes
 u8 unknownimage[256000] @ 3271454;
 RleChunk credits @ 3527454;
-
-
-// buda 113
-u8 englishBookTitles[0x3519] @ 0x14C53F;
