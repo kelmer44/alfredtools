@@ -8,7 +8,7 @@ from pathlib import Path
 import math
 from PIL import Image
 
-metadata = [
+budas = [
   {
     "BUDA": 0,
     "OFFSET": 260,
@@ -19,7 +19,7 @@ metadata = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 1,
@@ -31,7 +31,7 @@ metadata = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 2,
@@ -2422,8 +2422,8 @@ direct = [
 
 raw = [
   {
-    "start": 256000,
-    "size":
+    "start": 0x00007C84,
+    "size": 324
   }
 ]
 
@@ -2499,17 +2499,34 @@ def main():
     output_path.mkdir(parents=True, exist_ok=True)
 
     with open(alfred7, 'rb') as f:
+      data = f.read()
+
+    # Extract raw entries as .bin files
+    output_base_raw = Path(f'{output_dir}/raw')
+    output_base_raw.mkdir(parents=True, exist_ok=True)
+    for idx, entry in enumerate(raw):
+      start_offset = entry["start"]
+      size = entry["size"]
+      output_path_raw = output_base_raw / f'entry_{idx}_{start_offset:06X}'
+      output_path_raw.mkdir(parents=True, exist_ok=True)
+      raw_data = data[start_offset:start_offset+size]
+      output_file = output_path_raw / f'raw_{idx}_offset_{start_offset:06X}.bin'
+      with open(output_file, 'wb') as f:
+        f.write(raw_data)
+
+    with open(alfred7, 'rb') as f:
         data = f.read()
 
-    budas = find_budas(data)
-    print(f"Found {len(budas)} BUDAs\n")
+
+    buda_offsets = find_budas(data)
+    print(f"Found {len(buda_offsets)} BUDAs\n")
 
     # Find all palette BUDAs
     palettes = {}
-    for i, buda in enumerate(budas):
-        if is_valid_palette(data, buda + 4):
-            palettes[i] = extract_palette(data, buda + 4)
-            print(f"BUDA {i}: palette")
+    for i, buda_offset in enumerate(buda_offsets):
+      if is_valid_palette(data, buda_offset + 4):
+        palettes[i] = extract_palette(data, buda_offset + 4)
+        print(f"BUDA {i}: palette")
 
     print(f"\nFound {len(palettes)} palettes\n")
     print("="*70)
@@ -2574,90 +2591,81 @@ def main():
                 img.save(output_file)
 
 
-    for start_buda in range(len(budas) - 1):
-        # Skip palette BUDAs
-        # real_start = start_buda
+    for start_buda in range(len(buda_offsets) - 1):
+      # Use the original 'budas' list for metadata, and 'buda_offsets' for file offsets
+      width =  budas[start_buda]["WIDTH"]
+      isPalette = budas[start_buda]["isPalette"]
+      isContinued = budas[start_buda]["isContinued"]
+      type = budas[start_buda]["TYPE"]
+      offset = budas[start_buda]["offset"]
 
+      if start_buda>0 and budas[start_buda - 1]["isContinued"] == True:
+        continue
 
-        # for i in range(start_buda, min(real_start + 20, len(budas) - 1)):
-        #     if i in palettes:
-        #         # Found a palette, stop here
-        #         break
-        # real_start = budas[start_buda] if isPalette else budas[start_buda] + 768
-        width =  metadata[start_buda]["WIDTH"]
-        isPalette = metadata[start_buda]["isPalette"]
-        isContinued = metadata[start_buda]["isContinued"]
-        type = metadata[start_buda]["TYPE"]
-        offset = metadata[start_buda]["offset"]
+      print(f'Decompressing {buda_offsets[start_buda]} to {buda_offsets[start_buda + 1]}, width = {width}, isPalette = {isPalette}, offset = {offset}')
 
-        if start_buda>0 and metadata[start_buda - 1]["isContinued"] == True:
-            continue
+      combined = bytearray()
 
-        print(f'Decompressing {budas[start_buda]} to {budas[start_buda + 1]}, width = {width}, isPalette = {isPalette}, offset = {offset}')
+      if start_buda == 0:
+         print(f'Adding block at 0')
+         combined.extend(decompress_rle(data, 0, buda_offsets[start_buda]))
 
-        combined = bytearray()
+      block = decompress_rle(data, buda_offsets[start_buda] + 4 + offset, buda_offsets[start_buda+1])
+      combined.extend(block)
 
-        if start_buda == 0:
-             print(f'Adding block at 0')
-             combined.extend(decompress_rle(data, 0, budas[start_buda]))
+      curIndex = 0
+      shouldContinue = isContinued
+      totalBudas = 0
 
-        block = decompress_rle(data, budas[start_buda] + 4 + offset, budas[start_buda+1])
-        combined.extend(block)
+      if shouldContinue:
+        curIndex = start_buda + 1
+      if shouldContinue:
+        while True:
+          combined.extend(decompress_rle(data, buda_offsets[curIndex] + 4, buda_offsets[curIndex+1]))
+          shouldContinue = budas[curIndex]["isContinued"]
+          print(f'For buda = {start_buda} adding also buda {curIndex}')
+          curIndex+=1
+          totalBudas +=1
+          if(shouldContinue == False):
+            break
 
-        curIndex = 0
-        shouldContinue = isContinued
-        totalBudas = 0
+      print(f'For buda = {start_buda} used {totalBudas}')
 
-        if shouldContinue:
-            curIndex = start_buda + 1
-        if shouldContinue:
-            while True:
-                combined.extend(decompress_rle(data, budas[curIndex] + 4, budas[curIndex+1]))
-                shouldContinue = metadata[curIndex]["isContinued"]
-                print(f'For buda = {start_buda} adding also buda {curIndex}')
-                curIndex+=1
-                totalBudas +=1
-                if(shouldContinue == False):
-                    break
+      output_path_thisbuda = Path(f'{output_dir}/buda{start_buda:03d}')
+      output_path_thisbuda.mkdir(parents=True, exist_ok=True)
 
-        print(f'For buda = {start_buda} used {totalBudas}')
+      # Find nearest palette
+      pal_buda = 1000
+      for p_idx in palettes.keys():
+        if p_idx > start_buda and p_idx < pal_buda:
+          pal_buda = p_idx
 
+      if pal_buda == 1000:
+        print(f'Fallback palette')
+        pal_buda = 7
 
-        output_path_thisbuda = Path(f'{output_dir}/buda{start_buda:03d}')
-        output_path_thisbuda.mkdir(parents=True, exist_ok=True)
+      if pal_buda:
+        size = 0
+        if(type == "IMAGE" and width == 640):
+          size =  640 * 400
+          height = 400
+          realHeight = height
+        else:
+          size = len(combined)
+          realHeight = size / width
+          height = math.ceil(size / width)
+        print(f"SAVING BUDA {start_buda}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
+        # Create image
+        img_data = bytes(combined[:size])
+        if len(img_data) < size:
+          img_data += bytes([0] * (size - len(img_data)))
 
-        # Find nearest palette
-        pal_buda = 1000
-        for p_idx in palettes.keys():
-            if p_idx > start_buda and p_idx < pal_buda: # and p_idx <= start_buda + budas_used + 10:
-                pal_buda = p_idx
+        img = Image.new('P', (width, height))
+        img.putpalette(palettes[pal_buda])
+        img.putdata(img_data)
 
-        if pal_buda == 1000:
-            print(f'Fallback palette')
-            pal_buda = 7
-
-        if pal_buda:
-            size = 0
-            if(type == "IMAGE" and width == 640):
-                size =  640 * 400
-                height = 400
-                realHeight = height
-            else:
-                size = len(combined)
-                realHeight = size / width
-                height = math.ceil(size / width)
-            print(f"SAVING BUDA {start_buda}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
-            # Create image
-            img_data = bytes(combined[:size])
-            if len(img_data) < size:
-                img_data += bytes([0] * (size - len(img_data)))
-
-            img = Image.new('P', (width, height))
-            img.putpalette(palettes[pal_buda])
-            img.putdata(img_data)
-
-            output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{budas[start_buda]}.png'
-            img.save(output_file)
+        output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.png'
+        img.save(output_file)
 
 if __name__ == "__main__":
     main()
