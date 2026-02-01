@@ -9,19 +9,6 @@ import math
 from PIL import Image
 
 metadata = [
-  # {
-  #   "BUDA": 0,
-  #   "OFFSET": 0,
-  #   "TYPE": "IMAGE",
-  #   "DESC": "CUADROCAMA",
-  #   "WIDTH": 640,
-  #   "offset": 0,
-  #   "START": "0",
-  #   "OFFSET RLE DEC": "COMPLETO",
-  #   "isPalette" : False,
-  #   "isContinued":  True,
-	# "offset" : 0,
-  # },
   {
     "BUDA": 0,
     "OFFSET": 260,
@@ -2417,7 +2404,7 @@ direct = [
   "start": 37000,
   "width": 45,
   "height": 87,
-  "nframes": 3
+  "nframes": 3,
   },
   {
   "start": 48792,
@@ -2430,6 +2417,13 @@ direct = [
     "width": 82,
     "height": 58,
     "nframes": 2
+  }
+]
+
+raw = [
+  {
+    "start": 256000,
+    "size":
   }
 ]
 
