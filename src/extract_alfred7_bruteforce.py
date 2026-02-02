@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 import math
 from PIL import Image
+import shutil
 
 budas = [
   {
@@ -95,50 +96,15 @@ budas = [
   },
   {
     "BUDA": 7,
-    "START_OFFSET": 31104,
+    "START_OFFSET": 67758,
     "TYPE": "ANIM",
     "DESC": "ALFRED PEINANDO DERECHA",
     "WIDTH": 51,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
-    "blockList" : [
-        {
-            "offset" : 0,
-            "type": "PALETTE",
-        },
-        {
-            "offset" : 768,
-            "type" : "UNKNOWN",
-        },
-        {
-            "offset" : 5895,
-            "type": "RAW",
-            "width": 45
-        },
-        {
-            "offset" : 17738,
-            "type": "RAW",
-            "width": 49
-        },
-        {
-            "offset" : 22002,
-            "type": "RAW",
-            "width": 82
-        },
-        {
-            "offset" : 31842,
-            "type": "RAW",
-            "width": 86
-        },
-        {
-            "offset" : 36650,
-            "type": "RAW",
-            "width": 49
-        },
-    ],
-	"offset" : 36650
+	  "offset" : 0
   },
   {
     "BUDA": 8,
@@ -252,10 +218,10 @@ budas = [
     "BUDA": 17,
     "START_OFFSET": 212921,
     "TYPE": "SPRITE",
-    "DESC": "?",
+    "DESC": "PAREJA0",
     "WIDTH": 62,
-    "START": "?",
-    "OFFSET RLE DEC": "NaN",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 0,
@@ -336,7 +302,7 @@ budas = [
     "BUDA": 24,
     "START_OFFSET": 381445,
     "TYPE": "ANIM",
-    "DESC": "LLAMA?",
+    "DESC": "LLAMA",
     "WIDTH": 7,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -382,15 +348,15 @@ budas = [
   },
   {
     "BUDA": 28,
-    "START_OFFSET": 409881,
+    "START_OFFSET": 411587,
     "TYPE": "IMAGE",
     "DESC": "ALFRED CIRCULO",
     "WIDTH": 640,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  True,
-	  "offset" : 1702
+	  "offset" : 0
   },
   {
     "BUDA": 29,
@@ -531,7 +497,7 @@ budas = [
     "DESC": "DAILY",
     "WIDTH": 640,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  True,
 	"offset" : 864
@@ -611,7 +577,7 @@ budas = [
   {
     "BUDA": 47,
     "START_OFFSET": 556911,
-    "TYPE": "?",
+    "TYPE": "UNKNOWN",
     "DESC": "DAILY",
     "WIDTH": 640,
     "START": "0",
@@ -626,8 +592,8 @@ budas = [
     "TYPE": "ANIM",
     "DESC": "CHAFARDER BUG",
     "WIDTH": 640,
-    "START": "?",
-    "OFFSET RLE DEC": "?",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 768
@@ -636,19 +602,19 @@ budas = [
     "BUDA": 49,
     "START_OFFSET": 558913,
     "TYPE": "ANIM",
-    "DESC": "ALFRED LEE",
+    "DESC": "ALFRED LEE LIBRO",
     "WIDTH": 51,
     "START": "FINAL (After palette)",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
-    "isContinued":  True,
+    "isContinued":  False,
 	  "offset" : 768
   },
   {
     "BUDA": 50,
     "START_OFFSET": 578939,
     "TYPE": "SPRITE",
-    "DESC": "ALFRED LEE",
+    "DESC": "ALFRED LEE RECETa",
     "WIDTH": 51,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -670,15 +636,15 @@ budas = [
   },
   {
     "BUDA": 52,
-    "START_OFFSET": 598727,
+    "START_OFFSET": 598907,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  True,
-	  "offset" : 176
+	  "offset" : 0
   },
   {
     "BUDA": 53,
@@ -771,7 +737,7 @@ budas = [
     "DESC": "MAPA",
     "WIDTH": 640,
     "START": "FINAL (After palette)",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  True,
 	  "offset" : 778
@@ -867,7 +833,7 @@ budas = [
     "DESC": "MENU",
     "WIDTH": 640,
     "START": "FINAL (After palette)",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  True,
 	"offset" : 768
@@ -947,7 +913,7 @@ budas = [
   {
     "BUDA": 75,
     "START_OFFSET": 1030041,
-    "TYPE": "?",
+    "TYPE": "UNKNOWN",
     "DESC": "MENU",
     "WIDTH": 640,
     "START": "0",
@@ -960,10 +926,10 @@ budas = [
     "BUDA": 76,
     "START_OFFSET": 1041501,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 72,
-    "START": "?",
-    "OFFSET RLE DEC": "?",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 0
@@ -987,10 +953,10 @@ budas = [
     "DESC": "LIBRO",
     "WIDTH": 640,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  True,
-	 "offset" : 100
+	  "offset" : 100
   },
   {
     "BUDA": 79,
@@ -1080,10 +1046,10 @@ budas = [
     "BUDA": 86,
     "START_OFFSET": 1147077,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "FINAL (After palette)",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  True,
 	  "offset" : 768
@@ -1092,7 +1058,7 @@ budas = [
     "BUDA": 87,
     "START_OFFSET": 1155375,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1104,7 +1070,7 @@ budas = [
     "BUDA": 88,
     "START_OFFSET": 1174169,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1116,7 +1082,7 @@ budas = [
     "BUDA": 89,
     "START_OFFSET": 1190857,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1128,7 +1094,7 @@ budas = [
     "BUDA": 90,
     "START_OFFSET": 1206407,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1140,7 +1106,7 @@ budas = [
     "BUDA": 91,
     "START_OFFSET": 1221291,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1152,7 +1118,7 @@ budas = [
     "BUDA": 92,
     "START_OFFSET": 1236715,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1164,7 +1130,7 @@ budas = [
     "BUDA": 93,
     "START_OFFSET": 1262291,
     "TYPE": "SPRITEMAP",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 640,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1179,7 +1145,7 @@ budas = [
     "DESC": "SIMBOLOS",
     "WIDTH": 119,
     "START": "FINAL (After palette)",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 768
@@ -1188,7 +1154,7 @@ budas = [
     "BUDA": 95,
     "START_OFFSET": 1341231,
     "TYPE": "RAW",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 119,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1200,7 +1166,7 @@ budas = [
     "BUDA": 96,
     "START_OFFSET": 1347763,
     "TYPE": "RAW",
-    "DESC": "NaN",
+    "DESC": "UNKNOWN",
     "WIDTH": 146,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1214,9 +1180,9 @@ budas = [
     "TYPE": "SPRITE",
     "DESC": "BALLOONS AGAIN",
     "WIDTH": 254,
-    "START": "?",
-    "OFFSET RLE DEC": "?",
-    "isPalette" : "?",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
+    "isPalette" : "UNKNOWN",
     "isContinued":  False,
 	  "offset" : 14
   },
@@ -1323,7 +1289,7 @@ budas = [
     "DESC": "ALFREDCAMA",
     "WIDTH": 76,
     "START": "FINAL (After palette)",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	"offset" : 768
@@ -1335,7 +1301,7 @@ budas = [
     "DESC": "NADADORAS",
     "WIDTH": 93, #68, 79, 54,
     "START": "FINAL (After palette)",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 768
@@ -1347,7 +1313,7 @@ budas = [
     "DESC": "TIPOS BEBIENDO",
     "WIDTH": 152,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
 	"offset" : 172
@@ -1407,7 +1373,7 @@ budas = [
     "DESC": "ALFREDAGACHA",
     "WIDTH": 95,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
 	  "offset" : 0
@@ -1443,7 +1409,7 @@ budas = [
     "DESC": "ALFREDMUNHECO",
     "WIDTH": 116,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
 	  "offset" : 0
@@ -1536,7 +1502,7 @@ budas = [
     "BUDA": 124,
     "START_OFFSET": 2214756,
     "TYPE": "IMAGE",
-    "DESC": "?",
+    "DESC": "UNKNOWN",
     "WIDTH": 213,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
@@ -1646,8 +1612,8 @@ budas = [
     "TYPE": "DUNNO",
     "DESC": "PALETTE",
     "WIDTH": 100,
-    "START": "NaN",
-    "OFFSET RLE DEC": "NaN",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 0
@@ -1766,8 +1732,8 @@ budas = [
     "TYPE": "ANIM",
     "DESC": "PALETTE",
     "WIDTH": 200,
-    "START": "NaN",
-    "OFFSET RLE DEC": "NaN",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	"offset" : 768
@@ -1887,7 +1853,7 @@ budas = [
     "DESC": "CODE",
     "WIDTH": 640,
     "START": "AFTER PALETTE",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 768
@@ -1923,7 +1889,7 @@ budas = [
     "DESC": "MENU",
     "WIDTH": 640,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
 	"offset" : 0
@@ -1934,8 +1900,8 @@ budas = [
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
-    "START": "NaN",
-    "OFFSET RLE DEC": "NaN",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
 	"offset" : 0
@@ -1944,11 +1910,11 @@ budas = [
     "BUDA": 158,
     "START_OFFSET": 2656194,
     "TYPE": "UI",
-    "DESC": "MENU?",
+    "DESC": "MENU",
     "WIDTH": 198,
-    "START": "?",
-    "OFFSET RLE DEC": "?",
-    "isPalette" : "?",
+    "START": "UNKNOWN",
+    "OFFSET RLE DEC": "UNKNOWN",
+    "isPalette" : "UNKNOWN",
     "isContinued":  False,
 	  "offset" : 0
   },
@@ -2127,7 +2093,7 @@ budas = [
     "DESC": "PERGAMINO",
     "WIDTH": 640,
     "START": "AFTER PALETTE",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  True,
 	"offset" : 768
@@ -2223,7 +2189,7 @@ budas = [
     "DESC": "ALFREDDESCAMISA",
     "WIDTH": 51,
     "START": "AFTER PALETTE",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	"offset" : 768
@@ -2380,7 +2346,7 @@ budas = [
     "WIDTH": 114,
     # 55,
     "START": "MEDIO",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
 	   "offset" : 36970
@@ -2392,7 +2358,7 @@ budas = [
     "DESC": "CREDITOS",
     "WIDTH": 480,
     "START": "FINAL",
-    "OFFSET RLE DEC": "NaN",
+    "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
 	  "offset" : 256000
@@ -2639,6 +2605,7 @@ def main():
         name = entry.get("name", "noname")
         output_path_raw = output_base_raw / f'entry_{idx}_{start_offset}'
         output_path_raw.mkdir(parents=True, exist_ok=True)
+        print(f'Extracting raw entry {idx}: offset={start_offset}, size={size}, name={name}')
         raw_data = data[start_offset:start_offset+size]
         output_file = output_path_raw / f'raw_{idx}_{name}_{start_offset}.bin'
         with open(output_file, 'wb') as f:
@@ -2763,7 +2730,7 @@ def main():
 
       print(f'For buda = {start_buda} used {totalBudas}')
 
-      output_path_thisbuda = Path(f'{output_dir}/buda{budas[start_buda]["BUDA"]}')
+      output_path_thisbuda = Path(f'{output_dir}/buda{budas[start_buda]["BUDA"]}_{budas[start_buda]["DESC"]}')
       output_path_thisbuda.mkdir(parents=True, exist_ok=True)
 
       # Find nearest palette
@@ -2778,7 +2745,7 @@ def main():
 
       if type == "RAW":
           # Save decompressed data as .bin
-          output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{start_offset}.bin'
+          output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_{budas[start_buda]["DESC"]}_offset_{start_offset}.bin'
           print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: as raw")
           with open(output_file, 'wb') as f:
             f.write(combined)
