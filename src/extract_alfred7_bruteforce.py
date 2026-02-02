@@ -250,15 +250,15 @@ budas = [
   },
   {
     "BUDA": 17,
-    "START_OFFSET": 198046,
-    "TYPE": "RAW",
+    "START_OFFSET": 212921,
+    "TYPE": "SPRITE",
     "DESC": "?",
-    "WIDTH": 1,
+    "WIDTH": 62,
     "START": "?",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	  "offset" : 14692,
+	  "offset" : 0,
   },
   {
     "BUDA": 18,
@@ -2453,6 +2453,13 @@ direct = [
     "width": 28,
     "height": 28,
     "nframes": 2
+  },
+
+  {
+    "start": 212745,
+    "width": 11,
+    "height": 16,
+    "nframes": 1
   }
 ]
 

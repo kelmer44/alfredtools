@@ -34,7 +34,7 @@ u8 alfredElectrocuta1[11745] @ 37000; // verified
 u8 unknownbetweenalfreds[0x2F] @ 0xBE69;
 u8 alfredElectrocuta2[4312] @ 48792; // verified
 u8 alfredElectrocuta3[9512] @ 53106; // verified
-u8 unknownAfterElectrocuta[0x1414] @ 0xF49A;
+u8 unknownAfterElectrocuta[0x1414] @ 62612;
 RleChunk alfredCombRight @ 0x108AE; //verified
 RleChunk alfredCombLeft @ 0x15958; //verified
 RleChunk computer[8] @ 0x1A9EE; //verified
@@ -42,9 +42,10 @@ Palette palComputer @ 198050; //verified
 // buda 17
 u8 unknownAntesLibros[0x13E] @ 0x308A2;
 u8 libros[0x3526] @ 0x309E0; //verified
-RleChunk unknownBuda @ 0x33F06;
+u8 cursorBMP[176] @ 212745; // verified
+RleChunk pareja0 @ 212921; //verified
 
-RleChunk pareja @ 236645; // verified
+RleChunk pareja1 @ 236645; // verified
 RleChunk faraonCamina @ 261449; // verified
 RleChunk faraonLevantaMano @ 280359; // verified
 RleChunk pareja2 @ 298589; // verified
