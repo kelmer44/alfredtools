@@ -948,7 +948,7 @@ budas = [
   },
   {
     "BUDA": 78,
-    "START_OFFSET": 1047519,
+    "START_OFFSET": 1047619,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -956,7 +956,7 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  True,
-	  "offset" : 100
+	  "offset" : 0
   },
   {
     "BUDA": 79,
@@ -1176,7 +1176,7 @@ budas = [
   },
   {
     "BUDA": 97,
-    "START_OFFSET": 1374808,
+    "START_OFFSET": 1374822,
     "TYPE": "SPRITE",
     "DESC": "BALLOONS AGAIN",
     "WIDTH": 254,
@@ -1184,7 +1184,7 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : "UNKNOWN",
     "isContinued":  False,
-	  "offset" : 14
+	  "offset" : 0
   },
   {
     "BUDA": 98,
@@ -1308,7 +1308,7 @@ budas = [
   },
   {
     "BUDA": 108,
-    "START_OFFSET": 1473188,
+    "START_OFFSET": 1473364,
     "TYPE": "ANIM",
     "DESC": "TIPOS BEBIENDO",
     "WIDTH": 152,
@@ -1316,7 +1316,7 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 172
+	"offset" : 0
   },
   {
     "BUDA": 109,
@@ -2340,7 +2340,7 @@ budas = [
   },
   {
     "BUDA": 194,
-    "START_OFFSET": 3185276,
+    "START_OFFSET": 3222246,
     "TYPE": "ANIMS",
     "DESC": "PIERNAS, MANOS",
     "WIDTH": 114,
@@ -2349,11 +2349,11 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
-	   "offset" : 36970
+	   "offset" : 0
   },
   {
     "BUDA": 195,
-    "START_OFFSET": 3271450,
+    "START_OFFSET": 3527454,
     "TYPE": "IMAGE",
     "DESC": "CREDITOS",
     "WIDTH": 480,
@@ -2361,7 +2361,7 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
-	  "offset" : 256000
+	  "offset" : 0
   }
 ]
 
@@ -2426,100 +2426,105 @@ direct = [
     "width": 11,
     "height": 16,
     "nframes": 1
+  },
+  {
+    "start": 1039869,
+    "width": 16,
+    "height": 18,
+    "nframes": 1
+  },
+  {
+    "start": 1039581,
+    "width": 16,
+    "height": 18,
+    "nframes": 1
+  },
+  {
+    "start": 1040157,
+    "width": 16,
+    "height": 18,
+    "nframes": 1
+  },
+  {
+    "start": 1041213,
+    "width": 16,
+    "height": 18,
+    "nframes": 1
+  },
+  {
+    "start": 3571440,
+    "width": 16,
+    "height": 18,
+    "nframes": 1
   }
 ]
 
 raw = [
-  {
-    "start": 31876,
-    "size": 324,
-    "name": "unknown"
-  },
-  {
-    "start": 0xBE69,
-    "size": 0x2F,
-    "name": "unknown"
-  },
-  {
-    "start": 0xF49A,
-    "size": 0x1414,
-    "name": "unknown"
-  },
-  {
-    "start": 0x308A2,
-    "size": 0x13E,
-    "name": "unknown"
-  },
+  # {
+  #   "start": 31876,
+  #   "size": 324,
+  #   "name": "unknown"
+  # },
+  # {
+  #   "start": 0xBE69,
+  #   "size": 0x2F,
+  #   "name": "unknown"
+  # },
+  # {
+  #   "start": 0xF49A,
+  #   "size": 0x1414,
+  #   "name": "unknown"
+  # },
+  # {
+  #   "start": 0x308A2,
+  #   "size": 0x13E,
+  #   "name": "unknown"
+  # },
   {
     "start": 0x309E0,
     "size": 0x3526,
     "name": "libros"
   },
-  {
-    "start": 409885,
-    "size": 1702,
-    "name": "unknown"
-  },
-  {
-    "start": 598731,
-    "size": 176,
-    "name": "unknown"
-  },
+  # {
+  #   "start": 409885,
+  #   "size": 1702,
+  #   "name": "unknown"
+  # },
+  # {
+  #   "start": 598731,
+  #   "size": 176,
+  #   "name": "unknown"
+  # },
   {
     "start": 1038909,
     "size": 672,
     "name": "code snippet"
   },
-  {
-    "start": 1039869,
-    "size": 288,
-    "name": "cursor1"
-  },
-  {
-    "start": 1039581,
-    "size": 288,
-    "name": "cursor2"
-  },
-  {
-    "start": 1040157,
-    "size": 288,
-    "name": "cursor3"
-  },
-  {
-    "start": 1040445,
-    "size": 768,
-    "name": "palettemaybe"
-  },
-  {
-    "start": 1041213,
-    "size": 288,
-    "name": "cursor4"
-  },
-  {
-    "start": 3571440,
-    "size": 288,
-    "name": "cursor5"
-  },
-  {
-    "start": 1047523,
-    "size": 100,
-    "name": "unknown"
-  },
+  # {
+  #   "start": 1040445,
+  #   "size": 768,
+  #   "name": "palettemaybe"
+  # },
+  # {
+  #   "start": 1047523,
+  #   "size": 100,
+  #   "name": "unknown"
+  # },
   {
     "start": 1361215,
     "size": 13593,
     "name": "englishBooks"
   },
-  {
-    "start": 1473192,
-    "size": 172,
-    "name": "unknown"
-  },
-  {
-    "start": 3271454,
-    "size": 256000,
-    "name": "unknownimage"
-  }
+  # {
+  #   "start": 1473192,
+  #   "size": 172,
+  #   "name": "unknown"
+  # },
+  # {
+  #   "start": 3271454,
+  #   "size": 256000,
+  #   "name": "unknownimage"
+  # }
 ]
 
 
