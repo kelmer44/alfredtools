@@ -2460,71 +2460,244 @@ direct = [
 ]
 
 raw = [
-  # {
-  #   "start": 31876,
-  #   "size": 324,
-  #   "name": "unknown"
-  # },
-  # {
-  #   "start": 0xBE69,
-  #   "size": 0x2F,
-  #   "name": "unknown"
-  # },
-  # {
-  #   "start": 0xF49A,
-  #   "size": 0x1414,
-  #   "name": "unknown"
-  # },
-  # {
-  #   "start": 0x308A2,
-  #   "size": 0x13E,
-  #   "name": "unknown"
-  # },
+  # File header
+  {
+    "start": 0x000000,
+    "size": 260,
+    "name": "file_header",
+    "isPalette": False
+  },
+  # Gap after BUDA 6
+  {
+    "start": 0x007980,
+    "size": 5896,
+    "name": "gap_after_buda6",
+    "isPalette": False
+  },
+  # Gap in direct bitmap region
+  {
+    "start": 0x00BE69,
+    "size": 47,
+    "name": "gap_in_direct_region",
+    "isPalette": False
+  },
+  # Gap between direct and BUDA 7
+  {
+    "start": 0x00F49A,
+    "size": 5140,
+    "name": "gap_before_buda7",
+    "isPalette": False
+  },
+  # Gap before libros
+  {
+    "start": 0x03059E,
+    "size": 1090,
+    "name": "gap_before_libros",
+    "isPalette": False
+  },
+  # Library books database
   {
     "start": 0x309E0,
     "size": 0x3526,
-    "name": "libros"
+    "name": "libros",
+    "isPalette": False
   },
-  # {
-  #   "start": 409885,
-  #   "size": 1702,
-  #   "name": "unknown"
-  # },
-  # {
-  #   "start": 598731,
-  #   "size": 176,
-  #   "name": "unknown"
-  # },
+  # Gap after BUDA 27
+  {
+    "start": 0x064119,
+    "size": 1706,
+    "name": "gap_after_buda27",
+    "isPalette": False
+  },
+  # Gap after BUDA 39
+  {
+    "start": 0x07B6AD,
+    "size": 864,
+    "name": "gap_after_buda39",
+    "isPalette": False
+  },
+  # Palette for BUDA 48
+  {
+    "start": 0x0883B9,
+    "size": 768,
+    "name": "palette_buda48",
+    "isPalette": True
+  },
+  # Palette for BUDA 49
+  {
+    "start": 0x088741,
+    "size": 768,
+    "name": "palette_buda49",
+    "isPalette": True
+  },
+  # Gap after BUDA 51
+  {
+    "start": 0x0922C7,
+    "size": 180,
+    "name": "gap_after_buda51",
+    "isPalette": False
+  },
+  # Gap after BUDA 59
+  {
+    "start": 0x0B0EE3,
+    "size": 778,
+    "name": "gap_after_buda59",
+    "isPalette": False
+  },
+  # Palette for BUDA 68
+  {
+    "start": 0x0DE00D,
+    "size": 768,
+    "name": "palette_buda68",
+    "isPalette": True
+  },
+  # Gap after BUDA 75
+  {
+    "start": 0x0FD739,
+    "size": 772,
+    "name": "gap_after_buda75",
+    "isPalette": False
+  },
+  # Code snippet (cursor handler)
   {
     "start": 1038909,
     "size": 672,
-    "name": "code snippet"
+    "name": "code_snippet_cursor",
+    "isPalette": False
   },
-  # {
-  #   "start": 1040445,
-  #   "size": 768,
-  #   "name": "palettemaybe"
-  # },
-  # {
-  #   "start": 1047523,
-  #   "size": 100,
-  #   "name": "unknown"
-  # },
+  # Palette (maybe)
+  {
+    "start": 0x0FE03D,
+    "size": 768,
+    "name": "palette_maybe",
+    "isPalette": True
+  },
+  # Gap before BUDA 78
+  {
+    "start": 0x0FFBDF,
+    "size": 100,
+    "name": "gap_before_buda78",
+    "isPalette": False
+  },
+  # Palette for BUDA 86
+  {
+    "start": 0x1180C5,
+    "size": 768,
+    "name": "palette_buda86",
+    "isPalette": True
+  },
+  # Palette for BUDA 94
+  {
+    "start": 0x1358EF,
+    "size": 768,
+    "name": "palette_buda94",
+    "isPalette": True
+  },
+  # English library books database
   {
     "start": 1361215,
     "size": 13593,
-    "name": "englishBooks"
+    "name": "englishBooks",
+    "isPalette": False
   },
-  # {
-  #   "start": 1473192,
-  #   "size": 172,
-  #   "name": "unknown"
-  # },
-  # {
-  #   "start": 3271454,
-  #   "size": 256000,
-  #   "name": "unknownimage"
-  # }
+  # Gap after englishBooks
+  {
+    "start": 0x14FA58,
+    "size": 14,
+    "name": "gap_after_english_books",
+    "isPalette": False
+  },
+  # Palette for BUDA 106
+  {
+    "start": 0x15BFC4,
+    "size": 768,
+    "name": "palette_buda106",
+    "isPalette": True
+  },
+  # Palette for BUDA 107
+  {
+    "start": 0x1610CA,
+    "size": 768,
+    "name": "palette_buda107",
+    "isPalette": True
+  },
+  # Gap after BUDA 107
+  {
+    "start": 0x167AA4,
+    "size": 176,
+    "name": "gap_after_buda107",
+    "isPalette": False
+  },
+  # Gap before direct region
+  {
+    "start": 0x1F7274,
+    "size": 6,
+    "name": "gap_before_direct",
+    "isPalette": False
+  },
+  # Gap after BUDA 132
+  {
+    "start": 0x2204E4,
+    "size": 772,
+    "name": "gap_after_buda132",
+    "isPalette": False
+  },
+  # Palette for BUDA 143
+  {
+    "start": 0x22DC82,
+    "size": 768,
+    "name": "palette_buda143",
+    "isPalette": True
+  },
+  # Palette for BUDA 153
+  {
+    "start": 0x236AA4,
+    "size": 768,
+    "name": "palette_buda153",
+    "isPalette": True
+  },
+  # Palette for BUDA 173
+  {
+    "start": 0x2B3B78,
+    "size": 768,
+    "name": "palette_buda173",
+    "isPalette": True
+  },
+  # Palette for BUDA 181
+  {
+    "start": 0x2D5894,
+    "size": 768,
+    "name": "palette_buda181",
+    "isPalette": True
+  },
+  # Gap after BUDA 193
+  {
+    "start": 0x309A7C,
+    "size": 772,
+    "name": "gap_after_buda193",
+    "isPalette": False
+  },
+  # Gap between direct regions
+  {
+    "start": 0x30A0A0,
+    "size": 500,
+    "name": "gap_between_direct",
+    "isPalette": False
+  },
+  # Large gap (unknown data)
+  {
+    "start": 0x30A8B4,
+    "size": 33330,
+    "name": "large_gap_unknown",
+    "isPalette": False
+  },
+  # Very large gap (possibly image or code)
+  {
+    "start": 0x31EB1A,
+    "size": 256004,
+    "name": "very_large_gap",
+    "isPalette": False
+  }
 ]
 
 
@@ -2601,20 +2774,63 @@ def main():
     with open(alfred7, 'rb') as f:
       data = f.read()
 
-    # Extract raw entries as .bin files
+    # Extract raw entries as .bin files and palettes as .pal files
     output_base_raw = Path(f'{output_dir}/raw')
     output_base_raw.mkdir(parents=True, exist_ok=True)
+
+    output_base_palette = Path(f'{output_dir}/palettes')
+    output_base_palette.mkdir(parents=True, exist_ok=True)
+
     for idx, entry in enumerate(raw):
         start_offset = entry["start"]
         size = entry["size"]
         name = entry.get("name", "noname")
-        output_path_raw = output_base_raw / f'entry_{idx}_{start_offset}'
-        output_path_raw.mkdir(parents=True, exist_ok=True)
-        print(f'Extracting raw entry {idx}: offset={start_offset}, size={size}, name={name}')
-        raw_data = data[start_offset:start_offset+size]
-        output_file = output_path_raw / f'raw_{idx}_{name}_{start_offset}.bin'
-        with open(output_file, 'wb') as f:
-            f.write(raw_data)
+        is_palette = entry.get("isPalette", False)
+
+        if is_palette:
+            # Extract as palette
+            output_path_pal = output_base_palette / f'entry_{idx}_{start_offset}'
+            output_path_pal.mkdir(parents=True, exist_ok=True)
+            print(f'Extracting palette {idx}: offset={start_offset}, name={name}')
+            pal_data = data[start_offset:start_offset+size]
+
+            # Save raw palette data
+            output_file_bin = output_path_pal / f'palette_{idx}_{name}_{start_offset}.bin'
+            with open(output_file_bin, 'wb') as f:
+                f.write(pal_data)
+
+            # Also save as PNG color swatch (16x16 color grid)
+            if size == 768:  # Standard 256-color palette
+                palette = []
+                for i in range(256):
+                    r = min(255, pal_data[i * 3] * 4)
+                    g = min(255, pal_data[i * 3 + 1] * 4)
+                    b = min(255, pal_data[i * 3 + 2] * 4)
+                    palette.extend([r, g, b])
+
+                # Create 16x16 grid showing all colors
+                img = Image.new('RGB', (16 * 16, 16 * 16))
+                pixels = []
+                for color_idx in range(256):
+                    r = palette[color_idx * 3]
+                    g = palette[color_idx * 3 + 1]
+                    b = palette[color_idx * 3 + 2]
+                    for y in range(16):
+                        for x in range(16):
+                            pixels.append((r, g, b))
+
+                img.putdata(pixels)
+                output_file_png = output_path_pal / f'palette_{idx}_{name}_{start_offset}.png'
+                img.save(output_file_png)
+        else:
+            # Extract as raw binary
+            output_path_raw = output_base_raw # / f'entry_{idx}_{start_offset}'
+            output_path_raw.mkdir(parents=True, exist_ok=True)
+            print(f'Extracting raw entry {idx}: offset={start_offset}, size={size}, name={name}')
+            raw_data = data[start_offset:start_offset+size]
+            output_file = output_path_raw / f'raw_{idx}_{name}_{start_offset}.bin'
+            with open(output_file, 'wb') as f:
+                f.write(raw_data)
 
     with open(alfred7, 'rb') as f:
         data = f.read()
