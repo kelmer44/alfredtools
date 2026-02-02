@@ -11,7 +11,7 @@ from PIL import Image
 budas = [
   {
     "BUDA": 0,
-    "OFFSET": 260,
+    "START_OFFSET": 260,
     "TYPE": "IMAGE",
     "DESC": "CUADROCAMA",
     "WIDTH": 640,
@@ -23,7 +23,7 @@ budas = [
   },
   {
     "BUDA": 1,
-    "OFFSET": 680,
+    "START_OFFSET": 680,
     "TYPE": "IMAGE",
     "DESC": "CUADROCAMA",
     "WIDTH": 640,
@@ -35,7 +35,7 @@ budas = [
   },
   {
     "BUDA": 2,
-    "OFFSET": 11150,
+    "START_OFFSET": 11150,
     "TYPE": "IMAGE",
     "DESC": "CUADROCAMA",
     "WIDTH": 640,
@@ -47,7 +47,7 @@ budas = [
   },
   {
     "BUDA": 3,
-    "OFFSET": 17616,
+    "START_OFFSET": 17616,
     "TYPE": "IMAGE",
     "DESC": "CUADROCAMA",
     "WIDTH": 640,
@@ -59,7 +59,7 @@ budas = [
   },
   {
     "BUDA": 4,
-    "OFFSET": 22598,
+    "START_OFFSET": 22598,
     "TYPE": "IMAGE",
     "DESC": "CUADROCAMA",
     "WIDTH": 640,
@@ -71,7 +71,7 @@ budas = [
   },
   {
     "BUDA": 5,
-    "OFFSET": 28766,
+    "START_OFFSET": 28766,
     "TYPE": "IMAGE",
     "DESC": "CUADROCAMA",
     "WIDTH": 640,
@@ -83,7 +83,7 @@ budas = [
   },
   {
     "BUDA": 6,
-    "OFFSET": 30890,
+    "START_OFFSET": 30890,
     "TYPE": "IMAGE",
     "DESC": "CUADROCAMA",
     "WIDTH": 640,
@@ -95,7 +95,7 @@ budas = [
   },
   {
     "BUDA": 7,
-    "OFFSET": 31104,
+    "START_OFFSET": 31104,
     "TYPE": "ANIM",
     "DESC": "ALFRED PEINANDO DERECHA",
     "WIDTH": 51,
@@ -142,7 +142,7 @@ budas = [
   },
   {
     "BUDA": 8,
-    "OFFSET": 88404,
+    "START_OFFSET": 88404,
     "TYPE": "ANIM",
     "DESC": "ALFRED PEINANDO IZQUIERDA",
     "WIDTH": 51,
@@ -154,7 +154,7 @@ budas = [
   },
   {
     "BUDA": 9,
-    "OFFSET": 109034,
+    "START_OFFSET": 109034,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -166,7 +166,7 @@ budas = [
   },
   {
     "BUDA": 10,
-    "OFFSET": 112386,
+    "START_OFFSET": 112386,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -178,7 +178,7 @@ budas = [
   },
   {
     "BUDA": 11,
-    "OFFSET": 132440,
+    "START_OFFSET": 132440,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -190,7 +190,7 @@ budas = [
   },
   {
     "BUDA": 12,
-    "OFFSET": 139082,
+    "START_OFFSET": 139082,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -202,7 +202,7 @@ budas = [
   },
   {
     "BUDA": 13,
-    "OFFSET": 145736,
+    "START_OFFSET": 145736,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -214,7 +214,7 @@ budas = [
   },
   {
     "BUDA": 14,
-    "OFFSET": 152472,
+    "START_OFFSET": 152472,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -226,7 +226,7 @@ budas = [
   },
   {
     "BUDA": 15,
-    "OFFSET": 170502,
+    "START_OFFSET": 170502,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -238,7 +238,7 @@ budas = [
   },
   {
     "BUDA": 16,
-    "OFFSET": 192176,
+    "START_OFFSET": 192176,
     "TYPE": "IMAGE",
     "DESC": "ORDENADOR",
     "WIDTH": 640,
@@ -250,7 +250,7 @@ budas = [
   },
   {
     "BUDA": 17,
-    "OFFSET": 198046,
+    "START_OFFSET": 198046,
     "TYPE": "RAW",
     "DESC": "?",
     "WIDTH": 1,
@@ -262,7 +262,7 @@ budas = [
   },
   {
     "BUDA": 18,
-    "OFFSET": 236641,
+    "START_OFFSET": 236641,
     "TYPE": "ANIM",
     "DESC": "PAREJA",
     "WIDTH": 62,
@@ -274,7 +274,7 @@ budas = [
   },
   {
     "BUDA": 19,
-    "OFFSET": 261445,
+    "START_OFFSET": 261445,
     "TYPE": "ANIM",
     "DESC": "FARAON CAMINA",
     "WIDTH": 64,
@@ -286,7 +286,7 @@ budas = [
   },
   {
     "BUDA": 20,
-    "OFFSET": 280355,
+    "START_OFFSET": 280355,
     "TYPE": "ANIM",
     "DESC": "FARAON LEVANTA MANO",
     "WIDTH": 64,
@@ -298,7 +298,7 @@ budas = [
   },
   {
     "BUDA": 21,
-    "OFFSET": 298585,
+    "START_OFFSET": 298585,
     "TYPE": "ANIM",
     "DESC": "PAREJA (2)",
     "WIDTH": 62,
@@ -310,7 +310,7 @@ budas = [
   },
   {
     "BUDA": 22,
-    "OFFSET": 341225,
+    "START_OFFSET": 341225,
     "TYPE": "ANIM",
     "DESC": "GUARDA",
     "WIDTH": 43,
@@ -322,7 +322,7 @@ budas = [
   },
   {
     "BUDA": 23,
-    "OFFSET": 360833,
+    "START_OFFSET": 360833,
     "TYPE": "ANIM",
     "DESC": "CHICA SE LAVA",
     "WIDTH": 49,
@@ -334,7 +334,7 @@ budas = [
   },
   {
     "BUDA": 24,
-    "OFFSET": 381445,
+    "START_OFFSET": 381445,
     "TYPE": "ANIM",
     "DESC": "LLAMA?",
     "WIDTH": 7,
@@ -346,7 +346,7 @@ budas = [
   },
   {
     "BUDA": 25,
-    "OFFSET": 381821,
+    "START_OFFSET": 381821,
     "TYPE": "ANIM",
     "DESC": "CHICA SE LAVA 2",
     "WIDTH": 49,
@@ -354,11 +354,11 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 26,
-    "OFFSET": 397661,
+    "START_OFFSET": 397661,
     "TYPE": "ANIM",
     "DESC": "RELOJ",
     "WIDTH": 13,
@@ -370,7 +370,7 @@ budas = [
   },
   {
     "BUDA": 27,
-    "OFFSET": 398559,
+    "START_OFFSET": 398559,
     "TYPE": "ANIM",
     "DESC": "ALFREDCAMA",
     "WIDTH": 59,
@@ -382,7 +382,7 @@ budas = [
   },
   {
     "BUDA": 28,
-    "OFFSET": 409881,
+    "START_OFFSET": 409881,
     "TYPE": "IMAGE",
     "DESC": "ALFRED CIRCULO",
     "WIDTH": 640,
@@ -394,7 +394,7 @@ budas = [
   },
   {
     "BUDA": 29,
-    "OFFSET": 422789,
+    "START_OFFSET": 422789,
     "TYPE": "IMAGE",
     "DESC": "ALFRED CIRCULO",
     "WIDTH": 640,
@@ -406,7 +406,7 @@ budas = [
   },
   {
     "BUDA": 30,
-    "OFFSET": 432769,
+    "START_OFFSET": 432769,
     "TYPE": "IMAGE",
     "DESC": "ALFRED CIRCULO",
     "WIDTH": 640,
@@ -418,7 +418,7 @@ budas = [
   },
   {
     "BUDA": 31,
-    "OFFSET": 448051,
+    "START_OFFSET": 448051,
     "TYPE": "IMAGE",
     "DESC": "ALFRED CIRCULO",
     "WIDTH": 640,
@@ -430,7 +430,7 @@ budas = [
   },
   {
     "BUDA": 32,
-    "OFFSET": 457673,
+    "START_OFFSET": 457673,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -442,7 +442,7 @@ budas = [
   },
   {
     "BUDA": 33,
-    "OFFSET": 460449,
+    "START_OFFSET": 460449,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -454,7 +454,7 @@ budas = [
   },
   {
     "BUDA": 34,
-    "OFFSET": 466747,
+    "START_OFFSET": 466747,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -466,7 +466,7 @@ budas = [
   },
   {
     "BUDA": 35,
-    "OFFSET": 475631,
+    "START_OFFSET": 475631,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -478,7 +478,7 @@ budas = [
   },
   {
     "BUDA": 36,
-    "OFFSET": 482397,
+    "START_OFFSET": 482397,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -490,7 +490,7 @@ budas = [
   },
   {
     "BUDA": 37,
-    "OFFSET": 488721,
+    "START_OFFSET": 488721,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -502,7 +502,7 @@ budas = [
   },
   {
     "BUDA": 38,
-    "OFFSET": 494743,
+    "START_OFFSET": 494743,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -514,7 +514,7 @@ budas = [
   },
   {
     "BUDA": 39,
-    "OFFSET": 503189,
+    "START_OFFSET": 503189,
     "TYPE": "IMAGE",
     "DESC": "RECETA",
     "WIDTH": 640,
@@ -526,7 +526,7 @@ budas = [
   },
   {
     "BUDA": 40,
-    "OFFSET": 505517,
+    "START_OFFSET": 505517,
     "TYPE": "IMAGE",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -538,7 +538,7 @@ budas = [
   },
   {
     "BUDA": 41,
-    "OFFSET": 506841,
+    "START_OFFSET": 506841,
     "TYPE": "IMAGE",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -550,7 +550,7 @@ budas = [
   },
   {
     "BUDA": 42,
-    "OFFSET": 511013,
+    "START_OFFSET": 511013,
     "TYPE": "IMAGE",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -562,7 +562,7 @@ budas = [
   },
   {
     "BUDA": 43,
-    "OFFSET": 513977,
+    "START_OFFSET": 513977,
     "TYPE": "IMAGE",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -574,7 +574,7 @@ budas = [
   },
   {
     "BUDA": 44,
-    "OFFSET": 517677,
+    "START_OFFSET": 517677,
     "TYPE": "IMAGE",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -586,7 +586,7 @@ budas = [
   },
   {
     "BUDA": 45,
-    "OFFSET": 529943,
+    "START_OFFSET": 529943,
     "TYPE": "IMAGE",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -598,7 +598,7 @@ budas = [
   },
   {
     "BUDA": 46,
-    "OFFSET": 544723,
+    "START_OFFSET": 544723,
     "TYPE": "IMAGE",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -610,7 +610,7 @@ budas = [
   },
   {
     "BUDA": 47,
-    "OFFSET": 556911,
+    "START_OFFSET": 556911,
     "TYPE": "?",
     "DESC": "DAILY",
     "WIDTH": 640,
@@ -622,7 +622,7 @@ budas = [
   },
   {
     "BUDA": 48,
-    "OFFSET": 558009,
+    "START_OFFSET": 558009,
     "TYPE": "ANIM",
     "DESC": "?",
     "WIDTH": 1,
@@ -634,7 +634,7 @@ budas = [
   },
   {
     "BUDA": 49,
-    "OFFSET": 558913,
+    "START_OFFSET": 558913,
     "TYPE": "ANIM",
     "DESC": "ALFRED LEE",
     "WIDTH": 51,
@@ -646,7 +646,7 @@ budas = [
   },
   {
     "BUDA": 50,
-    "OFFSET": 578939,
+    "START_OFFSET": 578939,
     "TYPE": "SPRITE",
     "DESC": "ALFRED LEE",
     "WIDTH": 51,
@@ -658,7 +658,7 @@ budas = [
   },
   {
     "BUDA": 51,
-    "OFFSET": 598047,
+    "START_OFFSET": 598047,
     "TYPE": "IMAGE",
     "DESC": "THINKINGBALLOON",
     "WIDTH": 247,
@@ -670,7 +670,7 @@ budas = [
   },
   {
     "BUDA": 52,
-    "OFFSET": 598727,
+    "START_OFFSET": 598727,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -682,7 +682,7 @@ budas = [
   },
   {
     "BUDA": 53,
-    "OFFSET": 604459,
+    "START_OFFSET": 604459,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -694,7 +694,7 @@ budas = [
   },
   {
     "BUDA": 54,
-    "OFFSET": 623131,
+    "START_OFFSET": 623131,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -706,7 +706,7 @@ budas = [
   },
   {
     "BUDA": 55,
-    "OFFSET": 642223,
+    "START_OFFSET": 642223,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -718,7 +718,7 @@ budas = [
   },
   {
     "BUDA": 56,
-    "OFFSET": 661561,
+    "START_OFFSET": 661561,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -730,7 +730,7 @@ budas = [
   },
   {
     "BUDA": 57,
-    "OFFSET": 679733,
+    "START_OFFSET": 679733,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -742,7 +742,7 @@ budas = [
   },
   {
     "BUDA": 58,
-    "OFFSET": 698901,
+    "START_OFFSET": 698901,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -754,7 +754,7 @@ budas = [
   },
   {
     "BUDA": 59,
-    "OFFSET": 718261,
+    "START_OFFSET": 718261,
     "TYPE": "IMAGE",
     "DESC": "TABLA",
     "WIDTH": 640,
@@ -766,7 +766,7 @@ budas = [
   },
   {
     "BUDA": 60,
-    "OFFSET": 724707,
+    "START_OFFSET": 724707,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -778,7 +778,7 @@ budas = [
   },
   {
     "BUDA": 61,
-    "OFFSET": 749285,
+    "START_OFFSET": 749285,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -790,7 +790,7 @@ budas = [
   },
   {
     "BUDA": 62,
-    "OFFSET": 778259,
+    "START_OFFSET": 778259,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -802,7 +802,7 @@ budas = [
   },
   {
     "BUDA": 63,
-    "OFFSET": 807535,
+    "START_OFFSET": 807535,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -814,7 +814,7 @@ budas = [
   },
   {
     "BUDA": 64,
-    "OFFSET": 834765,
+    "START_OFFSET": 834765,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -826,7 +826,7 @@ budas = [
   },
   {
     "BUDA": 65,
-    "OFFSET": 855439,
+    "START_OFFSET": 855439,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -838,7 +838,7 @@ budas = [
   },
   {
     "BUDA": 66,
-    "OFFSET": 873425,
+    "START_OFFSET": 873425,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -850,7 +850,7 @@ budas = [
   },
   {
     "BUDA": 67,
-    "OFFSET": 894345,
+    "START_OFFSET": 894345,
     "TYPE": "IMAGE",
     "DESC": "MAPA",
     "WIDTH": 640,
@@ -862,7 +862,7 @@ budas = [
   },
   {
     "BUDA": 68,
-    "OFFSET": 909325,
+    "START_OFFSET": 909325,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -874,7 +874,7 @@ budas = [
   },
   {
     "BUDA": 69,
-    "OFFSET": 918951,
+    "START_OFFSET": 918951,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -886,7 +886,7 @@ budas = [
   },
   {
     "BUDA": 70,
-    "OFFSET": 942699,
+    "START_OFFSET": 942699,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -898,7 +898,7 @@ budas = [
   },
   {
     "BUDA": 71,
-    "OFFSET": 956557,
+    "START_OFFSET": 956557,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -910,7 +910,7 @@ budas = [
   },
   {
     "BUDA": 72,
-    "OFFSET": 973643,
+    "START_OFFSET": 973643,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -922,7 +922,7 @@ budas = [
   },
   {
     "BUDA": 73,
-    "OFFSET": 986445,
+    "START_OFFSET": 986445,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -934,7 +934,7 @@ budas = [
   },
   {
     "BUDA": 74,
-    "OFFSET": 1006481,
+    "START_OFFSET": 1006481,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -946,7 +946,7 @@ budas = [
   },
   {
     "BUDA": 75,
-    "OFFSET": 1030041,
+    "START_OFFSET": 1030041,
     "TYPE": "?",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -958,7 +958,7 @@ budas = [
   },
   {
     "BUDA": 76,
-    "OFFSET": 1038137,
+    "START_OFFSET": 1038137,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 201,
@@ -966,11 +966,11 @@ budas = [
     "OFFSET RLE DEC": "?",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 77,
-    "OFFSET": 1042753,
+    "START_OFFSET": 1042753,
     "TYPE": "IMAGE",
     "DESC": "CUADRADO",
     "WIDTH": 637,
@@ -982,7 +982,7 @@ budas = [
   },
   {
     "BUDA": 78,
-    "OFFSET": 1047519,
+    "START_OFFSET": 1047519,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -994,7 +994,7 @@ budas = [
   },
   {
     "BUDA": 79,
-    "OFFSET": 1050483,
+    "START_OFFSET": 1050483,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -1006,7 +1006,7 @@ budas = [
   },
   {
     "BUDA": 80,
-    "OFFSET": 1070619,
+    "START_OFFSET": 1070619,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -1018,7 +1018,7 @@ budas = [
   },
   {
     "BUDA": 81,
-    "OFFSET": 1090115,
+    "START_OFFSET": 1090115,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -1030,7 +1030,7 @@ budas = [
   },
   {
     "BUDA": 82,
-    "OFFSET": 1103745,
+    "START_OFFSET": 1103745,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -1038,11 +1038,11 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 83,
-    "OFFSET": 1119391,
+    "START_OFFSET": 1119391,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -1054,7 +1054,7 @@ budas = [
   },
   {
     "BUDA": 84,
-    "OFFSET": 1134469,
+    "START_OFFSET": 1134469,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -1066,7 +1066,7 @@ budas = [
   },
   {
     "BUDA": 85,
-    "OFFSET": 1144071,
+    "START_OFFSET": 1144071,
     "TYPE": "IMAGE",
     "DESC": "LIBRO",
     "WIDTH": 640,
@@ -1078,7 +1078,7 @@ budas = [
   },
   {
     "BUDA": 86,
-    "OFFSET": 1147077,
+    "START_OFFSET": 1147077,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 640,
@@ -1090,7 +1090,7 @@ budas = [
   },
   {
     "BUDA": 87,
-    "OFFSET": 1155375,
+    "START_OFFSET": 1155375,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 640,
@@ -1102,7 +1102,7 @@ budas = [
   },
   {
     "BUDA": 88,
-    "OFFSET": 1174169,
+    "START_OFFSET": 1174169,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 640,
@@ -1114,7 +1114,7 @@ budas = [
   },
   {
     "BUDA": 89,
-    "OFFSET": 1190857,
+    "START_OFFSET": 1190857,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 640,
@@ -1126,7 +1126,7 @@ budas = [
   },
   {
     "BUDA": 90,
-    "OFFSET": 1206407,
+    "START_OFFSET": 1206407,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 640,
@@ -1138,7 +1138,7 @@ budas = [
   },
   {
     "BUDA": 91,
-    "OFFSET": 1221291,
+    "START_OFFSET": 1221291,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 640,
@@ -1150,7 +1150,7 @@ budas = [
   },
   {
     "BUDA": 92,
-    "OFFSET": 1236715,
+    "START_OFFSET": 1236715,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 640,
@@ -1162,7 +1162,7 @@ budas = [
   },
   {
     "BUDA": 93,
-    "OFFSET": 1262291,
+    "START_OFFSET": 1262291,
     "TYPE": "SPRITEMAP",
     "DESC": "?",
     "WIDTH": 640,
@@ -1174,7 +1174,7 @@ budas = [
   },
   {
     "BUDA": 94,
-    "OFFSET": 1267951,
+    "START_OFFSET": 1267951,
     "TYPE": "IMAGE",
     "DESC": "SIMBOLOS",
     "WIDTH": 119,
@@ -1186,7 +1186,7 @@ budas = [
   },
   {
     "BUDA": 95,
-    "OFFSET": 1341231,
+    "START_OFFSET": 1341231,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 119,
@@ -1198,7 +1198,7 @@ budas = [
   },
   {
     "BUDA": 96,
-    "OFFSET": 1347763,
+    "START_OFFSET": 1347763,
     "TYPE": "?",
     "DESC": "NaN",
     "WIDTH": 146,
@@ -1210,7 +1210,7 @@ budas = [
   },
   {
     "BUDA": 97,
-    "OFFSET": 1361211,
+    "START_OFFSET": 1361211,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 201,
@@ -1222,7 +1222,7 @@ budas = [
   },
   {
     "BUDA": 98,
-    "OFFSET": 1387140,
+    "START_OFFSET": 1387140,
     "TYPE": "IMAGE",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1234,7 +1234,7 @@ budas = [
   },
   {
     "BUDA": 99,
-    "OFFSET": 1387404,
+    "START_OFFSET": 1387404,
     "TYPE": "IMAGE",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1246,7 +1246,7 @@ budas = [
   },
   {
     "BUDA": 100,
-    "OFFSET": 1388712,
+    "START_OFFSET": 1388712,
     "TYPE": "IMAGE",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1258,7 +1258,7 @@ budas = [
   },
   {
     "BUDA": 101,
-    "OFFSET": 1396422,
+    "START_OFFSET": 1396422,
     "TYPE": "IMAGE",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1270,7 +1270,7 @@ budas = [
   },
   {
     "BUDA": 102,
-    "OFFSET": 1402748,
+    "START_OFFSET": 1402748,
     "TYPE": "IMAGE",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1282,7 +1282,7 @@ budas = [
   },
   {
     "BUDA": 103,
-    "OFFSET": 1409456,
+    "START_OFFSET": 1409456,
     "TYPE": "IMAGE",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1294,7 +1294,7 @@ budas = [
   },
   {
     "BUDA": 104,
-    "OFFSET": 1419432,
+    "START_OFFSET": 1419432,
     "TYPE": "IMAGE",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1306,7 +1306,7 @@ budas = [
   },
   {
     "BUDA": 105,
-    "OFFSET": 1425134,
+    "START_OFFSET": 1425134,
     "TYPE": "ANIM",
     "DESC": "CUADRO",
     "WIDTH": 640,
@@ -1318,7 +1318,7 @@ budas = [
   },
   {
     "BUDA": 106,
-    "OFFSET": 1425348,
+    "START_OFFSET": 1425348,
     "TYPE": "MULTIANIM",
     "DESC": "ALFREDCAMA",
     "WIDTH": 76,
@@ -1330,7 +1330,7 @@ budas = [
   },
   {
     "BUDA": 107,
-    "OFFSET": 1446090,
+    "START_OFFSET": 1446090,
     "TYPE": "ANIM",
     "DESC": "NADADORAS",
     "WIDTH": 93, #68, 79, 54,
@@ -1342,7 +1342,7 @@ budas = [
   },
   {
     "BUDA": 108,
-    "OFFSET": 1473188,
+    "START_OFFSET": 1473188,
     "TYPE": "ANIM",
     "DESC": "TIPOS BEBIENDO",
     "WIDTH": 152,
@@ -1354,7 +1354,7 @@ budas = [
   },
   {
     "BUDA": 109,
-    "OFFSET": 1512056,
+    "START_OFFSET": 1512056,
     "TYPE": "ANIM",
     "DESC": "TIPOSBEBENYCAEN",
     "WIDTH": 172,
@@ -1366,7 +1366,7 @@ budas = [
   },
   {
     "BUDA": 110,
-    "OFFSET": 1526428,
+    "START_OFFSET": 1526428,
     "TYPE": "ANIM",
     "DESC": "SMOKE",
     "WIDTH": 196,
@@ -1378,7 +1378,7 @@ budas = [
   },
   {
     "BUDA": 111,
-    "OFFSET": 1556536,
+    "START_OFFSET": 1556536,
     "TYPE": "ANIM",
     "DESC": "COCODRILO",
     "WIDTH": 171,
@@ -1390,7 +1390,7 @@ budas = [
   },
   {
     "BUDA": 112,
-    "OFFSET": 1583698,
+    "START_OFFSET": 1583698,
     "TYPE": "ANIM",
     "DESC": "TRAMPILLA",
     "WIDTH": 113,
@@ -1402,7 +1402,7 @@ budas = [
   },
   {
     "BUDA": 113,
-    "OFFSET": 1600952,
+    "START_OFFSET": 1600952,
     "TYPE": "ANIM",
     "DESC": "ALFREDAGACHA",
     "WIDTH": 95,
@@ -1414,7 +1414,7 @@ budas = [
   },
   {
     "BUDA": 114,
-    "OFFSET": 1761230,
+    "START_OFFSET": 1761230,
     "TYPE": "ANIM",
     "DESC": "ALFREDESCALA",
     "WIDTH": 33,
@@ -1426,7 +1426,7 @@ budas = [
   },
   {
     "BUDA": 115,
-    "OFFSET": 1766374,
+    "START_OFFSET": 1766374,
     "TYPE": "ANIM",
     "DESC": "ALFREDESCALA 2",
     "WIDTH": 33,
@@ -1438,7 +1438,7 @@ budas = [
   },
   {
     "BUDA": 116,
-    "OFFSET": 1770192,
+    "START_OFFSET": 1770192,
     "TYPE": "ANIM",
     "DESC": "ALFREDMUNHECO",
     "WIDTH": 116,
@@ -1450,7 +1450,7 @@ budas = [
   },
   {
     "BUDA": 117,
-    "OFFSET": 2115628,
+    "START_OFFSET": 2115628,
     "TYPE": "ANIM",
     "DESC": "ALFREDMUNHECO",
     "WIDTH": 177,
@@ -1462,7 +1462,7 @@ budas = [
   },
   {
     "BUDA": 118,
-    "OFFSET": 2176932,
+    "START_OFFSET": 2176932,
     "TYPE": "SPRITE",
     "DESC": "POPUP",
     "WIDTH": 247,
@@ -1474,7 +1474,7 @@ budas = [
   },
   {
     "BUDA": 119,
-    "OFFSET": 2201878,
+    "START_OFFSET": 2201878,
     "TYPE": "SPRITE",
     "DESC": "ICONOS MUSICA",
     "WIDTH": 198,
@@ -1486,7 +1486,7 @@ budas = [
   },
   {
     "BUDA": 120,
-    "OFFSET": 2208282,
+    "START_OFFSET": 2208282,
     "TYPE": "SPRITE",
     "DESC": "ICONOS MUSICA",
     "WIDTH": 66,
@@ -1498,7 +1498,7 @@ budas = [
   },
   {
     "BUDA": 121,
-    "OFFSET": 2210444,
+    "START_OFFSET": 2210444,
     "TYPE": "SPRITE",
     "DESC": "ICONOS MUSICA",
     "WIDTH": 66,
@@ -1510,7 +1510,7 @@ budas = [
   },
   {
     "BUDA": 122,
-    "OFFSET": 2212842,
+    "START_OFFSET": 2212842,
     "TYPE": "SPRITE",
     "DESC": "ICONOS MUSICA",
     "WIDTH": 66,
@@ -1522,7 +1522,7 @@ budas = [
   },
   {
     "BUDA": 123,
-    "OFFSET": 2214704,
+    "START_OFFSET": 2214704,
     "TYPE": "SPRITE",
     "DESC": "EN BLANCO",
     "WIDTH": 201,
@@ -1534,7 +1534,7 @@ budas = [
   },
   {
     "BUDA": 124,
-    "OFFSET": 2214756,
+    "START_OFFSET": 2214756,
     "TYPE": "IMAGE",
     "DESC": "?",
     "WIDTH": 213,
@@ -1546,7 +1546,7 @@ budas = [
   },
   {
     "BUDA": 125,
-    "OFFSET": 2227414,
+    "START_OFFSET": 2227414,
     "TYPE": "IMAGE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1558,7 +1558,7 @@ budas = [
   },
   {
     "BUDA": 126,
-    "OFFSET": 2227678,
+    "START_OFFSET": 2227678,
     "TYPE": "IMAGE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1570,7 +1570,7 @@ budas = [
   },
   {
     "BUDA": 127,
-    "OFFSET": 2227942,
+    "START_OFFSET": 2227942,
     "TYPE": "IMAGE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1582,7 +1582,7 @@ budas = [
   },
   {
     "BUDA": 128,
-    "OFFSET": 2228206,
+    "START_OFFSET": 2228206,
     "TYPE": "IMAGE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1594,7 +1594,7 @@ budas = [
   },
   {
     "BUDA": 129,
-    "OFFSET": 2228470,
+    "START_OFFSET": 2228470,
     "TYPE": "IMAGE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1606,7 +1606,7 @@ budas = [
   },
   {
     "BUDA": 130,
-    "OFFSET": 2228734,
+    "START_OFFSET": 2228734,
     "TYPE": "IMAGE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1618,7 +1618,7 @@ budas = [
   },
   {
     "BUDA": 131,
-    "OFFSET": 2228998,
+    "START_OFFSET": 2228998,
     "TYPE": "IMAGE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1630,7 +1630,7 @@ budas = [
   },
   {
     "BUDA": 132,
-    "OFFSET": 2229262,
+    "START_OFFSET": 2229262,
     "TYPE": "PALETTE",
     "DESC": "EN NEGRO",
     "WIDTH": 640,
@@ -1642,7 +1642,7 @@ budas = [
   },
   {
     "BUDA": 133,
-    "OFFSET": 2229476,
+    "START_OFFSET": 2229476,
     "TYPE": "ANIM",
     "DESC": "PALETTE",
     "WIDTH": 1,
@@ -1654,7 +1654,7 @@ budas = [
   },
   {
     "BUDA": 134,
-    "OFFSET": 2230262,
+    "START_OFFSET": 2230262,
     "TYPE": "IMAGE",
     "DESC": "ALFREDPELEA",
     "WIDTH": 71,
@@ -1666,7 +1666,7 @@ budas = [
   },
   {
     "BUDA": 135,
-    "OFFSET": 2253652,
+    "START_OFFSET": 2253652,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1678,7 +1678,7 @@ budas = [
   },
   {
     "BUDA": 136,
-    "OFFSET": 2258828,
+    "START_OFFSET": 2258828,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1690,7 +1690,7 @@ budas = [
   },
   {
     "BUDA": 137,
-    "OFFSET": 2262630,
+    "START_OFFSET": 2262630,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1702,7 +1702,7 @@ budas = [
   },
   {
     "BUDA": 138,
-    "OFFSET": 2264882,
+    "START_OFFSET": 2264882,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1714,7 +1714,7 @@ budas = [
   },
   {
     "BUDA": 139,
-    "OFFSET": 2266764,
+    "START_OFFSET": 2266764,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1726,7 +1726,7 @@ budas = [
   },
   {
     "BUDA": 140,
-    "OFFSET": 2268656,
+    "START_OFFSET": 2268656,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1738,7 +1738,7 @@ budas = [
   },
   {
     "BUDA": 141,
-    "OFFSET": 2275860,
+    "START_OFFSET": 2275860,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1750,7 +1750,7 @@ budas = [
   },
   {
     "BUDA": 142,
-    "OFFSET": 2284460,
+    "START_OFFSET": 2284460,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1762,7 +1762,7 @@ budas = [
   },
   {
     "BUDA": 143,
-    "OFFSET": 2284674,
+    "START_OFFSET": 2284674,
     "TYPE": "ANIM",
     "DESC": "PALETTE",
     "WIDTH": 20,
@@ -1774,7 +1774,7 @@ budas = [
   },
   {
     "BUDA": 144,
-    "OFFSET": 2285690,
+    "START_OFFSET": 2285690,
     "TYPE": "IMAGE",
     "DESC": "ALFREDCAMA",
     "WIDTH": 71,
@@ -1786,7 +1786,7 @@ budas = [
   },
   {
     "BUDA": 145,
-    "OFFSET": 2306534,
+    "START_OFFSET": 2306534,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1798,7 +1798,7 @@ budas = [
   },
   {
     "BUDA": 146,
-    "OFFSET": 2306798,
+    "START_OFFSET": 2306798,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1810,7 +1810,7 @@ budas = [
   },
   {
     "BUDA": 147,
-    "OFFSET": 2307118,
+    "START_OFFSET": 2307118,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1822,7 +1822,7 @@ budas = [
   },
   {
     "BUDA": 148,
-    "OFFSET": 2311128,
+    "START_OFFSET": 2311128,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1834,7 +1834,7 @@ budas = [
   },
   {
     "BUDA": 149,
-    "OFFSET": 2317890,
+    "START_OFFSET": 2317890,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1846,7 +1846,7 @@ budas = [
   },
   {
     "BUDA": 150,
-    "OFFSET": 2320318,
+    "START_OFFSET": 2320318,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1858,7 +1858,7 @@ budas = [
   },
   {
     "BUDA": 151,
-    "OFFSET": 2320582,
+    "START_OFFSET": 2320582,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1870,7 +1870,7 @@ budas = [
   },
   {
     "BUDA": 152,
-    "OFFSET": 2320846,
+    "START_OFFSET": 2320846,
     "TYPE": "IMAGE",
     "DESC": "CENSORED",
     "WIDTH": 640,
@@ -1882,7 +1882,7 @@ budas = [
   },
   {
     "BUDA": 153,
-    "OFFSET": 2321060,
+    "START_OFFSET": 2321060,
     "TYPE": "IMAGE",
     "DESC": "CODE",
     "WIDTH": 640,
@@ -1894,7 +1894,7 @@ budas = [
   },
   {
     "BUDA": 154,
-    "OFFSET": 2361384,
+    "START_OFFSET": 2361384,
     "TYPE": "IMAGE",
     "DESC": "CODE 2",
     "WIDTH": 640,
@@ -1906,7 +1906,7 @@ budas = [
   },
   {
     "BUDA": 155,
-    "OFFSET": 2381078,
+    "START_OFFSET": 2381078,
     "TYPE": "IMAGE",
     "DESC": "ARTWORK",
     "WIDTH": 640,
@@ -1918,7 +1918,7 @@ budas = [
   },
   {
     "BUDA": 156,
-    "OFFSET": 2405262,
+    "START_OFFSET": 2405262,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -1930,7 +1930,7 @@ budas = [
   },
   {
     "BUDA": 157,
-    "OFFSET": 2500216,
+    "START_OFFSET": 2500216,
     "TYPE": "IMAGE",
     "DESC": "MENU",
     "WIDTH": 640,
@@ -1942,7 +1942,7 @@ budas = [
   },
   {
     "BUDA": 158,
-    "OFFSET": 2563262,
+    "START_OFFSET": 2563262,
     "TYPE": "SPRITE",
     "DESC": "MENU?",
     "WIDTH": 640,
@@ -1954,7 +1954,7 @@ budas = [
   },
   {
     "BUDA": 159,
-    "OFFSET": 2662584,
+    "START_OFFSET": 2662584,
     "TYPE": "SPRITE",
     "DESC": "MENUCONTROL",
     "WIDTH": 66,
@@ -1966,7 +1966,7 @@ budas = [
   },
   {
     "BUDA": 160,
-    "OFFSET": 2664742,
+    "START_OFFSET": 2664742,
     "TYPE": "SPRITE",
     "DESC": "MENUCONTROL",
     "WIDTH": 66,
@@ -1978,7 +1978,7 @@ budas = [
   },
   {
     "BUDA": 161,
-    "OFFSET": 2667136,
+    "START_OFFSET": 2667136,
     "TYPE": "SPRITE",
     "DESC": "MENUCONTROL",
     "WIDTH": 66,
@@ -1990,7 +1990,7 @@ budas = [
   },
   {
     "BUDA": 162,
-    "OFFSET": 2668994,
+    "START_OFFSET": 2668994,
     "TYPE": "IMAGE",
     "DESC": "MENUCONTROL",
     "WIDTH": 66,
@@ -2002,7 +2002,7 @@ budas = [
   },
   {
     "BUDA": 163,
-    "OFFSET": 2669046,
+    "START_OFFSET": 2669046,
     "TYPE": "IMAGE",
     "DESC": "CODE 3",
     "WIDTH": 640,
@@ -2014,7 +2014,7 @@ budas = [
   },
   {
     "BUDA": 164,
-    "OFFSET": 2688164,
+    "START_OFFSET": 2688164,
     "TYPE": "IMAGE",
     "DESC": "CODE 4",
     "WIDTH": 640,
@@ -2026,7 +2026,7 @@ budas = [
   },
   {
     "BUDA": 165,
-    "OFFSET": 2727560,
+    "START_OFFSET": 2727560,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2038,7 +2038,7 @@ budas = [
   },
   {
     "BUDA": 166,
-    "OFFSET": 2727824,
+    "START_OFFSET": 2727824,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2050,7 +2050,7 @@ budas = [
   },
   {
     "BUDA": 167,
-    "OFFSET": 2742300,
+    "START_OFFSET": 2742300,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2062,7 +2062,7 @@ budas = [
   },
   {
     "BUDA": 168,
-    "OFFSET": 2767184,
+    "START_OFFSET": 2767184,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2074,7 +2074,7 @@ budas = [
   },
   {
     "BUDA": 169,
-    "OFFSET": 2787502,
+    "START_OFFSET": 2787502,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2086,7 +2086,7 @@ budas = [
   },
   {
     "BUDA": 170,
-    "OFFSET": 2808956,
+    "START_OFFSET": 2808956,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2098,7 +2098,7 @@ budas = [
   },
   {
     "BUDA": 171,
-    "OFFSET": 2830578,
+    "START_OFFSET": 2830578,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2110,7 +2110,7 @@ budas = [
   },
   {
     "BUDA": 172,
-    "OFFSET": 2833058,
+    "START_OFFSET": 2833058,
     "TYPE": "IMAGE",
     "DESC": "DISCO ALFRED",
     "WIDTH": 640,
@@ -2122,7 +2122,7 @@ budas = [
   },
   {
     "BUDA": 173,
-    "OFFSET": 2833272,
+    "START_OFFSET": 2833272,
     "TYPE": "IMAGE",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2134,7 +2134,7 @@ budas = [
   },
   {
     "BUDA": 174,
-    "OFFSET": 2834304,
+    "START_OFFSET": 2834304,
     "TYPE": "IMAGE",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2146,7 +2146,7 @@ budas = [
   },
   {
     "BUDA": 175,
-    "OFFSET": 2857816,
+    "START_OFFSET": 2857816,
     "TYPE": "IMAGE",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2158,7 +2158,7 @@ budas = [
   },
   {
     "BUDA": 176,
-    "OFFSET": 2881590,
+    "START_OFFSET": 2881590,
     "TYPE": "IMAGE",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2170,7 +2170,7 @@ budas = [
   },
   {
     "BUDA": 177,
-    "OFFSET": 2911516,
+    "START_OFFSET": 2911516,
     "TYPE": "IMAGE",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2182,7 +2182,7 @@ budas = [
   },
   {
     "BUDA": 178,
-    "OFFSET": 2941462,
+    "START_OFFSET": 2941462,
     "TYPE": "IMAGE",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2194,7 +2194,7 @@ budas = [
   },
   {
     "BUDA": 179,
-    "OFFSET": 2969166,
+    "START_OFFSET": 2969166,
     "TYPE": "IMAGE",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2206,7 +2206,7 @@ budas = [
   },
   {
     "BUDA": 180,
-    "OFFSET": 2971582,
+    "START_OFFSET": 2971582,
     "TYPE": "ANIM",
     "DESC": "PERGAMINO",
     "WIDTH": 640,
@@ -2218,7 +2218,7 @@ budas = [
   },
   {
     "BUDA": 181,
-    "OFFSET": 2971796,
+    "START_OFFSET": 2971796,
     "TYPE": "SPRITE",
     "DESC": "ALFREDDESCAMISA",
     "WIDTH": 51,
@@ -2230,7 +2230,7 @@ budas = [
   },
   {
     "BUDA": 182,
-    "OFFSET": 2980868,
+    "START_OFFSET": 2980868,
     "TYPE": "ANIM",
     "DESC": "OVERLAYMAPA",
     "WIDTH": 158,
@@ -2242,7 +2242,7 @@ budas = [
   },
   {
     "BUDA": 183,
-    "OFFSET": 3006790,
+    "START_OFFSET": 3006790,
     "TYPE": "SPRITE",
     "DESC": "HUMO",
     "WIDTH": 196,
@@ -2254,7 +2254,7 @@ budas = [
   },
   {
     "BUDA": 184,
-    "OFFSET": 3037004,
+    "START_OFFSET": 3037004,
     "TYPE": "ANIM",
     "DESC": "FLECHAS",
     "WIDTH": 36, #//,31,
@@ -2266,7 +2266,7 @@ budas = [
   },
   {
     "BUDA": 185,
-    "OFFSET": 3038450,
+    "START_OFFSET": 3038450,
     "TYPE": "IMAGE",
     "DESC": "ALFREDCAMA",
     "WIDTH": 71,
@@ -2278,7 +2278,7 @@ budas = [
   },
   {
     "BUDA": 186,
-    "OFFSET": 3058222,
+    "START_OFFSET": 3058222,
     "TYPE": "IMAGE",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2290,7 +2290,7 @@ budas = [
   },
   {
     "BUDA": 187,
-    "OFFSET": 3066050,
+    "START_OFFSET": 3066050,
     "TYPE": "IMAGE",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2302,7 +2302,7 @@ budas = [
   },
   {
     "BUDA": 188,
-    "OFFSET": 3075630,
+    "START_OFFSET": 3075630,
     "TYPE": "IMAGE",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2314,7 +2314,7 @@ budas = [
   },
   {
     "BUDA": 189,
-    "OFFSET": 3094642,
+    "START_OFFSET": 3094642,
     "TYPE": "IMAGE",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2326,7 +2326,7 @@ budas = [
   },
   {
     "BUDA": 190,
-    "OFFSET": 3123460,
+    "START_OFFSET": 3123460,
     "TYPE": "IMAGE",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2338,7 +2338,7 @@ budas = [
   },
   {
     "BUDA": 191,
-    "OFFSET": 3143534,
+    "START_OFFSET": 3143534,
     "TYPE": "IMAGE",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2350,7 +2350,7 @@ budas = [
   },
   {
     "BUDA": 192,
-    "OFFSET": 3165032,
+    "START_OFFSET": 3165032,
     "TYPE": "IMAGE",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2362,7 +2362,7 @@ budas = [
   },
   {
     "BUDA": 193,
-    "OFFSET": 3179630,
+    "START_OFFSET": 3179630,
     "TYPE": "ANIMS",
     "DESC": "CONCHICA",
     "WIDTH": 640,
@@ -2374,7 +2374,7 @@ budas = [
   },
   {
     "BUDA": 194,
-    "OFFSET": 3185276,
+    "START_OFFSET": 3185276,
     "TYPE": "ANIMS",
     "DESC": "PIERNAS, MANOS",
     "WIDTH": 114,
@@ -2387,7 +2387,7 @@ budas = [
   },
   {
     "BUDA": 195,
-    "OFFSET": 3271450,
+    "START_OFFSET": 3271450,
     "TYPE": "IMAGE",
     "DESC": "CREDITOS",
     "WIDTH": 480,
@@ -2445,6 +2445,11 @@ raw = [
     "start": 0x309E0,
     "size": 0x3526,
     "name": "libros"
+  },
+  {
+    "start": 409885,
+    "size": 1702,
+    "name": "unknown"
   }
 ]
 
@@ -2613,8 +2618,10 @@ def main():
                 img.save(output_file)
 
 
-    for start_buda in range(len(buda_offsets) - 1):
+    for start_buda in range(len(budas) - 1):
       # Use the original 'budas' list for metadata, and 'buda_offsets' for file offsets
+      start_offset = budas[start_buda]["START_OFFSET"]
+      next_offset = budas[start_buda + 1]["START_OFFSET"]
       width =  budas[start_buda]["WIDTH"]
       isPalette = budas[start_buda]["isPalette"]
       isContinued = budas[start_buda]["isContinued"]
@@ -2624,15 +2631,15 @@ def main():
       if start_buda>0 and budas[start_buda - 1]["isContinued"] == True:
         continue
 
-      print(f'Decompressing {buda_offsets[start_buda]} to {buda_offsets[start_buda + 1]}, width = {width}, isPalette = {isPalette}, offset = {offset}')
+      print(f'Decompressing {start_offset} to {next_offset}, width = {width}, isPalette = {isPalette}, offset = {offset}')
 
       combined = bytearray()
 
       if start_buda == 0:
          print(f'Adding block at 0')
-         combined.extend(decompress_rle(data, 0, buda_offsets[start_buda]))
+         combined.extend(decompress_rle(data, 0, start_offset))
 
-      block = decompress_rle(data, buda_offsets[start_buda] + 4 + offset, buda_offsets[start_buda+1])
+      block = decompress_rle(data, start_offset + 4 + offset, next_offset)
       combined.extend(block)
 
       curIndex = 0
@@ -2643,7 +2650,7 @@ def main():
         curIndex = start_buda + 1
       if shouldContinue:
         while True:
-          combined.extend(decompress_rle(data, buda_offsets[curIndex] + 4, buda_offsets[curIndex+1]))
+          combined.extend(decompress_rle(data, budas[curIndex]["START_OFFSET"] + 4, budas[curIndex+1]["START_OFFSET"]))
           shouldContinue = budas[curIndex]["isContinued"]
           print(f'For buda = {start_buda} adding also buda {curIndex}')
           curIndex+=1
@@ -2666,41 +2673,36 @@ def main():
         print(f'Fallback palette')
         pal_buda = 7
 
-        if type == "RAW":
+      if type == "RAW":
           # Save decompressed data as .bin
-          output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{buda_offsets[start_buda]}.bin'
+          output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{start_offset}.bin'
           print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: as raw")
-
           with open(output_file, 'wb') as f:
             f.write(combined)
       if pal_buda and type != "RAW":
-        # if type == "RAW":
-        #   # Save decompressed data as .bin
-        #   output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.bin'
-        #   with open(output_file, 'wb') as f:
-        #     f.write(combined)
-        # else:
-          size = 0
-          if(type == "IMAGE" and width == 640):
-            size =  640 * 400
-            height = 400
-            realHeight = height
-          else:
-            size = len(combined)
-            realHeight = size / width
-            height = math.ceil(size / width)
+        size = 0
+        if(type == "IMAGE" and width == 640):
+          size =  640 * 400
+          height = 400
+          realHeight = height
+        else:
+          size = len(combined)
+          realHeight = size / width
+          height = math.ceil(size / width)
+
         print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
-          # Create image
-          img_data = bytes(combined[:size])
-          if len(img_data) < size:
-            img_data += bytes([0] * (size - len(img_data)))
+        # Create image
+        img_data = bytes(combined[:size])
+        if len(img_data) < size:
+          img_data += bytes([0] * (size - len(img_data)))
 
-          img = Image.new('P', (width, height))
-          img.putpalette(palettes[pal_buda])
-          img.putdata(img_data)
+        img = Image.new('P', (width, height))
+        img.putpalette(palettes[pal_buda])
+        img.putdata(img_data)
 
-        output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{budas[start_buda]["OFFSET"]}.png'
-          img.save(output_file)
+        output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{start_offset}.png'
+        img.save(output_file)
+        print(f"Saved image to {output_file}")
 
 if __name__ == "__main__":
     main()

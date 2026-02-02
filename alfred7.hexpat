@@ -49,15 +49,15 @@ RleChunk faraonCamina @ 261449; // verified
 RleChunk faraonLevantaMano @ 280359; // verified
 RleChunk pareja2 @ 298589; // verified
 RleChunk guardia @ 341229; // verified
-RleChunk chicaSeLava @ 360832; //verified
-RleChunk dunno @ 0x58185;
-RleChunk llamita @ 381449;
-RleChunk chicaSeLava2 @ 381826;
-RleChunk reloj @ 397666;
-RleChunk alfredCama @ 398559;
+RleChunk chicaSeLava @ 360835; //verified
+RleChunk llamita @ 381449; // verified
+RleChunk chicaSeLava2 @ 381825; //verified
+RleChunk reloj @ 397665; // verified
 
-RleChunk alfredCirculo[4] @ 411587;
+RleChunk alfredCama @ 398563; //verified
 
+u8 entreCamaYCirculo[1702] @ 409885;
+RleChunk alfredCirculo[4] @ 411587; //verified
 RleChunk receta[8] @ 457673;
 Palette palReceta @ 505521;
 // buda 48
