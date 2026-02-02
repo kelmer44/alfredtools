@@ -58,13 +58,16 @@ RleChunk alfredCama @ 398563; //verified
 
 u8 entreCamaYCirculo[1702] @ 409885;
 RleChunk alfredCirculo[4] @ 411587; //verified
-RleChunk receta[8] @ 457673;
-Palette palReceta @ 505521;
+RleChunk receta[8] @ 457677; // verified
+Palette palReceta @ 505521;//verified
+
+u8 afterPalReceta[95] @ 0x7B9B1;
 // buda 48
-RleChunk periodico[8] @ 506385;
-Palette palPreiodico @ 558917;
-RleChunk alfredLibro[2] @ 559681;
-RleChunk thinkingBalloon @ 598051;
+RleChunk periodico[8] @ 506385; //verified
+Palette palPreiodico @ 558013; //verified
+RleChunk chafarderError @ 0x886BD; // verified
+RleChunk alfredLibro @ 578943; //verified
+RleChunk thinkingBalloon @ 598051; //verified
 
 RleChunk tabla[8] @ 598907; // uncertain!
 Palette palTabla @ 724711;

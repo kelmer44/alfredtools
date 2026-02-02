@@ -390,7 +390,7 @@ budas = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 1702
+	  "offset" : 1702
   },
   {
     "BUDA": 29,
@@ -624,13 +624,13 @@ budas = [
     "BUDA": 48,
     "START_OFFSET": 558009,
     "TYPE": "ANIM",
-    "DESC": "?",
-    "WIDTH": 1,
+    "DESC": "CHAFARDER BUG",
+    "WIDTH": 640,
     "START": "?",
     "OFFSET RLE DEC": "?",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 768
   },
   {
     "BUDA": 49,
@@ -2652,7 +2652,7 @@ def main():
         while True:
           combined.extend(decompress_rle(data, budas[curIndex]["START_OFFSET"] + 4, budas[curIndex+1]["START_OFFSET"]))
           shouldContinue = budas[curIndex]["isContinued"]
-          print(f'For buda = {start_buda} adding also buda {curIndex}')
+          print(f'For buda = {start_buda} adding also buda {curIndex} (offset {budas[curIndex+1]["START_OFFSET"]})')
           curIndex+=1
           totalBudas +=1
           if(shouldContinue == False):
