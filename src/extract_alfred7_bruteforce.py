@@ -1326,7 +1326,7 @@ budas = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 768
   },
   {
     "BUDA": 107,
@@ -1402,7 +1402,7 @@ budas = [
   },
   {
     "BUDA": 113,
-    "START_OFFSET": 1600952,
+    "START_OFFSET": 1749470,
     "TYPE": "ANIM",
     "DESC": "ALFREDAGACHA",
     "WIDTH": 95,
@@ -1438,7 +1438,7 @@ budas = [
   },
   {
     "BUDA": 116,
-    "START_OFFSET": 1770192,
+    "START_OFFSET": 2060922,
     "TYPE": "ANIM",
     "DESC": "ALFREDMUNHECO",
     "WIDTH": 116,
@@ -1446,7 +1446,7 @@ budas = [
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
     "isContinued":  False,
-	  "offset" : 290730
+	  "offset" : 0
   },
   {
     "BUDA": 117,
@@ -1642,15 +1642,15 @@ budas = [
   },
   {
     "BUDA": 133,
-    "START_OFFSET": 2229476,
-    "TYPE": "ANIM",
+    "START_OFFSET": 2230248,
+    "TYPE": "DUNNO",
     "DESC": "PALETTE",
-    "WIDTH": 1,
+    "WIDTH": 100,
     "START": "NaN",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 134,
@@ -1765,7 +1765,7 @@ budas = [
     "START_OFFSET": 2284674,
     "TYPE": "ANIM",
     "DESC": "PALETTE",
-    "WIDTH": 20,
+    "WIDTH": 200,
     "START": "NaN",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : True,
@@ -1925,7 +1925,7 @@ budas = [
     "START": "FINAL",
     "OFFSET RLE DEC": "NaN",
     "isPalette" : False,
-    "isContinued":  True,
+    "isContinued":  False,
 	"offset" : 0
   },
   {
@@ -1942,15 +1942,15 @@ budas = [
   },
   {
     "BUDA": 158,
-    "START_OFFSET": 2563262,
-    "TYPE": "SPRITE",
+    "START_OFFSET": 2656194,
+    "TYPE": "UI",
     "DESC": "MENU?",
-    "WIDTH": 640,
+    "WIDTH": 198,
     "START": "?",
     "OFFSET RLE DEC": "?",
     "isPalette" : "?",
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 159,
@@ -2417,6 +2417,42 @@ direct = [
     "width": 82,
     "height": 58,
     "nframes": 2
+  },
+  {
+    "start": 1600956,
+    "width": 208,
+    "height": 102,
+    "nframes": 7
+  },
+  {
+    "start": 1770196,
+    "width": 158,
+    "height": 115,
+    "nframes": 16
+  },
+  {
+    "start": 2405266,
+    "width": 640,
+    "height": 400,
+    "nframes": 1
+  },
+  {
+    "start": 2532984,
+    "width": 640,
+    "height": 400,
+    "nframes": 1
+  },
+  {
+    "start": 3186048,
+    "width": 20,
+    "height": 20,
+    "nframes": 2
+  },
+  {
+    "start": 3187348,
+    "width": 28,
+    "height": 28,
+    "nframes": 2
   }
 ]
 
@@ -2500,6 +2536,16 @@ raw = [
     "start": 1361215,
     "size": 13593,
     "name": "englishBooks"
+  },
+  {
+    "start": 1473192,
+    "size": 172,
+    "name": "unknown"
+  },
+  {
+    "start": 3271454,
+    "size": 256000,
+    "name": "unknownimage"
   }
 ]
 

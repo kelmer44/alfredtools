@@ -98,72 +98,74 @@ RleChunk unknown2 @ 1347767; //verified
 
 u8 englishBookTitles[0x3519] @ 0x14C53F; // verified
 RleChunk actionBalooons1 @ 1374808; //verified
-RleChunk cuadroOk[8] @ 1387144; //98-105
-Palette palCuadroOk @ 1425352; //106
-RleChunk alfredCama2 @ 1426116; //106
+RleChunk cuadroOk[8] @ 1387144; //verified
+Palette palCuadroOk @ 1425352; //verified
+RleChunk alfredCama2 @ 1426116; //verified
 
-Palette palRoom28 @ 0x1610CE;
-RleChunk nadadoras @ 1446862;
-RleChunk tiposBebiendo @ 1473364;
-RleChunk tiposBebidos @ 1512060;
-RleChunk smoke @ 1526432;
-RleChunk cocodrilo @ 1556540; // 111
-RleChunk trampilla @ 1583706;
+Palette palRoom28 @ 0x1610CE; // verified
+RleChunk nadadoras @ 1446862; // verified
 
-u8 alfredHablaObreros[148464] @ 1600956; // 208 width
-RleChunk alfredTrampilla @  1749420; //95 width
+u8 beforeTipos[0xAC] @ 0x167AA8;
+RleChunk tiposBebiendo @ 1473364; //verified
+RleChunk tiposBebidos @ 1512060; //verified
+RleChunk smoke @ 1526432; // verified
+RleChunk cocodrilo @ 1556540; // 111 verified
+RleChunk trampilla @ 1583702; // verified
 
-RleChunk alfredClimbing @ 1761234;
-RleChunk alfredClimbing2 @ 1766378;
+u8 alfredHablaObreros[148512] @ 1600956; // 208 width verified
+RleChunk alfredTrampilla @  1749468; //95 width (check offset)
 
-u8 alfredSaleTrampilla @ 0x1B02D4;
+RleChunk alfredClimbing @ 1761234;  // verified
+RleChunk alfredClimbing2 @ 1766378; // verified
+
+u8 alfredSaleTrampilla[290730] @ 1770196; //verified
 RleChunk alfredMunheco1 @ 2060922; //incomplete!
-RleChunk alfredMunheco2 @ 2115632;
-RleChunk balloon @2176936;
-RleChunk iconosMusica @ 2201882;
-RleChunk iconoAltavoz @ 2208286;
-RleChunk iconoMusic @2210448;
-RleChunk iconoFX @2212846;
+RleChunk alfredMunheco2 @ 2115632; //verified
+RleChunk balloon @2176936;//verified
+RleChunk iconosMusica @ 2201882; //verified
+RleChunk iconoAltavoz @ 2208286; //verified
+RleChunk iconoMusic @2210448; //verified
+RleChunk iconoFX @2212846; //verified
 RleChunk blankGUI @ 2214708;
-RleChunk musicPlayer @ 2214760; // two sizes
+RleChunk musicPlayer @ 2214760; // two sizes, //verified
 
-RleChunk black[8] @ 2227418;
-Palette somePalette @ 2229480;
-RleChunk alfredFight @ 2230266;
-RleChunk otrolibro[8] @ 2253656;
-Palette otrolibroPalette @ 2284678;
+RleChunk black[8] @ 2227418; //verified
+Palette somePalette @ 2229480; //verified
+RleChunk someRleChunk @2230248;
+RleChunk alfredFight @ 2230266; // verified
+RleChunk otrolibro[8] @ 2253656; //veriified
+Palette otrolibroPalette @ 2284678; //verified
 RleChunk unknown @ 2285446;
-RleChunk alfredCama4 @2285694; //144
-RleChunk censored[8] @2306538;
-Palette censoredPalette @ 2321060;
-RleChunk code @ 2321828; //153
-RleChunk code2 @ 2361388;
-RleChunk artwork @ 2381082;
+RleChunk alfredCama4 @2285694; //144 // verified
+RleChunk censored[8] @2306538; // verified
+Palette censoredPalette @ 2321060; // verified
+RleChunk code @ 2321828; //153 // verified
+RleChunk code2 @ 2361388; // verified
+RleChunk artwork @ 2381082; // verified
 
-u8 settingsMenu12[65536] @ 2405266;
-RleChunk settingsMenuRLE3 @ 2470802;
-u8 settingsMenu4[32768] @  2500216;
-RleChunk settingsMenuRLE5 @ 2532984;
-u8 settingsMenu67[92160] @ 2563266;
-
-Palette settingsMenuPalette @ 2655426;
-
-RleChunk soundControls2[4] @ 2662588; //159
-RleChunk code3 @ 2669050;
-RleChunk code4 @ 2688168;
-RleChunk discoAlfred[8] @ 2727564;
-Palette discoAlfredPal @ 2833276;
-RleChunk pergamino[8] @ 2834044;
-Palette pergaminoPalette @ 2971800;
-RleChunk alfredDescamisa @ 2972568; //181
-RleChunk overlayMapa @ 2980872;
-RleChunk humo2 @ 3006794;
-RleChunk flechas @ 3037008;
-RleChunk alfredCama34234 @ 3038454;
+u8 settingsMenu12[65536] @ 2405266; // verified
+RleChunk settingsMenuRLE3 @ 2470802; // verified
+u8 settingsMenu4[32768] @  2500216; // verified
+RleChunk settingsMenuRLE5 @ 2532984; // verified
+u8 settingsMenu67[92160] @ 2563266; // verified
+Palette settingsMenuPalette @ 2655426; // verified
+RleChunk otherSoundcontrols @ 2656194; //verified
+RleChunk soundControls2[4] @ 2662588; //verified
+RleChunk code3 @ 2669050; //verified
+RleChunk code4 @ 2688168;//verified
+RleChunk discoAlfred[8] @ 2727564;  //verified
+Palette discoAlfredPal @ 2833276;//verified
+RleChunk pergamino[8] @ 2834044; //verified
+Palette pergaminoPalette @ 2971800; //verified
+RleChunk alfredDescamisa @ 2972568; //181 //verified
+RleChunk unknown2000 @ 2980872;
+RleChunk humo2 @ 3006794; //verified
+RleChunk flechas @ 3037008; //verified
+RleChunk alfredCama34234 @ 3038454; //verified
 RleChunk conChica[8] @ 3058226;
 Palette conChicaPalette @ 3185280; //194
 u8 flechitas[1300] @ 3186048; //+772; witdh = 20
-u8 flechitas2[8100] @ 3186048 + 1300; // width = 28
+u8 flechitas2[8100] @ 3187348; // width = 28
 u8 othericons[26798] @ 3195448; // 3186048 + 1300 + 8100;
 RleChunk piernas @ 3222246; //multiple sizes
 u8 unknownimage[256000] @ 3271454;
