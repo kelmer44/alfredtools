@@ -2510,7 +2510,7 @@ def save_bytes_as_png(data, palette, name, width):
     img.putpalette(palette)
     img.putdata(img_data)
 
-    output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{budas[start_buda] + budas[offset]}.png'
+    output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{budas[start_buda] + budas[offset]}.png'
     img.save(output_file)
 def main():
     alfred7 = sys.argv[1] if len(sys.argv) > 1 else "ALFRED.7"
@@ -2653,7 +2653,7 @@ def main():
 
       print(f'For buda = {start_buda} used {totalBudas}')
 
-      output_path_thisbuda = Path(f'{output_dir}/buda{start_buda:03d}')
+      output_path_thisbuda = Path(f'{output_dir}/buda{budas[start_buda]["BUDA"]}')
       output_path_thisbuda.mkdir(parents=True, exist_ok=True)
 
       # Find nearest palette
@@ -2666,13 +2666,20 @@ def main():
         print(f'Fallback palette')
         pal_buda = 7
 
-      if pal_buda:
         if type == "RAW":
           # Save decompressed data as .bin
-          output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.bin'
+          output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{buda_offsets[start_buda]}.bin'
+          print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: as raw")
+
           with open(output_file, 'wb') as f:
             f.write(combined)
-        else:
+      if pal_buda and type != "RAW":
+        # if type == "RAW":
+        #   # Save decompressed data as .bin
+        #   output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.bin'
+        #   with open(output_file, 'wb') as f:
+        #     f.write(combined)
+        # else:
           size = 0
           if(type == "IMAGE" and width == 640):
             size =  640 * 400
@@ -2682,7 +2689,7 @@ def main():
             size = len(combined)
             realHeight = size / width
             height = math.ceil(size / width)
-          print(f"SAVING BUDA {start_buda}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
+        print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
           # Create image
           img_data = bytes(combined[:size])
           if len(img_data) < size:
@@ -2692,7 +2699,7 @@ def main():
           img.putpalette(palettes[pal_buda])
           img.putdata(img_data)
 
-          output_file = output_path_thisbuda / f'buda{start_buda:03d}_offset_{buda_offsets[start_buda]}.png'
+        output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{budas[start_buda]["OFFSET"]}.png'
           img.save(output_file)
 
 if __name__ == "__main__":
