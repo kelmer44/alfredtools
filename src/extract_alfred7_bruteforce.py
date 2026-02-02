@@ -958,10 +958,10 @@ budas = [
   },
   {
     "BUDA": 76,
-    "START_OFFSET": 1038137,
+    "START_OFFSET": 1041501,
     "TYPE": "IMAGE",
     "DESC": "?",
-    "WIDTH": 201,
+    "WIDTH": 72,
     "START": "?",
     "OFFSET RLE DEC": "?",
     "isPalette" : True,
@@ -1187,7 +1187,7 @@ budas = [
   {
     "BUDA": 95,
     "START_OFFSET": 1341231,
-    "TYPE": "IMAGE",
+    "TYPE": "RAW",
     "DESC": "?",
     "WIDTH": 119,
     "START": "0",
@@ -1199,7 +1199,7 @@ budas = [
   {
     "BUDA": 96,
     "START_OFFSET": 1347763,
-    "TYPE": "?",
+    "TYPE": "RAW",
     "DESC": "NaN",
     "WIDTH": 146,
     "START": "0",
@@ -1210,15 +1210,15 @@ budas = [
   },
   {
     "BUDA": 97,
-    "START_OFFSET": 1361211,
-    "TYPE": "IMAGE",
-    "DESC": "?",
-    "WIDTH": 201,
+    "START_OFFSET": 1374808,
+    "TYPE": "SPRITE",
+    "DESC": "BALLOONS AGAIN",
+    "WIDTH": 254,
     "START": "?",
     "OFFSET RLE DEC": "?",
     "isPalette" : "?",
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 14
   },
   {
     "BUDA": 98,
@@ -2450,6 +2450,56 @@ raw = [
     "start": 409885,
     "size": 1702,
     "name": "unknown"
+  },
+  {
+    "start": 598731,
+    "size": 176,
+    "name": "unknown"
+  },
+  {
+    "start": 1038909,
+    "size": 672,
+    "name": "code snippet"
+  },
+  {
+    "start": 1039869,
+    "size": 288,
+    "name": "cursor1"
+  },
+  {
+    "start": 1039581,
+    "size": 288,
+    "name": "cursor2"
+  },
+  {
+    "start": 1040157,
+    "size": 288,
+    "name": "cursor3"
+  },
+  {
+    "start": 1040445,
+    "size": 768,
+    "name": "palettemaybe"
+  },
+  {
+    "start": 1041213,
+    "size": 288,
+    "name": "cursor4"
+  },
+  {
+    "start": 3571440,
+    "size": 288,
+    "name": "cursor5"
+  },
+  {
+    "start": 1047523,
+    "size": 100,
+    "name": "unknown"
+  },
+  {
+    "start": 1361215,
+    "size": 13593,
+    "name": "englishBooks"
   }
 ]
 

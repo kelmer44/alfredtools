@@ -69,39 +69,36 @@ RleChunk chafarderError @ 0x886BD; // verified
 RleChunk alfredLibro @ 578943; //verified
 RleChunk thinkingBalloon @ 598051; //verified
 
-RleChunk tabla[8] @ 598907; // uncertain!
-Palette palTabla @ 724711;
-RleChunk mapa[8] @ 725485;
-Palette palMapa @ 909329;
-RleChunk menu[8] @ 910093;
-Palette menuPalette @ 1038141;
-// buda 76
-u8 cursor1[288] @ 0x0FDDFD;
+RleChunk tabla[8] @ 598907; // verified!
+Palette palTabla @ 724711; // verified
+RleChunk mapa[8] @ 725485; //verified
+Palette palMapa @ 909329; // verified
+RleChunk menu[8] @ 910093; // verified
+Palette menuPalette @ 1038141; // verified
+u8 codeSnippet[0x2A0] @ 0xFDA3D;
+u8 cursor1[288] @ 0x0FDDFD; //verified
+u8 cursor2[288] @ 0x0FDCDD; // verified
+u8 cursor3[288] @ 0x0FDF1D; // verified
+Palette paletteBetweenCursors @ 0xFE03D; //verified
+u8 cursor4[288] @ 0x0FE33D; // verified
+u8 cursor5[288] @ 0x367EF0; // verified
+RleChunk unknownBuda76 @ 1041501; //verified
 
-u8 cursor2[288] @ 0x0FDCDD;
+RleChunk cuadradoMenu @ 1042757; //verified
 
-u8 cursor3[288] @ 0x0FDF1D;
-
-u8 cursor4[288] @ 0x0FE33D;
-
-u8 cursor5[288] @ 0x367EF0;
-
-
-  
-
-RleChunk cuadradoMenu @ 1042757;
-
-RleChunk libroTetas[8] @ 1047623;
-Palette palLibroTetas @ 1147081;
-RleChunk otroLibro[8] @ 1147845;
-Palette palOtroLibro @ 1267955;
-RleChunk simbolos @ 1268719;
-RleChunk unknown1 @ 1341235;
-RleChunk unknown2 @ 1347767;
+u8 beforeTetas[0x64] @ 0xFFBE3; //verified
+RleChunk libroTetas[8] @ 1047623; //verified
+Palette palLibroTetas @ 1147081; //verified
+RleChunk otroLibro[8] @ 1147845; //verified
+Palette palOtroLibro @ 1267955; //verified
+RleChunk simbolos @ 1268719; //verified
+RleChunk unknown1 @ 1341235; // verified
+RleChunk unknown2 @ 1347767; //verified
 // buda 97
 
-u8 englishBookTitles[0x3519] @ 0x14C53F;
-RleChunk cuadroOk[8] @ 1387148; //98-105
+u8 englishBookTitles[0x3519] @ 0x14C53F; // verified
+RleChunk actionBalooons1 @ 1374808; //verified
+RleChunk cuadroOk[8] @ 1387144; //98-105
 Palette palCuadroOk @ 1425352; //106
 RleChunk alfredCama2 @ 1426116; //106
 
