@@ -6,6 +6,15 @@ import std.core;
 import std.string;
 
 
+struct RleChunk {
+    u8 pixelData[while(
+           !std::mem::eof() &&                        
+           std::mem::read_string($, 4) != "BUDA"  )
+       ];
+   char marker[4];
+};
+
+
 struct SingleAnim {
     u8 offsetX;
     u8 offsetY;
@@ -15,13 +24,15 @@ struct SingleAnim {
     u8 numFrames;
 };
 
+
 struct RoomAnimations {
-    u32 spritePointer;
-    padding[3];
+    u32 pointer;
+    u8 unk[3];
     SingleAnim animA;
-    padding[5];
+    u8 unkno[5];
     SingleAnim animB;
-    padding[29];
+    u8 unknown[29];
+    RleChunk data @ pointer;
 };
 
 RoomAnimations anims[55] @ 0x00;

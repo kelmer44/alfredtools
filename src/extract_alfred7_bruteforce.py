@@ -924,7 +924,7 @@ budas = [
   },
   {
     "BUDA": 76,
-    "START_OFFSET": 1041501,
+    "START_OFFSET": 1041507,
     "TYPE": "IMAGE",
     "DESC": "UNKNOWN",
     "WIDTH": 72,
@@ -1153,7 +1153,7 @@ budas = [
   {
     "BUDA": 95,
     "START_OFFSET": 1341231,
-    "TYPE": "RAW",
+    "TYPE": "sprite",
     "DESC": "UNKNOWN",
     "WIDTH": 119,
     "START": "0",
@@ -1164,8 +1164,8 @@ budas = [
   },
   {
     "BUDA": 96,
-    "START_OFFSET": 1347763,
-    "TYPE": "RAW",
+    "START_OFFSET": 1347765,
+    "TYPE": "sprite",
     "DESC": "UNKNOWN",
     "WIDTH": 146,
     "START": "0",

@@ -197,46 +197,88 @@ During the animation:
 - Normal game processing continues (ambient sounds, etc.)
 
 ### 5. Palette Table Location
-The palette data is embedded in JUEGO.EXE at file offset 0x4C700 (memory 0x49500).
-This data can be extracted and used directly for the ScummVM implementation.
+The palette data is embedded in JUEGO.EXE at file offset **0x4C700** (memory 0x49500).
 
-### 6. Simplified ScummVM Implementation
+#### Extraction from JUEGO.EXE
+The data structure at offset 0x4C700 is 120 bytes (0x78) and contains:
+
+```c
+struct StatuePaletteData {
+    uint16 x;          // 368 (position, not used in ScummVM)
+    uint16 y;          // 148 (position, not used in ScummVM)
+    uint16 type;       // 2 (type field, not used in ScummVM)
+    uint16 padding;    // 0
+    byte indices[16];  // Palette indices to modify
+    byte source[16][3]; // Source RGB values (6-bit VGA)
+    byte target[16][3]; // Target RGB values (6-bit VGA)
+};
+```
+
+To extract this data:
+```python
+with open("JUEGO.EXE", 'rb') as f:
+    f.seek(0x4C700)
+    # Read structure fields
+    x, y, type_val, padding = struct.unpack('<HHHH', f.read(8))
+    indices = list(f.read(16))
+    source_colors = [struct.unpack('BBB', f.read(3)) for _ in range(16)]
+    target_colors = [struct.unpack('BBB', f.read(3)) for _ in range(16)]
+```
+
+#### ScummVM Implementation
+The ScummVM implementation reads this data at runtime:
+
 ```cpp
-// Palette indices to modify
-static const byte kStatuePaletteIndices[] = {
-    30, 37, 39, 41, 44, 62, 74, 79, 83, 89, 105, 120, 152, 179, 217, 238
-};
-
-// Source colors (6-bit VGA)
-static const byte kStatuePaletteSource[][3] = {
-    {44,44,40}, {36,36,36}, {16,16,16}, {20,20,20}, {36,36,32},
-    {28,32,28}, {32,32,32}, {16,16,12}, {16,20,20}, {52,52,44},
-    {12,12,12}, {36,40,40}, {45,44,40}, {48,52,44}, {24,24,24}, {24,28,28}
-};
-
-// Target colors (6-bit VGA)
-static const byte kStatuePaletteTarget[][3] = {
-    {53,34,23}, {62,39,3}, {46,5,1}, {9,3,0}, {48,22,15},
-    {30,16,25}, {63,43,16}, {60,25,0}, {16,20,20}, {63,38,20},
-    {0,0,0}, {36,40,40}, {27,6,20}, {48,52,44}, {29,5,0}, {50,13,7}
-};
-
-void animateStatuePaletteFade(int numFrames) {
-    for (int frame = 0; frame <= numFrames; frame++) {
-        for (int i = 0; i < 16; i++) {
-            byte r = kStatuePaletteSource[i][0] +
-                     (kStatuePaletteTarget[i][0] - kStatuePaletteSource[i][0]) * frame / numFrames;
-            byte g = kStatuePaletteSource[i][1] +
-                     (kStatuePaletteTarget[i][1] - kStatuePaletteSource[i][1]) * frame / numFrames;
-            byte b = kStatuePaletteSource[i][2] +
-                     (kStatuePaletteTarget[i][2] - kStatuePaletteSource[i][2]) * frame / numFrames;
-
-            setPaletteEntry(kStatuePaletteIndices[i], r, g, b);
-        }
-        delayTicks(12);  // ~200ms per frame
+void PelrockEngine::animateStatuePaletteFade(bool reverse) {
+    Common::File exeFile;
+    if (!exeFile.open("JUEGO.EXE")) {
+        warning("Could not open JUEGO.EXE for statue palette animation");
+        return;
     }
+    
+    // Read the palette data structure from JUEGO.EXE
+    exeFile.seek(0x4C700, SEEK_SET);
+    
+    // Read structure...
+    // Perform interpolated fade animation...
 }
 ```
+
+This approach avoids hardcoding the values and reads directly from the game's executable, ensuring accuracy.
+
+### 6. ScummVM Implementation
+
+The ScummVM engine implements the statue palette fade by reading the data structure directly from JUEGO.EXE at runtime, avoiding hardcoded values. The implementation is located in:
+
+- **Function**: `PelrockEngine::animateStatuePaletteFade(bool reverse)` in [engines/pelrock/actions.cpp](../scummvm/engines/pelrock/actions.cpp)
+- **Declaration**: [engines/pelrock/pelrock.h](../scummvm/engines/pelrock/pelrock.h)
+
+#### Key Features
+
+1. **Dynamic Data Loading**: Reads the 120-byte structure from JUEGO.EXE at offset 0x4C700
+2. **Linear Interpolation**: Smoothly transitions between source and target colors over 7 frames
+3. **VGA Color Conversion**: Converts 6-bit VGA values (0-63) to 8-bit (0-255) by shifting left 2 bits
+4. **Reversible**: Supports both forward (gray→warm) and reverse (warm→gray) animations via the `reverse` parameter
+5. **Frame-Accurate Timing**: Uses ~200ms delay between frames, matching the original game's 12-tick delay
+
+#### Animation Parameters
+
+```cpp
+const int kNumFrames = 7;   // Total interpolation steps
+const int kDelayMs = 200;   // ~12 ticks at 60Hz
+```
+
+#### Usage
+
+```cpp
+// Forward animation (gray to warm colors)
+animateStatuePaletteFade(false);
+
+// Reverse animation (warm to gray colors)  
+animateStatuePaletteFade(true);
+```
+
+The function is called from `useAmuletWithStatue()` when the player uses the amulet (item 7) on the statue (hotspot 353) in room 7.
 
 ## Related Files
 

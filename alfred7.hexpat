@@ -34,14 +34,14 @@ u8 alfredElectrocuta1[11745] @ 37000; // verified
 u8 unknownbetweenalfreds[0x2F] @ 0xBE69;
 u8 alfredElectrocuta2[4312] @ 48792; // verified
 u8 alfredElectrocuta3[9512] @ 53106; // verified
-u8 unknownAfterElectrocuta[0x1414] @ 62612;
-RleChunk alfredCombRight @ 0x108AE; //verified
+u8 unknownAfterElectrocuta[0x1418] @ 62612;
+RleChunk alfredCombRight @ 67758; //verified
 RleChunk alfredCombLeft @ 0x15958; //verified
 RleChunk computer[8] @ 0x1A9EE; //verified
 Palette palComputer @ 198050; //verified
 // buda 17
 u8 unknownAntesLibros[0x13E] @ 0x308A2;
-u8 libros[0x3526] @ 0x309E0; //verified
+u8 libros[0x3528] @ 0x309E0; //verified
 u8 cursorBMP[176] @ 212745; // verified
 RleChunk pareja0 @ 212921; //verified
 
@@ -67,9 +67,11 @@ u8 afterPalReceta[95] @ 0x7B9B1;
 RleChunk periodico[8] @ 506385; //verified
 Palette palPreiodico @ 558013; //verified
 RleChunk chafarderError @ 0x886BD; // verified
+RleChunk alfredLibro1 @ 558917;
 RleChunk alfredLibro @ 578943; //verified
 RleChunk thinkingBalloon @ 598051; //verified
 
+u8 u8_array_at_0x922CB[0xB0] @ 0x922CB;
 RleChunk tabla[8] @ 598907; // verified!
 Palette palTabla @ 724711; // verified
 RleChunk mapa[8] @ 725485; //verified
@@ -120,7 +122,7 @@ RleChunk alfredClimbing @ 1761234;  // verified
 RleChunk alfredClimbing2 @ 1766378; // verified
 
 u8 alfredSaleTrampilla[290730] @ 1770196; //verified
-RleChunk alfredMunheco1 @ 2060922; //incomplete!
+RleChunk alfredMunheco1 @ 2060926; //incomplete!
 RleChunk alfredMunheco2 @ 2115632; //verified
 RleChunk balloon @2176936;//verified
 RleChunk iconosMusica @ 2201882; //verified
