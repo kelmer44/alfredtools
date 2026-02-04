@@ -235,10 +235,10 @@ void PelrockEngine::animateStatuePaletteFade(bool reverse) {
         warning("Could not open JUEGO.EXE for statue palette animation");
         return;
     }
-    
+
     // Read the palette data structure from JUEGO.EXE
     exeFile.seek(0x4C700, SEEK_SET);
-    
+
     // Read structure...
     // Perform interpolated fade animation...
 }
@@ -274,7 +274,7 @@ const int kDelayMs = 200;   // ~12 ticks at 60Hz
 // Forward animation (gray to warm colors)
 animateStatuePaletteFade(false);
 
-// Reverse animation (warm to gray colors)  
+// Reverse animation (warm to gray colors)
 animateStatuePaletteFade(true);
 ```
 
