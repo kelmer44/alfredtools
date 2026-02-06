@@ -383,7 +383,7 @@ struct Room {
 //ThisAnimHeader room3anims[8] @0xEB57A;
 
 
-Room rooms[10] @0x00000;
+Room rooms[41] @0x00000;
 struct DialogLine {
     u8 type;
     u8 idx;
@@ -480,3 +480,70 @@ struct Guardia {
 };
 
 Guardia g@ 0x127484;
+
+
+struct Travel1 {
+    DialogLine leVeoBlanco;
+    DialogLine noEsPorElSol;
+    DialogLine cancun;
+    DialogLine nomeinteresaSol;
+    DialogLine estaDeEnhorabuena;
+    DialogLine enQueConsiste;
+    DialogLine empresaGarantiza;
+    DialogLine proximoJuego;
+    DialogLine comoQuiera;
+    DialogLine noMeGustaSol;
+    DialogLine cansarmeDeUsted;
+    DialogLine rataAlbufera;
+    DialogLine vuelvaCuando;
+};
+
+struct Travel2 {
+    DialogLine digame;
+    DialogLine conocerEgipto;
+    DialogLine fantasticaIdea;
+    DialogLine excesivo;
+    DialogLine unicaAgencia;
+    DialogLine noTengoDineor;
+    DialogLine hermanaCaridad;
+    DialogLine regatear;
+    DialogLine guardeloParaEgipto;
+    DialogLine queHacesEstaNoche;
+    DialogLine dormir;
+};
+
+struct Travel3 {
+    DialogLine conocerEgipto;
+    DialogLine solo200000;
+    DialogLine noTengoEseDinero;
+    DialogLine deCuantoDispone;
+    DialogLine de150000;
+    DialogLine hummm;
+    DialogLine ahoraQueRecuerdo;
+    DialogLine aprendices;
+    DialogLine noSeAsuste;
+    DialogLine enfin;
+    DialogLine felizViaje;
+    DialogLine siClaro;
+    DialogLine unicaOpcion;
+    DialogLine caraDura;
+    DialogLine muybienFelizViaje;
+    DialogLine podriaAndando;
+    DialogLine tanViejo;
+    DialogLine tieneRazon;
+    DialogLine felizViaje3;
+    DialogLine autostop;
+    DialogLine conEsaCara;
+    DialogLine tieneRazon2;
+    DialogLine felizViaje4;
+    DialogLine ademasDeDormir;
+    DialogLine sonar;
+};
+
+struct Travel {
+    Travel1 t1;
+    Travel2 t2;
+    Travel3 t3;
+};
+
+Travel t@ 0x3754BE;
