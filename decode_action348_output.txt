@@ -1,0 +1,86 @@
+======================================================================
+ACTION 348 (0x015C) HANDLER at 0x21F3D
+======================================================================
+  0x21F3D: 68 14 00 00 00 e8 d1 82 00 00 53 52 a1 c8 fa 00
+  0x21F4D: 00 c6 40 05 02 31 db e8 de 70 00 00 68 63 01 00
+  0x21F5D: 00 e8 f5 82 00 00 83 c4 04 e8 4b 33 ff ff 84 c0
+  0x21F6D: 75 32 e8 bb 91 00 00 89 c2 83 e2 0f e8 b1 91 00
+  0x21F7D: 00 0f af c2 a3 dc fa 00 00 e8 49 3e ff ff e8 cd
+  0x21F8D: 42 ff ff 31 d2 8a 13 b8 61 00 00 00 e8 7d 91 00
+  0x21F9D: 00 43 eb b8 30 e4 88 25 9e 17 01 00 31 db b8 01
+  0x21FAD: 00 00 00 89 c2 c1 fa 1f f7 fb 50 68 64 01 00 00
+  0x21FBD: e8 96 82 00 00 83 c4 08 5a 5b c3 68 0c 00 00 00
+  0x21FCD: e8 46 82 00 00 53 52 80 35 f0 95 00 00 01 31 c0
+  0x21FDD: a0 f0 95 00 00 83 f8 03 75 11 bb 01 00 00 00 89
+  0x21FED: da b8 16 00 00 00 e8 6e 96 ff ff 5a 5b c3 68 0c
+  0x21FFD: 00 00 00 e8 13 82 00 00
+
+  Instruction trace:
+    0x21F3D: PUSH 0x14 (20)
+    0x21F42: CALL 0x2A218
+    0x21F47: PUSH EBX
+    0x21F48: PUSH EDX
+    0x21F49: DB   0xA1
+    0x21F4A: DB   0xC8
+    0x21F4B: CLI  *** DISABLE INTERRUPTS ***
+    0x21F4C: DB   0x00
+    0x21F4D: DB   0x00
+    0x21F4E: DB   0xC6
+    0x21F4F: DB   0x40
+    0x21F50: DB   0x05
+    0x21F51: DB   0x02
+    0x21F52: XOR  EBX, EBX
+    0x21F54: CALL 0x29037
+    0x21F59: PUSH 0x163 (355)
+    0x21F5E: CALL 0x2A258
+    0x21F63: ADD  ESP, 0x4
+    0x21F66: CALL 0x152B6
+    0x21F6B: DB   0x84
+    0x21F6C: DB   0xC0
+    0x21F6D: JNE  0x21FA1
+    0x21F6F: CALL 0x2B12F
+    0x21F74: MOV  EDX, EAX
+    0x21F76: AND  EDX, 0xF
+    0x21F79: CALL 0x2B12F
+    0x21F7E: J?? (0xAF)  0x-5213CBA
+    0x21F84: DB   0x00
+    0x21F85: DB   0x00
+    0x21F86: CALL 0x15DD4
+    0x21F8B: CALL 0x1625D
+    0x21F90: XOR  EDX, EDX
+    0x21F92: DB   0x8A
+    0x21F93: DB   0x13
+    0x21F94: MOV  EAX, 0x61 (97)
+    0x21F99: CALL 0x2B11B
+    0x21F9E: DB   0x43
+    0x21F9F: JMP  0x21F59
+    0x21FA1: DB   0x30
+    0x21FA2: DB   0xE4
+    0x21FA3: DB   0x88
+    0x21FA4: DB   0x25
+    0x21FA5: DB   0x9E
+    0x21FA6: DB   0x17
+    0x21FA7: DB   0x01
+    0x21FA8: DB   0x00
+    0x21FA9: XOR  EBX, EBX
+    0x21FAB: MOV  EAX, 0x1 (1)
+    0x21FB0: MOV  EDX, EAX
+    0x21FB2: DB   0xC1
+    0x21FB3: CLI  *** DISABLE INTERRUPTS ***
+    0x21FB4: DB   0x1F
+    0x21FB5: DB   0xF7
+    0x21FB6: STI  *** ENABLE INTERRUPTS ***
+    0x21FB7: DB   0x50
+    0x21FB8: PUSH 0x164 (356)
+    0x21FBD: CALL 0x2A258
+    0x21FC2: ADD  ESP, 0x8
+    0x21FC5: POP  EDX
+    0x21FC6: POP  EBX
+    0x21FC7: RET
+
+  Known function addresses:
+    0x1B666: update_conversation_state
+    0x24157: process_inventory_action
+    0x244E8: set_vga_palette
+    0x28FD5: set_vga_mode
+    0x2A218: stack_check/get_current_room_number

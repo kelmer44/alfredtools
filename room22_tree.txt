@@ -41,15 +41,15 @@ ROOM 22 CONVERSATION TREE
                                     └─ [12] [FB-ONCE] óCuanto vale?
                                        NPC: No se la puedo dar, es del extranjero que estñ en la cñrcel. Se la estoy guardando
                                        └─ [13] [FB-ONCE] Si no quer¿a comprarla, s?lo preguntaba el precio
-                                          NPC: Que simpñtico, haciÑndome perder el tiempo → ACTION 014C
+                                          NPC: Que simpñtico, haciÑndome perder el tiempo → ACTION 014C --> DA TARJETA
                                     └─ [12] [FB-ONCE] óPara que sirve?
-                                       NPC: Para comÑrsela o para beber → ACTION 014C
+                                       NPC: Para comÑrsela o para beber → ACTION 014C --> DA TARJETA
                                  └─ [11] [FB-ONCE] Hay para matar al cocinero
-                                    NPC: Es lo que hizo y por eso ahora estñ en la cñrcel → ACTION 014C
+                                    NPC: Es lo que hizo y por eso ahora estñ en la cñrcel → ACTION 014C --> DA TARJETA
                               └─ [10] [FB-ONCE] No me lo creo
-                                 NPC: Hombre de poca fe. Ve a hablar con Ñl si no te lo crees → ACTION 014C
+                                 NPC: Hombre de poca fe. Ve a hablar con Ñl si no te lo crees → ACTION 014C --> DA TARJETA
                            └─ [9] [FB-ONCE] No me interesa esta historia
-                              NPC: Allñ t¡ → ACTION 014C
+                              NPC: Allñ t¡ → ACTION 014C --> DA TARJETA
                      └─ [7] [FB-ONCE] Bueno, óme das un par de naranjas o no?
                         NPC: No [F0-GO_BACK]
                   └─ [6] [FB-ONCE] Y eso, ópor quÑ?
@@ -75,7 +75,7 @@ ROOM 22 CONVERSATION TREE
                                     └─ [12] [FB-ONCE] íCHINPON!
                                        NPC: íQuÑ bonitos recuerdos me trae esta canci?n. Ah! aquella vida de mi infancia, el camino real a travÑs de todas las Ñpocas: sobrenaturalmente sobrio, mñs desinteresado que el mejor de los mendigos, orgulloso de no tener ni tierra natal ni amigos, menuda tonter¿a era. íY s?lo ahora me doy cuenta! -Cuñnta raz?n tuve al despreciar a esos pobres hombres que no despreciar¿an la ocasi?n de una car¿cia, parñsitos de la decencia y de la salud de nuestras mujeres, sobre todo hoy que estan en desacuerdo con nosotros. Cuñnta raz?n en todos y en cada uno de mis desdenes: íla prueba es que me evado! íME EVADO! Me explico
                                        └─ [13] [FB-ONCE] Eso expl¿cate porquÑ no te entiendo
-                                          NPC: A¡n ayer, suspiraba: íCielos! íC?mo si no fuÑramos ya bastantes los condenados aqu¿ abajo! íLlevo ya mucho tiempo en sus filas! Les conozco a todos. Nos reconocemos una y otra vez culpables, nos damos asco. Desconocemos la caridad. Pero somos educados: nuestras relaciones con el mundo son correct¿simas. Pero gracias a t¿, viajero, este minuto de despertar me ha otorgado la visi?n de la pureza. Toma estas naranjas y ve con Alñ → ACTION 014A
+                                          NPC: A¡n ayer, suspiraba: íCielos! íC?mo si no fuÑramos ya bastantes los condenados aqu¿ abajo! íLlevo ya mucho tiempo en sus filas! Les conozco a todos. Nos reconocemos una y otra vez culpables, nos damos asco. Desconocemos la caridad. Pero somos educados: nuestras relaciones con el mundo son correct¿simas. Pero gracias a t¿, viajero, este minuto de despertar me ha otorgado la visi?n de la pureza. Toma estas naranjas y ve con Alñ → ACTION 014A --> da dos naranjas
                                        └─ [13] [FB-ONCE] Mejor te callas. Por un par de naranjas no quiero oir tanto rollo
                                           NPC: Ignorante. No sabes apreciar la buena poes¿a. Estas palabras las escribio un genio llamado Rimbaud. Yo s?lo citaba [F0-GO_BACK]
                      └─ [7] [FB-ONCE] No
@@ -103,9 +103,9 @@ ROOM 22 CONVERSATION TREE
                                           └─ [14] [FB-ONCE] íAy, de los que no dan limosna ni escuchan!
                                              NPC: óC?mor?
                                              └─ [15] [FB-ONCE] íAy, de los que no dan limosna ni escuchan!
-                                                NPC: íQue tio mñs pesado! Lo que es capaz de hacer un perro cristiano por no pagar. íCoge un par de naranjas y lñrgate de una vez! → ACTION 014A
+                                                NPC: íQue tio mñs pesado! Lo que es capaz de hacer un perro cristiano por no pagar. íCoge un par de naranjas y lñrgate de una vez! → ACTION 014A --> da naranjas
                                              └─ [15] [FB-ONCE] Estoy harto de repet¿rselo. Adios, sordo.
-                                                NPC: Adios, cotorra → ACTION 014B
+                                                NPC: Adios, cotorra → ACTION 014B -> "Tengo la sensacion de haber hechoi el primo"
                                           └─ [14] [FB-ONCE] Creo que estoy empezando a notar los primeros s¿ntomas de escorbuto.
                                              NPC: Busca un mÑdico
                                              └─ [15] [FB-ONCE] Creo que me voy a morir
@@ -425,18 +425,18 @@ ROOM 22 CONVERSATION TREE
                      └─ [7] [FB-ONCE] No, gracias. Me gustar¿a ver los CD-Roms
                         NPC: Tengo uno de un juego llamado : Alfred Pelrock Pero mejor consigue la versi?n pirata y as¿ te ahorras un dinero. Un primo m¿o te la puede grabar por menos de una cuarta parta de su precio...
                         └─ [8] [FB-ONCE] S¿ de acuerdo
-                           NPC: íQUE TE DEN MORCILLA! íPOR PIRATA! → ACTION 015C
+                           NPC: íQUE TE DEN MORCILLA! íPOR PIRATA! → ACTION 015C --> CRASH!
                         └─ [8] [FB-ONCE] No, creo que no es ni legal ni Ñtico
                            NPC: S¿ tiene raz?n óQuÑ ser¿a de los creadores del juego? óDe quÑ vivir¿an los guionistas que tanta tinta han gastado en hacer los diñlogos? óCon quÑ mantendr¿an a sus fam¿lias los dibujantes que nos han creado? óQue ser¿a de los programadores informñticos que tanta dedicaci?n y tazas de cafÑ han dedicado para que t¡ ahora estes jugando?
                            └─ [9] [FB-ONCE] Ya, pero los juegos en CD-ROM son un poco caros...
-                              NPC: No es culpa de los creativos. Los comerciantes, intermediarios y distribuidoras somos unos ladrones. Son las cosas del capitalismo. → ACTION 015E
+                              NPC: No es culpa de los creativos. Los comerciantes, intermediarios y distribuidoras somos unos ladrones. Son las cosas del capitalismo. → ACTION 015E --> ? unknown
                   └─ [6] [FB-ONCE] ó Y esos pins ?
                      NPC: Es que les tengo mucho cariáo [F0-GO_BACK]
                   └─ [6] [FB-ONCE] La verdad es que no quiero nada. Adios
                      NPC: O.K. ! [F4-CANCEL]
                └─ [5] [FB-ONCE] La verdad es que no quiero nada. Adios
                   NPC: O.K. ! [F4-CANCEL]
-            └─ [4] [FB-ONCE] La verdad es que no quiero nada. Adios
+            └─ [4] [F1] La verdad es que no quiero nada. Adios
                NPC: O.K. ! [F4-CANCEL]
             └─ [4] [FB-ONCE] óPuedo probarlos?
                NPC: No tengo probadores [F0-GO_BACK]
@@ -445,7 +445,7 @@ ROOM 22 CONVERSATION TREE
    └─ [1] [FB-ONCE] í No, que va ! Soy de aqu¿. Es que mi madre se entend¿a con un marine...
       NPC: íYa dec¿a yo que ol¿a usted tan mal! [F0-GO_BACK]
    └─ [1] [FB-ONCE] Ni Dios ni patria ni rey
-      NPC: íSALUD COMPAéERO! → ACTION 015D
+      NPC: íSALUD COMPAéERO! → ACTION 015D - SALUD COMPANHERO!
 
 ================================================================================
 

@@ -1,0 +1,218 @@
+
+======================================================================
+ACTION 350 CORE (0x015E) at 0x21FFB
+======================================================================
+  0x21FFB: 68 0c 00 00 00 e8 13 82 00 00 53 52 80 35 f0 95
+  0x2200B: 00 00 02 31 c0 a0 f0 95 00 00 83 f8 03 0f 85 ca
+  0x2201B: 02 00 00 bb 01 00 00 00 89 da b8 16 00 00 00 e9
+  0x2202B: b4 02 00 00
+
+  Decoded instructions:
+    0x21FFB: PUSH 0xC
+    0x22000: CALL 0x2A218
+    0x22005: PUSH EBX
+    0x22006: PUSH EDX
+    0x22007: XOR  byte [0x095F0], 0x2
+    0x2200E: XOR  EAX, EAX
+    0x22010: MOV  AL, [0x095F0]
+    0x22015: CMP  EAX, 0x3 (3)
+    0x22018: JNE  0x222E8
+    0x2201E: MOV  EBX, 0x1 (1)
+    0x22023: MOV  EDX, EBX
+    0x22025: MOV  EAX, 0x16 (22)
+    0x2202A: JMP  0x222E3
+
+======================================================================
+JMP TARGET: flag==3 path (0x222E3) at 0x222E3
+======================================================================
+  0x222E3: e8 7e 93 ff ff 5a 5b c3 68 04 00 00 00 e8 23 7f
+  0x222F3: 00 00 b8 6f 00 00 00 e9 58 1e 00 00 68 0c 00 00
+
+  Decoded instructions:
+    0x222E3: CALL 0x1B666
+    0x222E8: POP  EDX
+    0x222E9: POP  EBX
+    0x222EA: RET
+    0x222EB: PUSH 0x4
+    0x222F0: CALL 0x2A218
+    0x222F5: MOV  EAX, 0x6F (111)
+    0x222FA: JMP  0x24157
+    0x222FF: DB   0x68
+    0x22300: DB   0x0C
+    0x22301: DB   0x00
+    0x22302: DB   0x00
+
+======================================================================
+JNE TARGET: flag!=3 path (0x222E8) at 0x222E8
+======================================================================
+  0x222E8: 5a 5b c3 68 04 00 00 00 e8 23 7f 00 00 b8 6f 00
+
+  Decoded instructions:
+    0x222E8: POP  EDX
+    0x222E9: POP  EBX
+    0x222EA: RET
+    0x222EB: PUSH 0x4
+    0x222F0: CALL 0x2A218
+    0x222F5: DB   0xB8
+    0x222F6: DB   0x6F
+    0x222F7: DB   0x00
+
+======================================================================
+ACTION 351 FULL (0x015F) at 0x2202F
+======================================================================
+  0x2202F: 68 08 00 00 00 e8 df 81 00 00 52 8b 15 80 bb 00
+  0x2203F: 00 31 c0 e8 5b 91 ff ff 8b 15 84 bb 00 00 b8 01
+  0x2204F: 00 00 00 e8 4b 91 ff ff 8b 15 88 bb 00 00 31 c0
+  0x2205F: e8 3e 91 ff ff 8b 15 8c bb 00 00 b8 01 00 00 00
+  0x2206F: e8 2e 91 ff ff 8b 15 90 bb 00 00 31 c0 e8 21 91
+  0x2207F: ff ff 8b 15 94 bb 00 00 b8 01 00 00 00 e8 11 91
+  0x2208F: ff ff 8b 15 98 bb 00 00 31 c0 e8 04 91 ff ff 8b
+  0x2209F: 15 9c bb 00 00 b8 01 00 00 00 e8 f4 90 ff ff 8b
+  0x220AF: 15 a0 bb 00 00 31 c0 e8 e7 90 ff ff 8b 15 a4 bb
+  0x220BF: 00 00 b8 01 00 00 00 e8 d7 90 ff ff 8b 15 a8 bb
+  0x220CF: 00 00 31 c0 e8 ca 90 ff ff 8b 15 ac bb 00 00 b8
+  0x220DF: 01 00 00 00 e8 ba 90 ff ff 8b 15 b0 bb 00 00 31
+  0x220EF: c0 e8 ad 90 ff ff 8b 15 b4 bb 00 00 b8 01 00 00
+  0x220FF: 00 e8 9d 90 ff ff 8b 15 b8 bb 00 00 31 c0 e8 90
+  0x2210F: 90 ff ff 8b 15 bc bb 00 00 b8 01 00 00 00 e8 80
+  0x2211F: 90 ff ff 8b 15 c0 bb 00 00 31 c0 e8 73 90 ff ff
+  0x2212F: a1 c4 bb 00 00 e9 31 b5 ff ff 68 0c 00 00 00 e8
+  0x2213F: d5 80 00 00 53 52 bb 03 00 00 00 31 d2 b8 17 00
+  0x2214F: 00 00 e8 10 95 ff ff e8 c2 f3 ff ff 5a 5b c3 68
+  0x2215F: 0c 00 00 00 e8 b0 80 00 00 53 52 bb 02 00 00 00
+
+  Decoded instructions:
+    0x2202F: PUSH 0x8
+    0x22034: CALL 0x2A218
+    0x22039: PUSH EDX
+    0x2203A: MOV  EDX, [0x0BB80]
+    0x22040: XOR  EAX, EAX
+    0x22042: CALL 0x1B1A2
+    0x22047: MOV  EDX, [0x0BB84]
+    0x2204D: MOV  EAX, 0x1 (1)
+    0x22052: CALL 0x1B1A2
+    0x22057: MOV  EDX, [0x0BB88]
+    0x2205D: XOR  EAX, EAX
+    0x2205F: CALL 0x1B1A2
+    0x22064: MOV  EDX, [0x0BB8C]
+    0x2206A: MOV  EAX, 0x1 (1)
+    0x2206F: CALL 0x1B1A2
+    0x22074: MOV  EDX, [0x0BB90]
+    0x2207A: XOR  EAX, EAX
+    0x2207C: CALL 0x1B1A2
+    0x22081: MOV  EDX, [0x0BB94]
+    0x22087: MOV  EAX, 0x1 (1)
+    0x2208C: CALL 0x1B1A2
+    0x22091: MOV  EDX, [0x0BB98]
+    0x22097: XOR  EAX, EAX
+    0x22099: CALL 0x1B1A2
+    0x2209E: MOV  EDX, [0x0BB9C]
+    0x220A4: MOV  EAX, 0x1 (1)
+    0x220A9: CALL 0x1B1A2
+    0x220AE: MOV  EDX, [0x0BBA0]
+    0x220B4: XOR  EAX, EAX
+    0x220B6: CALL 0x1B1A2
+    0x220BB: MOV  EDX, [0x0BBA4]
+    0x220C1: MOV  EAX, 0x1 (1)
+    0x220C6: CALL 0x1B1A2
+    0x220CB: MOV  EDX, [0x0BBA8]
+    0x220D1: XOR  EAX, EAX
+    0x220D3: CALL 0x1B1A2
+    0x220D8: MOV  EDX, [0x0BBAC]
+    0x220DE: MOV  EAX, 0x1 (1)
+    0x220E3: CALL 0x1B1A2
+    0x220E8: MOV  EDX, [0x0BBB0]
+    0x220EE: XOR  EAX, EAX
+    0x220F0: CALL 0x1B1A2
+    0x220F5: MOV  EDX, [0x0BBB4]
+    0x220FB: MOV  EAX, 0x1 (1)
+    0x22100: CALL 0x1B1A2
+    0x22105: MOV  EDX, [0x0BBB8]
+    0x2210B: XOR  EAX, EAX
+    0x2210D: CALL 0x1B1A2
+    0x22112: MOV  EDX, [0x0BBBC]
+    0x22118: MOV  EAX, 0x1 (1)
+    0x2211D: CALL 0x1B1A2
+    0x22122: MOV  EDX, [0x0BBC0]
+    0x22128: XOR  EAX, EAX
+    0x2212A: CALL 0x1B1A2
+    0x2212F: DB   0xA1
+    0x22130: DB   0xC4
+    0x22131: MOV  EBX, 0x31E90000 (837353472)
+    0x22136: DB   0xB5
+    0x22137: DB   0xFF
+    0x22138: DB   0xFF
+    0x22139: PUSH 0xC
+    0x2213E: CALL 0x2A218
+    0x22143: PUSH EBX
+    0x22144: PUSH EDX
+    0x22145: MOV  EBX, 0x3 (3)
+    0x2214A: DB   0x31
+    0x2214B: DB   0xD2
+    0x2214C: MOV  EAX, 0x17 (23)
+    0x22151: CALL 0x1B666
+    0x22156: CALL 0x2151D
+    0x2215B: POP  EDX
+    0x2215C: POP  EBX
+    0x2215D: RET
+    0x2215E: PUSH 0xC
+    0x22163: CALL 0x2A218
+    0x22168: PUSH EBX
+    0x22169: PUSH EDX
+    0x2216A: MOV  EBX, 0x2 (2)
+
+======================================================================
+JMP TARGET 0x1D66A at 0x1D66A
+======================================================================
+  0x1D66A: e8 18 7e 00 00 5a c3 68 2c 00 00 00 e8 9d cb 00
+  0x1D67A: 00 53 51 52 80 3d 80 96 00 00 00 0f 84 c4 00 00
+  0x1D68A: 00 31 c0 a0 02 30 01 00 50 8b 15 38 32 01 00 52
+  0x1D69A: 6a 20 68 00 01 00 00 68 00 01 00 00 6a ff 8b 1d
+
+  Decoded instructions:
+    0x1D66A: CALL 0x25487
+    0x1D66F: POP  EDX
+    0x1D670: RET
+    0x1D671: PUSH 0x2C
+    0x1D676: CALL 0x2A218
+    0x1D67B: PUSH EBX
+    0x1D67C: DB   0x51
+    0x1D67D: PUSH EDX
+    0x1D67E: DB   0x80
+    0x1D67F: DB   0x3D
+    0x1D680: DB   0x80
+    0x1D681: DB   0x96
+    0x1D682: DB   0x00
+    0x1D683: DB   0x00
+    0x1D684: DB   0x00
+    0x1D685: JE   0x1D74F
+    0x1D68B: XOR  EAX, EAX
+    0x1D68D: MOV  AL, [0x13002]
+    0x1D692: DB   0x50
+    0x1D693: MOV  EDX, [0x13238]
+    0x1D699: PUSH EDX
+    0x1D69A: DB   0x6A
+    0x1D69B: DB   0x20
+    0x1D69C: PUSH 0x100
+    0x1D6A1: PUSH 0x100
+    0x1D6A6: DB   0x6A
+    0x1D6A7: DB   0xFF
+    0x1D6A8: MOV  (modrm=0x1D) ...
+
+======================================================================
+FUNCTION ANALYSIS: What's at 0x222E3?
+======================================================================
+  Action 349 starts at 0x21FC8, ends around 0x21FFA
+  Action 350 starts at 0x21FFB
+  Action 351 starts at 0x2202F
+  JMP target 0x222E3 is 0x2B4 bytes after action 351 start
+  JNE target 0x222E8 is 5 bytes after 0x222E3
+
+  Known function cross-reference:
+    0x15E4C: render_scene
+    0x1B1A2: play_get_naked_easter_egg (NPC talking anim)
+    0x1B666: update_conversation_state
+    0x1D66A: unknown_target
+    0x24157: process_inventory_action
+    0x26F6C: FUN_00026f6c
+    0x2A218: get_current_room_number (stack check)
