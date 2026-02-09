@@ -1,0 +1,457 @@
+Loading room 22 conversation data...
+Loaded 33015 bytes of text data
+
+Parsing conversation tree...
+Found speaker root at pos 229, speaker ID 1
+
+================================================================================
+ROOM 22 CONVERSATION TREE
+================================================================================
+
+└─ ROOT
+   NPC: ó Que desÑa, Joven ? [F0-GO_BACK]
+   └─ [1] [FB-ONCE] Creo que le llaman por telÑfono
+      NPC: Ya lo cogerñ mi mujer. Yo estoy vigilando estas estupendas y sabrosas naranjas
+      └─ [2] [FB-ONCE] óQuÑ pasa? óTeme que las naranjas se vayan corriendo?
+         NPC: No, del que temo que salga corriendo sin pagar con mis estupendas y sabrosas naranjas es de t¿
+         └─ [3] [FB-ONCE] No ten¿a la intenci?n de salir corriendo. Esperaba que me regalase unas cuantas
+            NPC: Como te crees que he criado esta barriga ódando de comer a los pobres?
+            └─ [4] [FB-ONCE] Yo cre¿a que los egipcios erñis gente generosa y hospitalaria
+               NPC: Pues yo creia que llov¿a y era agua que caia
+               └─ [5] [FB-ONCE] En abril: aguas mil
+                  NPC: De los cincuenta pa'rriba no te mojes la barriga
+                  └─ [6] [FB-ONCE] Agua que no quieras beber dÑjala correr
+                     NPC: Pues yo no dirÑ: de este agua no beberÑ
+                     └─ [7] [FB-ONCE] La avaricia rompe el saco
+                        NPC: Tiran mas dos tetas que dos carretas
+                        └─ [8] [FB-ONCE] Tanto va el cñntaro a la fuente que se rompe
+                           NPC: óEstñs loco? bebe pepsi
+                           └─ [9] [FB-ONCE] A buen entendedor, palabras sobran
+                              NPC: A palabras necias, oidos sordos [F0-GO_BACK]
+                           └─ [9] [FB-ONCE] Las bebidas con gas me dan flato
+                              NPC: S¿, es cierto el gas tiene que salir por alguna parte, si no explotar¿amos [F0-GO_BACK]
+                        └─ [8] [FB-ONCE] A mi me tiran si son del tamaáo de las naranjas
+                           NPC: Creo que padeces una obsesi?n paranoiaca. Aqu¿ tienes el telÑfono de un primo m¿o psiquiatra que creo que puede curarte. No hace mucho tuvo en tratamiento a un extranjero que estaba obsesionado con las calabazas. Siempre preguntando por las calabazas. Ve¿a calabazas por todos lados. Ya le pod¿as hablar de lo que fuera que el siempre te preguntaba por las calabazas. Mira si estaba obsesionado que todo lo relacionaba con las naranjas, digo: las calabazas. Por ejemplo, las naranjas le recordaban a las calabazas en el color, cuando le hablabas de su infancia s?lo recordaba las calabazas que le pon¿an en los exñmenes, si le hablabas de su fam¿lia le ven¿a a la cabeza el huerto de calabazas que ten¿an en el jard¿n, si le hablabas del tiempo te contestaba si ese aáo ser¿a buena la cosecha de la calabaza debido al tiempo, si le habladas de las fiestas te contaba extraáas costumbres paganas de otros pueblos que decoran con velas en su interior calabazas talladas en forma de cabeza. Incluso lleg? a preguntarme si las calabazas servir¿an como recipiente. Que idea mñs absurda. Era un autÑntico chalado
+                           └─ [9] [FB-ONCE] óY que le pas??
+                              NPC: Mi primo acab? haciÑndole aborrecer las cabalazas
+                              └─ [10] [FB-ONCE] óC?mo?
+                                 NPC: Le recet? un men¡ exclusivamente compuesto de calabaza: ensalada de calabaza, espagueti a la calabaza, arroz de calabaza, zumo de calabaza, calabaza con calabaza...
+                                 └─ [11] [FB-ONCE] óTiene calabazas?
+                                    NPC: S?lo me queda una
+                                    └─ [12] [FB-ONCE] óCuanto vale?
+                                       NPC: No se la puedo dar, es del extranjero que estñ en la cñrcel. Se la estoy guardando
+                                       └─ [13] [FB-ONCE] Si no quer¿a comprarla, s?lo preguntaba el precio
+                                          NPC: Que simpñtico, haciÑndome perder el tiempo → ACTION 014C
+                                    └─ [12] [FB-ONCE] óPara que sirve?
+                                       NPC: Para comÑrsela o para beber → ACTION 014C
+                                 └─ [11] [FB-ONCE] Hay para matar al cocinero
+                                    NPC: Es lo que hizo y por eso ahora estñ en la cñrcel → ACTION 014C
+                              └─ [10] [FB-ONCE] No me lo creo
+                                 NPC: Hombre de poca fe. Ve a hablar con Ñl si no te lo crees → ACTION 014C
+                           └─ [9] [FB-ONCE] No me interesa esta historia
+                              NPC: Allñ t¡ → ACTION 014C
+                     └─ [7] [FB-ONCE] Bueno, óme das un par de naranjas o no?
+                        NPC: No [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] Y eso, ópor quÑ?
+                     NPC: Debe ser la menopausia [F0-GO_BACK]
+               └─ [5] [FB-ONCE] Que llueva que llueva, la virgen de la cueva
+                  NPC: los pajaritos cantan, las nubes se levantan
+                  └─ [6] [FB-ONCE] Que venga un chaparr?n
+                     NPC: que tire los tejados de la estaci?n. Oye, óte sabes la de las llaves?
+                     └─ [7] [FB-ONCE] S¿
+                        NPC: A ver, te sigo. Yo no me acuerdo muy bien
+                        └─ [8] [FB-ONCE] íTUUU TIEEEEENES LAAA LLAAAAVEEEE DE MIIIII COOOOORAZOOOOOON!, íCHINPON!
+                           NPC: El chinp?n estñ bien, pero no me suena la canci?n [F0-GO_BACK]
+                        └─ [8] [FB-ONCE] íYA VES QUE TEEEE QUIEROOOOOO!
+                           NPC: Vete antes de que te odie [F0-GO_BACK]
+                        └─ [8] [FB-ONCE] óDONDE ESTAAAAN LAAAAS LLAVES?
+                           NPC: MATARILE
+                           └─ [9] [FB-ONCE] RILE
+                              NPC: RILE
+                              └─ [10] [FB-ONCE] óDONDE ESTAAAN LAAAS LLAVES?
+                                 NPC: MATARILE
+                                 └─ [11] [FB-ONCE] RILE
+                                    NPC: RON
+                                    └─ [12] [FB-ONCE] íCHINPON!
+                                       NPC: íQuÑ bonitos recuerdos me trae esta canci?n. Ah! aquella vida de mi infancia, el camino real a travÑs de todas las Ñpocas: sobrenaturalmente sobrio, mñs desinteresado que el mejor de los mendigos, orgulloso de no tener ni tierra natal ni amigos, menuda tonter¿a era. íY s?lo ahora me doy cuenta! -Cuñnta raz?n tuve al despreciar a esos pobres hombres que no despreciar¿an la ocasi?n de una car¿cia, parñsitos de la decencia y de la salud de nuestras mujeres, sobre todo hoy que estan en desacuerdo con nosotros. Cuñnta raz?n en todos y en cada uno de mis desdenes: íla prueba es que me evado! íME EVADO! Me explico
+                                       └─ [13] [FB-ONCE] Eso expl¿cate porquÑ no te entiendo
+                                          NPC: A¡n ayer, suspiraba: íCielos! íC?mo si no fuÑramos ya bastantes los condenados aqu¿ abajo! íLlevo ya mucho tiempo en sus filas! Les conozco a todos. Nos reconocemos una y otra vez culpables, nos damos asco. Desconocemos la caridad. Pero somos educados: nuestras relaciones con el mundo son correct¿simas. Pero gracias a t¿, viajero, este minuto de despertar me ha otorgado la visi?n de la pureza. Toma estas naranjas y ve con Alñ → ACTION 014A
+                                       └─ [13] [FB-ONCE] Mejor te callas. Por un par de naranjas no quiero oir tanto rollo
+                                          NPC: Ignorante. No sabes apreciar la buena poes¿a. Estas palabras las escribio un genio llamado Rimbaud. Yo s?lo citaba [F0-GO_BACK]
+                     └─ [7] [FB-ONCE] No
+                        NPC: Creo que estoy perdiendo el tiempo contigo [F0-GO_BACK]
+            └─ [4] [FB-ONCE] "El bien que gastÑis sea para padres, parientes, huÑrfanos, pobres y el VIAJERO"
+               NPC: Muy bien viajero. Veo que conoces el Corñn pero Alñ nos dijo: "Dad seg¡n vuestras posibilidades"
+               └─ [5] [FB-ONCE] "íOh, los que creÑis! De lo que os he concedido gastad en limosna"
+                  NPC: "Entre los infieles hay quienes te difaman acerca de las limosnas: si se les da de ellas, estñn satisfechos; si no se les da, entonces se enfandan. Las limosnas son para los indigentes, los pobres, quienes por ellos act¡an, quienes tienen sus corazones dispuestos a aceptar el Islam"
+                  └─ [6] [FB-ONCE] "Quienes creen y hacen obra p¿a, Ñsos tendrñn la recompensa doble por lo que hayan hecho"
+                     NPC: Alñ nos dijo: "No obedezcas ni a los infieles ni a los hip?critas"
+                     └─ [7] [FB-ONCE] De los ñvaros Alñ se burla pues tendrñn un tormento doloroso
+                        NPC: Alñ me enseá? a decir: "Mi salario no incumbe mñs que a Dios"
+                        └─ [8] [FB-ONCE] Tormento inevitable para aquel sobre cuyos bienes no se tome una parte para mendigos y desemparados
+                           NPC: Cierto Ñs viajero, pero el Corñn no establece con exactitud el porcentaje. Ademñs en estos momentos s?lo tengo deudas y pÑrdidas. Este es mi tormento
+                           └─ [9] [FB-ONCE] íAy, de los que no dan limosna ni escuchan!
+                              NPC: óC?mo?
+                              └─ [10] [FB-ONCE] Digo que: íAy, de los que no dan limosna ni escuchan!
+                                 NPC: óQuÑ?
+                                 └─ [11] [FB-ONCE] Te dec¿a la famosa aleya de Mahoma: íAy, de los que no dan limosna ni escuchan!
+                                    NPC: óPerd?n?
+                                    └─ [12] [FB-ONCE] íAy, de los que no dan limosna ni escuchan!
+                                       NPC: óEh?
+                                       └─ [13] [FB-ONCE] íAy, de los que no dan limosna ni escuchan!
+                                          NPC: óS¿?
+                                          └─ [14] [FB-ONCE] íAy, de los que no dan limosna ni escuchan!
+                                             NPC: óC?mor?
+                                             └─ [15] [FB-ONCE] íAy, de los que no dan limosna ni escuchan!
+                                                NPC: íQue tio mñs pesado! Lo que es capaz de hacer un perro cristiano por no pagar. íCoge un par de naranjas y lñrgate de una vez! → ACTION 014A
+                                             └─ [15] [FB-ONCE] Estoy harto de repet¿rselo. Adios, sordo.
+                                                NPC: Adios, cotorra → ACTION 014B
+                                          └─ [14] [FB-ONCE] Creo que estoy empezando a notar los primeros s¿ntomas de escorbuto.
+                                             NPC: Busca un mÑdico
+                                             └─ [15] [FB-ONCE] Creo que me voy a morir
+                                                NPC: óLlamo a una ambulancia?
+                                                └─ [16] [FB-ONCE] Tal vez si me diese un par de naranjas. Son buenas contra el escorbuto
+                                                   NPC: TambiÑn lo son las legumbres frescas... Oye, mi mujer ha preparado cocido madrileáo... ó quieres quedarte a comer ?
+                                                   └─ [17] [FB-ONCE] No, gracias... no tengo hambre, s?lo me apetec¿an estas naranjas
+                                                      NPC: ó Ah s¿ ? í Que listo ! T¡ s?lo quer¿as el postre... pues no, porque para llegar al postre en mi casa hay que acabarse todos los platos. Y si no te quedas sin postre.
+                                                      └─ [18] [FB-ONCE] ó Y en lugar de cocido madrileáo no tendrñ butifarra catalana ?
+                                                         NPC: í QuÑ caprichoso el niáo ! No se conforma con lo que come la gente normal... í El niáo quiere comida de ricos !
+                                                         └─ [19] [FB-ONCE] En mi pa¿s es muy normal comer butifarra catalana, sobretodo en Cataluáa. Ademñs, desde que el presidente la prob? en la intimidad en su chalet en Oropesa se ha puesto de moda y ahora todo el mundo se la traga le guste o no... Por cierto, óde donde son estas naranjas?
+                                                            NPC: Estas estupendas y sabrosas naranjas son valencianas: las mejores
+                                                            └─ [20] [FB-ONCE] No sÑ si son sabrosas, no las he probado
+                                                               NPC: Hombre de poca fe. Las naranjas valencianas son las mas jugosas, sabrosas y dulces del mundo. Que me perdonen mis hermanos marroqu¿es, pero sus naranjas son agua comparadas con las naranjas valencianas. íValeeeeenciaaaaaaaaa es la tierraaa de la flores, las naranjas y el amooooooor!
+                                                               └─ [21] [FB-ONCE] óY las israel¿es?
+                                                                  NPC: Pero que dices, las israel¿es son las peores. Aquella no es buena tierra: no hay paz y sin paz no hay fruto bueno ni dulce
+                                                                  └─ [22] [FB-ONCE] DÑjame que las pruebe
+                                                                     NPC: T¡ lo que pretendes es comerte mis estupendas y sabrosas naranjas valencianas sin pagar
+                                                                     └─ [23] [FB-ONCE] El que no se fia no es de fiar
+                                                                        NPC: Hombre prevenido vale por dos [F0-GO_BACK]
+                                                                     └─ [23] [FB-ONCE] Haz el bien y no mires con quien
+                                                                        NPC: El que no guarda hoy no tendrñ maáana [F0-GO_BACK]
+                                                                     └─ [23] [FB-ONCE] Usa tus naranjas de supositorios con vitamina C, gordo roáoso
+                                                                        NPC: íSi no fuera porque llevas gafas te part¿a la cara cuatroojos! [F0-GO_BACK]
+                                       └─ [13] [FB-ONCE] No se lo volverÑ a repetir. Sabes lo que te digo...
+                                          NPC: óQuÑ?
+                                          └─ [14] [FB-ONCE] Que te den morcilla
+                                             NPC: óC?mor?
+                                             └─ [15] [FB-ONCE] Adios
+                                                NPC: íHasta luego, Lucas! [F0-GO_BACK]
+                                          └─ [14] [FB-ONCE] Que te den butifarra
+                                             NPC: óC?mor?
+                                             └─ [15] [FB-ONCE] Hasta nunca
+                                                NPC: íHasta la vista, baby! → ACTION 014D
+                                    └─ [12] [FB-ONCE] Le dec¿a que le voy a coger unas naranjas y que Alñ se lo pague con hijos
+                                       NPC: Eso mismo me dijeron los trece anteriores. Ahora tengo trece bocas que alimentar mñs la de mi mujer, la de mi suegra y la m¿a propia. As¿ que si no le importa "Al CÑsar lo que es del CÑsar y a Dios lo que es de Dios". Dejemos las creencias a un lado y hablemos de dinero...
+                                       └─ [13] [FB-ONCE] Vaya un comerciante instruido. Veo que conoce la Biblia
+                                          NPC: As¿ es. "Porque a todo el que tiene se le darñ; y a todo el que no tiene, aun lo que piensa tener se le quitarñ", San Lucas 8 vers¿culo 18 [F0-GO_BACK]
+                                       └─ [13] [FB-ONCE] Y Jes¡s nos enseá?: "Dad de comer al hambriento..."
+                                          NPC: "No s?lo de pan vive el hombre" [F0-GO_BACK]
+                                       └─ [13] [FB-ONCE] No tengo dinero
+                                          NPC: Me lo figuraba [F0-GO_BACK]
+                                 └─ [11] [FB-ONCE] C?mprate un sonotone
+                                    NPC: Hace un sol radiante [F0-GO_BACK]
+                              └─ [10] [FB-ONCE] Egipcio, no te hagas el sueco...
+                                 NPC: Que buen tiempo hace, óverdad? [F0-GO_BACK]
+                           └─ [9] [FB-ONCE] Como m¿nimo un par de naranjas si entran en el porcentaje....
+                              NPC: óC?mor? [F0-GO_BACK]
+                        └─ [8] [FB-ONCE] Seguro que defrauda a hacienda
+                           NPC: Bueno... esto...digo yo... tal vez... si usted... fuese un poco discreto... yo sabr¿a agradecÑrselo... Coja lo que desee
+                           └─ [9] [FB-ONCE] Abra la caja y deme todo lo que haya
+                              NPC: íLe hablaba de ser agradecido no de ser ATRACADO! [F0-GO_BACK]
+                           └─ [9] [FB-ONCE] Esta calabaza
+                              NPC: No se la puedo dar, es del extranjero que estñ en la cñrcel
+                              └─ [10] [FB-ONCE] Bueno...de acuerdo
+                                 NPC: óC?mo que de acuerdo? óQuÑ se ha cre¿do? íEste es un establecimiento respetable! Deber¿a usted saber que cuando se visita un pa¿s extranjero se han de respetar las costumbres propias de la cultura local y sus peculiares concepciones acerca de la vida, la economia, la ley, la gastronomia, el sexo, las artes, Dios, etc. Usted debe pujar por esta calabaza...es su obligaci?n de consumidor
+                                 └─ [11] [FB-ONCE] Es que no tengo dinero
+                                    NPC: Ese no es obstñculo. Ya lo dice el refrñn: "Querer es poder". Si usted lo desea realmente lo obtendra. Todo depende de la fuerza de voluntad. Como dice el refrñn "La perseverancia es la madre de la ciencia". Persevere, persevere. Haga una oferta, vamos. Es posible. El dinero lo compra todo. Usted puede. íVamos, valiente! Venga...
+                                    └─ [12] [FB-ONCE] No sÑ, 0 monedas de oro
+                                       NPC: Muy sincero por su parte, pero por ese camino no llegaremos a ninguna parte. Usted tiene que convencerme de que me puede pagar. Tarde o temprano ha de satisfacer el precio acordado. Si es temprano: mejor para m¿, pero si es tarde debe comprender que yo ya he satisfecho a quiÑn me lo vendi? antes, y estñn los bancos con sus crÑditos, as¿ que si paga pero con demora habrñ de acumularse un interÑs La calabaza tiene un precio de 20 monedas de oro, por menos no hay nada que hacer
+                                       └─ [13] [FB-ONCE] Por ese precio no comprar¿a ni la calabaza del cuento de la cenicienta
+                                          NPC: óSerñ posible? Este chico ya sabe regatear. Veo que aprende rñpido. Pero no hay que ir tan rñpido. Veamos... como te iba diciendo cuando Alñ cre? el mundo descans? el ¡ltimo d¿a con el objeto de poder dedicarse por completo al diseáo de la calabaza. AutÑntica calabaza. Ni conservantes ni colorantes. Ademñs hemos de considerar la ley de la oferta y la demanda: cuando el producto escasea los precios suben
+                                          └─ [14] [FB-ONCE] Mis posibilidades econ?micas no me permiten estos lujos superficiales
+                                             NPC: íY dale! Pero, óes usted tonto o quÑ? Lo que debe hacer es R E G A T E A R. ó Lo ha entendido? No renuncie a sus sueáos. Que ser¿a de la industria si los compradores sin dinero renunciasen a adquirir objetos, a empeáarse hasta las cejas, s?lo por el placer de consumir, de poseer. íSer¿a la ruina de la econom¿a mundial! óSer¿a usted capaz de iniciar un par?n que supondr¿a una reacci?n en cadena mucho mñs demoledora que la at?mica y que supondr¿a la ruina del sistema econ?mico mundial? óSe imagina los titulares de la prensa? "Un energ¡meno sin escr¡pulos inicia una huelga de consumidores que ha provocado la ruina de la econom¿a mundial" óCuñntas familias en paro? óCuñntos niáos sin regalos de Navidad? óCuantas empresas en quiebra? óY todo porquÑ? Porque usted se neg? a comprar. íIntÑntelo al menos! No abandone al planeta a su miserable suerte
+                                             └─ [15] [FB-ONCE] Ya le he dicho que no tengo dinero
+                                                NPC: Pero, ócuñndo ha sido ese el problema? óNo se ha inventado la venta a plazos, la facilidades de pago...? óno existen las casas de empeáo, los prestamistas, los crditos, el robo, para obtenerlo? Sea ingenioso: veamos óquÑ me puede ofrecer?
+                                                └─ [16] [FB-ONCE] Un puáetazo en la mand¿bula
+                                                   NPC: íPero, hombre! MÑtase con los de su peso. Considerando su estatura y corpulencia y la m¿a, y considerando que fui campe?n nacional de boxeo en la categor¿a de pesados, creo que tendr¿a todas las de perder. No s?lo perder¿a cualquier opci?n de compra sino que ademñs lo ¡nico que obtendr¿a es una buena paliza → ACTION 0150
+                                                └─ [16] [FB-ONCE] Un sincero apret?n de manos
+                                                   NPC: En nuestro pa¿s es costumbre cerrar los tratos con un par de besos... pero, aparte de esas pequeáas diferencias culturales y agradeciÑndole el detalle, óde cuñnto dinero estamos hablando?
+                                                   └─ [17] [FB-ONCE] La amistad no tiene precio
+                                                      NPC: Preg¡ntale a Judas [F0-GO_BACK]
+                                                   └─ [17] [FB-ONCE] Estoy cansado de tanta farsa. Si quiere deshacerse de la calabaza: dÑmela
+                                                      NPC: Por menos de 20 monedas de oro no hay nada que hacer [F0-GO_BACK]
+                                                   └─ [17] [FB-ONCE] Estoy harto de tanta farsa. Visite a su mÑdico y que se la recete por via anal
+                                                      NPC: No me cabe... ... bueno, no perdamos el tiempo y d¿game... ó quÑ me da por la calabaza ? [F0-GO_BACK]
+                                                └─ [16] [FB-ONCE] No me interesa. Adios
+                                                   NPC: Adios, muy buenas [F0-GO_BACK]
+                                                └─ [16] [FB-ONCE] í20 MONEDAS DE ORO!
+                                                   NPC: Pero, óacaso tengo cara de gilipollas? Si usted mismo me confiesa que no tiene dinero óc?mo tiene la desfachatez de ofrecerme 20 monedas de oro? Ademñs, óno le hab¿a dicho que hay que regatear? óPero usted quÑ se ha cre¿do? íEste es un establecimiento respetable! En mi local s?lo se compra regateando! íNo se lo volverÑ a repetir! [F0-GO_BACK]
+                                                └─ [16] [FB-ONCE] Le doy todo lo que tengo en el bolsillo
+                                                   NPC: Me parece un bolsillo muy pequeáo...creo que no es suficiente
+                                                   └─ [17] [FB-ONCE] Le doy todo lo que tengo en el bolsillo y en el hotel
+                                                      NPC: De acuerdo. La calabaza es tuya, pero antes me tienes que dar lo que llevas en el bolsillo. DepuÑs ya me darñs lo que tengas en el hotel.
+                                                      └─ [18] [FB-ONCE] En el bolsillo ahora mismo no llevo nada, pero cuando quiera puede pasarse por el hotel y preguntar por Alfred Pelrock...
+                                                         NPC: De acuerdo → ACTION 014E
+                                                      └─ [18] [FB-ONCE] En el bolsillo ahora mismo no llevo nada, pero cuando quiera puede pasarse por el hotel y preguntar por Elvis Preisler...
+                                                         NPC: íBuen truco! Pero le ha salido mal. Resulta que soy un fan de Elvis Preisler y usted, aunque hay que reconocer que se le parece un poco, no tiene ni la mitad de su clase. El no ir¿a por ah¿ gorroneando naranjas y calabazas. [F0-GO_BACK]
+                                                   └─ [17] [FB-ONCE] Le doy todo lo que tengo en el bolsillo y un par de naranjas
+                                                      NPC: Ni pensarlo. Con las ganas que ten¿a de deshacerme de ellas [F0-GO_BACK]
+                                                   └─ [17] [FB-ONCE] Le doy todo lo que tengo en el bolsillo y cien pñjaros volando
+                                                      NPC: Prefiero el pñjaro que tienes en la mano en tu bolsillo
+                                                      └─ [18] [FB-ONCE] Lo siento a este pñjaro s?lo le gusta comer melones e higos
+                                                         NPC: Hay que comer de todo [F0-GO_BACK]
+                                                   └─ [17] [FB-ONCE] Le doy todo lo que tengo en el bolsillo y una botella de Bourbon
+                                                      NPC: íEs usted peor que el demonio! Primero: soy musulmñn y nuestra religi?n nos prohibe probar el alcohol. Y segundo: soy un ex-alcoh?lico integrado en alcoh?licos an?nimos.
+                                                      └─ [18] [FB-ONCE] Perd?n, yo no sab¿a...
+                                                         NPC: No se preocupe. Me lo merezco por pecador [F0-GO_BACK]
+                                                      └─ [18] [FB-ONCE] íRajao!
+                                                         NPC: íTiene usted menos sentimientos que una botella de agua sin gas! [F0-GO_BACK]
+                                                   └─ [17] [FB-ONCE] Le doy una patada en el culo porque estoy harto de sus constumbres mercantiles
+                                                      NPC: íIMPERIALISTA! [F0-GO_BACK]
+                                             └─ [15] [FB-ONCE] óY si me fiase? Le juro que le pagarÑ
+                                                NPC: El que se f¿a no es de fiar. Un cabeza de fam¿lia que fia le estñ quitando el pan de la boca a sus hijos [F0-GO_BACK]
+                                          └─ [14] [FB-ONCE] Pues como no se la compre otro...
+                                             NPC: Bueno, 19 monedas de oro.
+                                             └─ [15] [FB-ONCE] No
+                                                NPC: Vale, vale, lo dejamos en 18
+                                                └─ [16] [FB-ONCE] Que no
+                                                   NPC: De acuerdo. óY por 17?
+                                                   └─ [17] [FB-ONCE] Tampoco
+                                                      NPC: óQuÑ tal 16?
+                                                      └─ [18] [FB-ONCE] Le he dicho que no, óc?mo tengo que repet¿rselo?
+                                                         NPC: Veo que es usted un comprador dif¿cil, pero le voy a hacer una oferta que no podrñ rechazar: óquÑ le parece llevarse esta maravillosa calabaza por la fantñstica suma de 15 monedas de oro?
+                                                         └─ [19] [FB-ONCE] Me parecer¿a un atraco, un robo, una estafa
+                                                            NPC: Tal vez, y por ser usted, pueda hacerle un precio especial. Vamos a bajar el precio de la calabaza a 13 monedas de oro. Es mi ¡ltima oferta.
+                                                            └─ [20] [FB-ONCE] Lo siento, pero ese n¡mero es el de la mala suerte
+                                                               NPC: íY que lo diga! íNo hay forma de vendersela! óY por doce?
+                                                               └─ [21] [FB-ONCE] Me parece que estñ usted ansioso por deshacerse de esta calabaza
+                                                                  NPC: No le faltar¿an a usted motivos para pensarlo... pero se equivoca. No es que quiera deshacerme de ella s?lo estoy siguiendo la tradici?n local. Regateo por costumbre. óQuÑ le parece once?
+                                                                  └─ [22] [FB-ONCE] Creo que usted me quiere engaáar... óno dec¿a que trece era su ¡ltima oferta?
+                                                                     NPC: óTimar? óYo? íPor Alñ! íDespuÑs que le he regalado naranjas y me habla as¿! íLñrgese de mi casa! [F0-GO_BACK]
+                                       └─ [13] [FB-ONCE] í20 MONEDAS DE ORO! Menudo atraco...
+                                          NPC: Se hace lo que se puede. Es la constumbre en los sitios tur¿sticos [F0-GO_BACK]
+                           └─ [9] [FB-ONCE] Unas cuantas naranjas valencianas
+                              NPC: Tome las que quiera → ACTION 014F
+                           └─ [9] [FB-ONCE] Su hija mñs hermosa y pura
+                              NPC: S?lo tengo hijos... Pero si no le importa la diferencia
+                              └─ [10] [FB-ONCE] Es una idea tentadora, pero en estos momentos de mi vida prefiero una mujer...
+                                 NPC: Tal vez pueda ofrecerle a mi mujer... o a mi suegra... estan un poco usadas y... un POCO SORDAS TAMBIEN, pero eso en una mujer se agradece: no se enteran de lo que hablas a sus espaldas y ademñs se vuelven un poco mudas lo que da mucha paz al hogar
+                                 └─ [11] [FB-ONCE] Suerte que su mujer y su suegra estñn sordas porque si lo oyesen...
+                                    NPC: Tiene usted raz?n. Soy injusto y cruel con ellas. Les comprarÑ un aparato para la sordera [F0-GO_BACK]
+                                 └─ [11] [FB-ONCE] Creo que su mujer no oye el telÑfono
+                                    NPC: No se preocupe. He hecho instalar un luminoso que se enciende cuando alguien llama por telÑfono [F0-GO_BACK]
+               └─ [5] [FB-ONCE] A juzgar por su barriga sus posibilidades son muchas
+                  NPC: Te equivocas extranjero. Esta barriga es el resultado de mi vida sedentaria. Me paso el dia aqu¿ parado sin hacer ejercicio y ademñs mi constituci?n siempre ha sido rodusta...íy claro!... gano peso
+                  └─ [6] [FB-ONCE] A ese barrig?n le llamas constituci?n robusta
+                     NPC: Con ese lenguaje te vas a quedar sin naranjas [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] Insisto. Creo que tus posibilidades son muchas
+                     NPC: Insistes en tu error. óAcaso no te he dicho que tengo mujer, suegra y trece hijos? óTe imaginas lo que cuesta de mantener una fam¿lia as¿? [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] Tal vez si me da unas cuantas naranjas adelgaze un poco
+                     NPC: No tengo ninguna intenci?n de adelgazar. Ser¿a todo un problema. Tendr¿a que comprarme ropa nueva y eso cuesta dinero. óY con que lo pagar¿a si voy por ah¿ regalando lo que deber¿a de ser el sustento de mi familia? [F0-GO_BACK]
+            └─ [4] [FB-ONCE] Que tio mñs tacaáo. Adios
+               NPC: Vuelva cuando para comprar algo [F0-GO_BACK]
+            └─ [4] [FB-ONCE] Creo que le llaman por telÑfono
+               NPC: DÑjelo que suene... ya lo cogerñ mi mujer [F0-GO_BACK]
+         └─ [3] [FB-ONCE] óEs usted un poco desconfiado?
+            NPC: Lo admito, pero tengo mis razones. Siempre que cog¿a el telÑfono me desaparec¿a algo de la tienda [F0-GO_BACK]
+         └─ [3] [FB-ONCE] Creo que le llaman por telÑfono
+            NPC: Ya lo cogerñ mi mujer
+            └─ [4] [FB-ONCE] Parece que su mujer no coge el telÑfono
+               NPC: Tal vez no lo oiga estñ un poco sorda, pero no se preocupe. Ya lo cogerñ [F0-GO_BACK]
+         └─ [3] [FB-ONCE] Ahora mismo no tengo dinero. Adios. Ya volverÑ.
+            NPC: Ve, como no me equivocaba... [F0-GO_BACK]
+         └─ [3] [FB-ONCE] óEstupendas? Pero si s?lo de verlas me entran ganas de vomitar
+            NPC: Hñgase regular de nuevo las gafas. Usted no debe de ver biÑn [F0-GO_BACK]
+      └─ [2] [FB-ONCE] óNo tiene ganas de ir al lavado?
+         NPC: No
+         └─ [3] [FB-ONCE] El que no hace pip¿ revienta
+            NPC: Antes de abrir la tienda hago una meadita para no tener que abandonar la vigilancia de mis estupendas y sabrosas naranjas [F0-GO_BACK]
+         └─ [3] [FB-ONCE] Tal vez si le sacase un poco de brillo a su sonrisa con una buena pasta de dientes vender¿a mñs...
+            NPC: No se preocupe, no me quejo de la venta si no de los ladrones que aprovechan cuando me voy al baáo [F0-GO_BACK]
+         └─ [3] [FB-ONCE] ó No quiere ir al W.C. para ver su hermoso rostro en el espejo ?
+            NPC: No. Mi belleza es interior
+            └─ [4] [FB-ONCE] Eso debe ser porque por fuera es usted una foca
+               NPC: óY usted pretende que le regale unas naranjas? íEstñ usted listo! [F0-GO_BACK]
+            └─ [4] [FB-ONCE] S¿, su belleza exterior ciega mis ojos, imagino que por dentro serñ usted un zafiro
+               NPC: Mñs o menos [F0-GO_BACK]
+      └─ [2] [FB-ONCE] Hace bien, hay mucho ladr?n suelto
+         NPC: óC?mo lo sabe?
+         └─ [3] [FB-ONCE] Las cñrceles de hoy en d¿a no son nada seguras
+            NPC: S¿, es cierto. Es mucho mñs eficaz cortarles las manos a los ladrones. Sin manos no pueden coger nada. Si el sentido com¡n se aplicara al codigo penal la ley ser¿a mñs justa y, por supuesto, mucho mñs l?gica [F0-GO_BACK]
+         └─ [3] [FB-ONCE] íManos arriba: esto es un atraco!
+            NPC: No me asustas. No te tengo miedo óCon quÑ vas a dispararme si no tienes pistola? óCon la nariz?
+            └─ [4] [FB-ONCE] Pues, entÑrate, mis mocos son realmente asquerosos: contaminan mñs que el plomo
+               NPC: íJes¡s! [F0-GO_BACK]
+            └─ [4] [FB-ONCE] Venga... arriÑsgate si tienes lo que les cuelga a los hombres entre las piernas
+               NPC: ó Y no valen estos pollos o estos jamones que tengo colgados en el mostrador ? Los tengo muy baratos...
+               └─ [5] [FB-ONCE] ó Pollos ? í T¡ lo que eres es un gallina ! í As¿ que cierra el pico y dame unas naranjas o te pego un moco en el ojo !
+                  NPC: S¿rvete tu mismo...í ah, y toma estos paáuelitos de papel, paisa ! Te los regalo. → ACTION 014F
+            └─ [4] [FB-ONCE] Con un escupitajo en el ojo
+               NPC: Vaya tio mñs guarro
+               └─ [5] [FB-ONCE] Pues anda que tus orejas...
+                  NPC: Tienes que comprenderlo. Yo soy un tercermundista. Ademñs este verano estamos sufriendo restricciones de agua debido a la sequia. Pero t¡, un habitante del mundo occidental...
+                  └─ [6] [FB-ONCE] DÑjate de justificaciones socioculturales y dame unas naranjas
+                     NPC: Ya veo que tendrÑ compaá¿a hasta hora de cerrar [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] Excusas, ícerdo!
+                     NPC: Mal camino si quieres que te dÑ unas naranjas [F0-GO_BACK]
+               └─ [5] [FB-ONCE] óPero intimida, eh?
+                  NPC: Mñs que intimidar da asco
+                  └─ [6] [FB-ONCE] T¡ si que das asco, ígordo roáoso!
+                     NPC: Y t¡, óquÑ? íMuerto de hambre! [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] Es un mÑtodo efectivo
+                     NPC: Te equivocas porque no voy a darte ni una sola naranja [F0-GO_BACK]
+      └─ [2] [FB-ONCE] Si no fueran tan caras no se las robar¿an
+         NPC: Las naranjas importadas son caras. Hñgase cargo de los gastos de cosecha, recolecci?n y, sobretodo, de transporte
+         └─ [3] [FB-ONCE] No dejñn de ser precios de autÑntico ladr?n
+            NPC: Estas naranjas vienen de Valencia, de un pueblo llamado Nules. Son autÑnticas Clemen-Nules, la variedad mñs dulce y sabrosa de todas las naranjas que fuÑ conseguida mediante tÑcnicas populares gracias a la sabidur¿a y el tes?n de los agricultores de este pueblecito. Sus gentes son muy amables, honradas y trabajadoras a exepci?n de singulares personajes como son el tonto del pueblo, el cura que da sermones, el alcalde que no da ni golpe, o sea los t¿picos sujetos que hay en todos los sitios y se dedican a vivir del cuento. [F0-GO_BACK]
+      └─ [2] [FB-ONCE] Tal vez sea el amante de su mujer
+         NPC: No es posible. Es fe¿sima
+         └─ [3] [FB-ONCE] Y, óPor quÑ se cas? con ella?
+            NPC: Sab¿a que nadie me pondr¿a los cuernos. La fealdad es una garant¿a de fidelidad [F0-GO_BACK]
+      └─ [2] [FB-ONCE] La verdad es que no deseo nada
+         NPC: Vuelva cuando quiera comprar algo [F0-GO_BACK]
+   └─ [1] [FB-ONCE] S?lo miraba
+      NPC: Mire, mire. De mirar no se paga Av¿seme si desea algo [F0-GO_BACK]
+
+└─ ROOT
+   └─ [1] [FB-ONCE] No habrñ preguntado bien... Vuelva a intentarlo
+      NPC: Es posible que me haya equivocado... VolverÑ a ver. óAlfred Pelrock, no? → ACTION 0151
+   └─ [1] [FB-ONCE] íQue poca memoria! En lugares donde la gente s?lo estñ de paso los nombres se olvidan con facilidad. Insista
+      NPC: De acuerdo insistirÑ → ACTION 0152
+   └─ [1] [FB-ONCE] óSeguro? óEn quÑ hotel ha preguntado?
+      NPC: No me venga con esas. En toda la ciudad s?lo hay un hotel.
+      └─ [2] [FB-ONCE] óHa pregunatado por la maáana o por la tarde?
+         NPC: Por la maáana.
+         └─ [3] [FB-ONCE] íPues claro! Vaya por la tarde... el chico del turno de la maáana no me debe de conocer porque como siempre salgo muy temprano antes que el entre... Vaya por la tarde.
+            NPC: Lo volverÑ a intentar → ACTION 0153
+   └─ [1] [FB-ONCE] óHa preguntado en la comisaria?
+      NPC: La verdad es que no → ACTION 0154
+   └─ [1] [FB-ONCE] Eso es bueno, óno? Quiere decir que no soy ning¡n delincuente. No sea desconfiado. óHa buscado en objetos perdidos?
+      NPC: La verdad es que no → ACTION 0155
+   └─ [1] [FB-ONCE] Conocer conocer, lo que se dice conocer, no
+      NPC: Entonces, óquÑ hago?
+      └─ [2] [FB-ONCE] óHa probado ha preguntarlo con h?
+         NPC: No hab¿a caido en eso. íQuÑ tonto soy! → ACTION 0156
+   └─ [1] [FB-ONCE] S¿, s¿ lo que usted diga... Perdone pero tengo mucha prisa.
+      NPC: íPero, oiga! → ACTION 0157
+   └─ [1] [FB-ONCE] Perd?n, pero tengo la comida en el fuego
+      NPC: íPero que morro! → ACTION 0158
+   └─ [1] [FB-ONCE] óTiene Casera? óNo? adios, pues
+      NPC: íVAYA TROLA! → ACTION 0158
+   └─ [1] [FB-ONCE] Perd?n, pero pierdo el autob¡s
+      NPC: Asume tus deudas, íCANALLA! → ACTION 0159
+   └─ [1] [FB-ONCE] íPaso, paso! íQue maáana me caso!
+      NPC: íHUYE COBARDE! → ACTION 0159
+   └─ [1] [FB-ONCE] Lo siento, pero tengo el coche aparcado en doble fila...
+      NPC: íMentiroso! → ACTION 015A
+   └─ [1] [FB-ONCE] Perd?n, pero pierdo el autob¡s
+      NPC: íHUYE COBARDE! → ACTION 015A
+   └─ [1] [FB-ONCE] óTiene Casera? óNo? adios, pues
+      NPC: íPero que morro! → ACTION 015B
+   └─ [1] [FB-ONCE] Perd?n, pero tengo la comida en el fuego
+      NPC: íVAYA TROLA! → ACTION 015B
+
+
+└─ ROOT
+   NPC: Es usted extranjero verdad?
+   └─ [1] [FB-ONCE] í S¿ !. ó Como lo ha notado ?
+      NPC: Por el olfato. Los extranjeros desprendÑis un tufo repelente
+      └─ [2] [FB-ONCE] T¡ si que hueles muy mal
+         NPC: Sois los blancos los que olÑis a almendras y huevos podridos... [F0-GO_BACK]
+      └─ [2] [FB-ONCE] óTiene usted desodorantes?
+         NPC: En spray no, contaminan la atmosfera y perjudican la capa de ozono que nos protege de los rayos ultravioleta del sol, pero tengo unas maravillosas sales de baáo turcas y unos exquisitos perfumes de la India...
+         └─ [3] [FB-ONCE] Creo que lo que usted pretende es hacerme creer que huelo mal para vender sus productos...
+            NPC: Tal vez haya exagerado un poco, pero si se acicala con estos perfumes no habrñ princesa que se le resista
+            └─ [4] [FB-ONCE] Ah,ósi?
+               NPC: S¿ [F0-GO_BACK]
+            └─ [4] [FB-ONCE] No me lo creo
+               NPC: Allñ usted [F4-CANCEL]
+            └─ [4] [FB-ONCE] De acuerdo, me los quedo
+               NPC: Son 30 monedas de oro
+               └─ [5] [FB-ONCE] íQue caro!
+                  NPC: íQue ñvaro! [F0-GO_BACK]
+               └─ [5] [FB-ONCE] Tal vez ese hombre de enfrente tenga mejores precios
+                  NPC: í Ja, ja, ja ! Yo soy el ¡nico de esta ciudad con una gran solera en el ramo mercantil. Mi bisabuelo, el famoso mercader Al¿ Babñ, junto con 40 amigos suyos ya vend¿a a jeques. Ademñs ese hombre es un autÑntico cerdo, es mñs guarro que los pelos de la nariz y bla, bla, bla ...
+                  └─ [6] [FB-ONCE] Tu bisabuelo no era un mercader sino un ladr?n...
+                     NPC: íHabladur¿as! Hay gente muy envidiosa que no sabe aceptar el Ñxito ajeno y bla, bla, bla... [F4-CANCEL]
+                  └─ [6] [FB-ONCE] Con estos precios hace usted honor a la estirpe de su bisabuelo...
+                     NPC: Son las leyes de la genÑtica y bla, bla, bla, por consiguiente bla... [F4-CANCEL]
+                  └─ [6] [FB-ONCE] óQue le pasa a los pelos de la nariz?
+                     NPC: íPues que estan llenos de mocos!
+                     └─ [7] [FB-ONCE] Ten¿a entendido que los pelos tienen una funci?n higiÑnica...
+                        NPC: Si es cierto, pero a pesar de su funci?n higiÑnica siempre estan llenos de mucosidades
+                        └─ [8] [FB-ONCE] Hay pelos todav¿a mñs sucios
+                           NPC: Pero nadie es mñs marrano que ese vendedor de ahi enfrente. si te dijese como se limpia despues de hacer de vientre, óte atrever¿as a comerte la fruta que te vende con sus manos? [F0-GO_BACK]
+                     └─ [7] [FB-ONCE] íDONDE HAY PELO HAY ALEGRIA!
+                        NPC: Los refranes no siempre son ciertos porque yo no considero que pisar una mierda dÑ suerte... mñs bien es al contrario. Es muy mala suerte pisar una. Ademñs estñ ese olor penetrante... [F0-GO_BACK]
+                     └─ [7] [FB-ONCE] íQue vulgar!
+                        NPC: óQue pasa? óT¡ no haces de vientre? [F4-CANCEL]
+                  └─ [6] [FB-ONCE] No obstante, voy a preguntarle...
+                     NPC: Seguro que le tima
+                     └─ [7] [FB-ONCE] Anda, desde aqu¿ veo que tiene unas naranjas con muy buena pinta
+                        NPC: óBuena pinta? Pero si estan medio podridas. Las m¿as si que son deliciosas → ACTION 015F ---> PELEA ENTRE MOROS
+            └─ [4] [FB-ONCE] Creo que usted los necesita mñs que yo...
+               NPC: Le falla a usted el olfato, joven [F0-GO_BACK]
+            └─ [4] [FB-ONCE] No me interesa... óno tendrñ usted naranjas?
+               NPC: S¿, tengo unas estupendas naranjas, riqu¿simas y sabros¿simas y bla, porque bla y bla, bla, bla...
+               └─ [5] [FB-ONCE] óSon valencianas?
+                  NPC: No, son israel¿es → ACTION 015F ---> PELEA ENTRE MOROS
+               └─ [5] [FB-ONCE] óSon marroqu¿es?
+                  NPC: No, son israel¿es → ACTION 015F ---> PELEA ENTRE MOROS
+               └─ [5] [FB-ONCE] óSon israel¿es?
+                  NPC: No... digo s¿, s¿... son israel¿es → ACTION 015F ---> PELEA ENTRE MOROS
+         └─ [3] [FB-ONCE] óCuanto cuestan?
+            NPC: 30 monedas de oro
+            └─ [4] [FB-ONCE] Demasiado caro
+               NPC: í Ay !. í Que dura es la vida del comerciante !. Todo el mundo quiere regatear. Nadie respeta el valor de las cosas. ó Que tal 18 ?
+               └─ [5] [FB-ONCE] Es que no tengo dinero...
+                  NPC: Bueno, pues aqu¿ te espero hasta que lo tengas, pero al menos lñvate la cara con agua [F4-CANCEL]
+               └─ [5] [FB-ONCE] No me interesa. ó QuÑ mñs tiene para ofrecerme ?
+                  NPC: íTENGO DE TODO! Amuletos de la suerte, souvenirs, babuchas de diseáo, CD-ROMS, pins de Kareem Abdul Guevara.....
+                  └─ [6] [FB-ONCE] í Bien !. EnsÑáeme esos amuletos
+                     NPC: Con esto serñs afortunado en el juego y en el amor
+                     └─ [7] [FB-ONCE] í Ah, s¿ ! Deme uno
+                        NPC: íVaya, hombre! íQue mala suerte! No me quedan [F0-GO_BACK]
+                     └─ [7] [FB-ONCE] No creo en esas chorradas
+                        NPC: S¿, son un timo, pero se venden bien. Estas cosas son un calmante para mentes supersticiosas y dÑbiles. Si con eso se quedan tranquilos... [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] í Bien! Unos souvenirs
+                     NPC: Tengo bolsitas con tierra del Nilo. Cleopatra la utilizaba como maquillaje... ííí As¿ fue como EGiPTO conquist? ROMA !!!!
+                     └─ [7] [FB-ONCE] í GUAY ! Dame una bolsita
+                        NPC: í Que mala suerte ! Esta maáana he vendido la ¡ltima [F0-GO_BACK]
+                     └─ [7] [FB-ONCE] í BAH ! S?lo se maquillan los pendones. Las mujeres bonitas no necesitan maquillaje.
+                        NPC: Es verdad. Si mi mujer se pusiese tierra en la cara la apedrear¿a en la plaza [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] ó Y que tal esas babuchas de diseáo?
+                     NPC: Es que ... tuve un problema con el distribuidor. Si quiere las m¿as ... Le aseguro que no huelen mucho
+                     └─ [7] [FB-ONCE] No, gracias. Me gustar¿a ver los CD-Roms
+                        NPC: Tengo uno de un juego llamado : Alfred Pelrock Pero mejor consigue la versi?n pirata y as¿ te ahorras un dinero. Un primo m¿o te la puede grabar por menos de una cuarta parta de su precio...
+                        └─ [8] [FB-ONCE] S¿ de acuerdo
+                           NPC: íQUE TE DEN MORCILLA! íPOR PIRATA! → ACTION 015C
+                        └─ [8] [FB-ONCE] No, creo que no es ni legal ni Ñtico
+                           NPC: S¿ tiene raz?n óQuÑ ser¿a de los creadores del juego? óDe quÑ vivir¿an los guionistas que tanta tinta han gastado en hacer los diñlogos? óCon quÑ mantendr¿an a sus fam¿lias los dibujantes que nos han creado? óQue ser¿a de los programadores informñticos que tanta dedicaci?n y tazas de cafÑ han dedicado para que t¡ ahora estes jugando?
+                           └─ [9] [FB-ONCE] Ya, pero los juegos en CD-ROM son un poco caros...
+                              NPC: No es culpa de los creativos. Los comerciantes, intermediarios y distribuidoras somos unos ladrones. Son las cosas del capitalismo. → ACTION 015E
+                  └─ [6] [FB-ONCE] ó Y esos pins ?
+                     NPC: Es que les tengo mucho cariáo [F0-GO_BACK]
+                  └─ [6] [FB-ONCE] La verdad es que no quiero nada. Adios
+                     NPC: O.K. ! [F4-CANCEL]
+               └─ [5] [FB-ONCE] La verdad es que no quiero nada. Adios
+                  NPC: O.K. ! [F4-CANCEL]
+            └─ [4] [FB-ONCE] La verdad es que no quiero nada. Adios
+               NPC: O.K. ! [F4-CANCEL]
+            └─ [4] [FB-ONCE] óPuedo probarlos?
+               NPC: No tengo probadores [F0-GO_BACK]
+            └─ [4] [FB-ONCE] óNo serñn este infecto tufo que huelo?
+               NPC: No, eso son tus pies. A todos los blancos os huelen a queso putrefacto [F0-GO_BACK]
+   └─ [1] [FB-ONCE] í No, que va ! Soy de aqu¿. Es que mi madre se entend¿a con un marine...
+      NPC: íYa dec¿a yo que ol¿a usted tan mal! [F0-GO_BACK]
+   └─ [1] [FB-ONCE] Ni Dios ni patria ni rey
+      NPC: íSALUD COMPAéERO! → ACTION 015D
+
+================================================================================
+
+Legend:
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [FB-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  → ACTION XXXX  = Triggers action code XXXX
