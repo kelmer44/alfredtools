@@ -32,7 +32,31 @@ struct Description {
     )];
     u8 terminator;
 };
+// Variable-length text until control byte
+// Variable-length text until control byte (0xFD)
+struct ConvText {
+    u8 text_bytes[while(
+    std::mem::read_unsigned($, 1) != 0xFD && 
+    std::mem::read_unsigned($, 1) != 0xF8 && 
+    std::mem::read_unsigned($, 1) != 0xF4 &&
+    std::mem::read_unsigned($, 1) != 0xF0)];
+} [[sealed]];
 
+
+struct DialogLine {
+    u8 type;
+    u8 idx;
+    u8 colorIndicator;
+    u8 color;
+    u8 lineNumber;
+    u8 separator;
+    ConvText text;
+    u8 end;
+    if(end == 0xF8) {
+        u8 action1;
+        u8 action2;
+    }
+};
 struct ThisAnimHeader {
     s16 x;                  // Bytes 0-1
     s16 y;                  // Bytes 2-3
@@ -59,14 +83,14 @@ struct ThisAnimHeader {
     u16 movementFlags2;    // Byte 26-27
     u16 movementFlags3;   // Byte 28-29
     u16 movementFlags4;   // Byte 30-31
-    u8 unknown40403043;   // Byte 32
+    u16 spriteExtra;   // Byte 32
     /*u16 movementFlagsAnim1;
     u16 movementFlagsAnim2;
     u16 movementFlagsAnim3;
     u16 movementFlagsAnim4;
     u8 unknown_30_to_32[3];     */      
     // Byte 33 (offset 0x21): Sprite type/layer - must be != 0xFF to be hotspot eligible
-    u8 sprite_type;         // Byte 33
+    //u8 sprite_type;         // Byte 33
     // Byte 34 (offset 0x22): ACTION FLAGS bitmask
     // Bit 0 (0x01): Unknown action
     // Bit 1 (0x02): Unknown action
@@ -94,7 +118,7 @@ struct Hotspot {
     u16 y;
     u8 w;
     u8 h;
-    u16 extra;
+    u16 hotspotExtra;
 };
 
 struct Walkbox {
@@ -235,40 +259,7 @@ struct RoomMetadata {
     u8 unknown2[1];
     Hotspot hotspots[numHotspots];
 };
-// Spanish character decoding
-fn decode_char(u8 b) {
-    if (b == 0x80) return "ñ";
-    if (b == 0x81) return "í";
-    if (b == 0x82) return "¡";
-    if (b == 0x83) return "¿";
-    if (b == 0x84) return "ú";
-    if (b == 0x7B) return "á";
-    if (b == 0x7C) return "é";
-    if (b == 0x7D) return "í";
-    if (b == 0x7E) return "ó";
-    if (b == 0x7F) return "ú";
-    if (b >= 0x20 && b <= 0x7A) return string::to_string(char(b));
-    return "";
-};
 
-// Control bytes enum
-enum ControlByte : u8 {
-    SPEAKER = 0x08,
-    SPACE = 0x20,
-    END_TEXT = 0xFD,
-    TEXT_TERMINATOR = 0xFC,
-    CHOICE_MARKER = 0xFB,
-    DISABLED_CHOICE = 0xFA,
-    PAGE_BREAK = 0xF9,
-    ACTION_TRIGGER = 0xF8,
-    END_BRANCH = 0xF7,
-    LINE_CONTINUATION = 0xF6,
-    END_CONV_ALT = 0xF5,
-    END_CONV = 0xF4,
-    CHOICE_MARKER_ALT = 0xF1,
-    GO_BACK = 0xF0,
-    END_ALT2 = 0xEB
-};
 
 // Speaker IDs
 enum SpeakerID : u8 {
@@ -276,70 +267,6 @@ enum SpeakerID : u8 {
     NPC = 0x20
 };
 
-// Variable-length text until control byte
-// Variable-length text until control byte (0xFD)
-struct ConvText {
-    u8 text_bytes[while(
-    std::mem::read_unsigned($, 1) != 0xFD && 
-    std::mem::read_unsigned($, 1) != 0xF8 && 
-    std::mem::read_unsigned($, 1) != 0xF4 &&
-    std::mem::read_unsigned($, 1) != 0xF0)];
-} [[sealed]];
-
-
-// Speaker declaration
-struct Speaker {
-    ControlByte marker [[comment("0x08 = SPEAKER")]];
-    SpeakerID speaker_id;
-};
-
-// Dialogue line (speaker + text)
-struct DialogueLine {
-    Speaker speaker;
-    ConvText text;
-    ControlByte end_marker [[comment("Should be 0xFD")]];
-};
-
-// Choice marker (0xFB/0xF1 + index + speaker + text)
-struct ChoiceMarker {
-    ControlByte marker [[comment("0xFB or 0xF1")]];
-    u8 choice_index [[comment("Index groups choices; count>1=real choice, count=1=auto-dialogue")]];
-    Speaker speaker [[comment("Usually ALFRED for choices")]];
-    ConvText text;
-    ControlByte end_marker [[comment("0xFD")]];
-};
-
-// Action trigger
-struct ActionTrigger {
-    ControlByte marker [[comment("0xF8")]];
-    u8 param1;
-    u8 param2;
-};
-
-// End marker
-struct EndMarker {
-    ControlByte marker [[comment("0xF4/0xF7/0xF5/0xFE/0xEB/0xF0")]];
-};
-
-// Single conversation element (can be dialogue, choice, action, or end)
-struct ConversationElement {
-    u8 peek = std::mem::read_unsigned($, 1) [[hidden]];
-
-    if (peek == 0x08) {
-        DialogueLine dialogue;
-    } else if (peek == 0xFB || peek == 0xF1) {
-        ChoiceMarker choice;
-    } else if (peek == 0xF8) {
-        ActionTrigger action;
-    } else if (peek == 0xF4 || peek == 0xF7 || peek == 0xF5 ||
-               peek == 0xFE || peek == 0xEB || peek == 0xF0) {
-        EndMarker end;
-    } else if (peek == 0xFD || peek == 0xFC) {
-        u8 skip [[comment("Stray end marker")]];
-    } else {
-        u8 unknown [[comment("Unknown byte")]];
-    }
-};
 
 struct Sound {
     u8 trackNumber;
@@ -369,11 +296,14 @@ struct Room {
     )] @pairs[12].offset;
     
     
+    
 
     u32 descSize = sizeof(descriptions);
     u32 convSize = pairs[12].size - sizeof(descriptions);
     u32 convPos = pairs[12].offset + sizeof(descriptions);
-    
+    DialogLine lines[while(
+        std::mem::read_unsigned($, 1) != 0xF5
+    )] @ convPos;
    // u8 conversations[convSize] @(convPos);
    // ConversationElement elements[while($ < pairs[12].offset + pairs[12].size)] @(convPos);
     
@@ -383,22 +313,9 @@ struct Room {
 //ThisAnimHeader room3anims[8] @0xEB57A;
 
 
-Room rooms[41] @0x00000;
-struct DialogLine {
-    u8 type;
-    u8 idx;
-    u8 colorIndicator;
-    u8 color;
-    u8 lineNumber;
-    u8 separator;
-    ConvText text;
-    u8 end;
-    if(end == 0xF8) {
-        u8 action1;
-        u8 action2;
-    }
-};
+Room rooms[55] @0x00000;
 
+/*
 struct Conversation {
 
 DialogLine teapetece;
@@ -547,3 +464,18 @@ struct Travel {
 };
 
 Travel t@ 0x3754BE;
+
+struct Moros {
+    DialogLine lines[while(
+        std::mem::read_unsigned($, 1) != 0xF5
+    )];
+};
+
+struct Estatuas {
+    DialogLine lines[while(
+        std::mem::read_unsigned($, 1) != 0xF5
+    )];
+};
+
+Moros moros @ 0x3F2960;
+Estatuas estatuas @ 0x14DBA3;*/
