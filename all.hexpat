@@ -182,7 +182,7 @@ struct Brick {
     u16 movementFlags2;    // Byte 26-27
     u16 movementFlags3;   // Byte 28-29
     u16 movementFlags4;   // Byte 30-31
-    u8 unknown40403043;   // Byte 32
+    u16 extra;   // Byte 32
     /*u16 movementFlagsAnim1;
     u16 movementFlagsAnim2;
     u16 movementFlagsAnim3;
