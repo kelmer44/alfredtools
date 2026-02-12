@@ -93,10 +93,10 @@ The quiz uses a **score counter** at `[0x495F2]` (flag index 54 / `FLAG_RESPUEST
 
 All quiz actions (357–362) share a common epilogue at `0x221E9`:
 ```
-ECX = 1        ; branch index  
-EBX = 0x19     ; room 25  
-EDX = 0        ; npc 0  
-EAX = 0x19     ; room 25  
+ECX = 1        ; branch index
+EBX = 0x19     ; room 25
+EDX = 0        ; npc 0
+EAX = 0x19     ; room 25
 CALL update_conversation_state  ; at 0x1B723
 ```
 This disables the current quiz root and advances to the next one. The conversation tree cycles through roots 2–15.

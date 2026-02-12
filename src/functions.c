@@ -80,7 +80,7 @@ unsigned char *getRoomPalette(int room_num) {
 	 * Pair 11 contains the palette (768 bytes = 256 colors * 3 bytes RGB)
 	 * Returns RGBA palette (256*4 bytes)
 	 */
-	FILE *fp = fopen("files/ALFRED.1", "rb");
+	FILE *fp = room_num == 28? fopen("files/ALFRED.7", "rb") : fopen("files/ALFRED.1", "rb");
 	if (!fp) {
 		fprintf(stderr, "getRoomPalette: Could not open ALFRED.1\n");
 		return NULL;
@@ -98,17 +98,25 @@ unsigned char *getRoomPalette(int room_num) {
 	const int PAIR_SIZE = 8;           // offset (4) + size (4)
 	const int PALETTE_PAIR = 11;       // Pair 11 contains palette
 
-	// Calculate room offset
-	int room_offset = room_num * ROOM_STRUCT_SIZE;
-
-	// Calculate pair 11 offset within the room structure
-	int pair_offset = room_offset + (PALETTE_PAIR * PAIR_SIZE);
-
-	// Read pair 11 (offset and size)
-	fseek(fp, pair_offset, SEEK_SET);
 	unsigned int palette_offset, palette_size;
-	fread(&palette_offset, 4, 1, fp);
-	fread(&palette_size, 4, 1, fp);
+	if(room_num == 28) {
+		palette_offset = 0x1610CE;
+		palette_size = 768;
+	}
+	else {
+		// Calculate room offset
+		int room_offset = room_num * ROOM_STRUCT_SIZE;
+
+		// Calculate pair 11 offset within the room structure
+		int pair_offset = room_offset + (PALETTE_PAIR * PAIR_SIZE);
+
+		// Read pair 11 (offset and size)
+		fseek(fp, pair_offset, SEEK_SET);
+		fread(&palette_offset, 4, 1, fp);
+		fread(&palette_size, 4, 1, fp);
+	}
+
+
 
 	// Check if valid palette (should be 768 bytes = 0x300)
 	if (palette_size != 0x300) {

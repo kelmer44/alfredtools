@@ -69,7 +69,7 @@ When using the brick (inventory item 4) on the window (hotspot extra 294) in roo
 - Data segment: memory 0x40000+ → file offset 0x43200+ (formula: file = mem + 0x3200)
 
 ### Dispatch Table Entry
-- Located at: memory 0x48118 (file 0x4B318)  
+- Located at: memory 0x48118 (file 0x4B318)
 - Entry format: 8 bytes (item1:2, item2:2, func_ptr:4)
 - Entry 1: item1=0x0126 (294=window), item2=0x0004 (4=brick), func_ptr=0x0001284B
 - **Pointer fixup**: ghidra_addr = 0x1284B + 0x10000 = **0x2284B** ✓
