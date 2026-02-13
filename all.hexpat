@@ -64,7 +64,7 @@ struct ThisAnimHeader {
     u8 h;                   // Byte 5
     u16 stride;
     u8 numAnims;            // Byte 8
-    u8 unknown3;            // Byte 9
+    u8 curAnimSequence;            // Byte 9
     u8 numFramesAnim1;      // Byte 10
     u8 numFramesAnim2;      // Byte 11
     u8 numFramesAnim3;      // Byte 12
@@ -77,39 +77,22 @@ struct ThisAnimHeader {
     u8 speedAnim2;          // Byte 19
     u8 speedAnim3;          // Byte 20
     u8 speedAnim4;          // Byte 21
-    u8 skipp;               // Byte 22
+    u8 curFrameIndex;               // Byte 22
     u8 zorder;              // Byte 23
     u16 movementFlags1;     // Byte 24-25
     u16 movementFlags2;    // Byte 26-27
     u16 movementFlags3;   // Byte 28-29
     u16 movementFlags4;   // Byte 30-31
     u16 spriteExtra;   // Byte 32
-    /*u16 movementFlagsAnim1;
-    u16 movementFlagsAnim2;
-    u16 movementFlagsAnim3;
-    u16 movementFlagsAnim4;
-    u8 unknown_30_to_32[3];     */      
-    // Byte 33 (offset 0x21): Sprite type/layer - must be != 0xFF to be hotspot eligible
-    //u8 sprite_type;         // Byte 33
-    // Byte 34 (offset 0x22): ACTION FLAGS bitmask
-    // Bit 0 (0x01): Unknown action
-    // Bit 1 (0x02): Unknown action
-    // Bit 2 (0x04): Unknown action
-    // Bit 3 (0x08): Unknown action
-    // Bit 4 (0x10): TALK action available
-    // Bit 5 (0x20): Unknown action
-    // Bit 6 (0x40): Unknown action
-    // Bit 7 (0x80): Unknown action
+ 
     u8 action_flags;        // Byte 34
-    u8 unknown_35_to_37[3]; // Bytes 35-37 (3 bytes)
-    // Byte 38 (offset 0x26): HOTSPOT FLAG
-    // 0x00 = This sprite IS a clickable hotspot
-    // 0x01 = This sprite is NOT a hotspot (decoration/non-interactive)
+    u8 frameDelayCounter;
+    u8 loopCount;
+    u8 unusedPadding;
     u8 is_hotspot;          // Byte 38
-    u8 unknown_39_to_43[5]; // Bytes 39-43
-    // NOTE: Text descriptions indexed by combined order:
-    // [selectable_sprites_in_order] + [static_hotspots_in_order]
-    // NOT stored per-sprite! Position in list = text pointer index
+    u8 disableAfterSequence;
+    u8 unknown_39_to_43[4]; // Bytes 39-43
+    
 };
 
 struct Hotspot {
