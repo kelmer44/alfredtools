@@ -1,0 +1,97 @@
+// Auto-generated action summary for ScummVM implementation
+// Format: VERB extra=ID room=R → operations
+
+// OPEN   extra=   9 room=-1 @ 0x1C9D5: JMP → default_verb_response
+// OPEN   extra= 288 room=-1 @ 0x1C632: Check flag [0x49840] == 0 | Set flag [0x49840] = 1 | Display sticker from ALFRED.6 offset=0xB490, size=0x216 | SHOW hotspot[18] @0x51F → (519, 363)
+// PICKUP extra=   0 room=-1 @ 0x1E444: Set flag [0x49687] = 1 | Display sticker from ALFRED.6 offset=0x60C87, size=0x92 | HIDE hotspot[4] @0x4A1 → (640, 400) | HIDE hotspot[8] @0x4C5 → (640, 400) | HIDE hotspot[9] @0x4CE → (640, 400) | HIDE hotspot[10] @0x4D7 → (640, 400) | SHOW hotspot[0] @0x47D → (191, 243) | JMP → 0x1D2F5
+// PICKUP extra= 273 room=-1 @ 0x1E81B: JMP → default_verb_response
+// PICKUP extra= 700 room=-1 @ 0x20781: Load palette from ALFRED.7 offset=0x1613CE | Set room_data[0xEA] = 93 | Set room_data[0xEB] = 88 | Set room_data[0xEC] = 8184 | Set room_data[0xEE] = 1 | Set room_data[0xEF] = 0 | Set room_data[0xF0] = 9 | Set room_data[0xF8] = 1 | Set room_data[0xFC] = 0 | Set room_data[0x109] = 0 | Set room_data[0x10A] = 0 | Set room_data[0x10D] = 1 | Set room_data[0xFE] = 767 | Set room_data[0x116] = 68 | Set room_data[0x117] = 31 | Set room_data[0x118] = 2108 | Set room_data[0x11A] = 1 | Set room_data[0x11B] = 0 | Set room_data[0x11C] = 7 | Set room_data[0x124] = 1 | Set room_data[0x128] = 0 | Set room_data[0x135] = 0 | Set room_data[0x136] = 0 | Set room_data[0x139] = 1 | Set room_data[0x142] = 79 | Set room_data[0x143] = 95 | Set room_data[0x144] = 7505 | Set room_data[0x146] = 1 | Set room_data[0x147] = 0 | Set room_data[0x148] = 9 | Set room_data[0x150] = 1 | Set room_data[0x154] = 0 | Set room_data[0x161] = 0 | Set room_data[0x162] = 0 | Set room_data[0x165] = 1 | Set room_data[0x16E] = 54 | Set room_data[0x16F] = 42 | Set room_data[0x170] = 2268 | Set room_data[0x172] = 1 | Set room_data[0x173] = 0 | Set room_data[0x174] = 8 | Set room_data[0x17C] = 1 | Set room_data[0x180] = 0 | Set room_data[0x18D] = 0 | Set room_data[0x18E] = 0 | Set room_data[0x191] = 1 | Set room_data[0x6C] = 1 | Set room_data[0x78] = 0 | Set flag [0x4FB9A] = 3 | Set flag [0x4FB9A] = 3 | JMP → 0x13A66
+// OPEN   extra= 261 room= 0 @ 0x1C25A: Check flag [0x4968E] == 0 | Set flag [0x4968E] = 1 | Display sticker from ALFRED.6 offset=0x5C561, size=0x1CD | HIDE hotspot[0] @0x47D → (640, 400)
+// OPEN   extra= 263 room= 0 @ 0x1C423: JMP → default_verb_response
+// OPEN   extra= 268 room= 0 @ 0x1C339: Check flag [0x49680] == 0 | Play ambient sound | Set flag [0x49680] = 1 | Display sticker from ALFRED.6 offset=0x5C8FB, size=0x21C6 | Set room_data[0x1C1] = 1
+// PICKUP extra=   1 room= 0 @ 0x1E4FA: HIDE hotspot[8] @0x4C5 → (640, 400) | HIDE hotspot[9] @0x4CE → (640, 400) | HIDE hotspot[10] @0x4D7 → (640, 400) | SHOW hotspot[0] @0x47D → (191, 243) | JMP → 0x1D2F5
+// PICKUP extra=   2 room= 0 @ 0x1E59A: HIDE hotspot[9] @0x4CE → (640, 400) | HIDE hotspot[10] @0x4D7 → (640, 400) | SHOW hotspot[0] @0x47D → (191, 243) | JMP → 0x1D2F5
+// PICKUP extra=   3 room= 0 @ 0x1E63A: HIDE hotspot[10] @0x4D7 → (640, 400) | SHOW hotspot[0] @0x47D → (191, 243) | JMP → 0x1D2F5
+// PULL   extra= 261 room= 0 @ 0x1D638: Check flag [0x4968E] == 0 | Set flag [0x4968E] = 13 | Display sticker from ALFRED.6 offset=0x5C72E, size=0x1CD
+// PULL   extra= 268 room= 0 @ 0x1D671: Check flag [0x49680] == 0 | Play ambient sound | Set flag [0x49680] = 13 | Display sticker from ALFRED.6 offset=0x5EAC1, size=0x21C6 | Set room_data[0x1C1] = 0
+// OPEN   extra= 277 room= 1 @ 0x1C437: JMP → default_verb_response
+// PICKUP extra=   4 room= 1 @ 0x1E757: Set flag [0x4970C] = 1 | Display sticker from ALFRED.6 offset=0x80B84, size=0x3B5 | HIDE hotspot[3] @0x498 → (640, 400)
+// OPEN   extra= 282 room= 2 @ 0x1C44B: Check flag [0x49798] == 0 | Play ambient sound | Set flag [0x49798] = 1 | Display sticker from ALFRED.6 offset=0x4376, size=0xDA3 | Set room_data[0x1DD] = 1
+// PICKUP extra= 283 room= 2 @ 0x1E82F: JMP → default_verb_response
+// PICKUP extra= 284 room= 2 @ 0x1E82F: JMP → default_verb_response
+// PULL   extra= 282 room= 2 @ 0x1D75D: Check flag [0x49798] == 0 | Play ambient sound | Set flag [0x49798] = 13 | Display sticker from ALFRED.6 offset=0x5119, size=0xDA3 | Set room_data[0x1DD] = 0
+// OPEN   extra= 290 room= 3 @ 0x1C535: Check flag [0x4982B] == 0 | Check flag [0x49839] == 0 | Play ambient sound | Set flag [0x49839] = 1 | Display sticker from ALFRED.6 offset=0xA3AA, size=0x10E6 | Set room_data[0x1C1] = 1
+// PICKUP extra= 308 room= 3 @ 0x20C17: Set flag [0x49847] = 10 | Set flag [0x4984E] = 10 | Set flag [0x49855] = 10 | Set flag [0x498BE] = 10 | Display sticker from ALFRED.6 offset=0xB6A6, size=0x9B4 | Display sticker from ALFRED.6 offset=0xC05A, size=0x9B4 | Display sticker from ALFRED.6 offset=0xCA0E, size=0x9C2
+// PULL   extra= 290 room= 3 @ 0x1D849: Check flag [0x49839] == 0 | Play ambient sound | Set flag [0x49839] = 13 | Display sticker from ALFRED.6 offset=0x92C4, size=0x10E6 | Set room_data[0x1C1] = 0
+// OPEN   extra= 312 room= 4 @ 0x1C7B5: Display text (ref=[0x4BA20])
+// OPEN   extra= 315 room= 4 @ 0x1C789: Check flag [0x498B0] == 0 | Display sticker from ALFRED.6 offset=0xD3D0, size=0x9E | Set flag [0x498B0] = 1
+// PICKUP extra= 310 room= 4 @ 0x1EB8A: JMP → default_verb_response
+// PICKUP extra= 311 room= 4 @ 0x1EB8A: JMP → default_verb_response
+// PICKUP extra= 316 room= 4 @ 0x1E843: Check flag [0x498C5] == 0 | Set flag [0x498B7] = 1 | Play ambient sound | Set flag [0x4F93F] = 13 | Check combined flags == 0x3 | Set flag [0x4F93F] = 10 | Set flag [0x4F93F] = 12 | Check combined flags == 0x3 | Set flag [0x498C5] = 1 | Display sticker from ALFRED.6 offset=0xFB8F, size=0xC6 | HIDE hotspot[3] @0x498 → (640, 400) | SHOW hotspot[4] @0x4A1 → (296, 46) | Update conversation state (room=4) | Default verb response ("I can't do that") | JMP → 0x13A65
+// PULL   extra= 312 room= 4 @ 0x1D935: Check flag [0x498CC] == 0 | Play ambient sound | Set flag [0x498CC] = 13 | Display sticker from ALFRED.6 offset=0x119D7, size=0x1D82 | Set room_data[0x1CF] = 0
+// OPEN   extra= 355 room= 8 @ 0x1C8E3: Check flag [0x49AE0] == 0 | Play ambient sound | Set flag [0x49AE0] = 1 | Set flag [0x495BF] = 13 | Display sticker from ALFRED.6 offset=0x14A9D, size=0x117E | Set room_data[0x1C1] = 1
+// PICKUP extra= 357 room= 8 @ 0x1EB9E: Set room_data[0x48E] = 0 | JMP → 0x1E812
+// PULL   extra= 355 room= 8 @ 0x1DA21: Check flag [0x49AE0] == 0 | Play ambient sound | Set flag [0x49AE0] = 13 | Display sticker from ALFRED.6 offset=0x1391F, size=0x117E | Set room_data[0x1C1] = 0
+// OPEN   extra= 363 room= 9 @ 0x1C9E9: Check flag [0x495BF] == 0 | Play ambient sound | Set flag [0x495BF] = 1 | Display sticker from ALFRED.6 offset=0x17601, size=0x19E6 | Set room_data[0x1C1] = 1
+// PICKUP extra= 360 room= 9 @ 0x1EC30: Set flag [0x495BA] = 10 | Set flag [0x495BA] = 1 | Set flag [0x495BA] = 2 | Check flag [0x495BB] == 0 | Display text (ref=[0x4BA68]) | Update conversation state (room=9) | Set flag [0x495BB] = 1 | Update conversation state (room=9) | Update conversation state (room=9)
+// PICKUP extra= 361 room= 9 @ 0x1EC44: Set flag [0x495BA] = 1 | Set flag [0x495BA] = 2 | Check flag [0x495BB] == 0 | Display text (ref=[0x4BA68]) | Update conversation state (room=9) | Set flag [0x495BB] = 1 | Update conversation state (room=9) | Update conversation state (room=9)
+// PICKUP extra= 362 room= 9 @ 0x1EC57: Set flag [0x495BA] = 2 | Check flag [0x495BB] == 0 | Display text (ref=[0x4BA68]) | Update conversation state (room=9) | Set flag [0x495BB] = 1 | Update conversation state (room=9) | Update conversation state (room=9)
+// PULL   extra= 363 room= 9 @ 0x1DB0D: Check flag [0x495BF] == 0 | Play ambient sound | Set flag [0x495BF] = 13 | Display sticker from ALFRED.6 offset=0x15C1B, size=0x19E6 | Set room_data[0x1C1] = 0
+// OPEN   extra= 370 room=12 @ 0x1CAD3: Check flag [0x495C0] == 0 | Play ambient sound | Set flag [0x495C0] = 1 | Display sticker from ALFRED.6 offset=0x1910A, size=0x6EA | Set room_data[0x1CF] = 1
+// PICKUP extra=  60 room=12 @ 0x1EE31: Set flag [0x49D10] = 1 | Display sticker from ALFRED.6 offset=0x494A9, size=0xB6 | HIDE hotspot[2] @0x48F → (640, 400) | JMP → 0x1E808
+// PICKUP extra=  61 room=12 @ 0x1EF81: Set flag [0x49D1E] = 1 | Display sticker from ALFRED.6 offset=0x49615, size=0xB6 | HIDE hotspot[3] @0x498 → (640, 400) | JMP → 0x1E7EC
+// PICKUP extra=  62 room=12 @ 0x1EEE7: Set flag [0x49D17] = 1 | Display sticker from ALFRED.6 offset=0x4955F, size=0xB6 | HIDE hotspot[4] @0x4A1 → (640, 400) | JMP → 0x1E4D9
+// PULL   extra= 370 room=12 @ 0x1DBF9: Check flag [0x495C0] == 0 | Play ambient sound | Set flag [0x495C0] = 13 | Display sticker from ALFRED.6 offset=0x197F4, size=0x6EA | Set room_data[0x1CF] = 0
+// OPEN   extra= 374 room=13 @ 0x1CBBD: Check flag [0x495C1] == 0 | Play ambient sound | Set flag [0x495C1] = 1 | Display sticker from ALFRED.6 offset=0x19EDE, size=0x90E | Set room_data[0x1C1] = 1
+// OPEN   extra= 375 room=13 @ 0x1CCA7: Check flag [0x495C2] == 0 | Display text (ref=[0x4BA84])
+// PULL   extra= 374 room=13 @ 0x1DCE5: Check flag [0x495C1] == 0 | Play ambient sound | Set flag [0x495C1] = 13 | Display sticker from ALFRED.6 offset=0x1A7EC, size=0x90E | Set room_data[0x1C1] = 0
+// PICKUP extra=   6 room=15 @ 0x1FA41: Set flag [0x49EFA] = 1 | Display sticker from ALFRED.6 offset=0x210B3, size=0x633
+// PICKUP extra=   7 room=15 @ 0x1FB37: Set flag [0x49F01] = 1 | Display sticker from ALFRED.6 offset=0x216E6, size=0x678
+// PICKUP extra=  65 room=15 @ 0x1F01B: Set flag [0x49EB4] = 1 | Display sticker from ALFRED.6 offset=0x1C644, size=0x11F6
+// PICKUP extra=  66 room=15 @ 0x1F111: Set flag [0x49EBB] = 1 | Display sticker from ALFRED.6 offset=0x1D83A, size=0x8CA
+// PICKUP extra=  67 room=15 @ 0x1F207: Set flag [0x49EC2] = 1 | Display sticker from ALFRED.6 offset=0x1E104, size=0x7C2
+// PICKUP extra=  68 room=15 @ 0x1F2FD: Set flag [0x49EC9] = 1 | Display sticker from ALFRED.6 offset=0x1E8C6, size=0xB97
+// PICKUP extra=  69 room=15 @ 0x1F3F3: Set flag [0x49ED0] = 1 | Display sticker from ALFRED.6 offset=0x1F45D, size=0x75E | HIDE hotspot[4] @0x4A1 → (640, 400) | Set room_data[0xFD] = 255
+// PICKUP extra=  70 room=15 @ 0x1F573: Set flag [0x49ED7] = 1 | Display sticker from ALFRED.6 offset=0x1FBBB, size=0x562
+// PICKUP extra=  71 room=15 @ 0x1F669: Set flag [0x49EDE] = 1 | Display sticker from ALFRED.6 offset=0x2011D, size=0x412
+// PICKUP extra=  72 room=15 @ 0x1F75F: Set flag [0x49EE5] = 1 | Display sticker from ALFRED.6 offset=0x2052F, size=0x566
+// PICKUP extra=  73 room=15 @ 0x1F855: Set flag [0x49EEC] = 1 | Display sticker from ALFRED.6 offset=0x20A95, size=0x3C6
+// PICKUP extra=  74 room=15 @ 0x1F94B: Set flag [0x49EF3] = 1 | Display sticker from ALFRED.6 offset=0x20E5B, size=0x258
+// OPEN   extra= 388 room=16 @ 0x1CD06: Check flag [0x49F40] == 0 | Play ambient sound | Set flag [0x49F40] = 1 | Display sticker from ALFRED.6 offset=0x21D5E, size=0x1645 | Set room_data[0x1DD] = 1
+// PULL   extra= 388 room=16 @ 0x1DDD1: Check flag [0x49F40] == 0 | Play ambient sound | Set flag [0x49F40] = 13 | Display sticker from ALFRED.6 offset=0x233A3, size=0x1645 | Set room_data[0x1DD] = 0
+// OPEN   extra= 393 room=17 @ 0x1CDF0: Check flag [0x49FCC] == 0 | Play ambient sound | Set flag [0x49FCC] = 1 | Display sticker from ALFRED.6 offset=0x249E8, size=0xD8F | Set room_data[0x1CF] = 1
+// PULL   extra= 393 room=17 @ 0x1DEBD: Check flag [0x49FCC] == 0 | Play ambient sound | Set flag [0x49FCC] = 13 | Display sticker from ALFRED.6 offset=0x25777, size=0xD8F | Set room_data[0x1CF] = 0
+// OPEN   extra= 400 room=19 @ 0x1CEDA: Check flag [0x4A0E4] == 0 | Check flag [0x4A0F9] == 0 | Play ambient sound | Set flag [0x4A0F9] = 1 | Display sticker from ALFRED.6 offset=0x2C9D7, size=0x1AF3 | Set room_data[0x1CF] = 1
+// PULL   extra= 400 room=19 @ 0x1DFA9: Check flag [0x4A0F9] == 0 | Play ambient sound | Set flag [0x4A0F9] = 13 | Display sticker from ALFRED.6 offset=0x2E4CA, size=0x1AF3 | Set room_data[0x1CF] = 0
+// PICKUP extra= 609 room=25 @ 0x1FD8B: Check flag [0x495D0] == 0 | Set flag [0x4A42C] = 1 | Display sticker from ALFRED.6 offset=0x496CB, size=0x316 | HIDE hotspot[0] @0x47D → (640, 400) | Set flag [0x4964F] = 12 | Default verb response ("I can't do that")
+// PICKUP extra=  87 room=28 @ 0x2030C: Set flag [0x4A5D0] = 1 | JMP → 0x1D284
+// PICKUP extra=  88 room=28 @ 0x2032F: Set flag [0x4A5D7] = 1 | Display sticker from ALFRED.6 offset=0x60E62, size=0x1D7 | JMP → 0x1FCF8
+// PICKUP extra=  89 room=28 @ 0x20357: Set flag [0x4A5DE] = 1 | JMP → 0x1EE4F
+// PICKUP extra= 112 room=28 @ 0x2037A: Set flag [0x4A5EC] = 1 | Display sticker from ALFRED.6 offset=0x61764, size=0xE3 | HIDE hotspot[4] @0x4A1 → (640, 400) | Update conversation state (room=23)
+// PICKUP extra= 472 room=28 @ 0x1FED8: Play ambient sound | Load palette from ALFRED.7 offset=0x1610CE | Fade palette to target | Set flag [0x495CB] = 1 | SHOW hotspot[0] @0x47D → (415, 171) | SHOW hotspot[1] @0x486 → (305, 217) | SHOW hotspot[2] @0x48F → (201, 239) | SHOW hotspot[4] @0x4A1 → (261, 259) | HIDE hotspot[3] @0x498 → (640, 400) | Set room_data[0xA5] = 2 | JMP → 0x14A1B
+// OPEN   extra= 434 room=29 @ 0x1CFD1: Check flag [0x4A65C] == 0 | Play ambient sound | Set flag [0x4A65C] = 1 | Display sticker from ALFRED.6 offset=0x4115D, size=0x41A6 | Set room_data[0x1C1] = 1
+// PULL   extra= 434 room=29 @ 0x1E095: Check flag [0x4A65C] == 0 | Play ambient sound | Set flag [0x4A65C] = 13 | Display sticker from ALFRED.6 offset=0x45303, size=0x41A6 | Set room_data[0x1C1] = 0
+// LOOK   extra= 435 room=30 @ 0x1C065: Check flag [0x495E5] == 0 | OR flag [0x495C8] |= 0x1 | Set flag [0x495C8] = 13 | Check combined flags == 0xF | Trigger statue_secret
+// LOOK   extra= 436 room=30 @ 0x1C098: Check flag [0x495E5] == 0 | OR flag [0x495C8] |= 0x2 | Set flag [0x495C8] = 13 | Check combined flags == 0xF | Trigger statue_secret
+// LOOK   extra= 437 room=30 @ 0x1C0CB: Check flag [0x495E5] == 0 | OR flag [0x495C8] |= 0x4 | Set flag [0x495C8] = 13 | Check combined flags == 0xF | Trigger statue_secret
+// LOOK   extra= 438 room=30 @ 0x1C0FE: Check flag [0x495E5] == 0 | OR flag [0x495C8] |= 0x8 | Set flag [0x495C8] = 13 | Check combined flags == 0xF | Trigger statue_secret
+// OPEN   extra= 462 room=31 @ 0x1D0BB: Check flag [0x4A774] == 0 | Set flag [0x4A774] = 1 | Display sticker from ALFRED.6 offset=0x4A447, size=0x1626 | Set room_data[0x1C1] = 1
+// PICKUP extra= 101 room=31 @ 0x20682: HIDE hotspot[15] @0x504 → (640, 400) | JMP → 0x1E808
+// OPEN   extra= 473 room=32 @ 0x1D266: Set flag [0x4A800] = 1 | Display sticker from ALFRED.6 offset=0x4BA6D, size=0x534 | HIDE hotspot[0] @0x47D → (640, 400) | JMP → 0x1E808
+// PICKUP extra= 100 room=32 @ 0x1FCEB: HIDE hotspot[1] @0x486 → (640, 400) | JMP → 0x1E808
+// OPEN   extra= 465 room=33 @ 0x1D17C: Check flag [0x4A88C] == 0 | Play ambient sound | Set flag [0x4A88C] = 1 | Display sticker from ALFRED.6 offset=0x3DEC9, size=0x194A | Set room_data[0x1C1] = 1
+// OPEN   extra= 651 room=33 @ 0x1D41A: Check flag [0x495E7] == 0 | Display sticker from ALFRED.6 offset=0x62535, size=0x816 | Default verb response ("I can't do that") | Update conversation state (room=26) | Update conversation state (room=26) | Update conversation state (room=27) | Update conversation state (room=27)
+// PULL   extra= 465 room=33 @ 0x1E181: Check flag [0x4A88C] == 0 | Play ambient sound | Set flag [0x4A88C] = 13 | Display sticker from ALFRED.6 offset=0x3F813, size=0x194A | Set room_data[0x1C1] = 0
+// PICKUP extra=  90 room=37 @ 0x2044F: Display sticker from ALFRED.6 offset=0x6C2C9, size=0x584 | Set flag [0x5176A] = 10 | Set flag [0x4961D] = 10 | Set flag [0x4964F] = 13 | Default verb response ("I can't do that") | Default verb response ("I can't do that") | Set flag [0x4FB9A] = 2 | Default verb response ("I can't do that") | JMP → 0x11662
+// PICKUP extra=  81 room=38 @ 0x1FC2D: Default verb response ("I can't do that") | HIDE hotspot[5] @0x4AA → (640, 400) | JMP → 0x1E808
+// PICKUP extra=  99 room=38 @ 0x205FE: HIDE hotspot[3] @0x498 → (640, 400) | JMP → 0x1E7EC
+// PICKUP extra= 605 room=42 @ 0x204CC: JMP → default_verb_response
+// PICKUP extra= 606 room=42 @ 0x204CC: JMP → default_verb_response
+// PICKUP extra= 607 room=42 @ 0x204CC: JMP → default_verb_response
+// PICKUP extra= 608 room=42 @ 0x20528: Check flag [0x495D4] == 0 | Default verb response ("I can't do that")
+// OPEN   extra= 621 room=46 @ 0x1D330: Check flag [0x4AFA8] == 0 | Play ambient sound | Set flag [0x4AFA8] = 1 | Display sticker from ALFRED.6 offset=0x75454, size=0x3D86 | Set room_data[0x1DD] = 1
+// PULL   extra= 621 room=46 @ 0x1E26D: Check flag [0x4AFA8] == 0 | Play ambient sound | Set flag [0x4AFA8] = 13 | Display sticker from ALFRED.6 offset=0x791DA, size=0x3D86 | Set room_data[0x1DD] = 0
+// OPEN   extra= 800 room=47 @ 0x1D54D: Check flag [0x4B034] == 0 | Play ambient sound | Set flag [0x4B034] = 13 | Display sticker from ALFRED.6 offset=0x62D4B, size=0x21C6 | Set room_data[0x1C1] = 1
+// PICKUP extra= 628 room=47 @ 0x20566: JMP → 0x1E812
+// PULL   extra= 800 room=47 @ 0x1E359: Check flag [0x4B034] == 0 | Play ambient sound | Set flag [0x4B034] = 1 | Display sticker from ALFRED.6 offset=0x64F11, size=0x21C6 | Set room_data[0x1C1] = 0
+// OPEN   extra= 613 room=55 @ 0x1D31C: JMP → default_verb_response
