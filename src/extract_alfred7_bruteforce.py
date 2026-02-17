@@ -1299,12 +1299,34 @@ budas = [
     "START_OFFSET": 1446090,
     "TYPE": "ANIM",
     "DESC": "NADADORAS",
-    "WIDTH": 93, #68, 79, 54,
+    "WIDTH": 68, #68, 79, 54,
     "START": "FINAL (After palette)",
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
-	  "offset" : 768
+	  "offset" : 768,
+    "blocks": [
+      {
+        "nFrames": 9,
+        "width": 93,
+        "height": 88
+      },
+      {
+        "nFrames": 7,
+        "width": 68,
+        "height": 31
+      },
+      {
+        "nFrames": 9,
+        "width": 79,
+        "height": 95
+      },
+      {
+        "nFrames": 8,
+        "width": 54,
+        "height": 42
+      }
+    ]
   },
   {
     "BUDA": 108,
@@ -1335,7 +1357,7 @@ budas = [
     "START_OFFSET": 1526428,
     "TYPE": "ANIM",
     "DESC": "SMOKE",
-    "WIDTH": 196,
+    "WIDTH": 98,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
@@ -1364,7 +1386,7 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 113,
@@ -1404,7 +1426,7 @@ budas = [
   },
   {
     "BUDA": 116,
-    "START_OFFSET": 2060922,
+    "START_OFFSET": 2060916,
     "TYPE": "ANIM",
     "DESC": "ALFREDMUNHECO",
     "WIDTH": 116,
@@ -2970,30 +2992,83 @@ def main():
           print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: as raw")
           with open(output_file, 'wb') as f:
             f.write(combined)
-      if pal_buda and type != "RAW":
-        size = 0
-        if(type == "IMAGE" and width == 640):
-          size =  640 * 400
-          height = 400
-          realHeight = height
+      elif pal_buda and type != "RAW":
+        # Check if this buda has multiple blocks defined
+        blocks = budas[start_buda].get("blocks")
+
+        if blocks:
+          # Extract each block separately
+          print(f"BUDA {budas[start_buda]['BUDA']} has {len(blocks)} blocks")
+          data_offset = 0
+
+          for block_idx, block in enumerate(blocks):
+            block_width = block["width"]
+            block_height = block["height"]
+            block_nframes = block["nFrames"]
+            frame_size = block_width * block_height
+            block_size = frame_size * block_nframes
+
+            print(f"  Block {block_idx}: {block_nframes} frames, {block_width}x{block_height}, size={block_size}, offset={data_offset}")
+
+            # Extract this block's data
+            block_data = combined[data_offset:data_offset + block_size]
+            data_offset += block_size
+
+            # Create horizontal strip with all frames
+            strip_width = block_width * block_nframes
+            strip_height = block_height
+
+            # Prepare image data
+            img_data = bytes(block_data)
+            if len(img_data) < block_size:
+              img_data += bytes([0] * (block_size - len(img_data)))
+
+            # Create strip image
+            img = Image.new('P', (strip_width, strip_height))
+            img.putpalette(palettes[pal_buda])
+
+            # Place each frame side by side
+            for frame_idx in range(block_nframes):
+              frame_start = frame_idx * frame_size
+              frame_end = frame_start + frame_size
+              frame_pixels = img_data[frame_start:frame_end]
+
+              # Create temporary frame image
+              frame_img = Image.new('P', (block_width, block_height))
+              frame_img.putpalette(palettes[pal_buda])
+              frame_img.putdata(frame_pixels)
+
+              # Paste into strip
+              img.paste(frame_img, (frame_idx * block_width, 0))
+
+            output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_block{block_idx}_offset_{start_offset}.png'
+            img.save(output_file)
+            print(f"  Saved block {block_idx} to {output_file}")
         else:
-          size = len(combined)
-          realHeight = size / width
-          height = math.ceil(size / width)
+          # Original single-image logic for budas without blocks
+          size = 0
+          if(type == "IMAGE" and width == 640):
+            size =  640 * 400
+            height = 400
+            realHeight = height
+          else:
+            size = len(combined)
+            realHeight = size / width
+            height = math.ceil(size / width)
 
-        print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
-        # Create image
-        img_data = bytes(combined[:size])
-        if len(img_data) < size:
-          img_data += bytes([0] * (size - len(img_data)))
+          print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: {len(combined)} bytes, palette {pal_buda}, w={width}, h={height}, realH={realHeight}")
+          # Create image
+          img_data = bytes(combined[:size])
+          if len(img_data) < size:
+            img_data += bytes([0] * (size - len(img_data)))
 
-        img = Image.new('P', (width, height))
-        img.putpalette(palettes[pal_buda])
-        img.putdata(img_data)
+          img = Image.new('P', (width, height))
+          img.putpalette(palettes[pal_buda])
+          img.putdata(img_data)
 
-        output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{start_offset}.png'
-        img.save(output_file)
-        print(f"Saved image to {output_file}")
+          output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{start_offset}.png'
+          img.save(output_file)
+          print(f"Saved image to {output_file}")
 
 if __name__ == "__main__":
     main()
