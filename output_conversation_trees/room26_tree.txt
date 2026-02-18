@@ -1,0 +1,259 @@
+================================================================================
+ROOM 26 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Parece el dueño de esta tienda
+  #2: ¡ Vaya cara de cabreo !
+  #3: ¡ Gallinita gallinita ! ¡ Lastima ! No estaría mal en el cocido
+  #4: ¿ Qué ? Esperando que pase alguien con minifalda ¿ eh?
+  #5: -
+  #6: -
+  #7: ¡ Que manera más difícil de tender la ropa !
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Bienvenido a mi humilde tienda extranjero. ¿ En qué puedo ayudarle ?
+   ├─ [1] [F1-REPEAT] 
+   │  ├─ NPC: Pues vuelva cuando lo tenga
+   │  ├─ [2] [FB-ONCE] ¿ No me puede fiar ?
+   │  │  └─ NPC: No [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] ¿ Y si regateamos ?
+   │     ├─ NPC: ¿ Regatear ? ¡ Imposible ! Si rebajo el precio perdería dinero. No le engaño si le digo que precios más bajos de los que tengo no los va a encontrar. [F0-GO_BACK]
+   │     ├─ [3] [FB-ONCE] No le creo, tiene usted pinta de estar forrado...
+   │     │  └─ NPC: Aquí estaría si estuviera rico... ¡ Mamón !
+   │     └─ [3] [FB-ONCE] Regateemos un poco, sólo por mantener la costumbre...
+   │        └─ NPC: ¿ Pero qué costumbre ? No se crea todos los tópicos que se dicen de nosotros. Hemos sido conquistados por un estado imperialista y un sistema económico que ha aniquilado nuestras costumbres. Ahora somos capitalistas de economia de mercado... ¡como todo el mundo!
+   ├─ [1] [FB-ONCE] ¿ Tiene alguna buena oferta ?
+   │  ├─ NPC: Sí, pero ¿ cuánto dinero lleva ?
+   │  ├─ [2] [FB-ONCE] Nada
+   │  │  └─ NPC: Entonces no hay nada que hacer
+   │  └─ [2] [FB-ONCE] Lo que llevo en el bolsillo
+   │     ├─ NPC: No oigo que suene mucho
+   │     ├─ [3] [FB-ONCE] Tal vez sean sólo billetes...
+   │     │  ├─ NPC: Es posible
+   │     │  └─ [4] [FB-ONCE] ¿ Y si regateamos ?
+   │     │     └─ NPC: Yo no sigo esas costumbres. Sólo regatean los embaucadores y estafadores. → ACTION 0171 (369)
+   │     └─ [3] [FB-ONCE] No llevo ninguna flauta
+   │        ├─ NPC: ¿ Y ese bulto ?
+   │        ├─ [4] [FB-ONCE] Ese bulto es mío
+   │        │  ├─ NPC: ¿ No me lo enseña ?
+   │        │  ├─ [5] [FB-ONCE] No
+   │        │  │  └─ NPC: Entonces no vamos a hacer negocios.
+   │        │  └─ [5] [FB-ONCE] ¿ Que me da a cambio ?
+   │        │     ├─ NPC: Mirar no cuesta nada. No pienso pagar por mirar.
+   │        │     └─ [6] [FB-ONCE] Entonces no se lo enseño
+   │        │        └─ NPC: Me da igual.
+   │        └─ [4] [FB-ONCE] El pañuelo
+   │           └─ NPC: ¿ Y con sólo un pañuelo piensa hacer negocios ? Olvidelo.
+   └─ [1] [F1-REPEAT] Si todos los egipcios mienten y yo soy egipcio ¿ estoy diciendo la verdad ?
+      └─ NPC: Miente, y dos veces. Ni usted es egipcio ni todos los egipcios mienten.
+
+└─ ROOT #1
+   NPC: Bienvenido a mi humilde tienda extranjero. ¿ En qué puedo ayudarle ?
+   ├─ [1] [F1-REPEAT] ¡ Si supiera Vd qué tengo que hacer para rescatar a mi princesa ...!
+   │  ├─ NPC: ¡ Ja ! ¡ Otro romántico ! Déjese de tonterías, Vd necesita alegrar ese cuerpo
+   │  ├─ [2] [FB-ONCE] ¿ Cómo ?
+   │  │  └─ NPC: Pues eso... vida alegre → ACTION 017F (383)
+   │  └─ [2] [FB-ONCE] ¿ Qué tiene de malo el romanticismo ?
+   │     └─ NPC: Es demasiado triste... y la vida es corta... olvídese de esa princesa y disfrute el presente...
+   └─ [1] [F1-REPEAT] 1Si todos los egipcios mienten y yo soy egipcio, ¿estoy diciendo la verdad?
+      └─ NPC: Pues... sí... o... no... creo que no... ¡ ah ! claro, eso es una paradoja...
+
+└─ ROOT #2
+   NPC: Bienvenido a mi humilde tienda extranjero. ¿ En que puedo ayudarle ?
+   ├─ [1] [FB-ONCE] 4¿ Tiene parches y pegamento ?
+   │  └─ NPC: No
+   ├─ [1] [FB-ONCE] 6¿ Tiene usted condones ?
+   │  ├─ NPC: ¡ Vaya con el romántico ! Veo que ha escuchado mis consejos... no le gustaría además una de mis revistas. Je, je, je, ¡ Son importadas ! No se imagina qué chicas... que ojos... que manos... que caderas... que piernas... ¡ que PECHOS !... ¡¡ QUE CURVAS !!... ¡¡¡ STOP !!! ¡ Alá me perdone !, pero uno no es de piedra
+   │  ├─ [2] [FB-ONCE] 8¿ Por quíen me ha tomado ? ¡ Yo no soy de esos !
+   │  │  └─ NPC: Vd se lo pierde.
+   │  └─ [2] [FB-ONCE] :Sólo quiero condones
+   │     ├─ NPC: Pues condones no tenemos. Aquí no los utilizamos, le quitan sensibilidad al acto
+   │     ├─ [3] [FB-ONCE] <¿ Está usted loco ? ¿ No ha oido hablar del Sida, gonorrea, sífilis, vaginitis...?
+   │     │  ├─ NPC: No.
+   │     │  └─ [4] [FB-ONCE] >Pregúntele a la prostituta de la esquina y que le informe...
+   │     │     └─ NPC: Vale, lo haré. Tal vez me ayude... últimamente me pica mucho la cosa.
+   │     ├─ [3] [FB-ONCE] @Es verdad, pero sin ellos estoy perdido...
+   │     │  ├─ NPC: ¿ Que pasa ? ¿ No le gustan los niños ?
+   │     │  ├─ [4] [FB-ONCE] BNo se trata de eso. Es para evitar enfermedades de transmisión sexual
+   │     │  │  ├─ NPC: Entiendo ¿ su mujer está enferma ?
+   │     │  │  └─ [5] [FB-ONCE] DNo tengo mujer
+   │     │  │     ├─ NPC: Entonces, ¿ su amante ?
+   │     │  │     └─ [6] [FB-ONCE] FTampoco
+   │     │  │        ├─ NPC: ¡¿ No será su perra ?!
+   │     │  │        └─ [7] [FB-ONCE] No
+   │     │  │           ├─ NPC: ¿ ENTONCES, QUIEN ?
+   │     │  │           └─ [8] [FB-ONCE] JLa prostituta de la esquina
+   │     │  │              └─ NPC: ¡ Oh, por Alá ! ¿ La prostituta de la esquina enferma ? No... debo ir al médico ahora mismo → ACTION 0170 (368)
+   │     │  └─ [4] [FB-ONCE] LPues no, me gustan las niñas...
+   │     │     ├─ NPC: ¡ Ja ! ¡ Ja ! ¡ Ja ! Es usted un tio pícaro. ¿ Qué me dice ? ¿ No le gustaría una de mis revistas ? Je, je, je. No se imagina qué niñas... mire, mire que curvas... y... pechos... y que piernas... y que tobillos... y que caderas... ¡ Y que manos !... ¡¡ Y QUE OJOS MAS BONITOS !!... esto... pero bueno... ¡¡¡ MIRELA A LOS OJOS !!!
+   │     │     └─ [5] [FB-ONCE] NA ver...
+   │     │        ├─ NPC: ¿ Qué ? ¿ Están buenas ? ¡ Qué mujeres !
+   │     │        ├─ [6] [FB-ONCE] PPues la verdad es que sí. ¡ Deme una !
+   │     │        │  └─ NPC: Son 5 monedas → ACTION 0127 (295)
+   │     │        └─ [6] [FB-ONCE] RMi princesa las supera a todas en belleza
+   │     │           ├─ NPC: Ya lo dice el refrán: El amor es ciego
+   │     │           └─ [7] [FB-ONCE] TEs verdad y no lo digo porqué este enamorado, pero ella está mucho mejor que todas esta juntas
+   │     │              ├─ NPC: ¿ Y no le interesaría a su princesa hacerse unas fotos para el próximo número de la revista ?
+   │     │              ├─ [8] [FB-ONCE] VNo sé, cuando la encuentre se lo pregunto...
+   │     │              │  └─ NPC: Si acepta... usted se llevaría el tanto por ciento que le toca al representante
+   │     │              └─ [8] [FB-ONCE] X¡ Pero que dice ! ¿ Qué se cree que soy su chulo ?
+   │     │                 └─ NPC: No se ofenda... yo estaría orgulloso de que mi mujer fuese tan atractiva
+   │     └─ [3] [FB-ONCE] Z¿ Sabe usted dónde podría encontrar ?
+   │        └─ NPC: No lo sé, como no los utilizo nunca
+   ├─ [1] [FB-ONCE] \¿ Tiene usted una pistola ? Cro que voy a suicidarme, no encuentro mi princesa...
+   │  └─ NPC: No tengo licencia para vender pistolas... pero tal vez si se baña en el río... el lagarto... le pueda ayudar
+   └─ [1] [FB-ONCE] ^Gracias, no quiero nada
+      └─ NPC: Como quiera
+
+└─ ROOT #3
+   NPC: ¡ Váyase !. Esta mañana ha estado aquí la policia. Como se enteren que tengo revistas de esas voy a la carcel de cabeza
+
+└─ ROOT #4
+   NPC: ¡ OYE !. Mira a quíen tenemos aquí. ¡¡ Al Famosísimo ELVIS PREYSLER !! Mi hija se sabe todas sus canciones
+   ├─ [1] [F1-REPEAT] bNo soy Elvis. Me llamo Alfred
+   │  ├─ NPC: Comprendo ... De incógnito, ¿ eh ?
+   │  ├─ [2] [FB-ONCE] dBueno... sí... esto...
+   │  │  ├─ NPC: ¿ Le podemos ayudar en algo ?
+   │  │  ├─ [3] [FB-ONCE] f¿ Dónde podría encontrar el lugar de las invocaciones para viajar en el tiempo ?
+   │  │  │  └─ NPC: No sé... pregunte en el museo...
+   │  │  └─ [3] [FB-ONCE] h¿ Saben ustedes que hay por ahí un lagarto matando a la gente ?
+   │  │     ├─ NPC: No haga caso de ese budista de agua dulce. Es un loco de una secta peligrosa
+   │  │     ├─ [4] [FB-ONCE] jA mi me ha parecido un tio muy majo
+   │  │     │  └─ NPC: No se fie de las apariencias [F0-GO_BACK]
+   │  │     ├─ [4] [FB-ONCE] lSi tiene usted razón señor guardia
+   │  │     │  └─ NPC: Así me gusta, que me hagan la pelota
+   │  │     └─ [4] [FB-ONCE] nTodos los policias sois unos paranoicos
+   │  │        └─ NPC: ¿ Cómo ? ¡ Insultando al glorioso cuerpo de policia. Queda usted detenido por ofensas a los representantes de la ley → ACTION 011D (285)
+   │  └─ [2] [FB-ONCE] p¡ Che ! ¡ Que manía ! ¡ Que yo no soy elvis, leche !
+   │     └─ NPC: Vale, vale, señor Elvis... como si no lo hubiesemos visto
+   ├─ [1] [F1-REPEAT] r¿ Elvis Preisler ? ¿ Quién es ese ?
+   │  ├─ NPC: No sea modesto. La última, "Slip Break Hotel", es realmente buena, mi hija dice que es mejor que la versión antigua
+   │  ├─ [2] [FB-ONCE] tYo sólo conozco "Heart break hotel" del rey Elvis...
+   │  │  ├─ NPC: ¡ Hombre, claro ! Era su padre, pero eso, con todos mis respetos para su difunto padre, ya está pasado de moda, señor Elvis. [F0-GO_BACK]
+   │  │  ├─ [3] [FB-ONCE] vSí, lo que diga usted señor agente
+   │  │  │  └─ NPC: ¡ Que maravilloso es ser policía ! Todo el mundo te da la razón.
+   │  │  └─ [3] [FB-ONCE] x¿ Elvis pasado de moda ? Usted y su hija son tontos
+   │  │     └─ NPC: ¿ Ah si ? Queda usted detenido por insultos al cuerpo de la policia. → ACTION 011D (285)
+   │  └─ [2] [FB-ONCE] zSu hija es tonta
+   │     ├─ NPC: ¿ Será por eso que le gustan sus canciones ?
+   │     └─ [3] [FB-ONCE] éTal vez simplemente porque se parece a su padre
+   │        └─ NPC: ¿ Ah si ? Queda usted detenido por insultos al cuerpo de la policia. → ACTION 011D (285)
+   └─ [1] [FB-ONCE] ó¿ No me hace el saludo oficial ?
+      ├─ NPC: ¿ Pero qué se ha creído usted que es ? ¿ Un general ?
+      ├─ [2] [FB-ONCE] ñ¡ Que poco respeto al ciudadano !
+      │  ├─ NPC: ¡ Oiga ! ¡ Que nosotros somos la autoridad ! ¡ A callar o lo detenemos !
+      │  ├─ [3] [FB-ONCE] ¡Vale, vale. Me callo.
+      │  │  └─ NPC: Ve... así está mas guapo.
+      │  ├─ [3] [FB-ONCE] ú¿ No prefiere que le cante una canción ?
+      │  │  ├─ NPC: ¡ Hombre es un detalle ! Cántenos la que crea que nos va a gustar más.
+      │  │  ├─ [4] [FB-ONCE] La donna  mobile
+      │  │  │  ├─ NPC: ¿ A qué esperas ?
+      │  │  │  └─ [5] [FB-ONCE] ¡ LA DONNA E MOBILEEEE !
+      │  │  │     ├─ NPC: ¡ QUAL PIUMA AL VENTOOO !
+      │  │  │     └─ [6] [FB-ONCE] ¡ MUTA D'ACCENTOOO !
+      │  │  │        ├─ NPC: ¡ E DI PENSIEROOO !
+      │  │  │        └─ [7] [FB-ONCE] ¡ SEMPRE UN AMABILEEE !
+      │  │  │           ├─ NPC: ¡ LEGGIODRO VISOOO !
+      │  │  │           └─ [8] [FB-ONCE] ¡ IN PIANTO O IN RISOOO!
+      │  │  │              ├─ NPC: ¡¡¡ E MESZOGNEROOO !!!
+      │  │  │              └─ [9] [FB-ONCE] ¡¡¡ LA DONNA E MOBIIIL !!!
+      │  │  │                 ├─ NPC: ¡¡¡ QUAL PIUMA AL VENTO !!!
+      │  │  │                 ├─ [None] [AUTO-DIALOGUE] ¡¡¡ MUTA D'ACCEEEEEEEEEEEEENTO !!!
+      │  │  │                 ├─ NPC: ¡¡¡ E DI PENSIER !!!
+      │  │  │                 ├─ [None] [AUTO-DIALOGUE] ¡¡¡ E DI PENSIER !!!
+      │  │  │                 ├─ NPC: ¡¡¡ BRAVO !!! ¡¡¡ BRAVO !!!
+      │  │  │                 ├─ [None] [AUTO-DIALOGUE] Ustedes tampoco lo han hecho nada mal
+      │  │  │                 └─ NPC: Gracias... si no es pedir mucho... no querriamos abusar de su tiempo... ¿ no podría cantar otra ? [F0-GO_BACK]
+      │  │  ├─ [4] [FB-ONCE] El rock de la cárcel
+      │  │  │  ├─ NPC: Arranca...
+      │  │  │  └─ [5] [FB-ONCE] ¡ UN DIA HUBO FIESTA EN LA PRISION !
+      │  │  │     ├─ NPC: ¡ OH, YEAH !
+      │  │  │     └─ [6] [FB-ONCE] ¡ LA BANDA DE LOS PRESOS SE PUSO A TOCAR !
+      │  │  │        ├─ NPC: ¡ OH, YEAH !
+      │  │  │        └─ [7] [FB-ONCE] ¡¡ Y TODO EL MUNDO SE PUSO A BAILAR EL ROCK !!
+      │  │  │           ├─ NPC: ¡¡ Y TODO EL MUNDO A BAILAR !!
+      │  │  │           └─ [8] [FB-ONCE] ¡¡¡ TODO EL MUNDO EN LA PRISION !!!
+      │  │  │              ├─ NPC: ¡¡¡ CORRIERON A BAILAR EL ROCK !!!
+      │  │  │              └─ [9] [FB-ONCE] ¡ OH, YEAH !.....
+      │  │  │                 └─ NPC: ¡ Como me mola esta canción !
+      │  │  ├─ [4] [FB-ONCE] Clavelitos
+      │  │  │  ├─ NPC: Venga...
+      │  │  │  └─ [5] [FB-ONCE] ¡¡¡ CLAVELIIIIITOS !!! ¡¡¡ CLAVELITOS !!!
+      │  │  │     ├─ NPC: ¡¡¡ CLAVELITOS DE MI CORAZON !!!
+      │  │  │     └─ [6] [FB-ONCE] ¡¡¡ YO TE TRAIGO
+      │  │  │        ├─ NPC: CLAVELITOS !!!
+      │  │  │        └─ [7] [FB-ONCE] ¡¡¡ CLAVELITOS DE MI CORAZON !!!
+      │  │  │           └─ NPC: ¡ Que canción más bonita ! ¡¡¡ OTRA !!! ¡¡¡ OTRA !!! ¡¡¡ OTRA !!! [F0-GO_BACK]
+      │  │  ├─ [4] [FB-ONCE] El Cara al Sol
+      │  │  │  ├─ NPC: Empieza que nosotros te seguimos...
+      │  │  │  └─ [5] [FB-ONCE] ¡ CARA AL SOL !
+      │  │  │     ├─ NPC: ¡¡¡ CON
+      │  │  │     └─ [6] [FB-ONCE] LA
+      │  │  │        ├─ NPC: CAMISA
+      │  │  │        └─ [7] [FB-ONCE] NUEEEEVA !!!
+      │  │  │           ├─ NPC: ¡¡¡ QUE TUUUU
+      │  │  │           └─ [8] [FB-ONCE] BORDASTE
+      │  │  │              ├─ NPC: ZUL
+      │  │  │              └─ [9] [FB-ONCE] YER !!!
+      │  │  │                 └─ NPC: ¡¡¡ QUE MARAVILLA DE CANCION !!! Muy buena elección. Tiene usted un gusto exquisito. Ojalá todos los jóvenes fuesen como usted. Bueno le dejamos, ya le hemos hecho perder demasiado tiempo.
+      │  │  └─ [4] [FB-ONCE] La Internacional
+      │  │     ├─ NPC: Hummm...
+      │  │     └─ [5] [FB-ONCE] ¡¡¡ ARRIBA PARIAS DE LA TIERRA !!! ¡¡¡ EN PIE FAMELICA NACION !!!
+      │  │        ├─ NPC: Ejem... ejem...
+      │  │        └─ [6] [FB-ONCE] ¿ Qué les pasa ?
+      │  │           ├─ NPC: Mejor canta otra
+      │  │           ├─ [7] [FB-ONCE] Vale
+      │  │           │  └─ NPC: Pues venga... [F0-GO_BACK]
+      │  │           └─ [7] [FB-ONCE] No, quiero cantar esta
+      │  │              ├─ NPC: No, te lo volveremos a decir. Esta no puedes cantarla. Canta otra.
+      │  │              ├─ [8] [FB-ONCE] No
+      │  │              │  └─ NPC: ¿ Ah, no ? ¿ Te niegas ? Entonces no tenemos más remedio que detenerte por resistencia y desacato a la autoridad → ACTION 011D (285)
+      │  │              └─ [8] [FB-ONCE] Vale, vale, cantaré otra
+      │  │                 └─ NPC: Adelante... [F0-GO_BACK]
+      │  └─ [3] [FB-ONCE] A mi no me hace callar ni mi padre
+      │     └─ NPC: ¡ Ah, no ! Vamos a ver... → ACTION 011D (285)
+      └─ [2] [FB-ONCE] Es lo menos que pueden hacer... ponerse firmes y saludar
+         └─ NPC: A ustedes los famosos se les suben los humos enseguida [F0-GO_BACK]
+
+└─ ROOT #5
+   NPC: ¡ Lo siento, Elvis !. La ley es la ley
+   ├─ [1] [FB-ONCE] No soy Elvis. Me llamo Alfred Pelrock
+   │  └─ NPC: No intente escaquearse. Conque ... ¿ Fugándose de la carcel y dándose una vueltecita por el zoco, ¿ eh ?. ¿ Le parece bonito ?. ¡ Que sea la última vez ! → ACTION 011D (285)
+   ├─ [1] [FB-ONCE] ¿ Y si le firmo un autógrafo a su hija ?
+   │  └─ NPC: Lo siento Elvis. Somos incorruptibles → ACTION 011D (285)
+   └─ [1] [F1-REPEAT] Vaaale, ya entiendo. Otra vez a la cárcel ...
+      └─ NPC: Así me gusta. Que la gente colabore con los representantes de la ley, el orden y la justicia → ACTION 011D (285)
+
+└─ ROOT #6
+   NPC: ¡ Oiga !. Se parece Vd mucho al cantante Elvis Preysler. Ahora metido a profanador de tumbas
+   ├─ [1] [F1-REPEAT] Todo el mundo me dice lo mismo. En fin... Tengo prisa
+   │  └─ NPC: Adios
+   └─ [1] [F1-REPEAT] ¡ Está bien !. Lo confieso: Soy yo
+      └─ NPC: ¡ Ja, ja, ja !. ¡ Que gracioso !. No se preocupe. Era una broma. El auténtico Elvis está en la carcel
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 011D (285)  |  After: ¿ Cómo ? ¡ Insultando al glorioso cuerpo de polici
+  → ACTION 0127 (295)  |  After: Son 5 monedas
+  → ACTION 0170 (368)  |  After: ¡ Oh, por Alá ! ¿ La prostituta de la esquina enfe
+  → ACTION 0171 (369)  |  After: Yo no sigo esas costumbres. Sólo regatean los emba
+  → ACTION 017F (383)  |  After: Pues eso... vida alegre
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

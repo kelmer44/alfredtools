@@ -1,0 +1,21 @@
+================================================================================
+ROOM 35 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: Tiene toda la pinta de ser un artilugio destinado para depositar ingredientes de fórmulas mágicas
+  #3: ¡ Anda !. Ahí está el guardia de la ermita. ¿ Que está haciendo con mi revista ?
+
+================================================================================
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

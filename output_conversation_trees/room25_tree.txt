@@ -1,0 +1,659 @@
+================================================================================
+ROOM 25 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Parece muy concentrado
+  #2: -
+  #3: -
+  #4: -
+  #5: -
+  #6: -
+  #7: -
+  #8: -
+  #9: Parece un girasol
+  #10: ¡ Que agua más cristalina !
+  #11: Parece increible que los cables de alta tensión no los electrocuten
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Nuestras vidas son como los rios que van a dar a la mar, que es el morir ...
+   └─ [1] [FB-ONCE] ¿ Dónde he oido eso antes ?
+      ├─ NPC: Bueno, es un pensamiento muy común entre nosotros: "Los Budistas de agua dulce"
+      ├─ [2] [FB-ONCE] ¿¿ Budistas de agua dulce ??
+      │  ├─ NPC: Sí. Yo llevo toda mi vida aquí, frente al río. El me inspira, me proporciona los pensamientos mas sublimes...
+      │  └─ [3] [FB-ONCE] ¿ Y no se aburre ?
+      │     └─ NPC: Sin franquear la puerta se conoce el mundo. Sin asomarse a la ventana, se ve la vida del cielo. Cuanto más se sale hacia fuera, tanto más pequeño es el conocimiento. Por eso, el sabio sin necesidad de salir, sabe todo. Sin necesidad de ver, tiene claridad. Sin necesidad de obrar, deja todo acabado. [F0-GO_BACK]
+      ├─ [2] [FB-ONCE] Lo que eres es un copión
+      │  └─ NPC: El sabio no tiene corazón propio. El hace del corazón ajeno el suyo. Para los buenos es bueno, para los no buenos, no es bueno porque el sabio no habla, y el que habla no es sabio. [F0-GO_BACK]
+      ├─ [2] [FB-ONCE] ¡ Calla embustero ! Eso es de Jorge Manrique, lo dí en el instituto
+      │  └─ NPC: No habléis agresivamente con nadie, porque los que atacáis podrán replicaros de igual manera. Las discusiones crean dolor y podréis recibir golpe por golpe. El sabio oermanene imperturbado ante la calumnia como una solida roca no se mueve ante el viento.
+      └─ [2] [FB-ONCE] ¡Que nombre más curioso¡
+         ├─ NPC: Sí, los budistas de agua dulce somos la reserva espiritual del mundo. Nuestra religión es un sincretismo
+         ├─ [3] [FB-ONCE] ¿Sincretismo?
+         │  ├─ NPC: Sí, una fusión, una especie de cocktail. Lo que te decía, nuestra religión es un sincretismo de las mejores esencias del budismo, cristianismo, judaísmo, hinduismo, taoismo, panteismo, baudelairismo, y demás grandes maestros de la poesía, filosofía y las artes. Este río es nuestro santuario y a el llegan en pererinación todos nuestros fieles. Por aquí han pasado John Lennon, Nacho Cano, Carlos Jesús, Rappel, Octavio Acebes, Jiménez del Oso, Bernardo Bertolucci, Richard Gere...
+         │  ├─ [4] [FB-ONCE] Así como los judios tienen la circucision y los cristianos el bautismo, ¿los budistas de agua dulce qué ritual iniciático tenéis?
+         │  │  ├─ NPC: En un principio los sumergíamos en el río y una vez purificados si eran varones los circuncidabamos, pero con el lagarto en el río y después se se nos comiera a algún fiel decidimos hacer un sincretismo de rituales: ahora los fieles sólo bautizan la parte a circuncidar
+         │  │  ├─ [5] [FB-ONCE] ¿ Lagarto ?
+         │  │  │  ├─ NPC: Sí. ¿ No ha oido Vd hablar del "lagarto" ?. Es la personificación del mal. Ronda estas aguas desde hace tiempo.
+         │  │  │  ├─ [6] [FB-ONCE] Habladurías seguro...
+         │  │  │  │  └─ NPC: Quien toma todo a la ligera pasa muchas dificultades
+         │  │  │  └─ [6] [FB-ONCE] ¿ Es un lagarto un cocodrilo o un caimán?
+         │  │  │     ├─ NPC: No sé, yo no lo he visto nunca. ¡ Tan absorto estoy en la contemplación de esta viviente metáfora de la vida !. Pero circulan rumores: Extrañas desapariciones. Cuerpos mutilados bañados en su propia sangre diluyéndose en el río del olvido. Por la noche se escuchan tras los matorrales susurros en la oscuridad, crujir de huesos dulces como oboes, histéricos gritos de mujer, largos ecos que de lejos se mezclan en una tenebrosa y profunda unidad de sonidos corrompidos y triunfantes, sangre y perfumes frescos como carnes de vírgenes...
+         │  │  │     ├─ [7] [FB-ONCE] ¿Susurros? ¿Gemidos? Esto me suena a parejitas de enamorados...
+         │  │  │     │  ├─ NPC: Algo de eso también hay, no lo puedo negar. Pero, ¿y la sangre?
+         │  │  │     │  └─ [8] [FB-ONCE] Tal vez fuesen vírgenes o tuviesen la menstruación...
+         │  │  │     │     ├─ NPC: Puede ser, pero ¿y los miembros mutilados?
+         │  │  │     │     └─ [9] [FB-ONCE] Prácticas sadomasoquistas
+         │  │  │     │        ├─ NPC: Es posible, pero ¿y los testimonios de los supervivientes?
+         │  │  │     │        ├─ [None] [AUTO-DIALOGUE] ¡ Bah ! Alucinaciones. Ya se sabe: sexo, drogas y rock and roll
+         │  │  │     │        ├─ NPC: ¡ Oh, yeah ! Pero...,¿y los histéricos gritos de mujer?
+         │  │  │     │        ├─ [None] [AUTO-DIALOGUE] ¡ Hay mujeres muy escandalosas cuando hacen el amor !
+         │  │  │     │        └─ NPC: Tal vez tengas razón, pero ándate con cuidado por si acaso: "Cuando el río suena, agua lleva" → ACTION 016E (366)
+         │  │  │     ├─ [7] [FB-ONCE] Yo no me asusto facilmente
+         │  │  │     │  └─ NPC: ¡ Oh !, no se preocupe. ¡ Pero manténgase alejado de la orilla del río !
+         │  │  │     ├─ [7] [FB-ONCE] ¡ Que miedo !
+         │  │  │     │  └─ NPC: No se asuste, sólo sea precavido. El miedo nos vuelve ciegos.
+         │  │  │     └─ [7] [FB-ONCE] 0¡ Es horrible !
+         │  │  │        └─ NPC: Al contrario, es bellísimo: la belleza nos parece horrible porque mata a quien la posee y paraliza a quien la contempla
+         │  │  └─ [5] [FB-ONCE] 2Explícame esto último...
+         │  │     ├─ NPC: Pues nada... esto...huumm... que... eso...
+         │  │     └─ [6] [FB-ONCE] 4¿Qué es eso?
+         │  │        ├─ NPC: Se coge el miembro flácido y se pone al baño maría, sólo la puntita, el tiempo necesario para que llege el lagarto y le pege un bocao a la parte sobrante de la piel de éste practicando un circucisión limpia y precisa
+         │  │        ├─ [7] [FB-ONCE] 6¡Joder con los budistas de agua dulce!
+         │  │        │  └─ NPC: Veo que no aprecias nuestras costumbres y en el fondo tienen su lógica: alimentamos a un monstruo que si estuviera hambriento devoraría almas inocentes y de paso nos ahorramos el cirujano de la circuncisión y el riesgo de ahogar el dia de su bautismo a quien no sabe nadar.
+         │  │        └─ [7] [FB-ONCE] 8¡Menuda panda de sanguinarios!
+         │  │           └─ NPC: Sólo duele lo que no se quiere. Aquí la gente viene por propia voluntad. Nadie obliga a nadie
+         │  └─ [4] [FB-ONCE] :Me apunto
+         │     ├─ NPC: Tendrás que sumerger tu virilidad en el río
+         │     ├─ [5] [FB-ONCE] <¿Para qué?
+         │     │  ├─ NPC: Es nuestro ritual iniciático. Así el lagarto te circundará...
+         │     │  └─ [6] [FB-ONCE] >¿Circundarme un lagarto?
+         │     │     ├─ NPC: Así es.
+         │     │     ├─ [7] [FB-ONCE] @¿Y eso duele?
+         │     │     │  ├─ NPC: Depende.
+         │     │     │  └─ [8] [FB-ONCE] B¿De qué depende?
+         │     │     │     └─ NPC: De la precisión del "bocao"... si acierta y sólo corta la piel no duele más que el método tradicional, pero si te da de lleno la verdad es que no sólo duele mogollón sino que te deja inválido para el amor. Aunque como a partir de ahora lo importante será la metitación y tu interior... [F0-GO_BACK]
+         │     │     └─ [7] [FB-ONCE] DCreo que me lo he pensado mejor...y mi decisión es que no
+         │     │        └─ NPC: Eres libre de decidir lo que quieras.
+         │     ├─ [5] [FB-ONCE] F¡Y un copón!
+         │     │  └─ NPC: No, la puntita nada más.
+         │     └─ [5] [FB-ONCE] Ni pensarlo
+         │        └─ NPC: Entonces no puedes ser iniciado.
+         └─ [3] [FB-ONCE] JEstoy harto de soportar rollos
+            └─ NPC: ¡ Vaya ! Para una vez que me decido a hablar tenía que hacerlo con este pedazo de tarugo
+
+└─ ROOT #1
+   NPC: Todo fluye, nada es. Por eso nunca nos bañamos en el mismo río."
+   ├─ [1] [F1-REPEAT] MParménides
+   │  └─ NPC: Todo lo contrario. → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] OOvidio
+   │  └─ NPC: La peor de las faltas es la ignorancia. → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] QHeráclito
+   │  └─ NPC: Muy bien → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] SJesús Hermida
+   │  └─ NPC: ¡ PERO QUE BURRO ! → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] UNo sé...
+      └─ NPC: El que sabe que no sabe, es sabio. El que no sabe que no sabe es feliz. Y el que no sabe que sabe es un ignorante → ACTION 0169 (361)
+
+└─ ROOT #2
+   NPC: El más esceptico de todos es el Tiempo que con los Nos hace Sis... Y si el rio no remonta a su fuente... es porque te falta paciencia para creerlo"
+   ├─ [1] [F1-REPEAT] XAristóteles
+   │  └─ NPC: Pues no
+   ├─ [1] [F1-REPEAT] ZPaul Valery
+   │  └─ NPC: Exacto → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] \Buda
+   │  └─ NPC: ¡ Que va !
+   ├─ [1] [F1-REPEAT] ^Karol Vojtila
+   │  └─ NPC: ¡ PERO QUE PEDAZO DE BURRO ! → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] `No sé...
+      └─ NPC: El que habla no sabe y el sabio no habla → ACTION 0169 (361)
+
+└─ ROOT #3
+   NPC: El que ríos y mares sean los reyes entre cualquier caudal de agua viene de que saben mantenerse a un nivel inferior"
+   ├─ [1] [F1-REPEAT] cLao Tse
+   │  └─ NPC: ¡ Correcto ! → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] eWang Wei
+   │  └─ NPC: ¡ Caaaaaasíííí... ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] gMao Tsé-Tung
+   │  └─ NPC: ¡ Caaaaaasíííí... ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] iLi Po
+   │  └─ NPC: ¡ Caaaaaasíííí... ! → ACTION 0165 (357)
+   └─ [1] [F1-REPEAT] kNo sé...
+      └─ NPC: Hay poca gente que reconozca no saber una respuesta y ese es un error. Conocer tus límites es un signo de sabiduría → ACTION 0169 (361)
+
+└─ ROOT #4
+   NPC: Como el río se funde en el océano, así mi corazón llega a Ti"
+   ├─ [1] [F1-REPEAT] nLi Po
+   │  └─ NPC: ¿Ni puñetera idea, eh? → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] pBruce Springteen
+   │  └─ NPC: ¡ IGNORANTE ! La canción "The river" no dice eso. → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] rPetrarca
+   │  └─ NPC: Frío, frío... → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] tKabir
+   │  └─ NPC: ¡ Impresionante ! → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] vNo sé...
+      └─ NPC: No se preocupe el mayor sabio ya dijo que sólo sabía que no sabía nada → ACTION 0169 (361)
+
+└─ ROOT #5
+   NPC: Dichoso aquél que alejado de los negocios, como la primitiva raza de los mortales trabaja el campo paterno con sus bueyes libre de toda usura y no se despierta como el soldado con la fiera trompeta ni teme el mar embravecido y evita el foro y las orgullosas puertas de las ciudades demasiados poderosas... Le gusta yacer, ora bajo una encina, ora sobre un tupido prado, mientras corren las aguas por los ríos profundos y se lamentan las aves en los bosques y las fuentes murmuran en sus límpidos manantiales lo que invita a un plácido sueño"
+   ├─ [1] [F1-REPEAT] yGarcilaso
+   │  └─ NPC: ¡ Pero que dices ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] áVirgilio
+   │  └─ NPC: Más o menos... → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] íPancracio
+   │  └─ NPC: ¡ SERA ANIMAL ! → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] úHoracio
+   │  └─ NPC: ¡ BRAVO ! → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] íNo sé...
+      └─ NPC: Cuando no se tiene nada que decir es mejor callar → ACTION 0169 (361)
+
+└─ ROOT #6
+   NPC: La cisterna contiene, la fuente rebosa"
+   ├─ [1] [F1-REPEAT] úWilliam Blake
+   │  └─ NPC: ¡ Increible ! → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] William Shakespeare
+   │  └─ NPC: Te ha faltado un pelín... → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Mahoma
+   │  └─ NPC: ¡ HEREJE ! → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Buda
+   │  └─ NPC: ¡ HEREJE ! → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: No se preocupe, yo a su edad tampoco lo sabía → ACTION 0169 (361)
+
+└─ ROOT #7
+   NPC: No presto atención al viento que sopla, a los golpes de las olas: hoy sé lo que es la abundancia, más que paseando ocioso en un jardín, sin dirección. El Maestro dijo a las orillas de un río: ¡ Fluye la vida como las aguas de un río !"
+   ├─ [1] [F1-REPEAT] Ovidio
+   │  └─ NPC: ¡ Ni de coña ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Lautremont
+   │  └─ NPC: A boleo acertarás pocas → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Dolores del Río
+   │  └─ NPC: ¡¿ Tampoco conoces a Dolores del Río ?! → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Mao Tsé-Tung
+   │  └─ NPC: Vas aprendiendo → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Pues estudia y lo sabrás → ACTION 0169 (361)
+
+└─ ROOT #8
+   NPC: No sabe el río que se llama río... las piedras lo combaten... Las plantas de la piedra enderezan contra él sus alfileres, la tierra hostil lo tuerce, le da forma de flecha o de herradura, lo disminuye hasta hacerlo invisible, pero resiste y sigue, diminuto,traspasando el umbral ferruginoso de la noche volcánica, taladrando, royendo, surgiendo intacto y duro como espada, convertido en estrella de cuarzo, lento más tarde, abierto a la frescura, río por fin, constante y abundante"
+   ├─ [1] [F1-REPEAT] Cesare Pavese
+   │  └─ NPC: ¡ Mammma mia ! ¡ Tu sei el piu grande ignorante do mondo → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Vichy Catalán
+   │  └─ NPC: ¡ Que te aproveche, pedazo de burro ! → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Goethe
+   │  └─ NPC: ¡ Hagan suerte, señores ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Pablo Neruda
+   │  └─ NPC: Aprobado → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: El que habla no sabe y el sabio no habla → ACTION 0169 (361)
+
+└─ ROOT #9
+   NPC: ¿ Qué podía beber... de aquellas calabazas amarillas...? ¡llorando veía oro -y no pude beber.-"
+   ├─ [1] [F1-REPEAT] Vidal Jover
+   │  ├─ NPC: ¡ CAZURRO ! Las calabazas amarillas del autor francés son verdes en la traducción de Vidal Jover. No sé que qué se refiere: ¿a si al habrerlas probado las encuentra verdes, o a que sufre un grave daltonismo o a que no sabe que "jaune" significa amarillo en francés? Te imaginas la traducción de VIDAL JOVER del Yellow submarine ¡ VEEE EEEE EEER DE ! ¡ EL SUBMARINO ES !
+   │  └─ [2] [F1-REPEAT] ¡ EL SUBMARINO ES !
+   │     └─ NPC: ¡ EL SUBMARINO ES ! Bueno, dejémonos de tonterías... → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] El incommensurable e inigualable Raul
+   │  └─ NPC: Los adjetivos son justos, eso es innegable, pero es una VERGUENZA... Sí me has oido bien y si no te lo repito una VERGUENZA EN MAYUSCULAS, es una VERGUENZA que desconozcas la poesia del inimitable Raul y la confundas con las "enjuagaduras" de un mocoso sodomita de 18 años que terminó sus dias traficando armas en Africa. → ACTION 0168 (360)
+   ├─ [1] [F1-REPEAT] Rimbaud
+   │  └─ NPC: ¡ Vaya suerte ! → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Rambo
+   │  ├─ NPC: ¿ Has dicho Rambo o Rambó ?
+   │  └─ [2] [F1-REPEAT] Rambo, el mejor marine según el coronel Truman
+   │     └─ NPC: ¡ PERO QUE PEDAZO DE ALCORNOQUE ! Creía haber entendido... → ACTION 0168 (360)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Eso es, antes de decir una tontería cierra el pico → ACTION 0169 (361)
+
+└─ ROOT #10
+   NPC: Tan rápidos como el agua del río o el viento del desierto, nuestros días huyen. Dos días, sin embargo, me dejan indiferente: el que partió ayer y el que llegará mañana"
+   ├─ [1] [F1-REPEAT] Friedrich Nietzche
+   │  └─ NPC: ¡ Que va ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Walt Whitman
+   │  └─ NPC: No, este no → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Mortadelo o Filemón
+   │  └─ NPC: ¡ Tu T.I.A. ! → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Omar Khayyan
+   │  └─ NPC: Excelente puntería → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: El no saber es lo más elevado → ACTION 0169 (361)
+
+└─ ROOT #11
+   NPC: El ser no nos ha sido dado. Somos un río sólo y dócilmente en toda forma confluimos: tanto la noche como el día, catedral o caverna, todo lo atravesamos, pues nos arrastra la sed por existir"
+   ├─ [1] [F1-REPEAT] Albert Camus
+   │  └─ NPC: ¿ Cómo ? ¿ Albert Camus ? ¿ o sea que tampoco ha leido a Camus por que esto no lo escribió él ? → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Herman Hesse
+   │  └─ NPC: ¡ Diana ! → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Kierkeegard
+   │  └─ NPC: ¡ Que va ! ¡ Que va ! Usted no lee a Kierkeegard → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Schopenhauer
+   │  └─ NPC: ¿ Pero no digas tonterias, hombre ! → ACTION 0165 (357)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Cuando no se tiene nada que decir es mejor callar → ACTION 0169 (361)
+
+└─ ROOT #12
+   NPC: Yo no sé mucho de dioses, pero creo que el río es un fuerte dios pardo -huraño, sin domar, intratable, paciente hasta cierto punto, al principio reconocido como fontera; útil, poco de fiar, como transportador de comercio, después sólo un problema con el que se enfrenta el constructor de puentes. Una vez resuelto el problema, el dios pardo queda casi olvidado por los que viven en las ciudades -siempre sin embargo, implacable. Observando sus estaciones y cóleras, destructor, recordador de lo que hombres decidieron olvidar. Sin honores, sin propiación de los adoradores de la máquina, sino esperando, observando y esperando... El río está dentro de nosotros, el mar está alrededor de nosotros"
+   ├─ [1] [F1-REPEAT] T.S. Eliot
+   │  └─ NPC: O.K. → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Stephen King
+   │  └─ NPC: ¡ Cerca ! → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Ezra Pound
+   │  └─ NPC: ¡ A sólo dos pasos ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] James Joyce
+   │  └─ NPC: ¡ Lejos ! → ACTION 0165 (357)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Pues estudia y lo sabrás → ACTION 0169 (361)
+
+└─ ROOT #13
+   NPC: Si el cuerpo se ensucia, el agua lo limpiará; si la la vestiduras están manchadas, restregándolas con sal en el río se tornarán relucientes"
+   ├─ [1] [F1-REPEAT] Richard Gere
+   │  └─ NPC: No, pero podría haberlo dicho → ACTION 0168 (360)
+   ├─ [1] [F1-REPEAT] Cindy Crawford
+   │  └─ NPC: ELLA no gasta agua de río. ELLA usa agua de rosas → ACTION 0168 (360)
+   ├─ [1] [F1-REPEAT] La Cicciolina
+   │  └─ NPC: ¡ Menuda pedazo de actriz ! He visto todas sus películas y por la noche siempre ensucio las sábanas... por la mañana tengo que ir al río a lavarlas con Wipp Express porque con sal no se van → ACTION 0168 (360)
+   ├─ [1] [F1-REPEAT] Guru Nanak
+   │  └─ NPC: Este era fácil ¿eh? → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Eso, en boca cerrada no entran moscas → ACTION 0169 (361)
+
+└─ ROOT #14
+   NPC: Del dolor de los ríos encerrados, del río de mí mismo, sin el cual nada sería, de aquello que me he propuesto hacer ilustre aunque tuviese que quedarme solo entre los hombres, de mi propia voz resonante que canta al falo que canta el canto de la procreación que canta la necesidad de niños esplendidos y en consecuencia de personas adultas espléndidas que canta el impulso muscular y la fusión"
+   ├─ [1] [F1-REPEAT] Federico García Lorca
+   │  └─ NPC: Este no. Aunque él si sabría quien fué. Hasta le dedicó una Oda al autor de estos versos → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Rafael Alberti
+   │  └─ NPC: ¡ No, hombre, no ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Pepelu
+   │  └─ NPC: No, chiquitins → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Walt Whitman
+   │  └─ NPC: ¡ Recorcholis ! ¡ Estoy impresionado ! → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: El que habla no sabe y el sabio no habla → ACTION 0169 (361)
+
+└─ ROOT #15
+   NPC: Los antiguos sabios y maestros eran prudentes como el que atraviesa un río en invierno"
+   ├─ [1] [F1-REPEAT] Alejandro Magno
+   │  └─ NPC: No → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Napoleón
+   │  └─ NPC: No, monsieur → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Lao Tse
+   │  └─ NPC: Me sorprende que lo sepas → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] La mula Francis
+   │  └─ NPC: ¡ BURRO ¡ ! Mhas matao ! → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Hay poca gente que reconozca no saber una respuesta y ese es un error. Conocer tus límites es un signo de sabiduría → ACTION 0169 (361)
+
+└─ ROOT #16
+   NPC: Si cruzáis el río encontraréis la muerte ante un tablero de ajedrez... Todos nos encontramos bajo un mismo cielo, sin unguento y sin árbol, faltan nubes y falta el resguardo de un techo. Sólo sequía castigando nuestros cuerpos, flácidas arrugas y esteril el trabajo, temblorosas manos agrietadas que se aferran al arañazo del arado, este es el lenguaje ahogado de unas manos que sufren el agotamiento de la tierra y que, dolorosamente, aceptan la ceniza como semilla"
+   ├─ [1] [F1-REPEAT] Jesucristo
+   │  └─ NPC: Alguien que le supera como poeta → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Dante
+   │  └─ NPC: Pero ¿dónde vas loco? Alguien muchísimo mejor todavía → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] El inigualable e incommensurable Raul
+   │  └─ NPC: Muy bien. no exageras con los calificativos. El me ha enseñado todo lo que sé → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Shakespeare
+   │  └─ NPC: Alguien mucho mejor todavía → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Pues estudia y lo sabrás → ACTION 0169 (361)
+
+└─ ROOT #17
+   NPC: Espera veneno del agua estancada"
+   ├─ [1] [F1-REPEAT] John Milton
+   │  └─ NPC: No, ni siquiera lo leyó → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Willian Blake
+   │  └─ NPC: Efectivamente → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] San Lucas
+   │  └─ NPC: ¡ Hasta luego, Lucas ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Sandokan
+   │  └─ NPC: Sin comentarios → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Eso es, antes de decir una tontería cierra el pico → ACTION 0169 (361)
+
+└─ ROOT #18
+   NPC: ¿Cuándo iremos más allá de las riberas y de los monte a saludar el nacimiento del trabajo nuevo, la sabiduría nueva, la huida de los tiranos y de los demonios, el fin de la superstición, a adorar -¡ antes que nadie !- la Natividad en la tierra"
+   ├─ [1] [F1-REPEAT] Paul Verlaine
+   │  └─ NPC: No → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Rimbaud
+   │  └─ NPC: Sí → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Lord Byron
+   │  └─ NPC: No, no y no → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Sylvester Stallone
+   │  └─ NPC: ¡ Esto es un infierno, Dios mío ! ¡ NO SIENTO LAS PIERNAS ! → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: El no saber es lo más elevado → ACTION 0169 (361)
+
+└─ ROOT #19
+   NPC: Toda la primavera se ha mojado de llanto porque el río la cubre de saladas raíces y las lágrimas suben al árbol lentamente hasta brillar encima como flores de hielo"
+   ├─ [1] [F1-REPEAT] Pablo Neruda
+   │  └─ NPC: Sí, fué él → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Oliverio Girondo
+   │  └─ NPC: No fué él, pero es un poeta boludo → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Mario Benedetti
+   │  └─ NPC: No fué él, pero es un poeta chevere → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Fidel Castro
+   │  └─ NPC: NO, YANKIS NO -dijo él- CUBA SI → ACTION 0165 (357)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Eso, en boca cerrada no entran moscas → ACTION 0169 (361)
+
+└─ ROOT #20
+   NPC: Cuando se ha visto la sangre, en la soledad no hay río del olvido"
+   ├─ [1] [F1-REPEAT] Rafael Tevoyadarunalechequetetevoyapartirlacaraytevanatenerquehacertelacirugia
+   │  └─ NPC: ¡ Bien dicho ! → ACTION 016A (362)
+   ├─ [1] [F1-REPEAT] Miguel Hernández
+   │  └─ NPC: No aunque podría haberlo dicho → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Ernest Heminguey
+   │  └─ NPC: ¡ Guay tu inglés ! Pero no → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Rafael Alberti
+   │  └─ NPC: ¡ Muy bien ! → ACTION 0167 (359)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Hay poca gente que reconozca no saber una respuesta y ese es un error. Conocer tus límites es un signo de sabiduría → ACTION 0169 (361)
+
+└─ ROOT #21
+   NPC: Enmedio de la calle de la ciudad y a uno y otro lado del río, está el árbol de la vida, que produce doce frutos dando cada més su fruto; y las hojas del árbol eran para la salud de las naciones
+   ├─ [1] [F1-REPEAT] Dante Alighieri
+   │  └─ NPC: Te equivocas → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] San Juan
+   │  └─ NPC: ¡ Dios mío ! ¡ Has acertado ! → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Homero
+   │  └─ NPC: ¡ Oh, no ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Homer Simpson
+   │  └─ NPC: ¡ Roskys ! → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: No se preocupe, yo a su edad tampoco lo sabía → ACTION 0169 (361)
+
+└─ ROOT #22
+   NPC: Los no sabios, ciertamente, el pueblo son como el río sobre el que avanza flotando una barca: y en la barca se asientan solemnes y embozadas las valoraciones"
+   ├─ [1] [F1-REPEAT] Voltaire
+   │  └─ NPC: No → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Friedrich Nietzche
+   │  └─ NPC: Sí, muy bien, fué él. → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Novalis
+   │  └─ NPC: No vale → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] R2D2
+   │  └─ NPC: bip bip birtshf tisidpi ppiidgiiiiig ihjgidii bip → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: El que sabe que no sabe, es sabio. El que no sabe que no sabe es feliz. Y el que no sabe que sabe es un ignorante → ACTION 0169 (361)
+
+└─ ROOT #23
+   NPC: Pocos entre los seres humanos son los que cruzan a la otra orilla. La mayoría solamente suben y bajan por la misma orilla"
+   ├─ [1] [F1-REPEAT] Epicuro
+   │  └─ NPC: No das ni torta → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Buda
+   │  └─ NPC: ¡ Vaya ! ¡ Acertaste ! → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Antonio Gala
+   │  └─ NPC: Creo que no has entendido bien la frase → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Pepe Navarro
+   │  └─ NPC: Te confundes, este río no es el Mississipi → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: El no saber es lo más elevado → ACTION 0169 (361)
+
+└─ ROOT #24
+   NPC: Tal como avanzan las olas hacia la pedregosa orilla, así nuestros minutos se apresuran hacia su fin"
+   ├─ [1] [F1-REPEAT] Séneca
+   │  └─ NPC: ¡ Ni Séneca ni Kant ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] William B. Yeats
+   │  └─ NPC: No → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Mishima
+   │  └─ NPC: ¡ Lástima ! No fué él → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] William Shakespeare
+   │  └─ NPC: Muy bien.
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: No se preocupe el mayor sabio ya dijo que sólo sabía que no sabía nada → ACTION 0169 (361)
+
+└─ ROOT #25
+   NPC: Eres tú esos grandes ríos y esos tranquilos canales. Esos enormes navíos de carga, totalmente cargados de riquezas, y de donde suben los monótonos cantos de la maniobra, son mis pensamientos que duermen o que ruedan sobre tu seno. Tus los conduces hacia el mar, que es lo Infinito..."
+   ├─ [1] [F1-REPEAT] Jean Paul Gautier
+   │  └─ NPC: ¡ CALLA BURRO ! → ACTION 0166 (358)
+   ├─ [1] [F1-REPEAT] Théophile Gautier
+   │  └─ NPC: ¡ Eso hubiese querido él ! → ACTION 0165 (357)
+   ├─ [1] [F1-REPEAT] Charles Baudelaire
+   │  └─ NPC: Muy bien, lo has dicho bien → ACTION 0167 (359)
+   ├─ [1] [F1-REPEAT] Juan Carlos I
+   │  └─ NPC: No, él puede haberlo leido pero no lo ha escrito → ACTION 0166 (358)
+   └─ [1] [F1-REPEAT] No sé...
+      └─ NPC: Eso, en boca cerrada no entran moscas → ACTION 0169 (361)
+
+└─ ROOT #26
+   NPC: ¿ Qué pretende ?
+   ├─ [1] [F1-REPEAT] Bueno ... Sólo quería quedarme con el girasol. Como recuerdo
+   │  ├─ NPC: Pues ya ve ve que recuerdo más triste, un girasol arrancado de cuajo de la madre tierra y separado de sus raices que son lo que le da fuerza y vigor. Un recuerdo así va marchitándose día a día, secándose como la garganta del moribundo y cuya imagen acaba convirtiéndose en la metáfora de un presente agónico.
+   │  ├─ [2] [FB-ONCE] No se preocupe, lo pondré en agua
+   │  │  ├─ NPC: ¿ En vaso o en jarrón ?
+   │  │  ├─ [3] [FB-ONCE] En vaso
+   │  │  │  └─ NPC: ¡ Eso es alargar lentamente su agonía ! [F0-GO_BACK]
+   │  │  ├─ [3] [FB-ONCE] En jarrón
+   │  │  │  └─ NPC: ¡ Eso es alargar lentamente su agonía ! [F0-GO_BACK]
+   │  │  └─ [3] [FB-ONCE] En el florero de tu abuela
+   │  │     ├─ NPC: ¿ A que no lo vuelve a decir ?
+   │  │     ├─ [4] [FB-ONCE] Le pido disculpas, he sido un poco grosero
+   │  │     │  └─ NPC: Acepto sus disculpas, no soy rencoroso
+   │  │     └─ [4] [FB-ONCE] En el florero de tu abuela, de tu madre y de todo tu árbol genealógico
+   │  │        └─ NPC: ¡ A MI LA LEGION ! ¡ POLICIA ! ¡ POLICIA ! → ACTION 016B (363)
+   │  ├─ [2] [FB-ONCE] Es que lo necesito para hacer un viaje muy largo
+   │  │  ├─ NPC: El único viaje que merece realmente la pena es el viaje interior hacia uno mismo. Quien practica el no-obrar, y se ocupa de la no ocupación, encuentra sabor en lo insípido, ve lo que es grande en lo pequeño.
+   │  │  ├─ [3] [FB-ONCE] Es que me gustaría regalárselo a mi amada
+   │  │  │  ├─ NPC: ¿ Y por qué no le regalas una bolsita de arena del Nilo ? ¿ Sabías que en la antiguedad se utilizaba como cosmético ?
+   │  │  │  └─ [4] [FB-ONCE] Sí... ya... pero no le quedaban
+   │  │  │     ├─ NPC: ¿ Y unos amuletos de la suerte ? Traen fortuna en el juego y en el amor
+   │  │  │     └─ [5] [FB-ONCE] Tampoco
+   │  │  │        ├─ NPC: ¿ Y unas babuchas de diseño ?
+   │  │  │        └─ [6] [FB-ONCE] Tampoco
+   │  │  │           ├─ NPC: ¿ Y unos souvenirs de Egipto ?
+   │  │  │           └─ [7] [FB-ONCE] Tampoco
+   │  │  │              ├─ NPC: ¿ Y unas naranjas ? Creo que hay un comerciante que las tiene valencianas: son las mejores.
+   │  │  │              └─ [8] [FB-ONCE] Es que el girasol es más romántico
+   │  │  │                 ├─ NPC: ¿ Romántico un girasol ? ¡ Tú estás mal de la cabeza ! Una rosa es romántica, un lirio, pero un girasol. Creo que sufres una paranoia girasoliense. Deberías ir al psiquiatra. Aquí tienes la tarjeta de un primo mío que no hace mucho curó un caso muy parecido al tuyo, sólo que éste en vez de obsesionarse con los girasoles lo estaba de las calabazas. Ha sido un caso muy famoso. Ahora está en la cárcel...
+   │  │  │                 └─ [9] [FB-ONCE] Gracias pero ya lo tengo
+   │  │  │                    └─ NPC: ¡Ah, claro! Debes de estar en tratamiento. La verdad es que tienes pinta de estar un poco colgado... oye, perdona pero tengo que levitar un rato. Ya nos veremos.
+   │  │  ├─ [3] [F1-REPEAT] No me interesa. Yo necesito otro tipo de emociones
+   │  │  │  ├─ NPC: Menudo elemento debe estar hecho usted ... pero ... en fin, me ha caido simpático. Es como mi otra cara de la moneda. Hagamos un trato: Si es capaz de acertar mi famoso acertijo, yo le dejo coger el girasol
+   │  │  │  ├─ [4] [F1-REPEAT] De acuerdo
+   │  │  │  │  └─ NPC: ¡ Vamos allá ! Pero le aviso el girasol se lo lleva usted en una maceta → ACTION 016F (367)
+   │  │  │  └─ [4] [FB-ONCE] No me gustan los acertijos, las cosas cuanto más claras mejor
+   │  │  │     ├─ NPC: Eso, y el chocolate espeso. Si no acierta el acertijo no hay girasol
+   │  │  │     ├─ [5] [FB-ONCE] Lo cogeré, así, sin más, a la fuerza
+   │  │  │     │  ├─ NPC: No podrá. mi fuerza mental es muy superior a sus músculos
+   │  │  │     │  ├─ [6] [FB-ONCE] ¿ Y si le doy un garrotazo en la cabeza, qué ?
+   │  │  │     │  │  └─ NPC: ¡ A MI LA LEGIoN ! ¡ POLICIA ! ¡ POLICIA ! → ACTION 016B (363)
+   │  │  │     │  └─ [6] [FB-ONCE] De acuerdo. A ver ese acertijo...
+   │  │  │     │     └─ NPC: ¡ Vamos allá ! Pero le aviso el girasol se lo lleva usted en una maceta → ACTION 016F (367)
+   │  │  │     └─ [5] [FB-ONCE] Bueno, vale. Dígame el acertijo...
+   │  │  │        └─ NPC: ¡ Vamos allá ! Pero le aviso el girasol se lo lleva usted en una maceta → ACTION 016F (367)
+   │  │  ├─ [3] [FB-ONCE] Está insinuando que me calle
+   │  │  │  └─ NPC: Sí, hazme el favor, es que me duele la cabeza
+   │  │  └─ [3] [FB-ONCE] Yo prefiero viajar a la costa: las playas, el surf, el rock, las chicas...
+   │  │     ├─ NPC: ¿ Ha estado usted en la playa de Nules ?
+   │  │     └─ [4] [FB-ONCE] Sí, es inmejorable
+   │  │        ├─ NPC: ¿ Y en Benidorm?
+   │  │        └─ [5] [FB-ONCE] También
+   │  │           ├─ NPC: ¿ Y cual es mejor?
+   │  │           ├─ [6] [FB-ONCE] Es esto el famoso acertijo
+   │  │           │  ├─ NPC: No, simple curiosidad. Es que estoy pensado en tomarme unas vacaciones.
+   │  │           │  ├─ [7] [FB-ONCE] Benidorm, yo suelo veranear allí
+   │  │           │  │  └─ NPC: En ese caso me acercaré a Nules
+   │  │           │  └─ [7] [FB-ONCE] Nules, yo suelo veranear allí y comprar de todo, droguería perfumería, alimentación, juguetes, souvenirs en el ¡¡¡ SUPERMERCADO LA COLMA !!! porque te ofrecen la mejor relación calidad-precio-servicio
+   │  │           │     ├─ NPC: En ese caso me acercaré a Benidorm. ¿ Tiene allí sucursal EL SUPERMERCADO LA COLMA ?
+   │  │           │     └─ [8] [FB-ONCE] No
+   │  │           │        ├─ NPC: Que lástima... aunque siempre puedo hacer mis compras por teléfono. ¿ Sabe usted el teléfono ?
+   │  │           │        └─ [9] [FB-ONCE] Sí, casualmente llevo aquí mi ultimo ticket de compra
+   │  │           │           └─ NPC: A ver... SUPERMERCADO LA COLMA, Calle Purisima, número 3, Código postal 12.520, NULES (Spain) Teléfono 670257 y Avenida Plana Baixa, número 36, Código postal 12.520, PLAYA DE NULES (Spain) Teléfono 674051
+   │  │           └─ [6] [FB-ONCE] ¿ Y usted sabio que opina ?
+   │  │              └─ NPC: Hombre por las referencias que tengo y teniendo en cuenta que el programador informático, gracias al cual existo, es de Benidorm y considerando que el guionista, gracias al cual pienso y poseo el don de la palabra, es de Nules, prefiero no pronunciarme como dice el TAO TE KING. [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] No veo ningún letrero que lo prohiba
+   │  │  └─ NPC: Tampoco lleva usted escrito ningún letrero que prohiba arrancarle la cabeza
+   │  └─ [2] [FB-ONCE] Se lo compro
+   │     ├─ NPC: Ustedes los turistas creen que todo pueden poseerlo con el dinero... pues hay cosas que no tienen precio
+   │     ├─ [3] [FB-ONCE] ¿ Y que me dice de la costumbre del regateo ?
+   │     │  └─ NPC: Eso es en Brasil y Argentina: Maradona, Romario, Bebeto, Viola ...
+   │     └─ [3] [FB-ONCE] Le doy todo lo que llevo en mi bolsillo
+   │        └─ NPC: No deseo lo que contiene su bolsillo así como ningún bien difícil de alcanzar. Solo deseo paz y quietud
+   ├─ [1] [FB-ONCE] Bueno... Sólo quería quedarme con el girasol para hacer pipas
+   │  └─ NPC: Si quiere pipas cómprelas en el bazar
+   └─ [1] [FB-ONCE] Perdón... ¿ es suyo ?
+      ├─ NPC: Nada es de nadie y todo es de todos. Los budistas de agua dulce estamos en contra de la propiedad privada
+      ├─ [2] [FB-ONCE] Entonces, lo cogo...
+      │  └─ NPC: No es posible porque entonces sólo sería suyo [F0-GO_BACK]
+      └─ [2] [FB-ONCE] Entonces, lo dejo...
+         └─ NPC: Cuando quiera puede venir a verlo
+
+└─ ROOT #27
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Si
+   │  └─ NPC: No es correcto → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] No
+      └─ NPC: No es correcto → ACTION 016C (364)
+
+└─ ROOT #28
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] A veces
+   │  └─ NPC: Frío frío → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] No siempre
+      └─ NPC: Frío frío → ACTION 016C (364)
+
+└─ ROOT #29
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Según lo que se entienda por verdad
+   │  └─ NPC: ¡ Que ocurrencia ! → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] ¿Que es ser de Egipto? ¿nacido? ¿residente? ¿inmigrado? ¿visitante?
+      └─ NPC: ¡ No me lie ! Es mucho más sencillo que eso → ACTION 016C (364)
+
+└─ ROOT #30
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] No necesariamente
+   │  └─ NPC: ¡ Que va ! → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] ¿ Y por que habría de mentir ?
+      └─ NPC: No vale contestar con una pregunta → ACTION 016C (364)
+
+└─ ROOT #31
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Siempre y cuando no esté cruzando los dedos
+   │  └─ NPC: ¡ Vaya pedazo de animal ! → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Siempre y cuando ((a-b)/h) = p
+      └─ NPC: No es exactamente eso → ACTION 016C (364)
+
+└─ ROOT #32
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Los budistas de agua dulce no pueden mentir
+   │  └─ NPC: Poder, lo que se dice poder podemos lo que ocurre es que no debemos, pero... podríamos hacerlo → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Eso depende de si al decirlo te guiña un ojo
+      └─ NPC: ¡ Menuda tontería ! → ACTION 016C (364)
+
+└─ ROOT #33
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Ahora mismo no, pero mañana ... ¿ Quíen sabe ?
+   │  └─ NPC: Pues no → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Claro que sí, pero mañana ... ¿ Quíen sabe ?
+      └─ NPC: No → ACTION 016C (364)
+
+└─ ROOT #34
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Pues vaya pueblo más embustero, ¿ no ?
+   │  └─ NPC: No es esa la respuesta correcta → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Me parece injusto y pretencioso tachar a todos los egipcios de mentirosos
+      └─ NPC: No es esa la respuesta correcta → ACTION 016C (364)
+
+└─ ROOT #35
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Lo que a uno les parece cierto para otros es un embuste
+   │  └─ NPC: Una sentencia relativista, pero no esa es la solución al acertijo → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Pues ahora mismo no me acuerdo
+      └─ NPC: No → ACTION 016C (364)
+
+└─ ROOT #36
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] La verdad nunca puede ser dicha de modo que sea comprendida sin ser creída
+   │  └─ NPC: ¡ Vaya ! William Blake, pero no es eso → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] No saber lo que es saber, es padecer
+      └─ NPC: ¡ Hombre ! Lao Tsé, pero no es eso → ACTION 016C (364)
+
+└─ ROOT #37
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Las palabras de verdad son enrevesadas
+   │  └─ NPC: Eso lo dijo Lao Tsé, pero no se refería a este acertijo → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] La verdad nos hará libres
+      └─ NPC: No → ACTION 016C (364)
+
+└─ ROOT #38
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Todo creible es imagen de verdad
+   │  └─ NPC: Una de los proverbios del infierno de William Blake, pero con eso no me responde al acertijo → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Todo es mentira
+      └─ NPC: No → ACTION 016C (364)
+
+└─ ROOT #39
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Las palabras que son verdad no son bellas
+   │  └─ NPC: ¡ Vaya ! Veo que se conoce los provervios del infierno de William Blake, pero con eso no me da la respuesta correcta → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Las palabras que son bellas no son verdad
+      └─ NPC: No → ACTION 016C (364)
+
+└─ ROOT #40
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] La verdad no existe
+   │  └─ NPC: ¡ Que nihilista ! → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Bueno... esto... si... pero ... no
+      └─ NPC: No → ACTION 016C (364)
+
+└─ ROOT #41
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Quien tiene boca se equivoca
+   │  └─ NPC: Y usted se acaba de equivocar → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] Usted no puede ser egipcio con lo mal que habla de ellos
+      └─ NPC: No → ACTION 016C (364)
+
+└─ ROOT #42
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Si se olvida el saber y la sensatez florece la mentira
+   │  └─ NPC: ¡ Hombre ! Lao Tsé, pero no es correcto → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] ¡ Váyase a comer pipas !. ¡ Estoy harto de este acertijo ridículo !
+      └─ NPC: ¡ Que poca paciencia ! → ACTION 016C (364)
+
+└─ ROOT #43
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Eso no se puede saber sin tener en cuenta su signo zodiacal
+   │  └─ NPC: No es correcto → ACTION 016C (364)
+   └─ [1] [F1-REPEAT] ¡ Piérdete en el desierto ! ¡ Estoy harto de este acertijo ridículo !
+      └─ NPC: Los budistas del desierto son otra confesión. Yo contemplo el fluir del río → ACTION 016C (364)
+
+└─ ROOT #44
+   NPC: Si todos los Egipcios mienten, y yo soy Egipcio, ¿ Estoy diciendo la verdad ?
+   ├─ [1] [F1-REPEAT] Miente, pero no es egipcio
+   │  ├─ NPC: ¿ Como ? No le entiendo
+   │  └─ [2] [FB-ONCE] Es evidente. Si todos los egipcios mienten y usted es egipcio, usted no puede decirme que es egipcio porque eso sería decir la verdad y todos los egipcios mienten. Pero, ¿ por qué se han de aceptar las dos premisas del enunciado? Supongamos que usted no es egipcio... entonces está usted diciendo una mentira, pero sólo en parte porque lo de que los egipcios mientan siempre es imposible de verificar
+   │     └─ NPC: ¡ Vaya !. ¡ Que listo se ha vuelto usted !. Adelante, coja mi girasol, se lo ha ganado → ACTION 016D (365)
+   ├─ [1] [F1-REPEAT] Entonces, usted sería la excepción que confirma la regla
+   │  ├─ NPC: ¿ Cómo ? ¿ Que significa eso ?
+   │  └─ [2] [FB-ONCE] Muy sencillo, si aceptamos la dos premisas nos encontramos ante una paradoja, pero como toda premisa tiene su excepción entonces usted sería el egipcio que no miente
+   │     └─ NPC: ¡ Eso es !. ¡ Que listo se ha vuelto usted !. Adelante, coja mi girasol, se lo ha ganado → ACTION 016D (365)
+   └─ [1] [F1-REPEAT] No Existe respuesta a esa pregunta. Es una paradoja
+      └─ NPC: ¡ Eso es !. ¡ Que listo se ha vuelto usted !. Adelante, coja mi girasol, se lo ha ganado → ACTION 016D (365)
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0165 (357)  |  After: Todo lo contrario.
+  → ACTION 0166 (358)  |  After: ¡ PERO QUE BURRO !
+  → ACTION 0167 (359)  |  After: Muy bien
+  → ACTION 0168 (360)  |  After: Los adjetivos son justos, eso es innegable, pero e
+  → ACTION 0169 (361)  |  After: El que sabe que no sabe, es sabio. El que no sabe 
+  → ACTION 016A (362)  |  After: ¡ Bien dicho !
+  → ACTION 016B (363)  |  After: ¡ A MI LA LEGION ! ¡ POLICIA ! ¡ POLICIA !
+  → ACTION 016C (364)  |  After: No es correcto
+  → ACTION 016D (365)  |  After: ¡ Vaya !. ¡ Que listo se ha vuelto usted !. Adelan
+  → ACTION 016E (366)  |  After: Tal vez tengas razón, pero ándate con cuidado por 
+  → ACTION 016F (367)  |  After: ¡ Vamos allá ! Pero le aviso el girasol se lo llev
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

@@ -1,0 +1,80 @@
+================================================================================
+ROOM 2 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: No está nada mal. Me pregunto cuanto costará
+  #2: -
+  #3: Ese es Johnny. Se pasa el dia limpiando
+  #4: -
+  #5: Inserte su tarjeta en la ranura, y ya verá que divertido ...
+  #6: Mc Dowells (R). Las hamburguesas mas aceitosas del barrio
+  #7: Urticarius Tenax". No se para que la ponen aqui
+  #8: Urticarius Rex". ¿ Que hace aquí ?
+  #9: ¿ Y si apretara aquí ?
+  #10: Yo apretaría a ver que pasa
+
+================================================================================
+
+└─ ROOT
+   NPC: ¿ Te apecete pasar un buen rato, guapo ? (root #1)
+   ├─ [1] [FB-ONCE] No se, ¿ Cuanto cobras ?
+   │  ├─ NPC: Completo, 25000
+   │  ├─ [None] [AUTO-DIALOGUE] ¿ No me puedes hacer una tarifa especial ?. Estoy muy desesperado
+   │  ├─ NPC: Bueno ... Si prescindimos de la lencería sexy, podría dejártelo en 20000
+   │  └─ [3] [FB-ONCE] Todavía es muy caro para mi. ¿ Que más me puedes rebajar ?
+   │     ├─ NPC: Eliminando el calentamiento: 15000
+   │     ├─ [4] [FB-ONCE] Lo siento. Todavía no llego
+   │     │  ├─ NPC: ¿ Que tal un francés ?. Solo 10000
+   │     │  ├─ [5] [FB-ONCE] Aún es mucho para mí
+   │     │  │  ├─ NPC: Deprisa y con la luz apagada: 5000
+   │     │  │  ├─ [6] [FB-ONCE] Solo dispongo de 4000
+   │     │  │  │  ├─ NPC: Venga, de acuerdo. Pero tu pones los condones
+   │     │  │  │  ├─ [7] [FB-ONCE] Estooo ... Ahora mismo no tengo. Voy a buscarlos
+   │     │  │  │  │  ├─ NPC: No vuelvas sin ellos → ACTION 0148
+   │     │  │  │  │  └─ [7] [FB-ONCE] ¿ Los con qué ?
+   │     │  │  │  │     ├─ NPC: ¿Los con qué? Pero tu no sabes que en 1981 se identificó a cinco personas enfermas con una patología hasta entonces desconocida que era de origen vírico según las tesis oficiales (aunque yo me reservo mi opinión: después si te interesa te la doy) y que se la denominó con el nombre de SIDA. ¿ Tus padres no te han hablado del SIDA y de preservativos ?. ¿ En la escuela tampoco ?
+   │     │  │  │  │     ├─ [None] [AUTO-DIALOGUE] Pues no
+   │     │  │  │  │     ├─ NPC: Entonces, ¿ tu no sabes que el 23 de abril de 1984 el Dr Gallo anunció en una rueda de prensa el descubrimiento del retrovirus productor del SIDA al que llamó HTLV-III, pero que en realidad el auténtico descubridor fue el Dr Montaigner, director del equipo de investigación del Instituto Pasteur, que le había pasado al Dr Gallo unas fotografias de un virus que habia llamado LAV y que después serían usurpadas por el Dr Gallo para hacer pasar el descubrimiento como propio, hechos por los que el Estado francés demandó al gobierno de los Estados Unidos reclamando el derecho de la patente y el mérito del descubrimiento del retrovirus, al que se rebautizó finalmente con el ahora tan popular nombre de VIH, es decir, Virus de la Immunodeficiencia Humana ?.
+   │     │  │  │  │     ├─ [None] [AUTO-DIALOGUE] ¿ Eso es lo de la bomba bacteriológica de Mururoa ?
+   │     │  │  │  │     ├─ NPC: ¡ Ignorante !. Las bombas que han estallado en el atolón de Mururoa no son bacteriológicas, sino atómicas, producidas por la reacción en cadena de la fisión del átomo, como se deduce de los trabajos de físicos de la talla de Einstein y Openheimer (entre otros). Pero no quiero aburrirte con esto ...
+   │     │  │  │  │     ├─ [None] [AUTO-DIALOGUE] Es que todavía tengo pendiente la física de quinto...
+   │     │  │  │  │     └─ NPC: De lo que yo te hablaba es de un virus que como se explica en todas las campañas informativas sobre el SIDA es de transmisión sexual o sanguínea. En éstas, se habla de grupos de riesgo, pero para mí eso en el fondo esconde conductas estigmatizantes de ciertos comportamientos sociales como son la prostitución, los drogadictos y los homosexuales. No obstante, mas vale prevenir que curar. Sobretodo en este caso en el que se habla de la incurabilidad de la enfermedad, y los científicos no se acaban de poner de acuerdo en el tratamiento. Así que "PONTELO" → ACTION 0148
+   │     │  │  │  └─ [6] [FB-ONCE] Para no verte, prefiero no pagar
+   │     │  │  │     └─ NPC: Tu te lo pierdes
+   │     │  │  └─ [5] [FB-ONCE] Es que no se idiomas
+   │     │  │     └─ NPC: Griego si que sabrás, maripili
+   │     │  └─ [4] [FB-ONCE] Acabo de acordarme que pertenezco a un club de castidad
+   │     │     └─ NPC: Sí claro, con esa cara de vicioso. ¡ Ala, pos a misa !
+   │     └─ [3] [FB-ONCE] Yo no uso ese tipo de ropa, ¡ eh !
+   │        └─ NPC: Pues si no te pones ese tipo de ropa llevarás los pantalones cagados
+   └─ [1] [FB-ONCE] No puedo. Estoy buscando a una princesa
+      └─ NPC: Sí, es la típica excusa. ¡ MARICON !
+
+└─ ROOT
+   NPC: ¿ Has conseguido los condones ?
+   ├─ [1] [F1-REPEAT] Estoy en ello
+   │  └─ NPC: Así me gusta: que seas perseverante
+   └─ [1] [F1-REPEAT] No los hay de mi tamaño, nena
+      └─ NPC: ¿ Tan pequeña la tienes ?. ¡ Eh tu, mirón ! Sí tú cabezón, el de tres dimensiones. Te excita mirar ¿ verdad ?. Estás aquí espiándonos para ver un poco de morbo. Te pongo cachondo, estoy buena ¿eh? Pues si quieres verme en pelotas, como este pringao no consigue condones, pulsa 250 veces la tecla x → ACTION 0149
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0148 (328)  |  After: No vuelvas sin ellos
+  → ACTION 0149 (329)  |  After: ¿ Tan pequeña la tienes ?. ¡ Eh tu, mirón ! Sí tú 
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

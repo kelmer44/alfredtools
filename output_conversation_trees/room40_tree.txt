@@ -1,0 +1,183 @@
+================================================================================
+ROOM 40 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: -
+  #3: -
+  #4: -
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Así que ... ¿ Otro dominguero que se ha colado en nuestra época ? ¿ Viene en busca de aventuras, quizás ? Ya he oido eso mil veces: Que si una princesa. Que si un tesoro fabuloso. Que si la receta mística de váyase Vd a saber que extravagancias. Y para todo eso vienen aquí. ¡ Como si no hubiera otro sitio ! ¡ Mi sagrada sala de audiencias parece un rastro ! Pero dígame, hoy me encuentro amable: ¿ Que le trae por aquí ?
+   ├─ [1] [FB-ONCE] Yo... Tuve un sueño en el que una princesa egipcia me pedía ayuda...
+   │  ├─ NPC: ¿ Que le decía yo ?. ¡ Y claro ! ¡ Vd viene !. ¡ Sin más ni más !. ¿ Quien le dice a Vd que nuestro sistema de gobierno no sea una república, sin reyes ni princesas, ni perro que los ladre ? ¡ Hala ! Vd se levanta un dia, y decide que va a viajar al Egipto Antiguo en busca de princesas cautivas. Dígame: ¿ No debería ir mejor al psicólogo ?
+   │  ├─ [2] [FB-ONCE] ¡ No se haga el gracioso ! ¡ Se quien es Vd ! A quien vengo a rescatar es: ¡¡¡ A SU HIJA !!!
+   │  │  ├─ NPC: ¡ Vaya, vaya ! ¡ Un héroe ! ¡ Que valiente ! Pues fíjese lo que son las paradojas del destino: Has venido a salvarla, y yo te castigo a trabajar en la terminación de su pirámide. Ja, ja, ja, ja, ja
+   │  │  ├─ [3] [FB-ONCE] Eso no es una paradoja, es una putada
+   │  │  │  └─ NPC: Pues eso, una putada ¡ Guardia ! Llévaoslo a la pirámide
+   │  │  ├─ [3] [FB-ONCE] ¡ Cobarde ! ¡ Ya ajustaremos cuentas !
+   │  │  │  └─ NPC: ¡ Guardia ! Llévaoslo a la pirámide
+   │  │  ├─ [3] [FB-ONCE] Usted no tiene corazón ni higado
+   │  │  │  └─ NPC: ¡ Guardia ! Llévaoslo a la pirámide
+   │  │  ├─ [3] [FB-ONCE] ¿ No le intereso como yerno ?
+   │  │  │  └─ NPC: NI pensarlo ¡ Guardia ! Lléveselo a la pirámide
+   │  │  └─ [3] [FB-ONCE] ¡ Que va ! Creo que ha habido una confusión... yo paso de princesas: soy homosexual
+   │  │     ├─ NPC: Uy...
+   │  │     └─ [4] [FB-ONCE] A mi lo que me van son los faraones
+   │  │        └─ NPC: ¡ Guardia ! Lleváoslo. No eres mi tipo.
+   │  └─ [2] [FB-ONCE] No gracias, ya conozco uno muy bueno
+   │     ├─ NPC: O sea que reconoces que estás un poco loco... pues no debe ser muy bueno tu psicólogo porque todavía está usted endemoniado.
+   │     ├─ [3] [FB-ONCE] ¿ Endemoniado ? ¿ por qué dice eso ?
+   │     │  └─ NPC: Es evidente. Es más, salta a la vista: tienes los cabellos rojos. [F0-GO_BACK]
+   │     └─ [3] [FB-ONCE] Yo no reconozco nada, sólo he venido a por su hija... me lo pide el cuerpo
+   │        ├─ NPC: ¡ Oh, Ra mío ! ¡ Que poca verguenza ! ¿ Cómo se atreve ? ¡ Con la cruz que tengo que llevar por culpa de las ligerezas de mi hija ! Ya tendrá usted hijas, ya. De joven todo es muy bonito, pero ¿ y la responsabilidad ? ¿ y el respeto al orden establecido ? ¿ y la salud ? ¿ y la familía ?
+   │        ├─ [4] [FB-ONCE] ¿ La família ? Bien, gracias.
+   │        │  └─ NPC: ¿ Seguro ? [F0-GO_BACK]
+   │        └─ [4] [FB-ONCE] Bueno... mi padre hace unos años desapareció misteriosamente
+   │           ├─ NPC: Lo comprendo
+   │           ├─ [5] [FB-ONCE] Gracias
+   │           │  └─ NPC: No, quería decir que comprendro que tu padre se fuese de casa. [F0-GO_BACK]
+   │           ├─ [5] [FB-ONCE] Muchas gracias
+   │           │  └─ NPC: No, quería decir que comprendro que tu padre se fuese de casa. [F0-GO_BACK]
+   │           └─ [5] [FB-ONCE] Muchísimas gracias
+   │              └─ NPC: No, quería decir que comprendro que tu padre se fuese de casa. [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] Estimado faraón, ¿ sabe usted que tiene una hija preciosa ?
+   │  ├─ NPC: Vaya, muchas gracias
+   │  ├─ [2] [FB-ONCE] Me gustaría poder admirar la belleza de su hija en un cuarto a oscuras
+   │  │  ├─ NPC: ¡ Será ASQUEROSO, GUARRO, MARRANO, CERDO, PUERCO !
+   │  │  ├─ [3] [FB-ONCE] Justo lo que anda buscando su hija
+   │  │  │  ├─ NPC: ¡ Calla esclavo ! ¿ Cómo te atreves ?
+   │  │  │  ├─ [4] [FB-ONCE] Si no la tuviese encerrada no estaría tan ansiosa
+   │  │  │  │  ├─ NPC: Tienes razón, pero entiéndeme, la hija de un faraón no puede ir pendoneando por ahí como una cualquiera. Ya no sé que hacer con ella...
+   │  │  │  │  ├─ [5] [FB-ONCE] Déjela salir
+   │  │  │  │  │  ├─ NPC: No es posible.
+   │  │  │  │  │  ├─ [6] [FB-ONCE] Déjemela a mi, ¡ papá !
+   │  │  │  │  │  │  ├─ NPC: ¿ Cómo ? ¿ He oido lo que creo que he oido ?
+   │  │  │  │  │  │  ├─ [7] [FB-ONCE] 1Sí, papá, ¿ qué pasa ? ¿ No me puedo considerar de la família ?
+   │  │  │  │  │  │  │  └─ NPC: ¿ Que qué pasa ? Ahora verás... vas a trabajar como un esclavo, tú que venías a salvarla, en en la terminación de la pirámide que la mantiene encerrada. ¡ Por chulo ! Ja, ja, ja, ja, ja. ¡ Guardia, lleváoslo ! Ja, ja, ja, ja, ja...
+   │  │  │  │  │  │  └─ [7] [FB-ONCE] 3No, que va lo de papá debe de haber sido una alucinación suya
+   │  │  │  │  │  │     ├─ NPC: ¿ Insinúas que estoy loco ?
+   │  │  │  │  │  │     ├─ [8] [FB-ONCE] 5Lo insinúo, pero no lo afirmo
+   │  │  │  │  │  │     │  ├─ NPC: Eso es una paradoja
+   │  │  │  │  │  │     │  └─ [9] [FB-ONCE] 7No, sólo es un matiz
+   │  │  │  │  │  │     │     └─ NPC: ¡ Este turista me ataca los nervios ! ¡ ARRRGHHH ! ¡ GUARDIA ! ¡ GUARDIA ! ¡ Que se lo lleven de mi presencia ! Lo condeno a trabajar como esclavo hasta que reviente en la terminación de la pirámide
+   │  │  │  │  │  │     ├─ [8] [FB-ONCE] 9Lo insinué, pero no lo mantengo
+   │  │  │  │  │  │     │  ├─ NPC: Eso es una paradoja
+   │  │  │  │  │  │     │  └─ [9] [FB-ONCE] ;No, sólo me retracto
+   │  │  │  │  │  │     │     └─ NPC: ¡ Este turista me ataca los nervios ! ¡ ARRRGHHH ! ¡ Tiene respuesta para todo ! ¡ GUARDIA ! ¡ GUARDIA ! ¡ Que se lo lleven de mi presencia ! Lo condeno a trabajar como esclavo hasta que reviente en la terminación de la pirámide
+   │  │  │  │  │  │     ├─ [8] [FB-ONCE] =Que va ¿ Está loco ?
+   │  │  │  │  │  │     │  ├─ NPC: Me preguntas si estoy loco y niegas que esté loco ¿ Qué te crees que soy tonto ?
+   │  │  │  │  │  │     │  └─ [9] [FB-ONCE] ?Eso se dice de los faraones, que son todos un atajo de imbéciles
+   │  │  │  │  │  │     │     └─ NPC: ¡ Este turista me ataca la autoestima ! ¡ ARRRGHHH ! ¡ Tiene respuesta para todo ! ¡ GUARDIA ! ¡ GUARDIA ! ¡ Que se lo lleven de mi presencia ! Lo condeno a trabajar como esclavo hasta que reviente en la terminación de la pirámide
+   │  │  │  │  │  │     ├─ [8] [FB-ONCE] No me atrevo
+   │  │  │  │  │  │     │  └─ NPC: Y eso que todavía no te hemos castrado [F0-GO_BACK]
+   │  │  │  │  │  │     └─ [8] [FB-ONCE] CNo he insinuado nada, faraón
+   │  │  │  │  │  │        └─ NPC: ¿ Qué te crees, qué soy imbecil ? Sólo era una pregunta retórica. Te he entendido perfectamente. Ahora como ya eres un cobarde no creo que te haga falta que te castremos, pero por embustero te condeno a trabajar en la terminación de la pirámide que mantiene encerrada a la princesa que tu pretendías rescatar. Ja, ja, ja, ja, ja, ja. ¡ Guardia, lleváoslo !
+   │  │  │  │  │  └─ [6] [FB-ONCE] E¿ Por qué ?
+   │  │  │  │  │     └─ NPC: ¿ Por qué entonces que haría con la pirámide ? Ya tengo contratadas las obras, la mano de obra, los esclavos... Había pensado tener encerrada a mi hija en ella. [F0-GO_BACK]
+   │  │  │  │  ├─ [5] [FB-ONCE] GDeje que le dé el sol y el aire o se marchitará su belleza
+   │  │  │  │  │  └─ NPC: Te equivocas esclavo. Su belleza únicamente está a salvo si se la mantiene encerrada. Si no está al alcance de cualquier esclavo [F0-GO_BACK]
+   │  │  │  │  └─ [5] [FB-ONCE] IDéjemela a mi
+   │  │  │  │     └─ NPC: ¡ A ti ! ¡ A un esclavo ! ¿ Acaso te crees que he perdido la razón ? [F0-GO_BACK]
+   │  │  │  └─ [4] [FB-ONCE] KSi la hubiese educado en la moral de la Santa Madre Iglesia no sería tan libertina
+   │  │  │     ├─ NPC: ¿ Y quién es esa tal Santa Madre Iglesia ?
+   │  │  │     └─ [5] [FB-ONCE] MEs una creencia religiosa descendiente del judaismo basada en la figura de Jesús
+   │  │  │        ├─ NPC: ¿ Judios ? Sí, los conozco. José, Moisés... son esclavos nuestros. Trabajan en la pirámide que guarda a mi hija y su reputación. Gente pobre, nada avariciosa... ya ves sólo tienen un dios.
+   │  │  │        └─ [6] [FB-ONCE] OEntonces, ¿ conocerá los diez mandamientos de las tablas Moisés ?
+   │  │  │           ├─ NPC: Sí
+   │  │  │           └─ [7] [FB-ONCE] QPues, Jesús vendrá para dar un mandamiento nuevo
+   │  │  │              ├─ NPC: Dime, esclavo ¿ cuál ?
+   │  │  │              ├─ [8] [FB-ONCE] SAmáos los unos a los otros como yo os he amado
+   │  │  │              │  └─ NPC: ¿ Cómo que amáos los unos a los otros ? ¿ Sin distinción de razas, clases, sexo ni sangre ? ¡ Eso es una barbaridad ! ¡ LUJURIOSO ! ¿ Y pretendes que eduque a mi hija bajo esa falta de moral y decencia ? No, ni pensarlo. Eso sería peor. Mejor la mantengo encerrada en la pirámide... ¡ Ah ! Y en cuanto a ti, por escandalizador, te condeno a trabajar en la contrucción de ésta hasta que revientes. ¡ GUARDIA ! ¡ Leváoslo !
+   │  │  │              └─ [8] [FB-ONCE] ULa tierra para el que la trabaja
+   │  │  │                 └─ NPC: ¡ COMUNISTA ! ¡ Guardia ! ¡ Guardia ! ¡ Llevaós a este comunista ! Lo condeno a trabajar hasta su muerte en la construcción de la pirámide que mantiene encerrada a la princesa
+   │  │  └─ [3] [FB-ONCE] WAcertaste ¡ Premio !
+   │  │     ├─ NPC: ¿ Y cual es el premio ?
+   │  │     ├─ [4] [FB-ONCE] Y¿ Que le parece un heredero ?
+   │  │     │  ├─ NPC: Sí, sí. Me hace mucha ilusión ser abuelo...
+   │  │     │  ├─ [5] [FB-ONCE] [Pues para ello tendrá que dejarme ver a su hija
+   │  │     │  │  └─ NPC: ¿ Quieres ver a mi hija ? Vale. Mira... aquí tienes un grabado de su perfil [F0-GO_BACK]
+   │  │     │  ├─ [5] [FB-ONCE] ]Pues para ello tendrá que dejarme acostar con su hija
+   │  │     │  │  ├─ NPC: ¡ INSOLENTE ! ¿ Cómo te atreves ? ¡ GUARDIA ! ¡ Lleváoslo a la construcción y que trabaje como esclavo en la pirámide que mantiene encerrada a la princesa hasta que reviente
+   │  │     │  │  ├─ [6] [FB-ONCE] _Perdón. ¿ Tiene un poco de celo ?... es para pegar el gravado en mi habitación
+   │  │     │  │  │  └─ NPC: No existe todavía. Estamos investigando en ello, pero todavía no hemos encontrada la fórmula.
+   │  │     │  │  ├─ [6] [FB-ONCE] aPerdón. No se ha expresado bien... hasta que reviente quién, ¿ la princesa o yo ?
+   │  │     │  │  │  └─ NPC: ¡ Caracoles ! ¡ No hay tu tía ! ¡ Este turista me altera los nervios ! ¡ HASTA QUE REVIENTE TU PADRE ! ¡ Guardia ! ¡ Lleváoslo !
+   │  │     │  │  ├─ [6] [FB-ONCE] cPerdón, pero todavía no hemos hablado de las condiciones laborales y económicas
+   │  │     │  │  │  └─ NPC: ¿ Condiciones ? Trabajarás de 6:OO a 24:00. Sin hora del bocadillo, sin agua, sin sombrilla, sin poder ir a hacer pis, sin seguro, sin subsidio del paro, ¡ sinverguenza !, y sin paga ni dias de asuntos propios. Ja, ja, ja, ja, ja. ¡ Como mola para la patronal la sociedad esclavista !
+   │  │     │  │  └─ [6] [FB-ONCE] ePerdón, pero yo en estos momentos de mi vida no busco ni quiero trabajar
+   │  │     │  │     └─ NPC: Nadie te pide que quieras trabajar, sólo te obligo a hacerlo.
+   │  │     │  └─ [5] [FB-ONCE] gPues para ello tendrá que dejar salir a su hija
+   │  │     │     ├─ NPC: Es que tengo miedo. Ella es una chica muy impresionable... y... sobretodo... como se lo diría... muy poco... ¿ cual sería la palabra justa ?... esto... EXIGENTE... exacto, eso es... Muy poco exigente Y tanto canalla suelto esperando cazar una princesa. Además están todas esas enfermedades de trnsmisión sexual...
+   │  │     │     ├─ [6] [FB-ONCE] iExisten remedios contra esas enfermedades
+   │  │     │     │  ├─ NPC: Si ya lo sé: ABSTINENCIA
+   │  │     │     │  ├─ [7] [FB-ONCE] k¡ No sea exagerado ! Se le podrían ligar las trompas a su hija
+   │  │     │     │  │  └─ NPC: Tú si que estás trompa [F0-GO_BACK]
+   │  │     │     │  ├─ [7] [FB-ONCE] mHay uno mejor: el sistema OGINO. Lo recomienda el Papa.
+   │  │     │     │  │  └─ NPC: ¿ Pero qué dices ? Ese sistema no es nada fiable, el período de las mujeres no es exacto como un reloj suizo [F0-GO_BACK]
+   │  │     │     │  └─ [7] [FB-ONCE] o¿ Que me dice, señor faraón, de los condones ?
+   │  │     │     │     ├─ NPC: ¿ Los con qué ?
+   │  │     │     │     └─ [8] [FB-ONCE] q¡¿ Los con qué ?! ¿ Usted no sabe lo que son los preservativos ? ¿ O condones ?
+   │  │     │     │        ├─ NPC: Pues no
+   │  │     │     │        └─ [9] [FB-ONCE] s¿ Sus padres no le han hablado del SIDA y de preservativos ? ¿ En el templo tampoco ?
+   │  │     │     │           ├─ NPC: No
+   │  │     │     │           ├─ [None] [AUTO-DIALOGUE] u¡ Pues el SIDA es peor que las plagas de Egipto !
+   │  │     │     │           ├─ NPC: ¡ No me digas !
+   │  │     │     │           ├─ [None] [AUTO-DIALOGUE] wLe cuento: El 23 de abril de 1984 d.C. el Dr Gallo anunció en una rueda de prensa el descubrimiento del retrovirus productor del SIDA al que llamó HTLV-III, pero que en realidad el auténtico descubridor fue el Dr Montaigner, director del equipo de investigación del Instituto Pasteur, que le había pasado al Dr Gallo unas fotografias de un virus que habia llamado LAV y que después serían usurpadas por el Dr Gallo para hacer pasar el descubrimiento como propio, hechos por los que el Estado francés demandó al gobierno de los Estados Unidos reclamando el derecho de la patente y el mérito del descubrimiento del retrovirus, al que se rebautizó finalmente con el ahora tan popular nombre de VIH, es decir, Virus de la Immunodeficiencia Humana ?.
+   │  │     │     │           ├─ NPC: Bueno... pero todo esto es del futuro. A nosotros no nos afecta
+   │  │     │     │           └─ [12] [FB-ONCE] yVale... pues, como Vd. quiera, sin condón. Ya se lo diré a su hija...
+   │  │     │     │              ├─ NPC: ¡ INSOLENTE ! ¿ Cómo te atreves ? ¡ GUARDIA ! ¡ Lleváoslo a la construcción y que trabaje como esclavo en la pirámide que mantiene encerrada a la princesa hasta que revientes
+   │  │     │     │              └─ [12] [FB-ONCE] áO sea que por aquí a lo natural, sin látex
+   │  │     │     │                 ├─ NPC: ¡ INSOLENTE ! ¿ Cómo te atreves ? ¡ GUARDIA ! ¡ Lleváoslo a la construcción y que trabaje como esclavo en la pirámide que mantiene encerrada a la princesa hasta que revientes
+   │  │     │     │                 └─ [12] [FB-ONCE] íPero por lo visto por aquí viene mucho dominguero del futuro...
+   │  │     │     │                    └─ NPC: ¡ Anda ! Tienes razón. ¡ GUARDIA ! ¡ LLEVAOSLO A LA PIRAMIDE ! ¡ QUE TRABAJE COMO UN ESCLAVO ! ¡ Ah... y cuidado con él, ES CONTAGIOSO !
+   │  │     │     └─ [6] [FB-ONCE] úLe veo una persona muy insegura
+   │  │     │        └─ NPC: Sí, ya se lo he dicho. Tengo miedo [F0-GO_BACK]
+   │  │     └─ [4] [FB-ONCE] íUnas estupendas naranjas
+   │  │        └─ NPC: Ya tengo [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] ¿Menos mal que no se parece al padre
+   │     ├─ NPC: ¡ Insolente ! ¿ Cómo te atreves a insinuar que el faraón no es bello ? ¿ Acaso estás loco ? ¿ Quieres que te mande castrar y te convierta en un ser insensible al amor ?
+   │     ├─ [3] [FB-ONCE] No me haga caso, estoy loco
+   │     │  └─ NPC: Eso parece... [F0-GO_BACK]
+   │     ├─ [3] [FB-ONCE] Vd. faraón es bello, pero tal vez el padre de su hija no lo fuese
+   │     │  └─ NPC: ¿ Cómo te atreves ? [F0-GO_BACK]
+   │     └─ [3] [FB-ONCE] Tal vez tenga de regularme las gafas: porqué está Vd. buenísimo
+   │        └─ NPC: ¿ Sí ? ¿ Te gusto ? ¿ Te excita mi cuerpo, guapo ? [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] Estaba de paso y me preguntaba si no me podía quedar a dormir con su hija...
+   │  ├─ NPC: ¡ INSOLENTE ! Nadie osa bromear ante el faraón de la promiscuidad de su hija ¡¡¡ GUARDIA !!! Te pesará lo que has dicho. Que se lleven a este desgraciado y que lo conviertan en un esclavo. Después de esto ya no tendrá ganas de desear a la hija del faraón.
+   │  └─ [2] [FB-ONCE] Es que yo tuve un sueño en el que una princesa egipcia me pedía ayuda ...
+   │     ├─ NPC: ¿ Que le decía yo ?. ¡ Y claro !. ¡ Vd viene !. ¡ Sin más ni más !. ¿ Quien le dice a Vd que nuestro sistema de gobierno no sea justo ? ¡ Hala ! Vd se levanta un dia, y decide que va a viajar al Egipto Antiguo en busca de princesas cautivas. Dígame: ¿ No debería ir mejor al psicólogo ?
+   │     └─ [3] [FB-ONCE] ¡ No se haga el gracioso !. ¡ Se quien es Vd !. A quien vengo a rescatar es: ¡¡¡ A SU HIJA !!!
+   │        ├─ NPC: ¡ Vaya, vaya ! ¡ Un héroe ! ¡ Que valiente ! Pues fíjese lo que son las paradojas del destino: Has venido a salvarla, y yo te castigo a trabajar en la terminación de su pirámide. Ja, ja, ja, ja, ja
+   │        ├─ [4] [FB-ONCE] Eso no es una paradoja, es una putada
+   │        │  └─ NPC: Pues eso, una putada ¡ Guardia ! Llévaoslo a la pirámide
+   │        ├─ [4] [FB-ONCE] ¡ Cobarde ! ¡ Ya ajustaremos cuentas !
+   │        │  └─ NPC: ¡ Guardia ! Llévaoslo a la pirámide
+   │        ├─ [4] [FB-ONCE] Usted no tiene corazón ni higado
+   │        │  └─ NPC: ¡ Guardia ! Llévaoslo a la pirámide
+   │        ├─ [4] [FB-ONCE] No le intereso como yerno
+   │        │  └─ NPC: ¡ Guardia ! Lléveselo a la pirámide
+   │        └─ [4] [FB-ONCE] ¡ Que va ! Creo que ha habido una confusión... yo paso de princesas: soy homosexual
+   │           ├─ NPC: Uy...
+   │           └─ [5] [FB-ONCE] A mi lo que me van son los faraones
+   │              └─ NPC: ¡ Guardia ! Lleváoslo. No eres mi tipo.
+   └─ [1] [FB-ONCE] Le traía estas estupendas y sabrosas naranjas como muestra de amistad
+      ├─ NPC: Vaya... es todo un detalle
+      └─ [2] [FB-ONCE] Son naranjas valencianas
+         ├─ NPC: ¡ Anda ! ¿ No serán clemen-Nules ?
+         └─ [3] [FB-ONCE] Sí, son las mejores. Dignas de un hombre de su talla.
+            └─ NPC: Muchas gracias. [F0-GO_BACK]
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

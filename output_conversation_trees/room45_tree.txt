@@ -1,0 +1,215 @@
+================================================================================
+ROOM 45 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: ¡ Que chicas más guapas !
+  #2: ¡ Que chicas más guapas !
+  #3: -
+  #4: -
+  #5: -
+  #6: -
+  #7: ¡ Como se nota que todavía no ha llegado la contaminación
+
+================================================================================
+
+└─ ROOT #0
+   NPC: ¡ Uy que chico tan guapo !. Anda, ven a bañarte con nosotras
+   └─ [1] [FB-ONCE] 
+      ├─ NPC: Aprovecha el presente, hombre. ¿ Qué tiene tu princesa que no tengamos nosotras
+      ├─ [2] [FB-ONCE] ¡ Un título real !
+      │  ├─ NPC: ¡ Valiente cazador de sueños !. Es posible que lo que persigas no sea más que un rayo de luna. A nosotras sin embargo nos tienes aquí. Aquí y ahora
+      │  ├─ [3] [FB-ONCE] Es que no se nadar
+      │  │  ├─ NPC: No te preocupes nosotras te agarramos para que no te ahogues
+      │  │  ├─ [4] [FB-ONCE] Ay... hey... mmmysdfgi
+      │  │  │  ├─ NPC: No te entiendo. Vuelve por aquí cuando sepas hablar nuestro idioma.
+      │  │  │  ├─ [5] [FB-ONCE] ah
+      │  │  │  │  └─ NPC: ¿ Podrías ser más explícito ? No te entiendo [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] eh
+      │  │  │  │  └─ NPC: ¿ Qué ? [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] ih
+      │  │  │  │  └─ NPC: ¿ Cómo ? [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] oh
+      │  │  │  │  └─ NPC: Haz el favor de ser más claro no hay forma de entenderte [F0-GO_BACK]
+      │  │  │  └─ [5] [FB-ONCE] uh
+      │  │  │     └─ NPC: ¡ Por favor habla cristiano ! Pareces un mono. [F0-GO_BACK]
+      │  │  ├─ [4] [FB-ONCE] sí... no... esto... viceversa
+      │  │  │  ├─ NPC: ¡ Déjate de paradojas ! ¿ Qué ? ¿ vienes a bañarte con nosotras o prefieres seguir persiguiendo tu sueño?
+      │  │  │  ├─ [5] [FB-ONCE] Prefiero leer un poco mi enciclopedia
+      │  │  │  │  └─ NPC: Oye mira: estamos perdiendo el tiempo. Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  │  ├─ [5] [FB-ONCE] Pues la verdad es que teneís razón: es una paradoja
+      │  │  │  │  └─ NPC: Me parece que estamos perdiendo el tiempo. [F0-GO_BACK]
+      │  │  │  └─ [5] [FB-ONCE] Pues la verdad es que tenéis razón: ¡ A VIVIR !
+      │  │  │     └─ NPC: Venga... pues... ¡ QUE LA VIDA SON CUATRO DIAS ! → ACTION 0178 (376)
+      │  │  └─ [4] [FB-ONCE] Es que tengo cosquillas
+      │  │     ├─ NPC: ¡ Anda ! Un chico sensible
+      │  │     ├─ [5] [FB-ONCE] ¡ Calla guarra !
+      │  │     │  └─ NPC: ¡ POLICIA ! ¡¡¡ POLICIA !!! → ACTION 7878 (30840)
+      │  │     └─ [5] [FB-ONCE] No me digas eso que me pongo a llorar
+      │  │        └─ NPC: Llora tranquilo que nosotras te consolamos [F0-GO_BACK]
+      │  ├─ [3] [FB-ONCE] Es que no tengo bañador
+      │  │  ├─ NPC: Oye mira ESO NO es excusa. Podrías desnudarte
+      │  │  ├─ [4] [FB-ONCE] Es que me da corte...
+      │  │  │  └─ NPC: ¡ El hombre con verguenza vive solo y triste ! Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo un sueño → ACTION 0141 (321)
+      │  │  └─ [4] [FB-ONCE] No quiero impresionaros...
+      │  │     └─ NPC: Déjalo... Creíamos que eras un muchacho tierno y dulce... y ahora vemes que eres como todos. Vete. No nos gustan los fantasmas... → ACTION 0141 (321)
+      │  ├─ [3] [FB-ONCE] ¿ No sábeis que hay mogollón de enfermedades de transmisión sexual ?
+      │  │  ├─ NPC: ¿ Tienes asco de nosotras ?
+      │  │  ├─ [4] [FB-ONCE] 0No, pero ¿ tomáis precauciones ?
+      │  │  │  └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño [F0-GO_BACK]
+      │  │  └─ [4] [FB-ONCE] 2Sí, pero si tomáis precauciones... tal vez...
+      │  │     └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño [F0-GO_BACK]
+      │  └─ [3] [FB-ONCE] 4Mi mamá no me deja bañarme con desconocidas
+      │     ├─ NPC: ¿ Acaso conoces a tu princesa ?
+      │     └─ [4] [FB-ONCE] 6La verdad es que no
+      │        └─ NPC: ¡ Pues venga, báñate con nosotras ! [F0-GO_BACK]
+      ├─ [2] [FB-ONCE] 8Sangre azul
+      │  ├─ NPC: ¡ Valiente cazador de sueños !. Es posible que lo que persigas no sea más que un rayo de luna. A nosotras sin embargo nos tienes aquí. Aquí y ahora
+      │  ├─ [3] [FB-ONCE] :Es que no se nadar
+      │  │  ├─ NPC: Nosotras te agarramos para que no te ahogues
+      │  │  ├─ [4] [FB-ONCE] <hummmmrsy... ay... hey... mmm
+      │  │  │  ├─ NPC: No te entiendo. Vuelve por aquí cuando sepas hablar nuestro idioma.
+      │  │  │  ├─ [5] [FB-ONCE] >ah
+      │  │  │  │  └─ NPC: ¿ Podrías ser más explícito ? No te entiendo [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] @eh
+      │  │  │  │  └─ NPC: ¿ Qué ? [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] Bih
+      │  │  │  │  └─ NPC: ¿ Cómo ? [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] Doh
+      │  │  │  │  └─ NPC: Haz el favor de ser más claro no hay forma de entenderte [F0-GO_BACK]
+      │  │  │  └─ [5] [FB-ONCE] Fuh
+      │  │  │     └─ NPC: ¡ Por favor habla cristiano ! Pareces un mono. [F0-GO_BACK]
+      │  │  ├─ [4] [FB-ONCE] Hsí... no... esto... viceversa
+      │  │  │  ├─ NPC: ¡ Déjate de paradojas ! ¿ Qué ? ¿ vienes a banarte con nosotras o prefieres seguir persiguiendo tu sueño?
+      │  │  │  ├─ [5] [FB-ONCE] JPrefiero leer un poco mi enciclopedia
+      │  │  │  │  └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  │  └─ [5] [FB-ONCE] LPues la verdad es que teneís razón: es una paradoja
+      │  │  │     └─ NPC: Oye mira: estamos perdiendo el tiempo. Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  └─ [4] [FB-ONCE] NEs que tengo cosquillas
+      │  │     └─ NPC: Bueno en ese caso. Vuelve por aquí cuando no tengas cosquillas. [F0-GO_BACK]
+      │  ├─ [3] [FB-ONCE] PEs que no tengo bañador
+      │  │  ├─ NPC: Oye mira ESO NO es excusa. Podrías desnudarte
+      │  │  ├─ [4] [FB-ONCE] REs que me da corte...
+      │  │  │  └─ NPC: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  └─ [4] [FB-ONCE] TNo quiero impresionaros...
+      │  │     └─ NPC: Déjalo... Creíamos que eras un muchacho tierno y dulce... y ahora vemes que eres como todos. Vete. No nos gustan los fantasmas... → ACTION 0141 (321)
+      │  ├─ [3] [FB-ONCE] V¿ No sábeis que hay mogollón de enfermedades de transmisión sexual ?
+      │  │  ├─ NPC: ¿ Tienes asco de nosotras ?
+      │  │  ├─ [4] [FB-ONCE] XNo, pero ¿ tomáis precauciones ?
+      │  │  │  └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  └─ [4] [FB-ONCE] ZSí, pero si tomáis precauciones... tal vez...
+      │  │     └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  └─ [3] [FB-ONCE] \Mi mamá no me deja bañarme con desconocidas
+      │     └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      ├─ [2] [FB-ONCE] ^Una buena herencia
+      │  ├─ NPC: ¡ Valiente cazador de sueños !. Es posible que lo que persigas no sea más que un rayo de luna. A nosotras sin embargo nos tienes aquí. Aquí y ahora
+      │  ├─ [3] [FB-ONCE] `Es que no se nadar
+      │  │  ├─ NPC: Nosotras te agarramos para que no te ahogues
+      │  │  ├─ [4] [FB-ONCE] bhummmmrsy... ay... hey... mmm
+      │  │  │  ├─ NPC: No te entiendo. Vuelve por aquí cuando sepas hablar nuestro idioma.
+      │  │  │  ├─ [5] [FB-ONCE] dah
+      │  │  │  │  └─ NPC: ¿ Podrías ser más explícito ? No te entiendo [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] feh
+      │  │  │  │  └─ NPC: ¿ Qué ? [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] hih
+      │  │  │  │  └─ NPC: ¿ Cómo ? [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] joh
+      │  │  │  │  └─ NPC: Haz el favor de ser más claro no hay forma de entenderte [F0-GO_BACK]
+      │  │  │  └─ [5] [FB-ONCE] luh
+      │  │  │     └─ NPC: ¡ Por favor habla cristiano ! Pareces un mono. [F0-GO_BACK]
+      │  │  ├─ [4] [FB-ONCE] nsí... no... esto... viceversa
+      │  │  │  ├─ NPC: ¡ Déjate de paradojas ! ¿ Qué ? ¿ vienes a banarte con nosotras o prefieres seguir persiguiendo tu sueño?
+      │  │  │  ├─ [5] [FB-ONCE] pPrefiero leer un poco mi enciclopedia
+      │  │  │  │  └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  │  └─ [5] [FB-ONCE] rPues la verdad es que teneís razón: es una paradoja
+      │  │  │     └─ NPC: Oye mira: estamos perdiendo el tiempo. Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  └─ [4] [FB-ONCE] tEs que tengo cosquillas
+      │  │     └─ NPC: Bueno en ese caso. Vuelve por aquí cuando no tengas cosquillas. [F0-GO_BACK]
+      │  ├─ [3] [FB-ONCE] vEs que no tengo bañador
+      │  │  ├─ NPC: Oye mira ESO NO es excusa. Podrías desnudarte
+      │  │  ├─ [4] [FB-ONCE] xEs que me da corte...
+      │  │  │  └─ NPC: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  └─ [4] [FB-ONCE] zNo quiero impresionaros...
+      │  │     └─ NPC: Déjalo... Creíamos que eras un muchacho tierno y dulce... y ahora vemes que eres como todos. Vete. No nos gustan los fantasmas... → ACTION 0141 (321)
+      │  ├─ [3] [FB-ONCE] é¿ No sábeis que hay mogollón de enfermedades de transmisión sexual ?
+      │  │  ├─ NPC: ¿ Tienes asco de nosotras ?
+      │  │  ├─ [4] [FB-ONCE] óNo, pero ¿ tomáis precauciones ?
+      │  │  │  └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  │  └─ [4] [FB-ONCE] ñSí, pero si tomáis precauciones... tal vez...
+      │  │     └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      │  └─ [3] [FB-ONCE] ¡Mi mamá no me deja bañarme con desconocidas
+      │     └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+      └─ [2] [FB-ONCE] úEs que si me voy con vosotras se acaba el juego
+         ├─ NPC: ¡ Pero que va ! CARPE DIEM. Aprovecha el presente A nosotras nos tienes aquí. Aquí y ahora... una canita al aire... ¿ por eso se va a acabar el mundo ? No, hombre no... Pegate un baño con nosotras y luego sigue tu camino...
+         ├─ [3] [FB-ONCE] Yo no tengo canas
+         │  └─ NPC: Ya lo sabemos. ¿ Por qué te crees que nos gustas ? Eres un muchacho joven y atractivo y a nosotras nos gustan los chicos como tú. ¿ Qué ? ¿ Te animas ? Nosotras ya estamos mojadas [F0-GO_BACK]
+         ├─ [3] [FB-ONCE] Es que no se nadar
+         │  ├─ NPC: Nosotras te agarramos para que no te ahogues
+         │  ├─ [4] [FB-ONCE] hummmmrsy... ay... hey... mmm
+         │  │  ├─ NPC: No te entiendo. Vuelve por aquí cuando sepas hablar nuestro idioma.
+         │  │  ├─ [5] [FB-ONCE] ah
+         │  │  │  └─ NPC: ¿ Podrías ser más explícito ? No te entiendo [F0-GO_BACK]
+         │  │  ├─ [5] [FB-ONCE] eh
+         │  │  │  └─ NPC: ¿ Qué ? [F0-GO_BACK]
+         │  │  ├─ [5] [FB-ONCE] ih
+         │  │  │  └─ NPC: ¿ Cómo ? [F0-GO_BACK]
+         │  │  ├─ [5] [FB-ONCE] oh
+         │  │  │  └─ NPC: Haz el favor de ser más claro no hay forma de entenderte [F0-GO_BACK]
+         │  │  └─ [5] [FB-ONCE] uh
+         │  │     └─ NPC: ¡ Por favor habla cristiano ! Pareces un mono. [F0-GO_BACK]
+         │  ├─ [4] [FB-ONCE] sí... no... esto... viceversa
+         │  │  ├─ NPC: ¡ Déjate de paradojas ! ¿ Qué ? ¿ vienes a banarte con nosotras o prefieres seguir persiguiendo tu sueño?
+         │  │  ├─ [5] [FB-ONCE] Prefiero leer un poco mi enciclopedia
+         │  │  │  └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+         │  │  └─ [5] [FB-ONCE] Pues la verdad es que teneís razón: es una paradoja
+         │  │     └─ NPC: Oye mira: estamos perdiendo el tiempo. Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+         │  └─ [4] [FB-ONCE] Es que tengo cosquillas
+         │     └─ NPC: Bueno en ese caso . Vuelve por aquí cuando no tengas cosquillas. [F0-GO_BACK]
+         ├─ [3] [FB-ONCE] Es que no tengo bañador
+         │  ├─ NPC: Oye mira ESO NO es excusa. Podrías desnudarte
+         │  ├─ [4] [FB-ONCE] Es que me da corte...
+         │  │  └─ NPC: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+         │  └─ [4] [FB-ONCE] No quiero impresionaros...
+         │     └─ NPC: Déjalo... Creíamos que eras un muchacho tierno y dulce... y ahora vemes que eres como todos. Vete. No nos gustan los fantasmas... → ACTION 0141 (321)
+         ├─ [3] [FB-ONCE] Mi mamá no me deja bañarme con desconocidas
+         │  └─ NPC: Oye mira: Vuelve por aquí cuando entiendas el significado de la palabra PRESENTE. Mientras tanto, sigue persiguiendo tu sueño → ACTION 0141 (321)
+         └─ [3] [FB-ONCE] Pues la verdad... es que... sí, vale.
+            └─ NPC: Venga... pues... desnúdate ¡ y a VIVIR ! → ACTION 0178 (376)
+
+└─ ROOT #1
+   NPC: Recuerda: Podrías pasártelo muy bien con nosotras, siempre y cuando te quitaras esa obsesión de la princesa de tu cabeza
+   ├─ [1] [FB-ONCE] No, prefiero perseguir mi sueño
+   │  └─ NPC: Allá tú. No sabes lo que te pierdes → ACTION 0179 (377)
+   ├─ [1] [FB-ONCE] Ya, pero es que no me gustan las chicas fáciles
+   │  └─ NPC: Te gustan las estrechas → ACTION 0179 (377)
+   └─ [1] [FB-ONCE] Pues la verdad... es que... sí, vale.
+      └─ NPC: Venga... pues... desnúdate ¡ y a VIVIR ! → ACTION 0178 (376)
+
+└─ ROOT #2
+   NPC: ¿ Qué ? ¿ Te ha gustado ? ¿ Otro bañito ?
+
+└─ ROOT #3
+   NPC: ¡ Déjanos tranquilas ! Has tenido tu oportunidad
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0141 (321)  |  After: Oye mira: estamos perdiendo el tiempo. Vuelve por 
+  → ACTION 0178 (376)  |  After: Venga... pues... ¡ QUE LA VIDA SON CUATRO DIAS !
+  → ACTION 0179 (377)  |  After: Allá tú. No sabes lo que te pierdes
+  → ACTION 7878 (30840)  |  After: ¡ POLICIA ! ¡¡¡ POLICIA !!!
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

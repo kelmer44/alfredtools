@@ -1,0 +1,109 @@
+================================================================================
+ROOM 49 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Me recuerda a alguien
+  #2: -
+  #3: -
+  #4: Pone: No quiero ni comida ni dinero... ¿ Que querrá ?
+
+================================================================================
+
+└─ ROOT #0
+   NPC: ¡ Oye !. Tu cara me resulta familiar. ¿ Donde te he visto antes ?
+   ├─ [1] [FB-ONCE] Llevas mucho tiempo ahí. Debes haberte trastornado del todo
+   │  └─ NPC: No, no, te lo aseguro. A ver, déjame pensar un poco [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] ¿ Quizás en aquel coctel en Montecarlo ?
+   │  └─ NPC: No, no, te digo que me resulta muy FAMILIAR [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] Debes confundirme con otro. Yo no conozco a nadie tan delgado
+   │  └─ NPC: Te aseguro que no. Lo tengo en la punta de la lengua. Bueno ... Es un decir → ACTION 0145 (325)
+   └─ [1] [FB-ONCE] Bueno ... ¿ No te dice nada el nombre de Elvis Preysler ?
+      └─ NPC: No... ¡ Dios mío ! Tengo que acordarme. Tengo la sensación de que es MUY importante → ACTION 0145 (325)
+
+└─ ROOT #1
+   NPC: El caso es que... Esa voz... Ese porte... Ese pelo... Esa mirada... Tu... tu... ¿ No serás ?... ¡¿ ALFRED PELROCK ?!
+   ├─ [1] [FB-ONCE] Pues no.
+   │  └─ NPC: ¡ Aaaahhhhh ! ¡ Nooooooo ! ¡¡ No puede ser !! ¡ Tu tienes que ser él ! ¡ SI ! ¡¡¡ SIII !!! ¡ Te reconozco ! ¡¡ Aunque hayas crecido te reconozco !! [F0-GO_BACK]
+   └─ [1] [FB-ONCE] Pues si. ¿ Quien eres tú ?
+      ├─ NPC: ¡ Aaaahhhhh ! ¡ Nooooooo ! ¡¡ Lo sabía !! ¿ Porqué ? ¿¿ PORQUE ?? No es justo
+      ├─ [None] [AUTO-DIALOGUE] Tranquilízate y dime quien eres
+      ├─ NPC: ¿ No me reconoces ? ¡ NO ME RECONOCE !. Escucha bien, descastado: ¡¡ SOY TU PADRE !!. El gran Alfred Pelrock, famoso investigador y arqueólogo. Indiana Jones no me llegaba a la suela de los zapatos. Dime: ¿ Que haces aquí ?
+      └─ [3] [FB-ONCE] ¿ Cómo te iba a reconocer si estás en los huesos ?
+         ├─ NPC: ¡ Es que estoy muerto aunque condenado a vivir mi muerte ! ¡¡ Es horrible !! ¡ Encadenado a un tormento sin fin ! ¡ Y todo por matar a un dios del Antiguo Egipo al intentar rescatar a la princesa de mi sueño !
+         ├─ [4] [FB-ONCE] ¿ Matar un dios del Antiguo Egipto ?
+         │  ├─ NPC: Sí, hijo. Antes de llegar a la sala de la princesa de mi sueño se tiene que pasar por unos pasillos donde se encuentran dioses que te impiden el paso. Yo maté uno con un hechizo para intentar rescatar a la princesa [F0-GO_BACK]
+         │  └─ [4] [FB-ONCE] ¿ Rescatar a la princesa de tu sueño ?
+         │     ├─ NPC: Sí, tuve un sueño en el que una princesa de otra época me pedía ayuda por lo que tuve que viajar en el tiempo y en el espacio para rescatarla
+         │     └─ [5] [FB-ONCE] ¡ Anda ! ¡ Como a mi !
+         │        ├─ NPC: ¡ Oh no ! ¿ Y has viajado hasta aquí dejando a la mama y a tu hermano solos ? ¡ INSENSATO!
+         │        ├─ [6] [FB-ONCE] ¿ Y tú qué ? ¿ No nos hiciste lo mismo ?
+         │        │  └─ NPC: ¡ Sólo aprendes de mi lo malo... las cosas buenas no las aprendes.. no ! [F0-GO_BACK]
+         │        └─ [6] [FB-ONCE] Dime como puedo llegar a la sala de la princesa
+         │           ├─ NPC: Sigue recto al fondo. Allí encontrarás una sala con varias estatuas que conduce a unos pasillos por donde te iran apareciendo dioses del Antiguo Egipto que pueden condenarte al mismo infierno que estoy sufriendo yo... pero... tú puedes ayudarme... ¡ Libérame de estas cadenas y ENTIERRAME !
+         │           ├─ [7] [FB-ONCE] No tengo tiempo para ceremonias
+         │           │  ├─ NPC: ¡ POR FAVOR ! ¡ YO LO HUBIESE HECHO POR TI !
+         │           │  ├─ [None] [AUTO-DIALOGUE] ¿ COMO ? ¿ TU NUNCA HAS HECHO NADA POR MI ?
+         │           │  ├─ NPC: ¿ Cómo puedes hablarme así ? ¿ Yo te he criado ? Es más: te he malcriado
+         │           │  ├─ [None] [AUTO-DIALOGUE] ¿ Malcriado ? ¡ Si nunca me has comprado lo que te pedía ! ¡¡ NI PARA REYES !!
+         │           │  ├─ NPC: ¡ Mentiroso malcriado !
+         │           │  ├─ [None] [AUTO-DIALOGUE] ¿ Te acuerdas de aquella bicicleta de dos ruedas con manillar y sillín que te pedí para mi comunión ?
+         │           │  ├─ NPC: No.
+         │           │  └─ [11] [FB-ONCE] ¡ Lo ves ! ¡ Ni te acuerdas ! ¿ Y de aquellas zapatillas con aire acondicianado ?
+         │           │     ├─ NPC: No.
+         │           │     └─ [11] [FB-ONCE] ¿ Y el ordenador ? ¡ Soy el único de mis amigos que no tiene ordenador ! ¡ Claro como tu eres arqueólogo, sólo te interesan las cosas antiguas !
+         │           │        ├─ NPC: Pues... sí... tienes razón.. tal vez no te he hecho demasiado caso, pero entiéndeme eso no significa que no te quisiese. Es que andava muy ocupado. Tenía que manteneros.
+         │           │        ├─ [None] [AUTO-DIALOGUE] ¿ Y el hula-hop verde fosforito que tanto me gustaba ?
+         │           │        ├─ NPC: Sí, sí. ¡ Perdóname !
+         │           │        ├─ [None] [AUTO-DIALOGUE] ¿ Y el equipo de música para poder escuchar a Chuck Berry ?
+         │           │        ├─ NPC: Sí, sí. ¡ Perdóname, hijo !
+         │           │        ├─ [None] [AUTO-DIALOGUE] 0¿ Y la la Barbie Superstar hinchable que me ponía cardiaco ?
+         │           │        ├─ NPC: Sí, sí. ¡ Perdóname, hijo de mis entrañas ! ¡ Pero es que te ponias malito !
+         │           │        ├─ [None] [AUTO-DIALOGUE] 2¡ Y tampoco me dejabas ir de acampada los veranos. ¡ Siempre a Catarroja !
+         │           │        ├─ NPC: Sí, sí. Es una obsesión mía... es que conocí allí una chica ¡ Perdóname, hijo mío ! ¡ Por el amor de Dios !
+         │           │        ├─ [None] [AUTO-DIALOGUE] 4¡ Y no me dejabas llegar tarde a casa los fines de semana
+         │           │        ├─ NPC: SI, ¡¡¡ SI !!! ¡ He sido muy mal padre ! ¡ Perdóname !
+         │           │        └─ [17] [FB-ONCE] 6No te creo. Me das la razón sólo para que te entierre
+         │           │           ├─ NPC: ¡¡¡ Tu madre es una santa pero tú eres un hijo de mala madre !!! → ACTION 017A (378)
+         │           │           └─ [17] [FB-ONCE] 8No te creo. Tú siempre has sido ateo.
+         │           │              └─ NPC: ¡¡¡ Tú madre es una santa pero tú eres un hijo de mala madre !!! → ACTION 017A (378)
+         │           ├─ [7] [FB-ONCE] :No tengo pala
+         │           │  └─ NPC: ¡ POR FAVOR ! ¡ YO LO HUBIESE HECHO POR TI ! [F0-GO_BACK]
+         │           └─ [7] [FB-ONCE] <No tengo fuerza para romper las cadenas
+         │              └─ NPC: ¡ POR FAVOR, HIJO ! [F0-GO_BACK]
+         └─ [3] [FB-ONCE] >Estoy buscando a una princesa que me pedía ayuda desde un sueño
+            ├─ NPC: ¿ Desde un sueño ?. ¡ Oh no !. Ya me advirtieron los psicólogos sobre esto: ¡ Modere Vd sus aventuras Sr Pelrock o acabará creando un conflicto de personalidad en su hijo !. Por mi culpa estás aquí, y por mi culpa morirás. Es casi imposible escapar de aquí. Mírame a mi, y eso que yo estaba mucho mas experimentado que tu
+            └─ [4] [FB-ONCE] @Dime como puedo llegar a la sala de la princesa
+               ├─ NPC: Sigue recto al fondo. Allí encontrarás una sala con varias estatuas que conduce a unos pasillos por donde te iran apareciendo dioses del Antiguo Egipto que pueden condenarte al mismo infierno que estoy sufriendo yo
+               ├─ [5] [FB-ONCE] B¿ Que puedo hacer por tí ?
+               │  └─ NPC: Nada, estoy condenado por los dioses y tu no puedes hacer nada. Busca tu princesa y consigue lo que yo no pude, hijo. ¡ SNIFF ! ¡ Ah, y dale recuerdos a tu madre ! → ACTION 0146 (326)
+               └─ [5] [FB-ONCE] D¿ Que quiere decir ese cartelito ?
+                  └─ NPC: Una broma pesada de los dioses [F0-GO_BACK]
+
+└─ ROOT #2
+   NPC: ¡ Ten cuidado, hijo ! Recuerda que sólo te quedan cuatro dioses por matar
+
+└─ ROOT #3
+   NPC: ¡ Por favor ! ¡ Entiérrame ! ¡ Ten piedad de un alma en pena !
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0145 (325)  |  After: Te aseguro que no. Lo tengo en la punta de la leng
+  → ACTION 0146 (326)  |  After: Nada, estoy condenado por los dioses y tu no puede
+  → ACTION 017A (378)  |  After: ¡¡¡ Tu madre es una santa pero tú eres un hijo de 
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

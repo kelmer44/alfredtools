@@ -1,0 +1,206 @@
+================================================================================
+ROOM 23 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Pero si es mi amiga... ¿ se acordará de mí ?
+  #2: Nada en especial
+  #3: Nada en especial
+  #4: Tonto quien lo lea
+  #5: ¡ Vaya ! Una tienda de carne de cerdo. Debe ser de algún árabe ateo
+
+================================================================================
+
+└─ ROOT
+   NPC: Pero si eres tú... (root #1)
+   ├─ [1] [FB-ONCE] ¿Qué tal el trabajo?
+   │  ├─ NPC: Bien, abriendo nuevos mercados. Egipto es un país virgen, por eso he creído que ser pionera en este negocio en esta tierra virgen podía ser un éxito económico
+   │  ├─ [2] [FB-ONCE] 
+   │  │  └─ NPC: A ver si tengo suerte [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] Tanto como virgen...
+   │     └─ NPC: En el sentido de que es un mercado en potencia, sin explotar [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] ¿Tienes un cigarrillo?
+   │  └─ NPC: No, este es el último [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] ¿Qué haces por aquí?
+   │  ├─ NPC: Fumando espero...
+   │  ├─ [2] [FB-ONCE] ¿Qué esperas?
+   │  │  └─ NPC: Espero que la vida sea justa conmigo [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] ¿A quién esperas?
+   │  │  └─ NPC: Un cliente [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] ¿Por qué esperas?
+   │  │  └─ NPC: Es mi trabajo [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] ¿Para qué esperas?
+   │  │  └─ NPC: Para ganarme el pan con el sudor de mi frente [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] El que espera se desespera
+   │     └─ NPC: El que no sabe a donde va sí que se desespera [F0-GO_BACK]
+   └─ [1] [FB-ONCE] Cuéntame otra vez eso del SIDA...
+      ├─ NPC: Como te dije en 1981 se identificó a cinco personas enfermas con una patología hasta entonces desconocida que era de origen vírico según las tesis oficiales (aunque yo me reservo mi opinión: después si te interesa te la doy) y que se la denominó con el nombre de SIDA. ¿ Tus padres TODAVIA no te han hablado del SIDA y de preservativos ?. ¿ En la escuela tampoco ?
+      ├─ [2] [FB-ONCE] No he ido mucho por allí últimamente...
+      │  ├─ NPC: Entonces, ¿ TODAVIA no sabrás que el 23 de abril de 1984 el Dr Gallo anunció en una rueda de prensa el descubrimiento del retrovirus productor del SIDA al que llamó HTLV-III, pero que en realidad el auténtico descubridor fue el Dr Montaigner, director del equipo de investigación del Instituto Pasteur, que le había pasado al Dr Gallo unas fotografias de un virus que habia llamado LAV y que después serían usurpadas por el Dr Gallo para hacer pasar el descubrimiento como propio, hechos por los que el Estado francés demandó al gobierno de los Estados Unidos reclamando el derecho de la patente y el mérito del descubrimiento del retrovirus, al que se rebautizó finalmente con el ahora tan popular nombre de VIH, es decir, Virus de la Immunodeficiencia Humana ?.
+      │  ├─ [3] [FB-ONCE] De algo sí me acordaba...
+      │  │  ├─ NPC: El VIH es un virus que como se explica en todas las campañas informativas sobre el SIDA es de transmisión sexual o sanguínea. En éstas, se habla de grupos de riesgo, pero para mí eso en el fondo esconde conductas estigmatizantes de ciertos comportamientos sociales como son la prostitución, los drogadictos y los homosexuales. No obstante, mas vale prevenir que curar. Sobretodo en este caso en el que se habla de la incurabilidad de la enfermedad, y los científicos no se acaban de poner de acuerdo en el tratamiento. Así que "PONTELO"
+      │  │  ├─ [4] [FB-ONCE] ¿Y cual es tu opinión sobre esto?
+      │  │  │  ├─ NPC: Mi opinión coincide con la de prestigiosos científicos como Peter Duesberg, Harvey Bialy, Robert Laahoven y Kary Mullis que creen que el VIH es un virus inocuo y por tanto incapaz de causar el conjunto de enfermedades conocidas con el nombre de SIDA. Incluso el mismo Luc Montaigner dio marcha atrás en una conferencia Internacvional en San Francisco el 1990 cuando anunció que el VIH no podía provocar el SIDA sin un cofactor, como por ejemplo, los microplasmas, pequeñas bacterias que se vuelven agresivas a causa de los antibióticos. Además, a parte del escándalo de la falsificación en el descubrimiento del virus y de todos los intereses económicos de la industria farmacológica existen numerosas anomalias en la enfermedad...
+      │  │  │  ├─ [5] [FB-ONCE] ¿Por ejemplo, cuáles?
+      │  │  │  │  ├─ NPC: ¿Por qué hay enfermos que ha muerto de SIDA y no tienen ni rastro del virus? ¿Por qué los animales a los que se les inyecta el virus no desarrollan la enfermedad? ¿Cómo es posible ser portador del virus, algunos casos durante más de diez años, y no desarrollar la enfermedad?...
+      │  │  │  │  ├─ [6] [FB-ONCE] ¡ INCREIBLE !
+      │  │  │  │  │  ├─ NPC: ¿Por qué se ha permitido que se administre un medicamento, el AZT rebautizado como Retrovir, que en principio salió del laboratorio para curar el cáncer y que fué prohibido por su elevada toxicidad? ¿Cómo es que hay gente que tiene el virus VIH y al cabo de un tiempo le desaparece sin que haya desarrollado la enfermedad?...
+      │  │  │  │  │  ├─ [7] [FB-ONCE] ¡ QUE ESCANDALO !
+      │  │  │  │  │  │  ├─ NPC: Por lo que parece sólo se está investigando el orígen vírico de la enfermedad y tal vez el virus VIH no sea el causante de ella. Los virólogos también se empeñaron en descubrir el origen vírico de la polio, de la gripe asiática, de la leucemia, del cáncer, etc. sin obtener resultados. No hay que olvidar que a la enfermedad se la catregoriza en pleno gobierno ultra-conservador de Ronald Reagan que estaba en contra de la homosexualidad. Y cuando fue descubierta se dijo que era una enfermedad de mariquitas. Tal vez todo esto sea una invención para montar una cruzada contra ciertas tendencias sexuales...
+      │  │  │  │  │  │  ├─ [8] [FB-ONCE] ¡ QUE VERGUENZA !
+      │  │  │  │  │  │  │  ├─ NPC: Después como se ha ido comprobando que el virus también se ha transmitido a personas heterosexuales lo que en principio era una enfermedad de gays se convirtió en este discurso ultra-consevador de mentes puritanas en una enfermedad de viciosos, o sea, gays, promíscuos, yonquis... Pero, según la opinión de numerosos científicos el virus VIH de transmisión sanguínea y sexual no es el causante del SIDA. Todo esto es un negocio para los fabricantes de preservativos y los laboratorios farmacológicos
+      │  │  │  │  │  │  │  ├─ [9] [FB-ONCE] ¿Y si te equivocas?
+      │  │  │  │  │  │  │  │  ├─ NPC: No te preocupes, a pesar de todo tomo precauciones. Hay otras infecciones: vaginitis, gonorrea, ladillas, sífilis, hepatitis B, herpes, huevitis...
+      │  │  │  │  │  │  │  │  ├─ [10] [FB-ONCE] ¡ Basta ! Me mareo...
+      │  │  │  │  │  │  │  │  │  └─ NPC: Pues ya sabes: Póntelo [F0-GO_BACK]
+      │  │  │  │  │  │  │  │  ├─ [10] [FB-ONCE] Es más peligroso acostarse con alguien que ir a la guerra...
+      │  │  │  │  │  │  │  │  │  └─ NPC: A veces el amor es más peligroso que el odio. Ya lo dice el refrán: Quien bien te quiere te hará llorar [F0-GO_BACK]
+      │  │  │  │  │  │  │  │  └─ [10] [FB-ONCE] 0¡ Que asco ! A partir de ahora virgen hasta la tumba
+      │  │  │  │  │  │  │  │     └─ NPC: ¡ Exagerado ! [F0-GO_BACK]
+      │  │  │  │  │  │  │  ├─ [9] [FB-ONCE] 2Siempre hay quien saca tajada del mal ajeno...
+      │  │  │  │  │  │  │  │  └─ NPC: Pues sí, mira ciertos predicadores con la pasión y muerte de Cristo [F0-GO_BACK]
+      │  │  │  │  │  │  │  ├─ [9] [FB-ONCE] 4Cuanto más te conozco más te admiro
+      │  │  │  │  │  │  │  │  ├─ NPC: A mí también me gustas
+      │  │  │  │  │  │  │  │  ├─ [10] [FB-ONCE] 6Ardo en deseos de poseerte
+      │  │  │  │  │  │  │  │  │  ├─ NPC: Son 40 monedas de oro
+      │  │  │  │  │  │  │  │  │  ├─ [11] [FB-ONCE] 8Venga, hazlo por amor...
+      │  │  │  │  │  │  │  │  │  │  └─ NPC: Sí, por amor al dinero: 40 monedas de oro la hora [F0-GO_BACK]
+      │  │  │  │  │  │  │  │  │  ├─ [11] [FB-ONCE] :Me parece mucho
+      │  │  │  │  │  │  │  │  │  │  └─ NPC: Vuelve cuando lo tengas
+      │  │  │  │  │  │  │  │  │  └─ [11] [FB-ONCE] <Vale
+      │  │  │  │  │  │  │  │  │     ├─ NPC: Supongo que llevaras condones, ¿no?
+      │  │  │  │  │  │  │  │  │     ├─ [12] [FB-ONCE] >No encontrado por ningún lado
+      │  │  │  │  │  │  │  │  │     │  └─ NPC: Vuelve cuando los tengas
+      │  │  │  │  │  │  │  │  │     └─ [12] [FB-ONCE] @¿Para qué? ¿No es todo mentira lo del VIH y el Sida?
+      │  │  │  │  │  │  │  │  │        └─ NPC: ¡ INSENSATO ! ¿Y si fuese verdad? No me voy a arriesgar. Además hay otras enfermedades de transmisión sexual. Vuelve cundo tengas preservativos
+      │  │  │  │  │  │  │  │  ├─ [10] [FB-ONCE] B¡ Casémonos !
+      │  │  │  │  │  │  │  │  │  ├─ NPC: No puedo
+      │  │  │  │  │  │  │  │  │  └─ [11] [FB-ONCE] D¿Por qué?
+      │  │  │  │  │  │  │  │  │     ├─ NPC: Ya estoy casada
+      │  │  │  │  │  │  │  │  │     └─ [12] [FB-ONCE] F¿ Casada ?
+      │  │  │  │  │  │  │  │  │        ├─ NPC: Sí
+      │  │  │  │  │  │  │  │  │        └─ [13] [FB-ONCE] ¿ Y estás en la calle?
+      │  │  │  │  │  │  │  │  │           ├─ NPC: Es mi trabajo. No sé hacer otra cosa.
+      │  │  │  │  │  │  │  │  │           └─ [14] [FB-ONCE] J¿ Y tu marido ?
+      │  │  │  │  │  │  │  │  │              ├─ NPC: Trabajo para él
+      │  │  │  │  │  │  │  │  │              ├─ [None] [AUTO-DIALOGUE] L¿ Cómo ?
+      │  │  │  │  │  │  │  │  │              ├─ NPC: Sí, trabajo para él: es mi chulo
+      │  │  │  │  │  │  │  │  │              └─ [16] [FB-ONCE] NMenudo canalla
+      │  │  │  │  │  │  │  │  │                 ├─ NPC: No te pases. En el fondo lo amo. [F0-GO_BACK]
+      │  │  │  │  │  │  │  │  │                 ├─ [16] [FB-ONCE] PMenudo cabrón
+      │  │  │  │  │  │  │  │  │                 │  ├─ NPC: Sí, pero con él no utilizo preservativo
+      │  │  │  │  │  │  │  │  │                 │  ├─ [None] [AUTO-DIALOGUE] R¡ Que suerte !
+      │  │  │  │  │  │  │  │  │                 │  └─ NPC: Alguna recompensa tenía que tener el pobre hombre [F0-GO_BACK]
+      │  │  │  │  │  │  │  │  │                 └─ [16] [FB-ONCE] TMenudo chollo
+      │  │  │  │  │  │  │  │  │                    └─ NPC: Tampoco es tan chollo: no estoy nunca en casa, me acuesto con otros hombres, sus amigos le llaman cornudo... [F0-GO_BACK]
+      │  │  │  │  │  │  │  │  └─ [10] [FB-ONCE] VCreo que estoy enamorado de tí
+      │  │  │  │  │  │  │  │     ├─ NPC: ¿ Y tu princesa ?
+      │  │  │  │  │  │  │  │     ├─ [11] [FB-ONCE] XAnda, pues es verdad... Se me había olvidado por completo
+      │  │  │  │  │  │  │  │     │  └─ NPC: ¡ Que frágil es el amor ! [F0-GO_BACK]
+      │  │  │  │  │  │  │  │     └─ [11] [FB-ONCE] ZCreo que lo abandonaré todo por tí
+      │  │  │  │  │  │  │  │        ├─ NPC: ¿ Estás seguro ? ¿ Abandonas tu sueño ?
+      │  │  │  │  │  │  │  │        └─ [12] [FB-ONCE] \Creo que lo tengo decidido
+      │  │  │  │  │  │  │  │           ├─ NPC: Piénsatelo. No hay vuelta atrás
+      │  │  │  │  │  │  │  │           ├─ [13] [FB-ONCE] ^Sí, abandono
+      │  │  │  │  │  │  │  │           │  ├─ NPC: ¡ PERO ESTAS LOCO ! ¿ Abandonas ahora ? ¿ Después de tanto esfuerzo ? No hay que retroceder ante la adversidad. ¡ Antes morir de pie que vivir arrodillado !
+      │  │  │  │  │  │  │  │           │  ├─ [14] [FB-ONCE] `Sí, pero no abandono. Lo que pasa es que tú me gustas más
+      │  │  │  │  │  │  │  │           │  │  └─ NPC: Creo que voy a llorar. Nadie me había demostrado tanto amor. ¡ SNIFF ! Véte antes que me arrepienta. Al menos me quedaré con este dulce recuerdo. ¡ SNIFF !
+      │  │  │  │  │  │  │  │           │  └─ [14] [FB-ONCE] bTienes razón. Voy en su busca.
+      │  │  │  │  │  │  │  │           │     └─ NPC: Ve
+      │  │  │  │  │  │  │  │           ├─ [13] [FB-ONCE] dAunque... tal vez... mejor voy en su rescate...
+      │  │  │  │  │  │  │  │           │  └─ NPC: Ve. Te está esperando
+      │  │  │  │  │  │  │  │           └─ [13] [FB-ONCE] fAunque... tal vez... mejor voy en su rescate y vuelvo cuando sea rico...
+      │  │  │  │  │  │  │  │              ├─ NPC: Todos dicen lo mismo
+      │  │  │  │  │  │  │  │              ├─ [14] [FB-ONCE] hBueno, al menos podemos darnos un beso de despedida
+      │  │  │  │  │  │  │  │              │  └─ NPC: ¡ MUA ! → ACTION 0161
+      │  │  │  │  │  │  │  │              ├─ [14] [FB-ONCE] jBueno, al menos podemos hacer el amor
+      │  │  │  │  │  │  │  │              │  └─ NPC: Son 40 monedas de oro [F0-GO_BACK]
+      │  │  │  │  │  │  │  │              ├─ [14] [FB-ONCE] lBueno, al menos nos podemos fundir en un tierno e inocente abrazo
+      │  │  │  │  │  │  │  │              │  └─ NPC: Son 10 monedas de oro [F0-GO_BACK]
+      │  │  │  │  │  │  │  │              ├─ [14] [FB-ONCE] nBueno, al menos podemos pegar un buen revolcón
+      │  │  │  │  │  │  │  │              │  └─ NPC: Son 40 monedas de oro [F0-GO_BACK]
+      │  │  │  │  │  │  │  │              └─ [14] [FB-ONCE] pBueno, al menos podemos desearnos buena suerte
+      │  │  │  │  │  │  │  │                 └─ NPC: ¡ SUERTE ! → ACTION 0161
+      │  │  │  │  │  │  │  ├─ [9] [FB-ONCE] r¡ VAYA ROLLO !
+      │  │  │  │  │  │  │  │  └─ NPC: Si no te interesa no haber preguntado
+      │  │  │  │  │  │  │  └─ [9] [FB-ONCE] tNo puede ser
+      │  │  │  │  │  │  │     └─ NPC: Hay cosas que nadie se atreve a decir y te guste o no existe censura en los medios de información sobretodo cuando hay muchos intereses económicos [F0-GO_BACK]
+      │  │  │  │  │  │  ├─ [8] [FB-ONCE] v¡ VAYA ROLLO !
+      │  │  │  │  │  │  │  └─ NPC: Si no te interesa no haber preguntado
+      │  │  │  │  │  │  └─ [8] [FB-ONCE] xNo me lo creo
+      │  │  │  │  │  │     └─ NPC: Es lo primero que pense yo [F0-GO_BACK]
+      │  │  │  │  │  ├─ [7] [FB-ONCE] z¡ VAYA ROLLO !
+      │  │  │  │  │  │  └─ NPC: Si no te interesa no haber preguntado
+      │  │  │  │  │  └─ [7] [FB-ONCE] éNo es posible
+      │  │  │  │  │     └─ NPC: Pues así es, aunque parezca mentira [F0-GO_BACK]
+      │  │  │  │  ├─ [6] [FB-ONCE] ó¡ VAYA ROLLO !
+      │  │  │  │  │  └─ NPC: Si no te interesa no haber preguntado
+      │  │  │  │  └─ [6] [FB-ONCE] ñEso no puede ser verdad
+      │  │  │  │     └─ NPC: Lo peor de todo es que se esta engañando a mucha gente inocente. Déjame que te explique [F0-GO_BACK]
+      │  │  │  ├─ [5] [FB-ONCE] ¡¡ VAYA ROLLO !
+      │  │  │  │  └─ NPC: Si no te interesa no haber preguntado
+      │  │  │  └─ [5] [FB-ONCE] úCreo que me no eres la persona idónea para hablar de esto
+      │  │  │     └─ NPC: ¿Y un presentador de televisión, cuyo único mérito consiste en leer una pantalla, sí?
+      │  │  ├─ [4] [FB-ONCE] ¡ VAYA ROLLO !
+      │  │  │  └─ NPC: Si no te interesa no haber preguntado
+      │  │  ├─ [4] [FB-ONCE] Lo que pasa es que con el Sida el negocio va mal y estás resentida
+      │  │  │  └─ NPC: No te pido que me creas. Sólo infórmate libremente, compara y decide
+      │  │  ├─ [4] [FB-ONCE] ¿ Has ido a denunciarlo a la prensa ?
+      │  │  │  └─ NPC: La prensa está comprada [F0-GO_BACK]
+      │  │  └─ [4] [FB-ONCE] Escribe un libro
+      │  │     └─ NPC: Nadie lo quiere publicar. Toma aquí tienes una fotocopia → ACTION 0162
+      │  └─ [3] [FB-ONCE] ¡ VAYA ROLLO !
+      │     └─ NPC: Si no te interesa no haber preguntado
+      └─ [2] [FB-ONCE] ¡ VAYA ROLLO !
+         └─ NPC: Si no te interesa no haber preguntado
+
+└─ ROOT
+   NPC: ¿ Has vuelto a por mí ?
+   └─ [1] [FB-ONCE] No, mira... tengo condones
+      ├─ NPC: A ver... parecen buenos...¡hey! Consumir preferentemente antes de MCMXCVII a.C. ¡ Pero si estan CADUCADOS !
+      ├─ [2] [FB-ONCE] No importa... tal vez aguanten
+      │  └─ NPC: Las cosas antes duraban más, pero son 3993 años los que llevan caducados. Es demasiado tiempo. [F0-GO_BACK]
+      └─ [2] [FB-ONCE] ¿ Y si los llevo a un restaurador ?
+         ├─ NPC: Mejor llévalos a un arqueólogo. ¡ HAS HECHO ES UN DESCUBRIMIENTO UNICO ! ¡ EXTRAORDINARIO ! Con tu hallazgo se ha demostrado que nuestros antepasados ya conocían el látex además del sílex.
+         ├─ [3] [FB-ONCE] Entonces, ¿ qué hago ?
+         │  └─ NPC: Vuelve cuando tengas condones. Pero fíjate en la fecha de caducidad → ACTION 0164
+         └─ [3] [FB-ONCE] Sabes que te digo: voy a por mi princesa. Espero que no me ponga tantos problemas
+            └─ NPC: Volverás. Todos acaban volviendo para lo mismo. Pero la próxima vez hazlo con unos condones en condiciones. → ACTION 0164
+
+└─ ROOT
+   NPC: ¿ Qué ? ¿ Ya tienes los condones ?
+   ├─ [1] [FB-ONCE] Estoy en ello...
+   │  └─ NPC: Aquí te espero
+   └─ [1] [FB-ONCE] ¡ Estoy tan desesperado que creo que te voy a forzar !
+      ├─ NPC: ¡ POLICIA ! ¡ POLICIA ! ¡ A MI LA LEGION ! ¡ ME QUIEREN VIOLAR !
+      ├─ [2] [FB-ONCE] No te asustes era una broma... una forma de hablar...
+      │  └─ NPC: ¡¡ Pues vaya broma !!
+      └─ [2] [FB-ONCE] ¡ CALLA GUARRA ! Nadie te va a hacer caso
+         └─ NPC: ¡ POLICIA ! ¡ POLICIA ! → ACTION 0160
+
+└─ ROOT
+   NPC: ¡ POLICIA !
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0160 (352)  |  After: ¡ POLICIA ! ¡ POLICIA !
+  → ACTION 0161 (353)  |  After: ¡ MUA !
+  → ACTION 0162 (354)  |  After: Nadie lo quiere publicar. Toma aquí tienes una fot
+  → ACTION 0163 (355)  |  After last node: ¡ POLICIA !
+  → ACTION 0164 (356)  |  After: Vuelve cuando tengas condones. Pero fíjate en la f
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

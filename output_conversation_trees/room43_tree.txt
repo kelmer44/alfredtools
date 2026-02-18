@@ -1,0 +1,162 @@
+================================================================================
+ROOM 43 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Parece un vendedor
+  #2: Nada en especial
+  #3: -
+  #4: -
+  #5: La entrada a la pirámide
+
+================================================================================
+
+└─ ROOT #0
+   NPC: ¿ Que se le ofrece, extranjero ?
+   ├─ [1] [FB-ONCE] ¿ Que me recomienda ?
+   │  ├─ NPC: Bueno ... Todo lo que vendo es recomendable: tengo auténtico licor de arena. Pirámides de recuerdo. Crema para el sol...
+   │  ├─ [2] [FB-ONCE] 
+   │  │  ├─ NPC: Son dos monedas
+   │  │  ├─ [3] [FB-ONCE] ¿ Y si regateamos ?
+   │  │  │  ├─ NPC: No
+   │  │  │  ├─ [4] [FB-ONCE] Bueno, es igual, deme un poco
+   │  │  │  │  ├─ NPC: Pues es la última botella que me queda
+   │  │  │  │  ├─ [5] [FB-ONCE] ¡ Que no, que no ! que no quiero
+   │  │  │  │  │  └─ NPC: Vale, vale
+   │  │  │  │  └─ [5] [FB-ONCE] Bueno vale, no me llore... deme una botella ¿ No estará caducado ?
+   │  │  │  │     └─ NPC: ¡ QUE VA ! El licor de arena no se caduca → ACTION 013A (314)
+   │  │  │  └─ [4] [FB-ONCE] Paso de licor de arena
+   │  │  │     └─ NPC: Peor para mi porque esto es un timo, ya ve... Una botella con arena del desierto ...
+   │  │  └─ [3] [FB-ONCE] Deme un poco
+   │  │     └─ NPC: Tenga → ACTION 013A (314)
+   │  ├─ [2] [FB-ONCE] No me vendría mal esa crema para el sol
+   │  │  ├─ NPC: Ni que lo diga. No se como no se ha quemado tadavía. Son dos monedas → ACTION 013C (316)
+   │  │  ├─ [3] [FB-ONCE] ¿ Y si regateamos ?
+   │  │  │  ├─ NPC: No
+   │  │  │  ├─ [4] [FB-ONCE] Bueno, es igual, deme un frasco
+   │  │  │  │  └─ NPC: Tenga. → ACTION 013C (316)
+   │  │  │  └─ [4] [FB-ONCE] Pues quédesela... el sol no me afecta
+   │  │  │     └─ NPC: Muy bien, pero si acaba como una gamba lo lamentará.
+   │  │  └─ [3] [FB-ONCE] Deme un frasco
+   │  │     └─ NPC: Tenga → ACTION 013C (316)
+   │  ├─ [2] [FB-ONCE] ¿ Tiene Vd la banda sonora del ALFRED PELROCK
+   │  │  ├─ NPC: Sí, es muy sonora. Cuesta tres monedas.
+   │  │  ├─ [3] [FB-ONCE] ¿ Y si regateamos ?
+   │  │  │  ├─ NPC: No
+   │  │  │  ├─ [4] [FB-ONCE] Vale, es igual... un poco cara, pero démela
+   │  │  │  │  └─ NPC: ¡ Buena elección !, tenga. → ACTION 013D (317)
+   │  │  │  └─ [4] [FB-ONCE] Pues no la quiero
+   │  │  │     └─ NPC: Vd. se lo pierde: es buenísima.
+   │  │  └─ [3] [FB-ONCE] Me la podría envolver... es para regalársela a mi hermano
+   │  │     └─ NPC: No tengo papel → ACTION 013D (317)
+   │  ├─ [2] [FB-ONCE] ¿ Tiene Vd el álbum de pantallas del ALFRED PELROCK ?
+   │  │  ├─ NPC: Son dos monedas
+   │  │  ├─ [3] [FB-ONCE] ¿ Y si regateamos ?
+   │  │  │  ├─ NPC: No
+   │  │  │  ├─ [4] [FB-ONCE] Bueno... al menos lo intenté... démelo
+   │  │  │  │  └─ NPC: ¡ Perfecto !, que lo disfrute. → ACTION 013E (318)
+   │  │  │  └─ [4] [FB-ONCE] 0Pues no lo quiero
+   │  │  │     └─ NPC: Vd. se lo pierde: es buenísima.
+   │  │  └─ [3] [FB-ONCE] 2Me lo quedo
+   │  │     └─ NPC: De acuerdo → ACTION 013E (318)
+   │  └─ [2] [FB-ONCE] 4¿ Tiene Vd el plano donde está la princesa ?
+   │     ├─ NPC: ¡ Claro !
+   │     ├─ [3] [FB-ONCE] 6¡ No me lo creo !. Se supone que es secreto
+   │     │  ├─ NPC: ¡ Y lo es !. Yo era el arquitecto de esa pirámide. No me pagaron lo que habíamos acordado, y ahora solo aspiro a sabotearlos
+   │     │  ├─ [4] [FB-ONCE] 8De acuerdo, deme uno
+   │     │  │  └─ NPC: Tenga. Son diez monedas → ACTION 013F (319)
+   │     │  └─ [4] [FB-ONCE] :¿ Y si regateamos ?
+   │     │     └─ NPC: No
+   │     └─ [3] [FB-ONCE] <Deme uno
+   │        ├─ NPC: Tenga. Son diez monedas → ACTION 013F (319)
+   │        └─ [4] [FB-ONCE] >¿ Y si regateamos ?
+   │           └─ NPC: No
+   └─ [1] [FB-ONCE] @Nada, gracias
+      └─ NPC: Vd se lo pierde
+
+└─ ROOT #1
+   NPC: Hola de nuevo. ¿ Que se le ofrece ?
+   ├─ [1] [FB-ONCE] CCreo que cuando me vendió el plano olvidó darme la parte interior de la pirámide
+   │  └─ NPC: ¡ Que cara más dura ! ¿ Que quiere ? ¿ Que se lo den todo echo ? → ACTION 0140 (320)
+   ├─ [1] [FB-ONCE] E¡ Maldito embustero ! Conque el plano de la pirámide ¿ eh ?
+   │  └─ NPC: ¡ Que cara más dura ! ¿ Que quiere ? ¿ Que se lo den todo echo ? → ACTION 0140 (320)
+   ├─ [1] [FB-ONCE] G¡ Devuelveme mi dinero, ladrón ! Ese plano es una birria
+   │  └─ NPC: ¡ Que cara más dura ! ¿ Que quiere ? ¿ Que se lo den todo echo ? → ACTION 0140 (320)
+   ├─ [1] [FB-ONCE] I¿ Me ha tomado por tonto ?. Tenga su ridículo plano
+   │  └─ NPC: ¡ Que cara más dura ! ¿ Que quiere ? ¿ Que se lo den todo echo ? → ACTION 0140 (320)
+   └─ [1] [FB-ONCE] K¡ Voy a denunciarte a la policía por vender planos falsos !
+      └─ NPC: ¡ Que cara más dura ! ¿ Que quiere ? ¿ Que se lo den todo echo ? → ACTION 0140 (320)
+
+└─ ROOT #2
+   NPC: ¡ Que pesado es Vd ! ¿ Todavía ahí ?
+
+└─ ROOT #3
+   NPC: Hola de nuevo. ¿ Que se le ofrece ?
+   ├─ [1] [FB-ONCE] OConque Vd era el arquitecto de la pirámide ¿ eh ?
+   │  ├─ NPC: Por supuesto. Y no sólo de ésta sino también de las de Gizeh.
+   │  └─ [2] [FB-ONCE] Q¡ Embustero ! He conocido al auténtico arquitecto. Está dentro de la pirámide
+   │     ├─ NPC: ¡ IMPOSTOR ! Ese es el enchufado del faraón. El auténtico arquitecto soy yo.
+   │     ├─ [3] [FB-ONCE] SClaro, claro, no se preocupe
+   │     │  └─ NPC: No necesito su ironía. Allá Vd si no me cree. Ya volverá cuando me necesite
+   │     └─ [3] [FB-ONCE] UY yo soy el nuevo agente 007
+   │        ├─ NPC: Eso si que es una trola como una pirámide. El nuevo 007 es Pierce Boorsman.
+   │        ├─ [4] [FB-ONCE] WLo siento... quiero decir que no acabo de creerme esa historia
+   │        │  ├─ NPC: ¡ Créame, por favor ! Acabaré volviendome loco. Se lo voy a demostrar: Soy el único que sabe donde está el plano detallado de la ubicación de la sala de la princesa
+   │        │  ├─ [5] [FB-ONCE] YNo me lo creo
+   │        │  │  └─ NPC: ¡ Hombres de poca fe !. En fin... Si vuelve a la pirámide, no deje de mirar la papelera que hay junto a la puerta → ACTION 0144 (324)
+   │        │  └─ [5] [FB-ONCE] [¿¿¿ DONDE ???
+   │        │     └─ NPC: Ahora si, ¿ eh ?. Pues lo siento. Haberme creido antes
+   │        └─ [4] [FB-ONCE] ]De acuerdo. Le creo
+   │           ├─ NPC: Ah ¿ si ? ¿ Y le parezco un arquitecto bueno ?
+   │           ├─ [5] [FB-ONCE] _Sí, tiene pinta de serlo
+   │           │  └─ NPC: Pues yo creo que me está dando la razón como a un loco. ¡¡ Y YO NO ESTOY LOCO !! ¡¡ NO SEíOR !! ¡¡ AAAAAAAAHHH !! ¡¡¡ AYEJHG DKJ AQUITY DBHJUA ESS TTU !!!
+   │           └─ [5] [FB-ONCE] aEl plano es una birria pero la pirámide es de matricula de honor
+   │              ├─ NPC: ¿ Cómo que de matrícula de honor ? ¡¡ Mi pirámide es mucho más que un buen ejercicio de arquitectura !! ¡¡ Es un tesoro de la humanidad !! Pasarán miles de años y permanecerá en pie. ¡ Imperturbable !
+   │              ├─ [6] [FB-ONCE] cSí, sí lo que Vd diga
+   │              │  └─ NPC: Pues yo creo que me está dando la razón como a un loco. ¡¡ Y YO NO ESTOY LOCO !! ¡¡ YO NO ESTOY LOCO !! ¡¡ NO SEíOR !! ¡¡ AAAAAAAAHHH !! ¡¡¡ AYEJHG DKJ AQUITY DBHJUA ESS TTU !!!
+   │              └─ [6] [FB-ONCE] e¡ Presuntuoso ! Yo he derruido con mis manos pirámides mayores que la suya...
+   │                 └─ NPC: Tú lo que eres es un fantasma. Pero, ¿ qué dices ? ¿ estás loco o qué ?... ¡ Porque yo no estoy loco ! ¡¡ NO SEíOR !!. ¡¡ AAAAAAAAHHH !!. ¡¡¡ AYEJHG DKJ AQUITY DBHJUA ESS TTU !!!
+   └─ [1] [FB-ONCE] g¿ Y Vd dónde ha estudiado arquitectura ?
+      ├─ NPC: En Tebas.
+      └─ [2] [FB-ONCE] i¿ Y dibujo técnico ?
+         ├─ NPC: También.
+         └─ [3] [FB-ONCE] kPero no aprobó, ¿ verdad ?
+            ├─ NPC: ¡ Pero bueno !
+            ├─ [4] [FB-ONCE] mLo digo porque su plano es en realidad un dibujito de párvulos
+            │  └─ NPC: ¿ Eh ? Pues lo siento. Ahora no le voy a ayudar
+            ├─ [4] [FB-ONCE] oLo digo porque no veo el título colgado en la pared
+            │  └─ NPC: ¡ Yo no soy nada fanfarrón ! No como los de mi quinta [F0-GO_BACK]
+            ├─ [4] [FB-ONCE] qLo digo porque las manos le huelen a cebolla y no a tinta y papel
+            │  └─ NPC: Y a ti te huele el aliento. Deberías lavarte la boca de vez en cuando, CERDO
+            └─ [4] [FB-ONCE] sLo digo porque tiene pinta de analfabeto
+               ├─ NPC: ¿ Analfabeto ? ¿ Qué significa eso ?
+               ├─ [5] [FB-ONCE] uO es usted tonto o lo hace muy bien
+               │  └─ NPC: ¡ Oiga ! Sin faltar. Déjeme tranquilo que yo no lo he insultado.
+               └─ [5] [FB-ONCE] wQue tiene pinta de no saber leer ni escribir
+                  └─ NPC: ¿ Y para que quiero saber leer y escribir ? ¡ Mi única afición es diseñar pirámides... para eso sólo hace falta saber dibujar... por cierto... es usted un faltador. Sólo hace que meterse conmigo. Déjeme tranquilo de una vez.
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 013A (314)  |  After: ¡ QUE VA ! El licor de arena no se caduca
+  → ACTION 013C (316)  |  After: Ni que lo diga. No se como no se ha quemado tadaví
+  → ACTION 013D (317)  |  After: ¡ Buena elección !, tenga.
+  → ACTION 013E (318)  |  After: ¡ Perfecto !, que lo disfrute.
+  → ACTION 013F (319)  |  After: Tenga. Son diez monedas
+  → ACTION 0140 (320)  |  After: ¡ Que cara más dura ! ¿ Que quiere ? ¿ Que se lo d
+  → ACTION 0144 (324)  |  After: ¡ Hombres de poca fe !. En fin... Si vuelve a la p
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

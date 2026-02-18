@@ -1,0 +1,61 @@
+================================================================================
+ROOM 30 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: -
+  #3: -
+  #4: -
+  #5: -
+  #6: Está un poco desgastado, no se entiende bien
+  #7: Está un poco desgastado, no se entiende bien
+  #8: Está un poco desgastado, no se entiende bien
+  #9: Está un poco desgastado, no se entiende bien
+  #10: Está un poco desgastado, no se entiende bien
+  #11: Está un poco desgastado, no se entiende bien
+  #12: Está un poco desgastado, no se entiende bien
+  #13: Está un poco desgastado, no se entiende bien
+  #14: Está un poco desgastado, no se entiende bien
+  #15: Está un poco desgastado, no se entiende bien
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Conque ... Un profanador de tumbas ¿ eh ?
+   ├─ [1] [FB-ONCE] No, verá ... Era sólo una broma. Iba a devolverla ahora
+   │  ├─ NPC: ¡ Ya !. Un travesti, ¿ eh ?
+   │  ├─ [2] [FB-ONCE] No.. esto... quiero decir...
+   │  │  └─ NPC: Así que le gustan las pelucas de mujer, ¿ eh ? Verá Vd lo que hacemos con los ladrones de pelucas de princesas → ACTION 0123 (291)
+   │  ├─ [2] [FB-ONCE] Hhmmm.. ertdj... quiero decir...
+   │  │  └─ NPC: Así que le gustan las pelucas de mujer, ¿ eh ? Verá Vd lo que hacemos con los ladrones de pelucas de princesas → ACTION 0123 (291)
+   │  └─ [2] [FB-ONCE] Ejemm... uirhjskog... tuiwefdshyio decir...
+   │     └─ NPC: Así que le gustan las pelucas de mujer, ¿ eh ? Verá Vd lo que hacemos con los ladrones de pelucas de princesas → ACTION 0123 (291)
+   ├─ [1] [FB-ONCE] Sí, ¿ y qué ?
+   │  └─ NPC: ¡ Ya !. Verá Vd lo que hacemos con los ladrones de pelucas de princesas → ACTION 0123 (291)
+   ├─ [1] [FB-ONCE] Esto... yo... no es lo que parece
+   │  └─ NPC: ¡ Ya !. Verá Vd lo que hacemos con los ladrones de pelucas de princesas → ACTION 0123 (291)
+   ├─ [1] [FB-ONCE] Sólo hablaré en presencia de mi abogado
+   │  └─ NPC: ¿ Abogado ? Verá Vd lo que hacemos con los ladrones de pelucas de princesas → ACTION 0123 (291)
+   └─ [1] [FB-ONCE] Sí, lo confieso
+      └─ NPC: Pues ahora verá Vd lo que hacemos con los profanadores de tumbas de princesas → ACTION 0123 (291)
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0123 (291)  |  After: Así que le gustan las pelucas de mujer, ¿ eh ? Ver
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

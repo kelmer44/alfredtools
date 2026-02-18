@@ -1,0 +1,103 @@
+================================================================================
+ROOM 48 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: -
+  #3: -
+  #4: -
+  #5: -
+  #6: -
+  #7: -
+  #8: -
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Espera...
+   └─ [1] [FB-ONCE] ¡ Qué cámara más bonita ! Y el suelo es precioso...
+      ├─ NPC: No...
+      └─ [2] [FB-ONCE] ¿ Qué pasa ?
+         └─ NPC: Vaya... Olvidé cerrar la trampilla
+
+└─ ROOT #1
+   NPC: Bueno, ¿ y ahora qué ?
+   ├─ [1] [FB-ONCE] ¿ Y si te tiñes el pelo ? Ese corte de pelo me recuerda a mi ex-novia
+   │  ├─ NPC: ¿ Y qué color te gusta más ?
+   │  ├─ [2] [FB-ONCE] Amarillo
+   │  │  └─ NPC: No, es el color de la mala suerte. [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] Rojo con mechas azules
+   │  │  └─ NPC: ¿ Pero qué dices ? Parecería un hincha del Barca. [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] Blanco como el Real Madrid
+   │  │  └─ NPC: ¡ Parecería una vieja ! [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] Azul cobalto como tus ojos
+   │  │  └─ NPC: Azul con azul no le pega. [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] Es igual, ya lo superaré.
+   │     └─ NPC: Dame un beso y verás como la olvidas enseguida.
+   ├─ [1] [FB-ONCE] ¿ Jugamos al Monkey ?
+   │  ├─ NPC: Estoy harta de esperar aquí sentada
+   │  ├─ [2] [FB-ONCE] ¿ Qué ? ¿ nadie te hace caso, verdad ?
+   │  │  ├─ NPC: No.
+   │  │  └─ [3] [FB-ONCE] Pues dame las gracias, abre las extremidades y... ¡ dame un achuchón !
+   │  │     ├─ NPC: ¿ Un achuchón ? ¿ Las extremidades ? ¿ te refieres a las superiorers, no ?
+   │  │     └─ [4] [FB-ONCE] Pero, ¿ en qué estás pensado, niña ? Claro, las superiores, para darme un abrazo. ¡ No se te puede hablar con poesia !
+   │  │        └─ NPC: A mis brazos, poeta.
+   │  ├─ [2] [FB-ONCE] Bueno, ¿ y qué tal si te levantas y me preparas unos pinchos morunos ?
+   │  │  ├─ NPC: ¿ Y una cervecita ?
+   │  │  └─ [3] [FB-ONCE] Dabuten, nena.
+   │  │     ├─ NPC: Así me gustan los hombres, que dominen.
+   │  │     └─ [4] [FB-ONCE] Ya está bien de hacerme la pelota y date prisa que tengo hambre
+   │  │        ├─ NPC: Sí.
+   │  │        └─ [5] [FB-ONCE] Sí, ¿ qué ? ¿ No te han enseñado modales tus padres, niña ?
+   │  │           ├─ NPC: Sí, sí, señor.
+   │  │           └─ [6] [FB-ONCE] Ala pues... ¡ marchando ! ¡ a la cocina !
+   │  │              └─ NPC: Para servirle, señor.
+   │  ├─ [2] [FB-ONCE] ¡ No me extraña con lo fea que eres !
+   │  │  └─ NPC: Vaya tonteria de insulto. Como se nota que acabas de salir de la academia.
+   │  ├─ [2] [FB-ONCE] Pues mueve el culo, princesa.
+   │  │  ├─ NPC: Con esos insultos podrías humillar hasta a la Sword Master.
+   │  │  └─ [3] [FB-ONCE] 0¿ La conoces ? ¿ No tendrás por ahí su telefóno ?
+   │  │     └─ NPC: No te lo voy a dar. No quiero que te metas con ella. Es amiga mía. [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] 2¿ Qué ? ¿ Ya te empiezan a doler las almorranas ?
+   │     └─ NPC: Me rindo. Has ganado.
+   ├─ [1] [FB-ONCE] 4Te imaginaba más joven
+   │  ├─ NPC: Y yo a tí más alto.
+   │  └─ [2] [FB-ONCE] 6Pero no me importa.
+   │     └─ NPC: Tu tampoco estás mal.
+   ├─ [1] [FB-ONCE] 8¿ Y si nos echamos en la cama, nos cogemos de la mano y nos miramos a los ojos ?
+   │  ├─ NPC: ¿ Tienes condones ?
+   │  └─ [2] [FB-ONCE] :Oye, te estaba hablando de amor. Además los condones que tengo están caducados.
+   │     └─ NPC: Pues es una lástima. [F0-GO_BACK]
+   └─ [1] [FB-ONCE] <Cuanta venda.... ¿ no estarás enferma ?
+      ├─ NPC: No, sólo tengo un poco de calentura...
+      ├─ [2] [FB-ONCE] >Pues quítate la venda...
+      │  ├─ NPC: Es que no lo permite la censura. No están viendo menores...
+      │  └─ [3] [FB-ONCE] @Pues apaga la luz...
+      │     ├─ NPC: Buena idea...
+      │     └─ [4] [FB-ONCE] BOye, ¿ dónde estás ?
+      │        ├─ NPC: Aquí. Ven. Ten cuidado no te tropiezes con la esfinge...
+      │        └─ [5] [FB-ONCE] D¿ y esto ? ¡ Ay ! ¡ Ay !
+      │           ├─ NPC: ¡ Huy !
+      │           └─ [6] [FB-ONCE] F¡ Ahhhh !
+      │              └─ NPC: ¡ Oh ! ¡ Oh ! ¡ Oooooh !
+      └─ [2] [FB-ONCE] Justo en el bolsillo llevo un termómetro, ¿ me lo saco y te lo pongo ?
+         └─ NPC: Me tendría que quitar la venda antes [F0-GO_BACK]
+
+└─ ROOT #2
+   NPC: ¡ A mis brazos, pequeñín !
+   └─ [1] [FB-ONCE] K¿ Qué es ESTO ?
+      ├─ NPC: ¡ Celulitis ! ¡ Ja, ja, ja !
+      └─ [2] [FB-ONCE] M¡¡ RAYOS Y CENTELLAS !!
+         └─ NPC: ¡ JA, JA, JA !
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

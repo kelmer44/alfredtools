@@ -1,0 +1,95 @@
+================================================================================
+ROOM 34 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Parece que vigila la entrada a esta ermita
+  #2: -
+  #3: ¡ Que horrible ha de ser trabajar con este sol !
+  #4: -
+
+================================================================================
+
+└─ ROOT #0
+   NPC: ¿ Que quiere Vd ?
+   ├─ [1] [F1-REPEAT] Soy turista. Quisiera visitar la ermita
+   │  ├─ NPC: Lo siento. No está permitida la entrada a infieles
+   │  └─ [2] [FB-ONCE] Soy budista de agua dulce
+   │     ├─ NPC: ¿ De río, de pantano o de lluvia ?
+   │     ├─ [3] [FB-ONCE] De río
+   │     │  ├─ NPC: ¿ Y está usted circuncidado ?
+   │     │  ├─ [4] [FB-ONCE] No
+   │     │  │  └─ NPC: Entonces no puede entrar
+   │     │  └─ [4] [FB-ONCE] Sí
+   │     │     ├─ NPC: A ver...
+   │     │     ├─ [5] [FB-ONCE] Me da verguenza
+   │     │     │  └─ NPC: Si no lo compruebo no puede entrar
+   │     │     └─ [5] [FB-ONCE] ¿ No se fía de mi palabra ?
+   │     │        └─ NPC: No [F0-GO_BACK]
+   │     ├─ [3] [FB-ONCE] De pantano
+   │     │  └─ NPC: Sólo hay budistas de agua dulce de río
+   │     └─ [3] [FB-ONCE] De lluvia
+   │        └─ NPC: Sólo hay budistas de agua dulce de río
+   ├─ [1] [FB-ONCE] Hace calor, ¿eh?
+   │  └─ NPC: Apártese me está tapando el sol.
+   ├─ [1] [FB-ONCE] ¿ Qué tomando el sol ?
+   │  ├─ NPC: ¡ Que gracioso ! ¡ Estoy trabajando ! No como usted que está de vacaciones
+   │  ├─ [2] [FB-ONCE] No estoy de vacaciones. He venido a rescatar a una princesa...
+   │  │  └─ NPC: ¡ Otro loco ! Le daré la razón... es lo mejor según mi primo el psiquiatra... → ACTION 0176 (374)
+   │  └─ [2] [FB-ONCE] Sólo quería ser simpático y cortés
+   │     └─ NPC: Pues no moleste y déjeme trabajar
+   └─ [1] [FB-ONCE] ¿ No tendrá usted un cigarrillo ?
+      └─ NPC: Está prohibido fumar... es para evitar inciendios... antes esto era un vergel y ya ve como se ha quedado esto por culpa de fumadores irresponsables...
+
+└─ ROOT #1
+   NPC: ¿ Que pasa ?
+   ├─ [1] [FB-ONCE] Un burro por tu casa...
+   │  └─ NPC: Sí, sí, lo que usted diga → ACTION 0174 (372)
+   ├─ [1] [FB-ONCE] Voy a entrar por la cara...
+   │  └─ NPC: Sí, sí, lo que usted diga → ACTION 0174 (372)
+   ├─ [1] [FB-ONCE] ¿ Me deja pasar ? Es que aquí me pega el sol
+   │  └─ NPC: Sí, sí, lo que usted diga → ACTION 0174 (372)
+   └─ [1] [FB-ONCE] Las naranjas valencianas son las mejores
+      └─ NPC: Sí, hombre, por supuesto → ACTION 0174 (372)
+
+└─ ROOT #2
+   NPC: ¿ Que pasa ?
+   ├─ [1] [FB-ONCE] ¿ Puedo ir al servicio ?
+   │  └─ NPC: Sí, sí, lo que usted diga → ACTION 0175 (373)
+   ├─ [1] [FB-ONCE] ¿ Puedo pasar ? Es que tengo una cita con Nefertiti
+   │  └─ NPC: Sí, sí, lo que usted diga → ACTION 0175 (373)
+   ├─ [1] [FB-ONCE] Perdone, pero me he dejado el paraguas dentro... entro y ahora salgo
+   │  └─ NPC: Sí, sí, lo que usted diga → ACTION 0175 (373)
+   └─ [1] [FB-ONCE] 1¡ Lorito ! ¡ Lorito ! Me lo puedes repetir
+      └─ NPC: Sí, sí, lo que usted diga → ACTION 0175 (373)
+
+└─ ROOT #3
+   NPC: Sí, sí, lo que usted diga
+
+└─ ROOT #4
+   NPC: ¿ Que es esto ?. ¡¡ Por Alá !!. ¡ Este es el número que me faltaba !. ¡ Que chicas !, oiga ... ¿ Puede dejarmela un momento ?
+   └─ [1] [FB-ONCE] 5Si, si, claro
+      └─ NPC: Muchas gracias joven. Ahora vuelvo ... → ACTION 0129 (297)
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0129 (297)  |  After: Muchas gracias joven. Ahora vuelvo ...
+  → ACTION 0174 (372)  |  After: Sí, sí, lo que usted diga
+  → ACTION 0175 (373)  |  After: Sí, sí, lo que usted diga
+  → ACTION 0176 (374)  |  After: ¡ Otro loco ! Le daré la razón... es lo mejor segú
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

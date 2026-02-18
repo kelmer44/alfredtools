@@ -1,0 +1,33 @@
+================================================================================
+ROOM 36 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Parece que vigila el acceso a las pirámides
+  #2: -
+  #3: -
+  #4: -
+  #5: -
+  #6: -
+
+================================================================================
+
+└─ ROOT #0
+   NPC: No me haga hablar. Tengo una sed que ni un camello
+
+└─ ROOT #1
+   NPC: Lo siento. Tengo todavía mucha sed
+
+└─ ROOT #2
+   NPC: Me podría traer un poco de agua más, por favor.
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

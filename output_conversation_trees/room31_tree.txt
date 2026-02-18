@@ -1,0 +1,179 @@
+================================================================================
+ROOM 31 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Parece algo abatido
+  #2: -
+  #3: -
+  #4: -
+  #5: -
+  #6: -
+  #7: Una baldosa
+  #8: Una baldosa
+  #9: Una baldosa
+  #10: Una baldosa
+  #11: Una baldosa
+  #12: Una baldosa
+  #13: Una baldosa
+  #14: Una baldosa
+  #15: Una baldosa
+  #16: Una baldosa
+  #17: Una baldosa
+  #18: Una baldosa
+  #19: Una baldosa
+  #20: Una baldosa
+  #21: Una baldosa
+  #22: Un papel con unos números
+  #23: Está seco
+  #24: ¡ Que asco ! Está absolutamente embozado
+  #25: ¡ Que asco de cama ! Espero no tener que dormir aquí
+  #26: ¡ Oye !. Esta baldosa está un poco suelta&A¡¡ Aaahh !!. ¡ No me hables, maldito seas !
+
+================================================================================
+
+└─ ROOT #0
+   NPC: ¡ Te he dicho que no me hables !
+   ├─ [1] [FB-ONCE] Perdona
+   │  └─ NPC: ¡ Piérdete !
+   ├─ [1] [FB-ONCE] ¿ Por qué estás tan enfadado ?
+   │  ├─ NPC: ¡ Esa era mi celda ! Y por culpa tuya me han trasladado a esta...
+   │  ├─ [2] [FB-ONCE] Oye, a mi me da igual una que otra...
+   │  │  ├─ NPC: Pues a mi no. Yo prefiero esa
+   │  │  ├─ [3] [FB-ONCE] No le veo nada de especial
+   │  │  │  └─ NPC: Claro
+   │  │  └─ [3] [FB-ONCE] ¿ Qué tiene de especial ?
+   │  │     └─ NPC: ¡ A tí te lo voy a decir !. Me tiro 20 años en esa celda y ahora me trasladan. ¡ Todo porque es el famoso cantante Elvis Preysler ! ¡ Maldita sea !. Iba a fugarme hoy mismo [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] Yo lo que quiero es salir de aquí lo antes posible
+   │     ├─ NPC: Claro. Oye, Elvis, porque no me cantas una canción...
+   │     ├─ [3] [FB-ONCE] Yo no soy Elvis Preysler. Me llamo Alfred Pelrock...
+   │     │  ├─ NPC: ¡ Como que no eres Elvis ! ¡ 20 años excavando un tunel para que ahora me cambien a otra !. ¿ Que voy a hacer ahora ?
+   │     │  └─ [4] [FB-ONCE] ¿ Que has dicho acerca de un tunel ?
+   │     │     ├─ NPC: ¡ Sí, hombre ! ¡ A ti te lo voy a decir !
+   │     │     └─ [5] [FB-ONCE] ¿ Donde está ese tunel ?
+   │     │        ├─ NPC: Pero ... ¿ Que te has creido ?. ¿ Que te lo voy a decir a ti ?
+   │     │        ├─ [6] [FB-ONCE] 0Comprendo que estés resentido. Otra vez será
+   │     │        │  └─ NPC: Sí
+   │     │        ├─ [6] [FB-ONCE] 2Si no me lo dices, les diré a los guardias que pensabas fugarte
+   │     │        │  └─ NPC: ¡ Es igual !. Ya nada peor puede pasarme
+   │     │        └─ [6] [FB-ONCE] 4Si me lo dices prometo rescatarte más tarde
+   │     │           ├─ NPC: ¿ Como quieres que te crea ?
+   │     │           ├─ [7] [FB-ONCE] 6Te doy mi palabra
+   │     │           │  └─ NPC: ¿ Y a mi qué tu palabra ?
+   │     │           └─ [7] [FB-ONCE] 8¡ Bah !. Seguro que es falso eso del tunel
+   │     │              ├─ NPC: ¿¿¿ FALSO ???. ¡ ES EL MEJOR TUNEL QUE SE HA EXCAVADO JAMAS !. ¡ UNA AUTENTICA OBRA DE ARTE !. Casi me daba pena dejar la carcel
+   │     │              └─ [8] [FB-ONCE] :¡ Anda ya !. ¿ Y que más ?
+   │     │                 ├─ NPC: El señor no se lo cree ¿ eh ?. Bien ... Una de las baldosas conduce al tunel. Pero no se te ocurra escaparte. Solo te lo he dicho para que lo admires
+   │     │                 └─ [9] [FB-ONCE] <Claro hombre, descuida
+   │     │                    └─ NPC: Me alegro que lo entiendas. Aún queda gente conprensiva → ACTION 0125 (293)
+   │     └─ [3] [FB-ONCE] >Que te parece el rock de la cárcel
+   │        ├─ NPC: Arranca...
+   │        └─ [4] [FB-ONCE] @¡ UN DIA HUBO FIESTA EN LA PRISION !
+   │           ├─ NPC: ¡ OH, YEAH !
+   │           └─ [5] [FB-ONCE] B¡ LA BANDA DE LOS PRESOS SE PUSO A TOCAR !
+   │              ├─ NPC: ¡ OH, YEAH !
+   │              └─ [6] [FB-ONCE] D¡¡ Y TODO EL MUNDO SE PUSO A BAILAR EL ROCK !!
+   │                 ├─ NPC: ¡¡ Y TODO EL MUNDO A BAILAR !!
+   │                 └─ [7] [FB-ONCE] F¡¡¡ TODO EL MUNDO EN LA PRISION
+   │                    ├─ NPC: CORRIERON A BAILAR EL ROCK !!!
+   │                    └─ [8] [FB-ONCE] ¡ OH, YEAH ! .....
+   │                       ├─ NPC: ¡ Como me mola esta canción ! Pero me gusta más tu versión que la de tu padre.
+   │                       └─ [9] [FB-ONCE] J¿ Sí ? A ver, cántala...
+   │                          ├─ NPC: ¡ UN DIA HUBO MOTIN EN LA PRISION !
+   │                          ├─ [None] [AUTO-DIALOGUE] L¡ OH, YEAH !
+   │                          ├─ NPC: ¡ PORQUE LOS PRESOS NO PODIAN TOCAR LO QUE QUERIAN !
+   │                          ├─ [None] [AUTO-DIALOGUE] N¡ OSTRAS !
+   │                          ├─ NPC: ¡¡ Y TODO EL MUNDO SE PUSO DURO !! ¡¡ PROVOCANDO UNA GRAN EXCITACION !!
+   │                          ├─ [None] [AUTO-DIALOGUE] P¡ AIVA !
+   │                          ├─ NPC: ¡¡ Y TODO EL MUNDO HUYO CORRIENDO !! ¡¡¡ CORRIERON Y TOCARON LIBRES SU INSTRUMENTO !!!
+   │                          ├─ [None] [AUTO-DIALOGUE] R¡ LECHE ! .....
+   │                          └─ NPC: ¡ Como me mola esta canción !
+   └─ [1] [FB-ONCE] T¿ Por qué estás aquí ?
+      ├─ NPC: Mate a mi cocinero, tenía la manía de hacerme sólo calabaza para comer
+      └─ [2] [FB-ONCE] VUn poco exagerado... no hay que llegar a esos extremos... además la calabaza es muy rica en proteínas
+         ├─ NPC: Sí, pero es que no le ponía ni sal
+         └─ [3] [FB-ONCE] X¿ Ni tan siquiera una ramita de perejil ?
+            ├─ NPC: No
+            └─ [4] [FB-ONCE] Z¡ Que criminal ! Con lo rica que está la calabaza con un poquito de perejil
+               └─ NPC: ¡ Hombre ! ¡ Alguien que me comprende ! ¡ Pero no te creas que por esos me voy a olvidar de lo de la celda, enchufado ! [F0-GO_BACK]
+
+└─ ROOT #1
+   NPC: ¿ Que ?. ¿ Aún ahí ? Oye ¿ y si cantamos un poco ? Y así nos animamos...
+   └─ [1] [FB-ONCE] ]¿ Cual la del padre o la del hijo ?
+      ├─ NPC: La que tú quieras
+      ├─ [2] [FB-ONCE] _Versión light, para nostálgicos y puristas
+      │  ├─ NPC: Arranca...
+      │  └─ [3] [FB-ONCE] a¡ UN DIA HUBO FIESTA EN LA PRISION !
+      │     ├─ NPC: ¡ OH, YEAH !
+      │     └─ [4] [FB-ONCE] c¡ LA BANDA DE LOS PRESOS SE PUSO A TOCAR !
+      │        ├─ NPC: ¡ OH, YEAH !
+      │        └─ [5] [FB-ONCE] e¡¡ Y TODO EL MUNDO SE PUSO A BAILAR EL ROCK !!
+      │           ├─ NPC: ¡¡ Y TODO EL MUNDO A BAILAR !!
+      │           └─ [6] [FB-ONCE] g¡¡¡ TODO EL MUNDO EN LA PRISION
+      │              └─ NPC: CORRIERON A BAILAR EL ROCK !!!
+      └─ [2] [FB-ONCE] iVersión heavy, para fanáticos y gente sin moral
+         ├─ NPC: Vale, yo te sigo...
+         └─ [3] [FB-ONCE] k¡ UN UN DIA HUBO MOTIN EN LA PRISION !
+            ├─ NPC: ¡ OH, YEAH !
+            └─ [4] [FB-ONCE] m¡ PORQUE LOS PRESOS NO PODIAN TOCAR LO QUE QUERIAN !
+               ├─ NPC: ¡ JOLINES !
+               └─ [5] [FB-ONCE] o ¡¡ Y TODO EL MUNDO SE PUSO DURO !!
+                  ├─ NPC: ¡ PROVOCANDO UNA GRAN EXCITACION !
+                  └─ [6] [FB-ONCE] q¡ Y TODO EL MUNDO HUYO CORRIENDO !
+                     ├─ NPC: ¡¡ CORRIERON Y TOCARON
+                     └─ [7] [FB-ONCE] sLIBRES SU INSTRUMENTO !!!
+                        ├─ NPC: ¡ OH, YEAH ! .....
+                        └─ [8] [FB-ONCE] u¡ Esta canción es la repanocha !
+                           └─ NPC: Sí, es la cachi piruli.
+
+└─ ROOT #2
+   NPC: Has venido a salvarme ¿ Verdad ?
+   ├─ [1] [F1-REPEAT] xClaro, claro. En seguida
+   │  └─ NPC: Muy bien
+   ├─ [1] [FB-ONCE] z¡ Que va !... sólo venía a darte las gracias por lo del tunel
+   │  ├─ NPC: ¡ Que considerado ! ¿ Y ahora como salgo de aquí ?
+   │  ├─ [2] [FB-ONCE] éHaz otro tunel...
+   │  │  └─ NPC: ¡ Me ocupará otros 20 años ! [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] óAsume lo que has hecho y cumple tu condena...
+   │  │  ├─ NPC: ¡ Entonces me perderé el concierto de Elvis Preisler en las pirámides de Gizeh ! ¡ Haré otro tunel !
+   │  │  ├─ [3] [FB-ONCE] ñYa puestos... ¿ podrías mejorar el anterior ?
+   │  │  │  ├─ NPC: ¿ Sí ? ¿ En qué ?
+   │  │  │  └─ [4] [FB-ONCE] ¡Por ejemplo, el último no tenía servivios ni paraguero...
+   │  │  │     └─ NPC: Tienes razón... ha sido un olvido...
+   │  │  └─ [3] [FB-ONCE] úComo no te des prisa no te va a dar tiempo
+   │  │     └─ NPC: ¡ Las cosas bien hechas llevan su tiempo !
+   │  └─ [2] [FB-ONCE] Pide un indulto al faraón...
+   │     └─ NPC: ¡ Pero si es una momia ! Haré otro tunel...
+   ├─ [1] [FB-ONCE] ¡ Que va !... ¿ que tal la comida ? ¿ no te dan calabaza ?
+   │  └─ NPC: ¿¿¡¡ Has dicho CALABAZA ??!! ¡¡ AAAARRRGH !! ¡ Cuando salga de aquí te mato !
+   ├─ [1] [FB-ONCE] Sólo la palabra de Dios te salvará...
+   │  └─ NPC: Amén
+   └─ [1] [FB-ONCE] No, pero ese tunel es la repera
+      ├─ NPC: Sí, ya lo sé
+      ├─ [2] [FB-ONCE] ¿ Cómo se te da tan bien eso de los tuneles ?
+      │  └─ NPC: Es que soy ingeniero de caminos y cuando me pongo a hacer obras pienso en todos los detalles [F0-GO_BACK]
+      ├─ [2] [FB-ONCE] ¿ No serás experto en fugas ?
+      │  └─ NPC: No, sólo que me gusta hacer bien mi trabajo
+      └─ [2] [FB-ONCE] Vaya manitas estás hecho...
+         └─ NPC: Tampoco es para tanto. En realidad tiene muchas carencias debido a la escasez de recursos, mano de obra y materiales [F0-GO_BACK]
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0124 (292)  |  After: ¿ Y todavía tienes el valor de preguntarlo ?. ¡¡ E
+  → ACTION 0125 (293)  |  After: Me alegro que lo entiendas. Aún queda gente conpre
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

@@ -1,0 +1,25 @@
+================================================================================
+ROOM 46 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: -
+  #3: -
+  #4: -
+  #5: ¿ A donde conducirá esta puerta ?
+  #6: ¿ A donde conducirá esta puerta ?
+  #7: Una puerta
+
+================================================================================
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

@@ -1,0 +1,22 @@
+================================================================================
+ROOM 44 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: Parece la puerta de acceso a la pirámide
+  #3: ¡ Que raro !. Tiene un color distinto al resto de las rocas
+  #4: Un tunel
+
+================================================================================
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

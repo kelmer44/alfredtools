@@ -1,0 +1,26 @@
+================================================================================
+ROOM 24 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: La salida de la ciudad
+  #2: ¡Que dulce el trino de los pájaros!
+  #3: -
+  #4: -
+  #5: -
+  #6: Está completamente vacío
+  #7: ¡Que braguitas más chulas! Me recuerdan las de mi sobrinita
+  #8: ¡Que ropa más limpia!
+
+================================================================================
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

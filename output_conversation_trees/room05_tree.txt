@@ -1,0 +1,174 @@
+================================================================================
+ROOM 5 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: ¡ OOOOHHHH ! Que maciza
+  #2: Está pensando
+  #3: Nada en especial
+  #4: Es un signo controvertido
+  #5: El Gran Sir Alfred Ster. Un ilustre antepasado mío
+  #6: Ooohhh. ¡ Que frescura !. ¡ Que brisa !
+  #7: Es bonito
+  #8: Debe significar algo profundo. Pero no lo entiendo
+  #9: Flores silvestres
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Hola, ¿ Qué tal ?
+   ├─ [1] [FB-ONCE] ¡ HOOOLA !
+   │  ├─ NPC: ¿ Qué hace un chico como tú en un lugar como este ?
+   │  ├─ [2] [FB-ONCE] Me estaba dando un garbeo
+   │  │  └─ NPC: Tú que puedes
+   │  ├─ [2] [FB-ONCE] Busco la sección de Egipto.
+   │  │  └─ NPC: Sigue el pasillo. La primera puerta a tu derecha
+   │  └─ [2] [FB-ONCE] Me gusta ampliar mi cultura
+   │     ├─ NPC: Este es el lugar apropiado. ¿ En qué puedo servirte ?
+   │     ├─ [3] [FB-ONCE] ¿ Sabes algo sobre princesas egipcias ?
+   │     │  ├─ NPC: Son demasiado misteriosas. Sólo enseñan el perfil derecho
+   │     │  ├─ [4] [FB-ONCE] ¿ A que crees que puede deberse ?
+   │     │  │  └─ NPC: Alguna deformidad → ACTION 0104 (260)
+   │     │  └─ [4] [FB-ONCE] Me refiero a las de carne y hueso
+   │     │     ├─ NPC: A mi particularmente no me gustan las personas que no te miran de frente. No son de fiar.
+   │     │     └─ [5] [FB-ONCE] ¿ Por qué dices eso ?
+   │     │        └─ NPC: Siempren miran de reojo... se creen muy importantes. Son unas niñas pijas.
+   │     ├─ [3] [FB-ONCE] ¿ Qué se bate con una sola mano ?
+   │     │  └─ NPC: Eso pregúntaselo al cabeza hueca de ahí → ACTION 0105 (261)
+   │     ├─ [3] [FB-ONCE] No sabía yo que las estatuas hablaran
+   │     │  └─ NPC: ¿ Hablar ? ¡ Dios mio ! ¡ ESTOY HABLANDO ! → ACTION 0106 (262)
+   │     └─ [3] [FB-ONCE] ¿ Como se podría enamorar a una mujer que ya ha muerto ?
+   │        ├─ NPC: Hummmmmmm ... ¡ No te lo digo !
+   │        ├─ [4] [FB-ONCE] ¿ Porqué ?
+   │        │  ├─ NPC: Hay algo en ti que no me gusta
+   │        │  ├─ [5] [FB-ONCE] ¿ Me ha abandonado el desodorante ?
+   │        │  │  └─ NPC: No, no es eso [F0-GO_BACK]
+   │        │  ├─ [5] [FB-ONCE] ¿ Ataque de caspa ?
+   │        │  │  └─ NPC: No, no es eso [F0-GO_BACK]
+   │        │  └─ [5] [FB-ONCE] ¿ Mi andar felino ?
+   │        │     └─ NPC: No, no es eso [F0-GO_BACK]
+   │        └─ [4] [FB-ONCE] Bien, pues yo no te diré a ti quién ha ganado la liga
+   │           ├─ NPC: ¿ No me digas que lo sabes ?
+   │           ├─ [5] [FB-ONCE] No, no lo se
+   │           │  └─ NPC: Pues no hay trato
+   │           └─ [5] [FB-ONCE] Si, ¡ Ganó el Barcelona !
+   │              ├─ NPC: NO
+   │              └─ [6] [FB-ONCE] Si
+   │                 ├─ NPC: NOOO
+   │                 ├─ [None] [AUTO-DIALOGUE] 0¡ Que si, mujer !
+   │                 ├─ NPC: ¡ Truenos !
+   │                 ├─ [None] [AUTO-DIALOGUE] 2¿ Qué pasa ? ¿ No eres del Barca ?
+   │                 ├─ NPC: No, soy del Madrid.
+   │                 ├─ [None] [AUTO-DIALOGUE] 4Lo siento.
+   │                 ├─ NPC: Bueno... bueno... el Madrid tiene ¡ SEIS COPAS DE EUROPA !
+   │                 ├─ [None] [AUTO-DIALOGUE] 6Ya... pero todas en blanco y negro. La del Barca es en color.
+   │                 ├─ NPC: Bueno vale... olvídate de mi consejo
+   │                 └─ [11] [FB-ONCE] 8¿ A qué te doy con un martillo ?
+   │                    ├─ NPC: No te atreverás. Tengo la mano muy dura.
+   │                    └─ [12] [FB-ONCE] :Yo creía que no tenías brazos...
+   │                       ├─ NPC: Eso son los bocetos inacabados... [F0-GO_BACK]
+   │                       └─ [12] [FB-ONCE] <¡ Visca el Barca !
+   │                          ├─ NPC: ¡ Aaggrrr ! ¡ Calla ! ¡ Habla cristiano ! ¡ Aaggrrr!... Olvídate de mi consejo. [F0-GO_BACK]
+   │                          └─ [12] [FB-ONCE] >¡ Ale Madrid ! ¡ Ale Madrid !
+   │                             ├─ NPC: ¡ Ale Madrid ! De las glorias de España... ¡ alzad los brazos de pueblo español ! ¡ Ale Madrid ! ¡ Ale Madrid ! ¡ Ale Madrid ! Se me pone la piel de gallina. ¡ Arriba España ! Bueno, dejémonos de patriotismos y toma nota: Si quieres enamorar a una princesa egipcia y ella ha muerto, hay dos soluciones: mueres y vas a su encuentro, o viajas al tiempo en que vivía, y lo intentas
+   │                             ├─ [None] [AUTO-DIALOGUE] @¿ Y luego ?
+   │                             ├─ NPC: Eso ya es cosa tuya
+   │                             └─ [11] [FB-ONCE] B¿ Cómo que me olvide ? Habíamos hecho un trato. Yo te decía el campeón de liga y tu me aconsejabas como ligarme una princesa
+   │                                ├─ NPC: Está bien. Un trato es un trato, presta atención: Si ella ha muerto, hay dos soluciones: mueres y vas a su encuentro, ó viajas al tiempo en que vivía, y lo intentas
+   │                                └─ [12] [FB-ONCE] D¿ Y luego ?
+   │                                   └─ NPC: Eso ya es cosa tuya
+   ├─ [1] [FB-ONCE] F¿ Quién es la estatua de al lado ?
+   │  ├─ NPC: Un pedante. ¡ El señor Rodin se quedó a gusto !
+   │  ├─ [2] [FB-ONCE] ¿ Porqué ? A mi me parece interesante
+   │  │  ├─ NPC: ¿ Si ? Pues no sé, chico... A mi me parece que le pesa la cabeza
+   │  │  ├─ [3] [FB-ONCE] JTal vez sólo esté pensando
+   │  │  │  └─ NPC: ¡ Pues lleva así más de cien años ! Por mi que se pasa así otros cien... [F0-GO_BACK]
+   │  │  ├─ [3] [FB-ONCE] LTal vez sólo sea que es un poco tímido
+   │  │  │  └─ NPC: Pues no será porqué se lo he puesto difícil... el TONTO. [F0-GO_BACK]
+   │  │  ├─ [3] [FB-ONCE] NTal vez tenga jaqueca
+   │  │  │  └─ NPC: Claro... de calentarse tanto la cabeza y no desfogarse. Pues por mi ahora que explote... [F0-GO_BACK]
+   │  │  └─ [3] [FB-ONCE] P¡ Por qué dices eso ?
+   │  │     ├─ NPC: Porqué me ha herido en mi amor propio
+   │  │     ├─ [4] [FB-ONCE] R¿ A qué te refieres ?
+   │  │     │  ├─ NPC: ¡ Es el primero que se me resiste !
+   │  │     │  └─ [5] [FB-ONCE] TNo lo comprendo. ¡ Con tu belleza !
+   │  │     │     ├─ NPC: ¿ No te parezco un poco rellenita ? Mira, mira no te cortes... toca si quieres... suave como el mármol...
+   │  │     │     ├─ [6] [FB-ONCE] VUn poco pesada sí, pero es por la piedra. Tu cuerpo es todo un canon de belleza.
+   │  │     │     │  └─ NPC: No eres el primero que me lo dice, ¿ sabes ?, pero gracias, majo. Ultimamente estaba con la autoestima muy baja.
+   │  │     │     └─ [6] [FB-ONCE] XCalla que no soy de piedra.
+   │  │     │        └─ NPC: Más bien eres huesos.
+   │  │     ├─ [4] [FB-ONCE] ZY es posible que no sea el último
+   │  │     │  ├─ NPC: ¿ Que dices ?
+   │  │     │  └─ [5] [FB-ONCE] \Pues que estás un poco vieja
+   │  │     │     └─ NPC: ¿ Vieja ? Para mí no pasa el tiempo. Ya no veremos de aquí cuarenta años. Yo seguire igual de firme y bella, y tu, en cambio, serás un montón de grasa y arrugas.
+   │  │     └─ [4] [FB-ONCE] ^Bueno, debo irme. Adios
+   │  │        └─ NPC: Adios
+   │  └─ [2] [FB-ONCE] `Si, es un poco pesado
+   │     └─ NPC: Ni que lo digas → ACTION 0107 (263)
+   └─ [1] [F1-REPEAT] bTengo prisa
+      └─ NPC: Vosotros los mortales. Siempre con prisas
+
+└─ ROOT #1
+   NPC: No me molestes, estoy pensando
+   ├─ [1] [FB-ONCE] e¿Sabes interpretar los sueños ?
+   │  ├─ NPC: Bueno ... Algo he leido sobre eso
+   │  ├─ [2] [FB-ONCE] gHe soñado con una princesa egipicia que me llama desde el pasado
+   │  │  └─ NPC: Se me ocurren tres interpretaciones. PRIMERA: ¿ No verías ayer Cleopatra ?. SEGUNDA: El arquetipo de belleza, simbolizado por lo egipicio, acude a tu subconsciente, reclamando la urgencia del elemento femenino en tu pobre vida. TERCERA: El cuerpo astral de la princesa ha recorrido el espacio y el tiempo en tu busca, ¿ Por qué ? lo desconozco
+   │  ├─ [2] [FB-ONCE] iUltimamente, suelo levantarme con las sábanas mojadas. ¿ A qué se deberá ?
+   │  │  ├─ NPC: No sabría decirte. Hace tiempo que no tengo ese problema
+   │  │  ├─ [3] [FB-ONCE] kPero si tú eres una estatua. ¿ Cómo vas a tener ese problema ?
+   │  │  │  └─ NPC: ¡ OYE ! Debajo esta apariencia de dureza, palpita un alma sensible
+   │  │  └─ [3] [FB-ONCE] m¿ Es que lo has tenido alguna vez?
+   │  │     └─ NPC: Sí, pero desde que abrazé el yoga, mi cuerpo está mas firme que una roca
+   │  └─ [2] [FB-ONCE] o¿Tienen pesadillas las estatuas ?
+   │     └─ NPC: A veces sueño que soy humano y tengo que moverme. ¡ Con lo a gusto que estoy así !
+   ├─ [1] [FB-ONCE] q¿ Que se puede batir con una sola mano ?
+   │  ├─ NPC: Huevos
+   │  ├─ [2] [FB-ONCE] s¡ Oye !, eres bastante sabio
+   │  │  └─ NPC: ¡ Claro !. Llevo mucho tiempo entregado a largas meditaciones
+   │  └─ [2] [FB-ONCE] u¡ Vaya tontería !
+   │     ├─ NPC: Intenta dar tu una respuesta mejor
+   │     ├─ [3] [FB-ONCE] wNata
+   │     │  └─ NPC: La nata se compone de huevos
+   │     └─ [3] [FB-ONCE] yEl record de strikes en un partido de béisbol
+   │        └─ NPC: Sobre eso habria mucho que discutir ... Y estoy tan cansado
+   ├─ [1] [FB-ONCE] á¿ Quien es la estatua que está a tu lado ?
+   │  ├─ NPC: Oh, Dios mío. Ahora que había conseguido olvidarla
+   │  ├─ [2] [FB-ONCE] í¿ Que pasa ?, ¿ No te deja pensar ?
+   │  │  ├─ NPC: Exacto, se pasa el día exhibiéndose... provocándome
+   │  │  └─ [3] [FB-ONCE] ú¿ Cómo ?
+   │  │     ├─ NPC: Me dice: ¡ MACIZO ! ¡ LA TIENES DURA ! Y cosas por el estilo
+   │  │     └─ [4] [FB-ONCE] íBah ... No es para tanto
+   │  │        ├─ NPC: ¿ Cómo que no ?, Me desconcentra y ahora sólo pienso en ella.
+   │  │        ├─ [5] [FB-ONCE] ¿No la hagas caso
+   │  │        │  └─ NPC: ¿ Es que crees acaso que soy de piedra ? → ACTION 0103 (259)
+   │  │        └─ [5] [FB-ONCE] Venga... pues ataca... dile algo...
+   │  │           └─ NPC: ¡ No puedor !
+   │  └─ [2] [FB-ONCE] Pero si no la estás mirando
+   │     └─ NPC: Claro. No te imaginas lo que me ha costado desplazarme poco a poco para escapar a su mirada libidinosa
+   └─ [1] [F1-REPEAT] Sigue con lo tuyo
+      └─ NPC: Por supuesto
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0103 (259)  |  After: ¿ Es que crees acaso que soy de piedra ?
+  → ACTION 0104 (260)  |  After: Alguna deformidad
+  → ACTION 0105 (261)  |  After: Eso pregúntaselo al cabeza hueca de ahí
+  → ACTION 0106 (262)  |  After: ¿ Hablar ? ¡ Dios mio ! ¡ ESTOY HABLANDO !
+  → ACTION 0107 (263)  |  After: Ni que lo digas
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

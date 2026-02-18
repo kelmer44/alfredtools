@@ -1,0 +1,121 @@
+================================================================================
+ROOM 41 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: Está controlando la construcción de la pirámide
+  #2: Son esclavos de las pirámides
+  #3: -
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Se me ha ordenado que te encargues del trabajo más pesado, y de que no te acerques a la pirámide. Así que escucha esclavo: Has de coger piedras de la cantera de ahí al lado, y dárselas al primer esclavo. Ellos harán el resto. ¿ Alguna pregunta ?
+   ├─ [1] [FB-ONCE] Si yo soy egipcio y todos los egipcios mienten ¿ digo la verdad ?
+   │  └─ NPC: Eso es una paradoja. [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] ¿ Puedes repetírmelo ?
+   │  └─ NPC: Has de coger piedras de la cantera de ahí al lado, y dárselas al primer esclavo. Ellos harán el resto. ¿ Alguna pregunta ? → ACTION 0139 (313)
+   ├─ [1] [FB-ONCE] 
+   │  └─ NPC: Bueno... Hace mucho calor y... La cerveza está fresquita y... Uno suda mucho y... Que sería de la vida sin estos placeres y... Oye, te daría, pero... Yo soy el jefe y tu eres solo un esclavo... Hala, ¡ A TRABAJAR ! → ACTION 0139 (313)
+   └─ [1] [FB-ONCE] ¿ Que haces esta noche, guapo ?
+      └─ NPC: Ya me han advertido que eres MUY PELIGROSO y te tenga cuidado contigo. ¡ Venga ! ¡ A trabajar ! → ACTION 0139 (313)
+
+└─ ROOT #1
+   NPC: ¿ Si ?
+   ├─ [1] [F1-REPEAT] ¿ Puede repetirme lo que tengo que hacer ?
+   │  └─ NPC: ¡ Otra vez ! Mira... has de coger piedras de la cantera de ahí al lado, y dárselas al primer esclavo. Ellos harán el resto
+   ├─ [1] [FB-ONCE] He visto a tu mujer con un etíope en la cama
+   │  ├─ NPC: ¿ Y qué ? Yo creo en el amor libre
+   │  ├─ [2] [FB-ONCE] ¡ Era negro !
+   │  │  ├─ NPC: No soy racista
+   │  │  ├─ [3] [FB-ONCE] ¿ Y si tu mujer acaba teniendo un niño negro ?
+   │  │  │  └─ NPC: ¿ Y por qué tiene que ser un niño... a mí me haría más ilusión una niña... Y vale... Se acabó la discusión. ¡ A trabajar esclavo !
+   │  │  └─ [3] [FB-ONCE] ¡ Usted lo que es es un cornudo consentido !
+   │  │     └─ NPC: Es la única forma de evitar que se vaya de casa
+   │  └─ [2] [FB-ONCE] ¿ Ah si ? Ya me presentará a su mujer...
+   │     └─ NPC: He dicho que creo en el amor libre... y tú eres un esclavo.
+   ├─ [1] [FB-ONCE] ¡ Mira detrás de tí ! ¡ Un camión de San Miguel !
+   │  └─ NPC: Has bebido más de la cuenta ¿ verdad ?
+   ├─ [1] [FB-ONCE] ¿ No ves que te están explotando ? ¡ Haz una huelga !
+   │  ├─ NPC: Tú si que estás explotado. No sólo te exploto yo, sino este maníaco de los juegos. Ja, ja, ja, ja. ¿ Cuánto sacas de los beneficios de las ventas, listo ?
+   │  ├─ [2] [FB-ONCE] ¿ Yo ? Soy el protagonista. Yo me quedo con la princesa. ¿ Te parece poco ?
+   │  │  ├─ NPC: ¿ Poco ?... un poco... un poco... sí... un poco pendón si me parece la princesa
+   │  │  ├─ [3] [FB-ONCE] ¡ Pues que bien !
+   │  │  │  └─ NPC: Cállate salido o te envio a la Máquina Angelical
+   │  │  └─ [3] [FB-ONCE] ¿ Y tú qué ? No eres más que un personaje secundario
+   │  │     └─ NPC: Cállate esclavo o te envio a la Máquina Angelical
+   │  └─ [2] [FB-ONCE] ¿ Yo ? Nada, pero me hago famoso...
+   │     ├─ NPC: ¿ Y para qué quieres la fama si sólo eres un esclavo ?
+   │     └─ [3] [FB-ONCE] Tarde o temprano me liberaré y me conseguiré a la princesa
+   │        └─ NPC: Vale, pero mientras ¡ trabaja esclavo !
+   └─ [1] [FB-ONCE] ¿ Puedo ir al aseo ?
+      └─ NPC: En la antiguedad no hay aseos, ignorante
+
+└─ ROOT #2
+   NPC: ¡ Deesde Santuurce a Bilbaooo...!
+
+└─ ROOT #3
+   NPC: ¡ Viiva er viino y laas mujeeres...!
+
+└─ ROOT #4
+   NPC: ¡ Litroooos dalcoooool correeeen por mis venaaaas... mujer... no tengo probleeeeemas... de amoooor...!
+
+└─ ROOT #5
+   NPC: ¡ Nooo en voleeem cap que noooo estiga borratxoooo...!
+
+└─ ROOT #6
+   NPC: ¡ Eseee cabayoo que biene de bonaaansaa...!
+
+└─ ROOT #7
+   NPC: ¡¡ Yoo para ser feelis quieroun camión !!
+
+└─ ROOT #8
+   NPC: ¡¡ Para hacer bien el amoor hay que veniir al suuur !! ¡ Lo quimporta's que lo haaagas con quien quieeraas tu !
+
+└─ ROOT #9
+   NPC: ¡¡ Straaaaangers in the niiiight...!! ¡ Du dubi dubi dubiiii dubi dubi dubidu !
+
+└─ ROOT #10
+   NPC: ¡¡ Aluette, li lu li luete. Aluette, li lu li lulón !! ¡ chimpón !
+
+└─ ROOT #11
+   NPC: ¡ Un globoo, dos globoos, tres glooobos...!
+
+└─ ROOT #12
+   NPC: ¡ Ramonet si vas a lhort ! ¡ Porta figues ! ¡ Porta figues ! ¡ Ramonet si vas a lhort ! ¡ Porta figues i albrecocs !
+
+└─ ROOT #13
+   NPC: ¡ La vidas una tómboloa tom tom tómbola ! ¡¡ DE LUS Y DE COLOOOR !! ¡¡ GUOUOUO !! ¡¡ DE LUS Y DE COLOOOR !! ¡¡ GUOUOUO !!
+
+└─ ROOT #14
+   NPC: ¡ Un limón, y medio limon ! ¡ Dos limones, y medio limon ! ¡ Tres limones y medio limón y cuatro limones y medio limón...!
+
+└─ ROOT #15
+   NPC: ¡¡ Vooolaaaareee... !! ¡¡ Guouo !! ¡¡ Caaantareee... !! ¡¡ Guo guo guo guo !! Del blu, dil pinto di blu, ¡¡ guo guo guo guo !!
+
+└─ ROOT #16
+   NPC: ¡ A galopaaaar ! ¡ A galopaaaar ! ¡¡ Hastan terrarlos en el maaar !!
+
+└─ ROOT #17
+   NPC: En un puertooo italiaanooo, al pie de laas montañaaaas. Vive nuestroamigo Maaarcooo, en uuuna humilde moradaaa. Se levantaaaa muy tempranooooo parayudaaaar a su pooobreeee mamaaaaaaa. Peroun dia la tristezaaaa llegohasta su corazooooon: Mamaaa tienee que partiiir cruzandoel mar atro paiiis. ¡¡¡ NO TE VAYAS MAMA !!! ¡¡¡ NO TE ALEJES DE MI !!! ¡¡¡ ADIOS MAMAAAA !!! ¡¡¡ PENSARE MUCHO EN TIII !!! ¡¡¡ NO TE OLVIDES MAMA QUEAQUI TIENES TUHOGAAAR !!! ¡ SI NO VUELVES PRONTOIRE ! ¡ A BUSCARTE DONDE ESTEES ! ¡¡ NO MEIMPORTA DONDE VAAYAS !! ¡¡¡¡ TENCONTRAREEEEEE !!!!
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 0134 (308)  |  After last node: ¡ Deesde Santuurce a Bilbaooo...!
+  → ACTION 0139 (313)  |  After: Has de coger piedras de la cantera de ahí al lado,
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

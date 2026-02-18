@@ -1,0 +1,131 @@
+================================================================================
+ROOM 39 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: -
+  #3: -
+  #4: -
+  #5: ¡ Que chicas más guapas !
+  #6: ¡ Que chicas más guapas !
+  #7: ¡ Que chicas más guapas !
+  #8: ¡ Que chicas más guapas !
+
+================================================================================
+
+└─ ROOT #0
+   NPC: ¿ Otro viajero del tiempo ? ¡ Ya podrían elegir otra época ! ¡ Domingueros !
+   ├─ [1] [FB-ONCE] ¿ Que se ha creído ? Soy Alfred Pelrock. Vengo a salvar a la princesa de su cruel destino. ¡ Apártate esclavo !
+   │  ├─ NPC: ¡ Aquí no puedes estar ! Todos los que estamos en este harén hemos pasado por: LA MAQUINA ANGELICAL
+   │  ├─ [2] [FB-ONCE] ¿ Máquina queee ?
+   │  │  ├─ NPC: Es para evitar tentaciones y proteger la honra de estas muchachas. La Máquina angelical te convierte en un ángel...
+   │  │  ├─ [3] [FB-ONCE] ¿ Te hace bueno ?
+   │  │  │  └─ NPC: No, MANSO [F0-GO_BACK]
+   │  │  ├─ [3] [FB-ONCE] ¿ Te vuelve rubio y de cabellos rizados ?
+   │  │  │  └─ NPC: No [F0-GO_BACK]
+   │  │  ├─ [3] [FB-ONCE] ¿ Te salen alas ?
+   │  │  │  └─ NPC: No [F0-GO_BACK]
+   │  │  └─ [3] [FB-ONCE] ¿ Un ángel ? ¿ y eso por qué ?
+   │  │     ├─ NPC: Porque los ángeles no tienen sexo
+   │  │     ├─ [4] [FB-ONCE] Ya... pero nadie ha dicho que no tengan lengua
+   │  │     │  ├─ NPC: ¿ Lengua ? ¿ Que quieres decir ?
+   │  │     │  ├─ [5] [FB-ONCE] Pues que sin ella no podrían chupar y saborear caramelos y piruletas
+   │  │     │  │  ├─ NPC: ¿ Chupar ? ¿ piruletas ? Los ángeles no son golosos. Además les podrían salir caries ¿ Te imaginas ? Un ángel con caries... sería horrible... no... no es posible... los ángeles no pueden pobrar los dulces
+   │  │     │  │  ├─ [6] [FB-ONCE] Hay dulces sin azúcar... nueve de cada diez dentistas los recomiendan...
+   │  │     │  │  │  └─ NPC: ¿ Y ese otro dentista ? Aunque sea minoría puede que sea el que tenga razón y los dulces sin azucar también provoquen cáries... además está el sabor... las cosas sin azúcar pierden gusto [F0-GO_BACK]
+   │  │     │  │  └─ [6] [FB-ONCE] Que se pongan fundas en los dientes
+   │  │     │  │     ├─ NPC: Es cierto. Tienes razón... oye, creo que me estás tomando el pelo. Dejémonos de historias, que los ángeles no son ningún peligro para este harén, y a lo nuestro... Así que según como lo veo yo, para evitar riesgos contigo, sólo hay dos opciones: O pasas por la máquina, o te llevo a presencia del faraón, donde te espera una muerte segura
+   │  │     │  │     ├─ [7] [FB-ONCE] Para estar castrado tienes muy mala leche
+   │  │     │  │     │  ├─ NPC: Oye, no se trata de eso... la verdad es que lo siento, pero es mi trabajo. Perdona, en serio, pero es que me juego la vida. Aquí entre nosotros el faraón es un capullo.
+   │  │     │  │     │  ├─ [8] [FB-ONCE] ¡ Pero bueno ! ¿ Cómo se te ocurre hablar mal de quien te da trabajo ?
+   │  │     │  │     │  │  ├─ NPC: Que este castrado no quiere decir que no tenga lo que tiene un hombre
+   │  │     │  │     │  │  └─ [9] [FB-ONCE] Pues si eres tan machote rebélate
+   │  │     │  │     │  │     └─ NPC: Por eso mismo me cortaron la hombría [F0-GO_BACK]
+   │  │     │  │     │  └─ [8] [FB-ONCE] Pues si yo fuese tú preferiría morir
+   │  │     │  │     │     ├─ NPC: No te creas que no lo he pensado. Pero esas ideas sólo te pasan por la cabeza al principio. Tal vez como una reacción a una operación traumática, después te das cuenta que en la vida hay mas cosas que eso.
+   │  │     │  │     │     └─ [9] [FB-ONCE] Sí, ¿ qué ?
+   │  │     │  │     │        └─ NPC: Pues... veamos... esto... está... vamos que... se puede... entre otras cosas. Vaya que se puede jorobar al prójimo sin necesidad de bajarle los pantalones. [F0-GO_BACK]
+   │  │     │  │     ├─ [7] [FB-ONCE] Tranquilo... ya estoy circuncidado, soy budista de agua dulce.
+   │  │     │  │     │  └─ NPC: Eso no basta... aquí hay que cortar por lo sano. No basta con sólo la puntita. [F0-GO_BACK]
+   │  │     │  │     ├─ [7] [FB-ONCE] Llévame ante el faraón. No me veo yo como uno de vosotros
+   │  │     │  │     │  └─ NPC: Tu te lo has buscado
+   │  │     │  │     └─ [7] [FB-ONCE] Vamos a ver esa máquina. Yo no le tengo miedo a nada
+   │  │     │  │        └─ NPC: Eso lo decidirá el faraón [F0-GO_BACK]
+   │  │     │  ├─ [5] [FB-ONCE] Sin ella no podrían cantar
+   │  │     │  │  └─ NPC: Tienes razón [F0-GO_BACK]
+   │  │     │  └─ [5] [FB-ONCE] Pues que si no la tuviesen no la podrían sacar para burlarse del demonio
+   │  │     │     └─ NPC: Es verdad [F0-GO_BACK]
+   │  │     ├─ [4] [FB-ONCE] 1Ya... pero nadie ha dicho que no tengan dedos
+   │  │     │  ├─ NPC: ¿ Dedos ? ¿ No comprendo ? Las manos no son PELIGROSAS. Lo que se pretende no es que no disfruten de la vida sino que no dejen EMBARAZADA a ninguna mujer del faraón... y tú... tienes toda la pinta de ser MUY PELIGROSO. Así que según como lo veo yo, para evitar riesgos, sólo hay dos opciones: O pasas por la máquina, o te llevo a presencia del faraón, donde te espera una muerte segura
+   │  │     │  ├─ [5] [FB-ONCE] 3Para estar castrado tienes muy mala leche
+   │  │     │  │  ├─ NPC: Oye, no se trata de eso... la verdad es que lo siento, pero es mi trabajo. Perdona, en serio, pero es que me juego la vida. Aquí entre nosotros el faraón es un capullo.
+   │  │     │  │  ├─ [6] [FB-ONCE] 5¡ Pero bueno ! ¿ Cómo se te ocurre hablar mal de quien te da trabajo ?
+   │  │     │  │  │  ├─ NPC: Que este castrado no quiere decir que no tenga lo que tienen los hombres
+   │  │     │  │  │  └─ [7] [FB-ONCE] 7Pues si eres tan hombre rebélate
+   │  │     │  │  │     └─ NPC: Por eso mismo me cortaron la hombría [F0-GO_BACK]
+   │  │     │  │  └─ [6] [FB-ONCE] 9Pues si yo fuese tú preferiría morir
+   │  │     │  │     ├─ NPC: No te creas que no lo he pensado. Pero esas ideas sólo te pasan por la cabeza al principio. Tal vez como una reacción a una operación traumática, después te das cuenta que en la vida hay mas cosas que eso.
+   │  │     │  │     └─ [7] [FB-ONCE] ;Sí, ¿ qué ?
+   │  │     │  │        └─ NPC: Pues... veamos... esto... está... vamos que... se puede... entre otras cosas. Vaya que se puede jorobar al prójimo sin necesidad de bajarle los pantalones. [F0-GO_BACK]
+   │  │     │  ├─ [5] [FB-ONCE] =Tranquilo... ya estoy circuncidado, soy budista de agua dulce.
+   │  │     │  │  └─ NPC: Eso no basta... aquí hay que cortar por lo sano. No basta con sólo la puntita. [F0-GO_BACK]
+   │  │     │  ├─ [5] [FB-ONCE] ?Llévame ante el faraón. No me veo yo como uno de vosotros
+   │  │     │  │  └─ NPC: Tu te lo has buscado
+   │  │     │  └─ [5] [FB-ONCE] Vamos a ver esa máquina. Yo no le tengo miedo a nada
+   │  │     │     └─ NPC: Eso lo decidirá el faraón [F0-GO_BACK]
+   │  │     ├─ [4] [FB-ONCE] CYa... pero nadie ha dicho que no tengan trasero
+   │  │     │  ├─ NPC: ¿ Trasero ? No se me había ocurrido pensar en eso, pero con eso no son PELIGROSOS. Lo que se pretende no es que no disfruten de la vida sino que no dejen EMBARAZADA a ninguna mujer del faraón... y tú... tienes toda la pinta de ser MUY PELIGROSO. Así que según como lo veo yo, para evitar riesgos, sólo hay dos opciones: O pasas por la máquina, o te llevo a presencia del faraón, donde te espera una muerte segura
+   │  │     │  ├─ [5] [FB-ONCE] EPara estar castrado tienes muy mala leche
+   │  │     │  │  ├─ NPC: Oye, no se trata de eso... la verdad es que lo siento, pero es mi trabajo. Perdona, en serio, pero es que me juego la vida. Aquí entre nosotros el faraón es un capullo.
+   │  │     │  │  ├─ [6] [FB-ONCE] G¡ Pero bueno ! ¿ Cómo se te ocurre hablar mal de quien te da trabajo ?
+   │  │     │  │  │  ├─ NPC: Que este castrado no quiere decir que no tenga lo que tienen los hombres
+   │  │     │  │  │  └─ [7] [FB-ONCE] IPues si eres tan machote rebélate
+   │  │     │  │  │     └─ NPC: Por eso mismo me cortaron la hombría [F0-GO_BACK]
+   │  │     │  │  └─ [6] [FB-ONCE] KPues si yo fuese tú preferiría morir
+   │  │     │  │     ├─ NPC: No te creas que no lo he pensado. Pero esas ideas sólo te pasan por la cabeza al principio. Tal vez como una reacción a una operación traumática, después te das cuenta que en la vida hay mas cosas que eso.
+   │  │     │  │     └─ [7] [FB-ONCE] MSí, ¿ qué ?
+   │  │     │  │        └─ NPC: Pues... veamos... esto... está... vamos que... se puede... entre otras cosas. Vaya que se puede joder al prójimo sin necesidad de follárselo. [F0-GO_BACK]
+   │  │     │  ├─ [5] [FB-ONCE] OTranquilo... ya estoy circuncidado, soy budista de agua dulce.
+   │  │     │  │  └─ NPC: Eso no basta... aquí hay que cortar por lo sano. No basta con sólo la puntita. [F0-GO_BACK]
+   │  │     │  ├─ [5] [FB-ONCE] QLlévame ante el faraón. No me veo yo como uno de vosotros
+   │  │     │  │  └─ NPC: Tu te lo has buscado
+   │  │     │  └─ [5] [FB-ONCE] SVamos a ver esa máquina. Yo no le tengo miedo a nada
+   │  │     │     └─ NPC: Eso lo decidirá el faraón [F0-GO_BACK]
+   │  │     └─ [4] [FB-ONCE] UYa... pero nadie ha dicho que no tengan vibradores
+   │  │        ├─ NPC: Sí, pero con estos artilugios no son PELIGROSOS. Lo que se pretende no es que no disfruten de la vida sino que no dejen EMBARAZADA a ninguna mujer del faraón... y tú... tienes toda la pinta de ser MUY PELIGROSO. Así que según como lo veo yo, para evitar riesgos, sólo hay dos opciones: O pasas por la máquina, o te llevo a presencia del faraón, donde te espera una muerte segura
+   │  │        ├─ [5] [FB-ONCE] WPara estar castrado tienes muy mala leche
+   │  │        │  ├─ NPC: Oye, no se trata de eso... la verdad es que lo siento, pero es mi trabajo. Perdona, en serio, pero es que me juego la vida. Aquí entre nosotros el faraón es un capullo.
+   │  │        │  ├─ [6] [FB-ONCE] Y¡ Pero bueno ! ¿ Cómo se te ocurre hablar mal de quien te da trabajo ?
+   │  │        │  │  ├─ NPC: Que este castrado no quiere decir que no tenga lo que tienen los hombres
+   │  │        │  │  └─ [7] [FB-ONCE] [Pues si eres tan hombre rebélate
+   │  │        │  │     └─ NPC: Ya lo hice. Por eso mismo me convirtieron en un eunuco [F0-GO_BACK]
+   │  │        │  └─ [6] [FB-ONCE] ]Pues si yo fuese tú preferiría morir
+   │  │        │     ├─ NPC: No te creas que no lo he pensado. Pero esas ideas sólo te pasan por la cabeza al principio. Tal vez como una reacción a una operación traumática, después te das cuenta que en la vida hay mas cosas que eso.
+   │  │        │     └─ [7] [FB-ONCE] _Sí, ¿ qué ?
+   │  │        │        └─ NPC: Pues... veamos... esto... está... vamos que... se puede... entre otras cosas. Vaya que se puede jorobar al prójimo sin necesidad de bajarle los pantalones. [F0-GO_BACK]
+   │  │        ├─ [5] [FB-ONCE] aTranquilo... ya estoy circuncidado, soy budista de agua dulce.
+   │  │        │  └─ NPC: Eso no basta... aquí hay que cortar por lo sano. No basta con sólo la puntita. [F0-GO_BACK]
+   │  │        ├─ [5] [FB-ONCE] cLlévame ante el faraón. No me veo yo como uno de vosotros
+   │  │        │  └─ NPC: Tu te lo has buscado
+   │  │        └─ [5] [FB-ONCE] eVamos a ver esa máquina. Yo no le tengo miedo a nada
+   │  │           └─ NPC: Tú a mi no me chuleas, ¡ Al Faraón !
+   │  ├─ [2] [FB-ONCE] gNo soy aficionado a las máquinas
+   │  │  └─ NPC: Pues tendrás que ir haciéndote a la idea de ir pasando por la MAQUINA ANGELICAL [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] i¿ Harén ? ¡ Qué suerte !
+   │     └─ NPC: ¡ Quieto, salido ! A tí te espera la máquina angelical ! [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] kHoy no es domingo. Es miércoles...
+   │  └─ NPC: En tu presente era miércoles, pero en nuestro calendario es domingo. [F0-GO_BACK]
+   └─ [1] [FB-ONCE] mVaya recibimiento más malo... ¡ con lo que me ha costado llegar hasta aquí !
+      └─ NPC: Menuda cara [F0-GO_BACK]
+
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX

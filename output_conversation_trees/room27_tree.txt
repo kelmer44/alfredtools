@@ -1,0 +1,204 @@
+================================================================================
+ROOM 27 CONVERSATION TREE
+================================================================================
+
+DESCRIPTIONS:
+  #1: -
+  #2: -
+  #3: -
+  #4: ¿ Me estará mirando a mi ?
+  #5: Un vendedor
+  #6: Un vendedor
+  #7: -
+  #8: A ver... aquí dice: La tienda de al lado no paga impuestos
+  #9: A ver... aquí dice: El de la tienda de al lado vende mercancia robada
+
+================================================================================
+
+└─ ROOT #0
+   NPC: Oiga ... ¡Tengo algo que seguro le interesa!
+   └─ [1] [F1-REPEAT] Lo siento. No tengo dinero.
+      └─ NPC: Pues vuelva cuando lo tenga.
+
+└─ ROOT #1
+   NPC: Oiga ... Tengo algo que seguro le interesa!
+   ├─ [1] [FB-ONCE] ¿ Si ?. ¿ No me diga ?
+   │  ├─ NPC: Si. Tengo el auténtico muñeco hinchable, réplica del famoso cantante ELVIS PREISLER.
+   │  ├─ [2] [FB-ONCE] ¿ Quien ese Elvis Preysler ?
+   │  │  ├─ NPC: Es el cantante de moda. El hijo secreto de Elvis Presley y un ligue que tuvo cuando rodaba una de sus películas en Las Filipinas. Ahora él hijo secreto de Elvis acaba de sacar un disco de versiones de las canciones de su padre
+   │  │  ├─ [3] [FB-ONCE] ¿Las filipinas? ¡Ignorante! Las películas de Elvis pasan en Hawai
+   │  │  │  └─ NPC: Bueno, que más da. [F0-GO_BACK]
+   │  │  └─ [3] [FB-ONCE] ¿ Canciones de Elvis ? ¡ Que guay !
+   │  │     ├─ NPC: Sí, por ejemplo el Slip Break Hotel, Ride me tender, Sex-vicious man, In the sex-shop, Are you very hot tonight...
+   │  │     ├─ [4] [FB-ONCE] ¡ Que tio más guarro !
+   │  │     │  └─ NPC: Sí, un psiquiatra primo mío muy famoso en obsesiones paranoicas ha escrito un artículo en la "Elvis Rewiew" explicando esa obsesión como una venganza a un padre que no reconoció su paternidad y bla.. bla porque requetebla y bla aquello y bla lo otro... patatín y patatán... [F0-GO_BACK]
+   │  │     └─ [4] [FB-ONCE] ¿ Vende usted la cinta ?
+   │  │        ├─ NPC: Sí, ¿ quiere una ?
+   │  │        ├─ [5] [FB-ONCE] Sí, mola mogollón
+   │  │        │  ├─ NPC: Son 10 monedas de oro
+   │  │        │  ├─ [6] [FB-ONCE] ¿Y si regateamos?
+   │  │        │  │  └─ NPC: No puedo regatear el precio lo marca la discográfica... pero si quiere me puede dar propina [F0-GO_BACK]
+   │  │        │  ├─ [6] [FB-ONCE] Aquí tiene
+   │  │        │  │  └─ NPC: Gracias por su compra. Vuelva cuando quiera → ACTION 0172 (370)
+   │  │        │  └─ [6] [FB-ONCE] Aquí tiene l0 monedas de oro y cinco de propina por simpático
+   │  │        │     └─ NPC: ¡ Muchas gracias ! Mire... le regalo este muñeco hinchable... está pinchado pero si se compra un parche y un buen pegamento lo puede reparar → ACTION 0173 (371)
+   │  │        └─ [5] [FB-ONCE] No, era para denunciarlo al Elvis Fans Club por plagio...
+   │  │           └─ NPC: Ya lo han hecho y no sólo perdieron el juicio sino que además aumentaron las ventas [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] ¿ Muñeco hinchable ? ¿ Pero eso no es un articulo de Sex-Shop ?
+   │     ├─ NPC: No, este muñeco está vestido y por eso ha pasado la censura y puede vestirse en cualquier tienda... pero si usted quiere lo puede desvestir... Pero ... ¡¡ POR ALA !! ¿¿ Que ven mis ojos ?? ¡¡ ES USTED !! ¡ Elvis Presley en mi humilde tienda ! ¡ Fírmeme un autógrafo, Por Favor ! Y le regalaré mi muñeco. Promete ser la estrella de la temporada
+   │     ├─ [3] [FB-ONCE] Yo no soy Elvis. Me llamo Alfred Pelrock
+   │     │  ├─ NPC: ¡Lástima! En ese caso son 20 monedas de oro
+   │     │  ├─ [4] [FB-ONCE] Me parece caro
+   │     │  │  └─ NPC: Pues es un precio de promoción especial. A mí me parece barato
+   │     │  └─ [4] [FB-ONCE] ¡ Que barato ! Me lo quedo
+   │     │     ├─ NPC: ¿ Se lo envuelvo ? ¿ Se lo hincho ?
+   │     │     └─ [5] [FB-ONCE] Sí, gracias, hínchelo
+   │     │        └─ NPC: Aquí tiene. → ACTION 011E (286)
+   │     └─ [3] [FB-ONCE] De acuerdo. ¡ Tenga !
+   │        └─ NPC: ¿ Pero ? ... esta no es la firma de Elvis... ¡ EMBUSTERO ! [F0-GO_BACK]
+   ├─ [1] [FB-ONCE] Lo siento. No tengo dinero
+   │  └─ NPC: Entonces es usted el que no me interesa.
+   └─ [1] [FB-ONCE] 1¿ Es verdad que usted vende mercancia robada ?
+      ├─ NPC: Yo no me junto con gente de esa calaña. Vender mercancia robada es fomentar el robo y cree usted que a mi me interesa fomentar el robo... ¡ Acabarían robándome a mí !
+      ├─ [2] [FB-ONCE] 3Hay gente que roba por necesidad
+      │  └─ NPC: ¡ Pues que trabajen ! [F0-GO_BACK]
+      ├─ [2] [FB-ONCE] 5Los ladrones son los políticos
+      │  └─ NPC: Los que gobiernan, casi todos [F0-GO_BACK]
+      ├─ [2] [FB-ONCE] 7Los ladrones son los banqueros
+      │  └─ NPC: Es cierto. La verdad es que son un abuso sus intereses. [F0-GO_BACK]
+      └─ [2] [FB-ONCE] 9Tiene usted razón
+         └─ NPC: Sí.
+
+└─ ROOT #2
+   NPC: ¡ EMBUSTERO ! ¡ Largo de mi humilde tienda !
+
+└─ ROOT #3
+   NPC: ¿ Si ?
+   ├─ [1] [FB-ONCE] =Sí.
+   │  ├─ NPC: Si, ¿ qué ?
+   │  ├─ [2] [FB-ONCE] ?Que sí
+   │  │  ├─ NPC: Pero que sí ¿ qué ?
+   │  │  ├─ [3] [FB-ONCE] ¿ Qué no ?
+   │  │  │  ├─ NPC: Si, pero ¿ por qué sí ?
+   │  │  │  ├─ [4] [FB-ONCE] C¿ Y por qué no ?
+   │  │  │  │  ├─ NPC: Pues... ¡ Y YO QUE SE !
+   │  │  │  │  ├─ [5] [FB-ONCE] EEntonces, si no lo sabe, calle
+   │  │  │  │  │  ├─ NPC: Sí
+   │  │  │  │  │  ├─ [6] [FB-ONCE] GSi, ¿ qué ?
+   │  │  │  │  │  │  ├─ NPC: Pues eso, que sí
+   │  │  │  │  │  │  ├─ [7] [FB-ONCE] I¿ Y por qué sí ?
+   │  │  │  │  │  │  │  ├─ NPC: Porque no, no... y yo que sé
+   │  │  │  │  │  │  │  ├─ [8] [FB-ONCE] K Ah, vale !
+   │  │  │  │  │  │  │  │  └─ NPC: Lo ve, hablando se entiende la gente
+   │  │  │  │  │  │  │  └─ [8] [FB-ONCE] M Pues no ! ¡ Ni hablar !
+   │  │  │  │  │  │  │     └─ NPC: Creo que no nos vamos a entender
+   │  │  │  │  │  │  └─ [7] [FB-ONCE] O¿ Y por qué no ?
+   │  │  │  │  │  │     └─ NPC: Porque sí, no... y yo que sé
+   │  │  │  │  │  └─ [6] [FB-ONCE] QNo, ¿ qué ?
+   │  │  │  │  │     └─ NPC: Pues eso, que no
+   │  │  │  │  └─ [5] [FB-ONCE] SEntonces, si no lo sabe, calle
+   │  │  │  │     └─ NPC: No
+   │  │  │  └─ [4] [FB-ONCE] U¿ Y por qué sí ?
+   │  │  │     └─ NPC: Pues... ¡ Y YO QUE SE !
+   │  │  └─ [3] [FB-ONCE] W¿ Qué sí ?
+   │  │     └─ NPC: No, pero ¿ por qué no ?
+   │  └─ [2] [FB-ONCE] YQue no
+   │     └─ NPC: Pero que no ¿ qué ?
+   ├─ [1] [FB-ONCE] [No.
+   │  └─ NPC: No, ¿ qué ?
+   ├─ [1] [F1-REPEAT] ]Lo siento. No tengo dinero
+   │  └─ NPC: Pues vuelva cuando lo tenga
+   ├─ [1] [FB-ONCE] _¿ Cree Vd. que me parezco a Elvis Preysler ?
+   │  ├─ NPC: No sé quien es esa señora. ¿ Quiere comprar algo ?
+   │  ├─ [2] [FB-ONCE] aSí
+   │  │  ├─ NPC: ¿ Qué ?
+   │  │  └─ [3] [FB-ONCE] cQue sí
+   │  │     ├─ NPC: Que sí, ¿ qué ?
+   │  │     └─ [4] [FB-ONCE] eQue sí quiero comprar algo
+   │  │        ├─ NPC: Sí, ¿ pero qué ?
+   │  │        ├─ [5] [FB-ONCE] g¿ Usted fia ?
+   │  │        │  └─ NPC: No [F0-GO_BACK]
+   │  │        └─ [5] [FB-ONCE] i¿ Usted regatea ?
+   │  │           └─ NPC: Sólo cuando juego a fútbol [F0-GO_BACK]
+   │  └─ [2] [FB-ONCE] kNo tengo dinero
+   │     └─ NPC: Vuelva cuando lo tenga
+   ├─ [1] [FB-ONCE] mHola, soy Elvis Preysler. ¿ No me regala nada ?
+   │  └─ NPC: No. [F0-GO_BACK]
+   └─ [1] [FB-ONCE] o¿ Es verdad que usted no paga impuestos ?
+      └─ NPC: ¡ Claro que sí, hacienda somos todos !
+
+└─ ROOT #4
+   NPC: ¿ Qué ? ¿ Ya tiene dinero ?
+   ├─ [1] [FB-ONCE] rSí, pero no quiero nada
+   │  ├─ NPC: ¿ Seguro ? ¿ No le apetece ninguno de mis productos ? Mañana suben de precio... cosas del déficit de nuestro país, la inflación y esas cosas...
+   │  ├─ [2] [FB-ONCE] tNo quiero nada
+   │  │  ├─ NPC: ¿ Está usted completamente seguro ?
+   │  │  └─ [3] [FB-ONCE] vCompletamente seguro
+   │  │     ├─ NPC: ¿ Seguro seguro ?
+   │  │     ├─ [4] [FB-ONCE] xCreo que sí...
+   │  │     │  └─ NPC: ¿ Seguro del todo ?
+   │  │     └─ [4] [FB-ONCE] zYo diría que sí, aunque...
+   │  │        ├─ NPC: No lo veo yo muy seguro
+   │  │        └─ [5] [FB-ONCE] éHombre... sí ... ¿ no ?
+   │  │           ├─ NPC: Yo diría que no lo tiene muy claro
+   │  │           └─ [6] [FB-ONCE] óHummm... sí...
+   │  │              ├─ NPC: O sea que no
+   │  │              └─ [7] [FB-ONCE] ñSí
+   │  │                 └─ NPC: Pídame, pues... [F0-GO_BACK]
+   │  ├─ [2] [FB-ONCE] ¡Hombre... tal vez si tuviese un libro que estoy buscando desde hace mucho tiempo
+   │  │  ├─ NPC: Diga, diga, no hay producto que se me resista. Si no lo tengo yo es que no existe
+   │  │  └─ [3] [FB-ONCE] úObra poética (1987-1996) de Raul
+   │  │     ├─ NPC: ¡ Vaya ! Veo que entiende de poesia... No me lo ha puesto fácil, es una obra muy difícil de encontrar,está agotado... pero ya le había dicho que lo que no pueda conseguir yo es que no existe. Mire... por casualidad aquí tengo la dirección donde puede solicitar este libro: Raul fans club C/Denia, 65, p.8, 46006-CIUTAT DE VALENCIA (SPAIN). Tlf. 96-3410088
+   │  │     ├─ [4] [FB-ONCE] ¡ Estoy impresionado ! Gracias
+   │  │     │  └─ NPC: No ha sido nada
+   │  │     ├─ [4] [FB-ONCE] No sabe el favor que me ha hecho...
+   │  │     │  └─ NPC: No ha sido nada
+   │  │     └─ [4] [FB-ONCE] Le estoy muy agradecido
+   │  │        └─ NPC: Para servirle
+   │  ├─ [2] [FB-ONCE] Quisiera Hennah roja para el pelo
+   │  │  ├─ NPC: Tenga. ¿ Quiere algo más ?
+   │  │  └─ [3] [FB-ONCE] ¿Tiene bayetas para frotar lámparas mágicas?
+   │  │     └─ NPC: Sí, aquí tiene. → ACTION 011F (287)
+   │  ├─ [2] [FB-ONCE] ¿ Tiene pirámides pequeñitas de recuerdo ?
+   │  │  └─ NPC: Aquí tiene. Y vaya por la sombra → ACTION 0120 (288)
+   │  ├─ [2] [FB-ONCE] ¿ Tiene chupa-chups de higo-chumbo ?
+   │  │  ├─ NPC: Tome. ¿ Algo más ?
+   │  │  └─ [3] [FB-ONCE] ¿ Tiene parches ?
+   │  │     └─ NPC: Sí, aquí tiene. → ACTION 0121 (289)
+   │  └─ [2] [FB-ONCE] Me gustaría un amuleto de escarabajo sagrado
+   │     ├─ NPC: Tenga. ¿ Desea algo más ?
+   │     └─ [3] [FB-ONCE] ¿ Tiene pegamento ?
+   │        └─ NPC: Sí, aquí tiene. → ACTION 0122 (290)
+   ├─ [1] [FB-ONCE] ¿ No será usted de Hacienda ?
+   │  └─ NPC: Hacienda somos todos.
+   └─ [1] [FB-ONCE] ¿ Y a usted qué le importa ?
+      └─ NPC: Perdone, no quería molestarle.
+
+└─ ROOT #5
+   NPC: Está cerrado. Sólo estoy tomando el fresco.
+
+
+================================================================================
+ACTION CODES FOUND IN THIS ROOM
+================================================================================
+
+  → ACTION 011E (286)  |  After: Aquí tiene.
+  → ACTION 011F (287)  |  After: Sí, aquí tiene.
+  → ACTION 0120 (288)  |  After: Aquí tiene. Y vaya por la sombra
+  → ACTION 0121 (289)  |  After: Sí, aquí tiene.
+  → ACTION 0122 (290)  |  After: Sí, aquí tiene.
+  → ACTION 0172 (370)  |  After: Gracias por su compra. Vuelva cuando quiera
+  → ACTION 0173 (371)  |  After: ¡ Muchas gracias ! Mire... le regalo este muñeco h
+
+Use these action codes for ScummVM implementation reference.
+See ACTION_DISPATCH_TABLES.md for handler details.
+
+================================================================================
+LEGEND
+================================================================================
+  [FB-ONCE]      = One-time choice (disabled after selection)
+  [F1-REPEAT]    = Repeatable choice (can be selected multiple times)
+  [FA-DISABLED]  = Already disabled choice
+  [F0-GO_BACK]   = Returns to parent menu after this response
+  [F4-END]       = Terminates conversation entirely
+  → ACTION XXXX  = Triggers action code XXXX
