@@ -225,6 +225,7 @@ budas = [
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 0,
+    "roomPalette": 10
   },
   {
     "BUDA": 18,
@@ -236,7 +237,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+    "roomPalette": 10
   },
   {
     "BUDA": 19,
@@ -248,7 +250,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+    "roomPalette": 10
   },
   {
     "BUDA": 20,
@@ -260,7 +263,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+    "roomPalette": 10
   },
   {
     "BUDA": 21,
@@ -272,7 +276,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+    "roomPalette": 10
   },
   {
     "BUDA": 22,
@@ -284,7 +289,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+    "roomPalette": 10
   },
   {
     "BUDA": 23,
@@ -296,7 +302,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+    "roomPalette": 11
   },
   {
     "BUDA": 24,
@@ -308,7 +315,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	  "offset" : 0
+	  "offset" : 0,
+    "roomPalette": 11
   },
   {
     "BUDA": 25,
@@ -320,7 +328,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	  "offset" : 0
+	  "offset" : 0,
+    "roomPalette": 11
   },
   {
     "BUDA": 26,
@@ -2786,6 +2795,34 @@ def save_bytes_as_png(data, palette, name, width):
 
     output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{budas[start_buda] + budas[offset]}.png'
     img.save(output_file)
+
+def load_room_palette_from_alfred1(room_num, alfred1_path="files/ALFRED.1"):
+    """Load the palette for a given room from ALFRED.1 (pair 11).
+    Returns a list of 768 ints (8-bit RGB) suitable for Image.putpalette().
+    """
+    import struct as _struct
+    ROOM_STRUCT_SIZE = 104
+    PAIR_11 = 11
+
+    with open(alfred1_path, 'rb') as f:
+        alfred1_data = f.read()
+
+    room_offset = room_num * ROOM_STRUCT_SIZE
+    pair_offset = room_offset + PAIR_11 * 8
+    offset = _struct.unpack('<I', alfred1_data[pair_offset:pair_offset+4])[0]
+    size   = _struct.unpack('<I', alfred1_data[pair_offset+4:pair_offset+8])[0]
+
+    if offset == 0 or size != 0x300:
+        raise ValueError(f"Room {room_num}: unexpected palette entry offset=0x{offset:X} size=0x{size:X}")
+
+    pal_raw = alfred1_data[offset:offset+768]
+    palette = []
+    for i in range(256):
+        palette.append(min(255, pal_raw[i*3]   * 4))
+        palette.append(min(255, pal_raw[i*3+1] * 4))
+        palette.append(min(255, pal_raw[i*3+2] * 4))
+    return palette
+
 def main():
     alfred7 = sys.argv[1] if len(sys.argv) > 1 else "ALFRED.7"
     output_dir = sys.argv[2] if len(sys.argv) > 2 else "alfred7"
@@ -2976,7 +3013,18 @@ def main():
       output_path_thisbuda = Path(f'{output_dir}/buda{budas[start_buda]["BUDA"]}_{budas[start_buda]["DESC"]}')
       output_path_thisbuda.mkdir(parents=True, exist_ok=True)
 
-      # Find nearest palette
+      # Check if this buda specifies a room palette from ALFRED.1
+      room_pal_idx = budas[start_buda].get("roomPalette")
+      room_palette_override = None
+      if room_pal_idx is not None:
+        try:
+          alfred1_path = "files/ALFRED.1"
+          room_palette_override = load_room_palette_from_alfred1(room_pal_idx, alfred1_path)
+          print(f'Using ALFRED.1 room {room_pal_idx} palette for buda {start_buda}')
+        except Exception as e:
+          print(f'WARNING: Could not load room palette {room_pal_idx}: {e}')
+
+      # Find nearest palette (used when no roomPalette override)
       pal_buda = 1000
       for p_idx in palettes.keys():
         if p_idx > start_buda and p_idx < pal_buda:
@@ -2992,7 +3040,13 @@ def main():
           print(f"SAVING BUDA {budas[start_buda]['BUDA']}-{curIndex}: as raw")
           with open(output_file, 'wb') as f:
             f.write(combined)
-      elif pal_buda and type != "RAW":
+      elif (pal_buda or room_palette_override is not None) and type != "RAW":
+        # Resolve final palette: roomPalette override takes priority
+        def _get_palette():
+          if room_palette_override is not None:
+            return room_palette_override
+          return palettes[pal_buda]
+
         # Check if this buda has multiple blocks defined
         blocks = budas[start_buda].get("blocks")
 
@@ -3025,7 +3079,7 @@ def main():
 
             # Create strip image
             img = Image.new('P', (strip_width, strip_height))
-            img.putpalette(palettes[pal_buda])
+            img.putpalette(_get_palette())
 
             # Place each frame side by side
             for frame_idx in range(block_nframes):
@@ -3035,7 +3089,7 @@ def main():
 
               # Create temporary frame image
               frame_img = Image.new('P', (block_width, block_height))
-              frame_img.putpalette(palettes[pal_buda])
+              frame_img.putpalette(_get_palette())
               frame_img.putdata(frame_pixels)
 
               # Paste into strip
@@ -3063,7 +3117,7 @@ def main():
             img_data += bytes([0] * (size - len(img_data)))
 
           img = Image.new('P', (width, height))
-          img.putpalette(palettes[pal_buda])
+          img.putpalette(_get_palette())
           img.putdata(img_data)
 
           output_file = output_path_thisbuda / f'buda{budas[start_buda]["BUDA"]}_offset_{start_offset}.png'
