@@ -89,7 +89,7 @@ data_segment_address = raw_address_in_instruction + 0x40000  (for MOV [addr] fix
 | 25 | 84 (photo) + 503 | — | 0x23892 | ITEM+HOTSPOT | Use photo at Egypt photo spot |
 | 26-28 | 85/86/90 + 506 (temple) | — | 0x2395D | ITEM+HOTSPOT | Give items at Egypt temple entrance |
 | 29 | 99 + 506 (temple) | — | 0x2446C | ITEM+HOTSPOT | Use item 99 at Egypt temple |
-| 30-31 | 91/92 + 601 (market) | — | 0x239DD | ITEM+HOTSPOT | Use Egypt tickets at market stall |
+| 30-31 | 91/92 + 601 (slave_1) | — | 0x239DD | ITEM+HOTSPOT | Give stone/mud (item 91=Egyptian stone, 92=mud) to first slave (room 41 pyramid). Animated stone-pass sequence. Counter [0x95D2] 0→3: at 2 slave sings (conv root 2), at 3 pyramid sticker + walkbox change (→5) written to disk. |
 | 32 | 97+97 (fight_item) | — | 0x23F03 | SELF-USE | Use fight item (fight cutscene) |
 | 33 | 614 (bazaar) + 86 (orange) | — | 0x23F83 | HOTSPOT+ITEM | Give oranges at bazaar |
 | 34 | 617 (pyramid) + 76 | — | 0x2413E | HOTSPOT+ITEM | Use item 76 at pyramid |
@@ -490,23 +490,63 @@ Used by 5 different item+temple combinations (items 85, 86, 90, 81 + hotspot 506
 
 ---
 
-### 0x239DD — Egypt Market Haggling (91/92 + 601) ⭐
+### 0x239DD — Give Stone to First Slave (Items 91/92 → Extra 601, Room 41) ⭐
 **Size**: 1175 bytes, 282 instructions | **Tags**: REMOVE_ITEM, ANIMATION, CONVERSATION, NPC_DIALOG, AUDIO, FIGHT, COMPLEX
 
-**Behavior**: Second largest handler. Complex Egypt market haggling/fight sequence with tickets:
+**Items**: 91 = "Una piedra egipcia para construir piramides" (Egyptian stone), 92 = "Un poco de barro" (mud/clay) — both treated identically.
+**Hotspot**: Extra 601 = first slave in room 41 (pyramid construction scene).
+
+**Behavior**: Complete pyramid stone-passing puzzle. Player gives a stone to the first slave, triggering an animated stone-passing sequence tracked by a delivery counter.
+
+**Phase 1 — Item removal**:
+- Checks for item 91 via `find_item_in_room_table(91)` → removes if found
+- Checks for item 92 via `find_item_in_room_table(92)` → removes if found
+
+**Phase 2 — Sprite loading**:
+- Allocate 0x158F8-byte buffer → decompress sprite from ALFRED.1 offset `0x167B54` (0x9728 bytes) via `decompress_rle_block` → stone-catch animation
+- Allocate 0xC180-byte buffer → decompress sprite from ALFRED.1 offset `0x17127C` (0x3824 bytes) → secondary slave animation
+
+**Phase 3 — Fight/pass animation**:
+- `play_fight_animation(file_offset=0x186DBC, size=0x24420, alfred_x=0, overlay_h=0x12A, w=0xD0, h=0x66, frames=7, mode=2, compressed=0, fullscreen=0, callback=0)` — 7-frame 208×102 stone-passing animation
+
+**Phase 4 — Sound loop**:
+- `play_ambient_sound` with handle from `[0x13204]` (channel 3), loop until `play_or_check_sound` returns done
+- `render_scene` + `process_game_state` + `setup_alfred_frame_from_state` each iteration
+
+**Phase 5 — Text and slave animation**:
+- `play_ambient_sound` (channel -1, vol 0x20)
+- `display_text_with_character_animation([0xBB10])` — slave's reaction text
+- Modify `room_sprite_data_ptr+0x5E` = new sprite data (stone-passing), animate until frame counter (`+0x78`) reaches 6
+
+**Phase 6 — Post-animation & counter**:
+- Stone delivery counter `[0x95D2]`:
+  - If `< 3`: increment
+  - If `== 2` after increment: `update_conversation_state(room=41, arg2=0, branch=2)` → slave advances to conversation root #2 (starts singing: "¡ Deesde Santuurce a Bilbaooo...!")
+  - If `== 3` after increment: **permanent state changes** (see below)
+
+**Phase 7 — Third stone (count=3, permanent)**:
+- Second slave animation until frame counter (`+0x78`) reaches 2
+- Set `room_sprite_data_ptr[+0x79] = 0xFF` (hide/complete slave sprite)
+- `write_data_to_alfred1` — persist slave "done" state
+- Set `[0xACEC] = 1` (global pyramid_stone_quest_complete flag)
+- `load_and_render_sticker_from_alfred6(offset=0x696AD, pos=0x2C1C)` — render pyramid sticker
+- Set `room_sprite_data_ptr[+0x213] = 5` — change walkbox count to 5 (new pyramid layout)
+- `write_data_to_alfred1` — persist walkbox count
 
 **Call flow** (key calls):
 ```
-process_game_state()
-allocate_memory()
-render_scene() × many          // animation loop
-play_fight_animation() × multiple
-play_get_naked_easter_egg(...)  // haggling dialog
-play_ambient_sound()
-play_or_check_sound()
-remove_inventory_item()
-update_conversation_state()
-play_sound()                    // market sounds
+find_item_in_room_table(91) → remove_inventory_item(91)
+find_item_in_room_table(92) → remove_inventory_item(92)
+allocate_memory(0x158F8) + allocate_memory(0xC180)
+file_seek/file_read + decompress_rle_block ×2   // load stone-pass sprites from ALFRED.1
+play_fight_animation(0x186DBC, 7 frames, 208×102)  // stone-toss animation
+play_ambient_sound ×2
+display_text_with_character_animation([0xBB10])   // slave reaction
+render_scene loop (wait for anim frame==6)
+update_conversation_state(41, 0, 2)               // if counter==2: slave sings
+// if counter==3:
+load_and_render_sticker_from_alfred6(0x696AD)     // pyramid grows
+write_data_to_alfred1 ×4                          // persist slave state + walkbox count
 ```
 
 ---
@@ -800,7 +840,7 @@ END LOOP
 | 0x2387E | 87+87 (museum pass) | — | ❌ Not implemented |
 | 0x23892 | 84+503 (photo spot) | — | ❌ Not implemented |
 | 0x2395D | 85/86/90/81+506 (temple) | — | ❌ Not implemented |
-| 0x239DD | 91/92+601 (market) | — | ❌ Not implemented |
+| 0x239DD | 91/92+601 (slave_1, room 41) | — | ✅ Implemented — `giveStoneToSlaves`: removes item 91 or 92, plays 7-frame animation, counter FLAG_ESCLAVO_CONTADOR_PIEDRAS (0→3): at 2: setCurrentRoot(41,2,0) (slave sings). At 3: addSticker(116,PERM) + FLAG_PIEDRAS_COGIDAS. TODO: slave reply text [0xBB10], sprite frame-6 wait, 5 walkboxes at count==3. |
 | 0x23F03 | 97+97 (fight) | — | ❌ Not implemented |
 | 0x23F83 | 86+614 (bazaar) | — | ❌ Not implemented |
 | 0x2413E | 76+617 (pyramid) | — | ❌ Not implemented |

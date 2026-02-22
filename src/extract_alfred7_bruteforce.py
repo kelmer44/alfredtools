@@ -216,7 +216,7 @@ budas = [
   },
   {
     "BUDA": 17,
-    "START_OFFSET": 212921,
+    "START_OFFSET": 212915,
     "TYPE": "SPRITE",
     "DESC": "PAREJA0",
     "WIDTH": 62,
@@ -1301,7 +1301,8 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
-	"offset" : 768
+	"offset" : 768,
+    "roomPalette" : 0,
   },
   {
     "BUDA": 107,
@@ -1314,6 +1315,7 @@ budas = [
     "isPalette" : True,
     "isContinued":  False,
 	  "offset" : 768,
+    "roomPalette" : 39,
     "blocks": [
       {
         "nFrames": 9,
@@ -1339,7 +1341,7 @@ budas = [
   },
   {
     "BUDA": 108,
-    "START_OFFSET": 1473364,
+    "START_OFFSET": 1473360,
     "TYPE": "ANIM",
     "DESC": "TIPOS BEBIENDO",
     "WIDTH": 152,
@@ -1347,7 +1349,8 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+  "roomPalette": 41
   },
   {
     "BUDA": 109,
@@ -1359,7 +1362,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+  "roomPalette": 41
   },
   {
     "BUDA": 110,
@@ -1383,7 +1387,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+  "roomPalette": 25
   },
   {
     "BUDA": 112,
@@ -1779,7 +1784,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+  "roomPalette": 0
   },
   {
     "BUDA": 145,
@@ -2235,7 +2241,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+  "roomPalette": 52
   },
   {
     "BUDA": 183,
@@ -2271,7 +2278,8 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+  "roomPalette": 0
   },
   {
     "BUDA": 186,

@@ -10,8 +10,8 @@ DESCRIPTIONS:
 
 ================================================================================
 
-└─ ROOT
-   NPC: ¿ Que deséa, Joven ? (root #1)
+└─ ROOT #0
+   NPC: ¿ Que deséa, Joven ?
    ├─ [1] [FB-ONCE] Creo que le llaman por teléfono
    │  ├─ NPC: Ya lo cogerá mi mujer. Yo estoy vigilando estas estupendas y sabrosas naranjas
    │  ├─ [2] [FB-ONCE] ¿Qué pasa? ¿Teme que las naranjas se vayan corriendo?
@@ -43,15 +43,15 @@ DESCRIPTIONS:
    │  │  │  │  │  │  │     │  │  │  ├─ [12] [FB-ONCE] ¿Cuanto vale?
    │  │  │  │  │  │  │     │  │  │  │  ├─ NPC: No se la puedo dar, es del extranjero que está en la cárcel. Se la estoy guardando
    │  │  │  │  │  │  │     │  │  │  │  └─ [13] [FB-ONCE] Si no quería comprarla, sólo preguntaba el precio
-   │  │  │  │  │  │  │     │  │  │  │     └─ NPC: Que simpático, haciéndome perder el tiempo → ACTION 014C
+   │  │  │  │  │  │  │     │  │  │  │     └─ NPC: Que simpático, haciéndome perder el tiempo → ACTION 014C (332)
    │  │  │  │  │  │  │     │  │  │  └─ [12] [FB-ONCE] ¿Para que sirve?
-   │  │  │  │  │  │  │     │  │  │     └─ NPC: Para comérsela o para beber → ACTION 014C
+   │  │  │  │  │  │  │     │  │  │     └─ NPC: Para comérsela o para beber → ACTION 014C (332)
    │  │  │  │  │  │  │     │  │  └─ [11] [FB-ONCE] Hay para matar al cocinero
-   │  │  │  │  │  │  │     │  │     └─ NPC: Es lo que hizo y por eso ahora está en la cárcel → ACTION 014C
+   │  │  │  │  │  │  │     │  │     └─ NPC: Es lo que hizo y por eso ahora está en la cárcel → ACTION 014C (332)
    │  │  │  │  │  │  │     │  └─ [10] [FB-ONCE] No me lo creo
-   │  │  │  │  │  │  │     │     └─ NPC: Hombre de poca fe. Ve a hablar con él si no te lo crees → ACTION 014C
+   │  │  │  │  │  │  │     │     └─ NPC: Hombre de poca fe. Ve a hablar con él si no te lo crees → ACTION 014C (332)
    │  │  │  │  │  │  │     └─ [9] [FB-ONCE] No me interesa esta historia
-   │  │  │  │  │  │  │        └─ NPC: Allá tú → ACTION 014C
+   │  │  │  │  │  │  │        └─ NPC: Allá tú → ACTION 014C (332)
    │  │  │  │  │  │  └─ [7] [FB-ONCE] Bueno, ¿me das un par de naranjas o no?
    │  │  │  │  │  │     └─ NPC: No [F0-GO_BACK]
    │  │  │  │  │  └─ [6] [FB-ONCE] Y eso, ¿por qué?
@@ -77,7 +77,7 @@ DESCRIPTIONS:
    │  │  │  │        │              └─ [12] [FB-ONCE] C¡CHINPON!
    │  │  │  │        │                 ├─ NPC: ¡Qué bonitos recuerdos me trae esta canción. Ah! aquella vida de mi infancia, el camino real a través de todas las épocas: sobrenaturalmente sobrio, más desinteresado que el mejor de los mendigos, orgulloso de no tener ni tierra natal ni amigos, menuda tontería era. ¡Y sólo ahora me doy cuenta! -Cuánta razón tuve al despreciar a esos pobres hombres que no despreciarían la ocasión de una carícia, parásitos de la decencia y de la salud de nuestras mujeres, sobre todo hoy que estan en desacuerdo con nosotros. Cuánta razón en todos y en cada uno de mis desdenes: ¡la prueba es que me evado! ¡ME EVADO! Me explico
    │  │  │  │        │                 ├─ [13] [FB-ONCE] EEso explícate porqué no te entiendo
-   │  │  │  │        │                 │  └─ NPC: Aún ayer, suspiraba: ¡Cielos! ¡Cómo si no fuéramos ya bastantes los condenados aquí abajo! ¡Llevo ya mucho tiempo en sus filas! Les conozco a todos. Nos reconocemos una y otra vez culpables, nos damos asco. Desconocemos la caridad. Pero somos educados: nuestras relaciones con el mundo son correctísimas. Pero gracias a tí, viajero, este minuto de despertar me ha otorgado la visión de la pureza. Toma estas naranjas y ve con Alá → ACTION 014A
+   │  │  │  │        │                 │  └─ NPC: Aún ayer, suspiraba: ¡Cielos! ¡Cómo si no fuéramos ya bastantes los condenados aquí abajo! ¡Llevo ya mucho tiempo en sus filas! Les conozco a todos. Nos reconocemos una y otra vez culpables, nos damos asco. Desconocemos la caridad. Pero somos educados: nuestras relaciones con el mundo son correctísimas. Pero gracias a tí, viajero, este minuto de despertar me ha otorgado la visión de la pureza. Toma estas naranjas y ve con Alá → ACTION 014A (330)
    │  │  │  │        │                 └─ [13] [FB-ONCE] GMejor te callas. Por un par de naranjas no quiero oir tanto rollo
    │  │  │  │        │                    └─ NPC: Ignorante. No sabes apreciar la buena poesía. Estas palabras las escribio un genio llamado Rimbaud. Yo sólo citaba
    │  │  │  │        └─ [7] [FB-ONCE] INo
@@ -105,9 +105,9 @@ DESCRIPTIONS:
    │  │  │  │  │        │  │  │  │  │  │  ├─ [14] [FB-ONCE] _¡Ay, de los que no dan limosna ni escuchan!
    │  │  │  │  │        │  │  │  │  │  │  │  ├─ NPC: ¿Cómor?
    │  │  │  │  │        │  │  │  │  │  │  │  ├─ [15] [FB-ONCE] a¡Ay, de los que no dan limosna ni escuchan!
-   │  │  │  │  │        │  │  │  │  │  │  │  │  └─ NPC: ¡Que tio más pesado! Lo que es capaz de hacer un perro cristiano por no pagar. ¡Coge un par de naranjas y lárgate de una vez! → ACTION 014A
+   │  │  │  │  │        │  │  │  │  │  │  │  │  └─ NPC: ¡Que tio más pesado! Lo que es capaz de hacer un perro cristiano por no pagar. ¡Coge un par de naranjas y lárgate de una vez! → ACTION 014A (330)
    │  │  │  │  │        │  │  │  │  │  │  │  └─ [15] [FB-ONCE] cEstoy harto de repetírselo. Adios, sordo.
-   │  │  │  │  │        │  │  │  │  │  │  │     └─ NPC: Adios, cotorra → ACTION 014B
+   │  │  │  │  │        │  │  │  │  │  │  │     └─ NPC: Adios, cotorra → ACTION 014B (331)
    │  │  │  │  │        │  │  │  │  │  │  └─ [14] [FB-ONCE] eCreo que estoy empezando a notar los primeros síntomas de escorbuto.
    │  │  │  │  │        │  │  │  │  │  │     ├─ NPC: Busca un médico
    │  │  │  │  │        │  │  │  │  │  │     └─ [15] [FB-ONCE] gCreo que me voy a morir
@@ -141,7 +141,7 @@ DESCRIPTIONS:
    │  │  │  │  │        │  │  │  │  │     └─ [14] [FB-ONCE] ¿Que te den butifarra
    │  │  │  │  │        │  │  │  │  │        ├─ NPC: ¿Cómor?
    │  │  │  │  │        │  │  │  │  │        └─ [15] [FB-ONCE] Hasta nunca
-   │  │  │  │  │        │  │  │  │  │           └─ NPC: ¡Hasta la vista, baby! → ACTION 014D
+   │  │  │  │  │        │  │  │  │  │           └─ NPC: ¡Hasta la vista, baby! → ACTION 014D (333)
    │  │  │  │  │        │  │  │  │  └─ [12] [FB-ONCE] Le decía que le voy a coger unas naranjas y que Alá se lo pague con hijos
    │  │  │  │  │        │  │  │  │     ├─ NPC: Eso mismo me dijeron los trece anteriores. Ahora tengo trece bocas que alimentar más la de mi mujer, la de mi suegra y la mía propia. Así que si no le importa "Al César lo que es del César y a Dios lo que es de Dios". Dejemos las creencias a un lado y hablemos de dinero...
    │  │  │  │  │        │  │  │  │     ├─ [13] [FB-ONCE] Vaya un comerciante instruido. Veo que conoce la Biblia
@@ -175,7 +175,7 @@ DESCRIPTIONS:
    │  │  │  │  │           │           │  │  ├─ [15] [FB-ONCE] Ya le he dicho que no tengo dinero
    │  │  │  │  │           │           │  │  │  ├─ NPC: Pero, ¿cuándo ha sido ese el problema? ¿No se ha inventado la venta a plazos, la facilidades de pago...? ¿no existen las casas de empeño, los prestamistas, los crditos, el robo, para obtenerlo? Sea ingenioso: veamos ¿qué me puede ofrecer?
    │  │  │  │  │           │           │  │  │  ├─ [16] [FB-ONCE] Un puñetazo en la mandíbula
-   │  │  │  │  │           │           │  │  │  │  └─ NPC: ¡Pero, hombre! Métase con los de su peso. Considerando su estatura y corpulencia y la mía, y considerando que fui campeón nacional de boxeo en la categoría de pesados, creo que tendría todas las de perder. No sólo perdería cualquier opción de compra sino que además lo único que obtendría es una buena paliza → ACTION 0150
+   │  │  │  │  │           │           │  │  │  │  └─ NPC: ¡Pero, hombre! Métase con los de su peso. Considerando su estatura y corpulencia y la mía, y considerando que fui campeón nacional de boxeo en la categoría de pesados, creo que tendría todas las de perder. No sólo perdería cualquier opción de compra sino que además lo único que obtendría es una buena paliza → ACTION 0150 (336)
    │  │  │  │  │           │           │  │  │  ├─ [16] [FB-ONCE] Un sincero apretón de manos
    │  │  │  │  │           │           │  │  │  │  ├─ NPC: En nuestro país es costumbre cerrar los tratos con un par de besos... pero, aparte de esas pequeñas diferencias culturales y agradeciéndole el detalle, ¿de cuánto dinero estamos hablando?
    │  │  │  │  │           │           │  │  │  │  ├─ [17] [FB-ONCE] La amistad no tiene precio
@@ -193,7 +193,7 @@ DESCRIPTIONS:
    │  │  │  │  │           │           │  │  │     ├─ [17] [FB-ONCE] Le doy todo lo que tengo en el bolsillo y en el hotel
    │  │  │  │  │           │           │  │  │     │  ├─ NPC: De acuerdo. La calabaza es tuya, pero antes me tienes que dar lo que llevas en el bolsillo. Depués ya me darás lo que tengas en el hotel.
    │  │  │  │  │           │           │  │  │     │  ├─ [18] [FB-ONCE] En el bolsillo ahora mismo no llevo nada, pero cuando quiera puede pasarse por el hotel y preguntar por Alfred Pelrock...
-   │  │  │  │  │           │           │  │  │     │  │  └─ NPC: De acuerdo → ACTION 014E
+   │  │  │  │  │           │           │  │  │     │  │  └─ NPC: De acuerdo → ACTION 014E (334)
    │  │  │  │  │           │           │  │  │     │  └─ [18] [FB-ONCE] En el bolsillo ahora mismo no llevo nada, pero cuando quiera puede pasarse por el hotel y preguntar por Elvis Preisler...
    │  │  │  │  │           │           │  │  │     │     └─ NPC: ¡Buen truco! Pero le ha salido mal. Resulta que soy un fan de Elvis Preisler y usted, aunque hay que reconocer que se le parece un poco, no tiene ni la mitad de su clase. El no iría por ahí gorroneando naranjas y calabazas. [F0-GO_BACK]
    │  │  │  │  │           │           │  │  │     ├─ [17] [FB-ONCE] Le doy todo lo que tengo en el bolsillo y un par de naranjas
@@ -233,7 +233,7 @@ DESCRIPTIONS:
    │  │  │  │  │           │           └─ [13] [FB-ONCE] ¡20 MONEDAS DE ORO! Menudo atraco...
    │  │  │  │  │           │              └─ NPC: Se hace lo que se puede. Es la constumbre en los sitios turísticos [F0-GO_BACK]
    │  │  │  │  │           ├─ [9] [FB-ONCE] Unas cuantas naranjas valencianas
-   │  │  │  │  │           │  └─ NPC: Tome las que quiera → ACTION 014F
+   │  │  │  │  │           │  └─ NPC: Tome las que quiera → ACTION 014F (335)
    │  │  │  │  │           └─ [9] [FB-ONCE] Su hija más hermosa y pura
    │  │  │  │  │              ├─ NPC: Sólo tengo hijos... Pero si no le importa la diferencia
    │  │  │  │  │              └─ [10] [FB-ONCE] Es una idea tentadora, pero en estos momentos de mi vida prefiero una mujer...
@@ -287,7 +287,7 @@ DESCRIPTIONS:
    │  │     ├─ [4] [FB-ONCE] Venga... arriésgate si tienes lo que les cuelga a los hombres entre las piernas
    │  │     │  ├─ NPC: ¿ Y no valen estos pollos o estos jamones que tengo colgados en el mostrador ? Los tengo muy baratos...
    │  │     │  └─ [5] [FB-ONCE] ¿ Pollos ? ¡ Tú lo que eres es un gallina ! ¡ Así que cierra el pico y dame unas naranjas o te pego un moco en el ojo !
-   │  │     │     └─ NPC: Sírvete tu mismo...¡ ah, y toma estos pañuelitos de papel, paisa ! Te los regalo. → ACTION 014F
+   │  │     │     └─ NPC: Sírvete tu mismo...¡ ah, y toma estos pañuelitos de papel, paisa ! Te los regalo. → ACTION 014F (335)
    │  │     └─ [4] [FB-ONCE] Con un escupitajo en el ojo
    │  │        ├─ NPC: Vaya tio más guarro
    │  │        ├─ [5] [FB-ONCE] Pues anda que tus orejas...
@@ -315,80 +315,80 @@ DESCRIPTIONS:
    └─ [1] [FB-ONCE] Sólo miraba
       └─ NPC: Mire, mire. De mirar no se paga Avíseme si desea algo
 
-└─ ROOT
+└─ ROOT #1
    NPC: ¡Hombre, con usted quería yo hablar! ¿Sabe que en el hotel no conocen a ningún Alfred Pelrock?
    └─ [1] [FB-ONCE] No habrá preguntado bien... Vuelva a intentarlo
-      └─ NPC: Es posible que me haya equivocado... Volveré a ver. ¿Alfred Pelrock, no? → ACTION 0151
+      └─ NPC: Es posible que me haya equivocado... Volveré a ver. ¿Alfred Pelrock, no? → ACTION 0151 (337)
 
-└─ ROOT
+└─ ROOT #2
    NPC: ¡Hombre, ahora que lo veo! He preguntado por usted en el hotel y no conocen a ningún Alfred Pelrock?
    └─ [1] [FB-ONCE] ¡Que poca memoria! En lugares donde la gente sólo está de paso los nombres se olvidan con facilidad. Insista
-      └─ NPC: De acuerdo insistiré → ACTION 0152
+      └─ NPC: De acuerdo insistiré → ACTION 0152 (338)
 
-└─ ROOT
+└─ ROOT #3
    NPC: ¡Hombre, a usted le estaba buscando! En el hotel no conocen a ningún Alfred Pelrock
    └─ [1] [FB-ONCE] ¿Seguro? ¿En qué hotel ha preguntado?
       ├─ NPC: No me venga con esas. En toda la ciudad sólo hay un hotel.
       └─ [2] [FB-ONCE] ¿Ha pregunatado por la mañana o por la tarde?
          ├─ NPC: Por la mañana.
          └─ [3] [FB-ONCE] ¡Pues claro! Vaya por la tarde... el chico del turno de la mañana no me debe de conocer porque como siempre salgo muy temprano antes que el entre... Vaya por la tarde.
-            └─ NPC: Lo volveré a intentar → ACTION 0153
+            └─ NPC: Lo volveré a intentar → ACTION 0153 (339)
 
-└─ ROOT
+└─ ROOT #4
    NPC: ¡Hombre, por fin lo encuentro! Ni por la mañana ni por la tarde. En el hotel no conocen a ningún Alfred Pelrock
    └─ [1] [FB-ONCE] ¿Ha preguntado en la comisaria?
-      └─ NPC: La verdad es que no → ACTION 0154
+      └─ NPC: La verdad es que no → ACTION 0154 (340)
 
-└─ ROOT
+└─ ROOT #5
    NPC: ¡Hombre, venga para acá! En el hotel no conocen a ningún Alfred Pelrock y en la comisaria tampoco.
    └─ [1] [FB-ONCE] Eso es bueno, ¿no? Quiere decir que no soy ningún delincuente. No sea desconfiado. ¿Ha buscado en objetos perdidos?
-      └─ NPC: La verdad es que no → ACTION 0155
+      └─ NPC: La verdad es que no → ACTION 0155 (341)
 
-└─ ROOT
+└─ ROOT #6
    NPC: ¡Hombre, con usted precisamente quería yo hablar! ¿Sabe que nadie en el hotel, en la comisaría y en objetos perdidos conocen a ningún Alfred Pelrock?
    └─ [1] [FB-ONCE] Conocer conocer, lo que se dice conocer, no
       ├─ NPC: Entonces, ¿qué hago?
       └─ [2] [FB-ONCE] ¿Ha probado ha preguntarlo con h?
-         └─ NPC: No había caido en eso. ¡Qué tonto soy! → ACTION 0156
+         └─ NPC: No había caido en eso. ¡Qué tonto soy! → ACTION 0156 (342)
 
-└─ ROOT
+└─ ROOT #7
    NPC: Ni con hache ni sin hache. En el hotel no conocen a nada que suene Halfred Pelrock...
    └─ [1] [FB-ONCE] Sí, sí lo que usted diga... Perdone pero tengo mucha prisa.
-      └─ NPC: ¡Pero, oiga! → ACTION 0157
+      └─ NPC: ¡Pero, oiga! → ACTION 0157 (343)
 
-└─ ROOT
+└─ ROOT #8
    NPC: Sabe, estoy empezando a sospechar que usted no se llama Alfred Pelrock...
    ├─ [1] [FB-ONCE] Perdón, pero tengo la comida en el fuego
-   │  └─ NPC: ¡Pero que morro! → ACTION 0158
+   │  └─ NPC: ¡Pero que morro! → ACTION 0158 (344)
    └─ [1] [FB-ONCE] ¿Tiene Casera? ¿No? adios, pues
-      └─ NPC: ¡VAYA TROLA! → ACTION 0158
+      └─ NPC: ¡VAYA TROLA! → ACTION 0158 (344)
 
-└─ ROOT
+└─ ROOT #9
    NPC: ¡Ah, usted! ¡Maldito perro cristiano! ¡Estafador! ¡Sinverguenza! ¡Desgraciado!
    ├─ [1] [FB-ONCE] Perdón, pero pierdo el autobús
-   │  └─ NPC: Asume tus deudas, ¡CANALLA! → ACTION 0159
+   │  └─ NPC: Asume tus deudas, ¡CANALLA! → ACTION 0159 (345)
    └─ [1] [FB-ONCE] ¡Paso, paso! ¡Que mañana me caso!
-      └─ NPC: ¡HUYE COBARDE! → ACTION 0159
+      └─ NPC: ¡HUYE COBARDE! → ACTION 0159 (345)
 
-└─ ROOT
+└─ ROOT #10
    NPC: ¡Mamón! ¡Cerdo! ¡Capullo! ¡Degenerado! ¡Le voy a partir ese melón que tiene sobre los hombros!
    ├─ [1] [FB-ONCE] Lo siento, pero tengo el coche aparcado en doble fila...
-   │  └─ NPC: ¡Mentiroso! → ACTION 015A
+   │  └─ NPC: ¡Mentiroso! → ACTION 015A (346)
    └─ [1] [FB-ONCE] Perdón, pero pierdo el autobús
-      └─ NPC: ¡HUYE COBARDE! → ACTION 015A
+      └─ NPC: ¡HUYE COBARDE! → ACTION 015A (346)
 
-└─ ROOT
+└─ ROOT #11
    NPC: ¡Hombre, usted! ¿Qué? ¿Están buenas las naranjas, gorrón de mierda?
    ├─ [1] [FB-ONCE] ¿Tiene Casera? ¿No? adios, pues
-   │  └─ NPC: ¡Pero que morro! → ACTION 015B
+   │  └─ NPC: ¡Pero que morro! → ACTION 015B (347)
    └─ [1] [FB-ONCE] Perdón, pero tengo la comida en el fuego
-      └─ NPC: ¡VAYA TROLA! → ACTION 015B
+      └─ NPC: ¡VAYA TROLA! → ACTION 015B (347)
 
-└─ ROOT
+└─ ROOT #12
    NPC: ¡Otra vez usted! Encima recochineo... ¡será CANALLA!
 
-└─ ROOT
-   NPC: Es usted extranjero. ¿ verdad ? Sí, se nota enseguida. (root #2)
+└─ ROOT #13
+   NPC: Es usted extranjero. ¿ verdad ? Sí, se nota enseguida.
    ├─ [1] [FB-ONCE] ¡ Sí !. ¿ Como lo ha notado ?
    │  ├─ NPC: Por el olfato. Los extranjeros desprendéis un tufo repelente
    │  ├─ [2] [FB-ONCE] Tú si que hueles muy mal
@@ -424,17 +424,17 @@ DESCRIPTIONS:
    │     │  │     └─ [6] [FB-ONCE] No obstante, voy a preguntarle...
    │     │  │        ├─ NPC: Seguro que le tima
    │     │  │        └─ [7] [FB-ONCE] Anda, desde aquí veo que tiene unas naranjas con muy buena pinta
-   │     │  │           └─ NPC: ¿Buena pinta? Pero si estan medio podridas. Las mías si que son deliciosas → ACTION 015F
+   │     │  │           └─ NPC: ¿Buena pinta? Pero si estan medio podridas. Las mías si que son deliciosas → ACTION 015F (351)
    │     │  ├─ [4] [FB-ONCE] Creo que usted los necesita más que yo...
    │     │  │  └─ NPC: Le falla a usted el olfato, joven [F0-GO_BACK]
    │     │  └─ [4] [FB-ONCE] No me interesa... ¿no tendrá usted naranjas?
    │     │     ├─ NPC: Sí, tengo unas estupendas naranjas, riquísimas y sabrosísimas y bla, porque bla y bla, bla, bla...
    │     │     ├─ [5] [FB-ONCE] ¿Son valencianas?
-   │     │     │  └─ NPC: No, son israelíes → ACTION 015F
+   │     │     │  └─ NPC: No, son israelíes → ACTION 015F (351)
    │     │     ├─ [5] [FB-ONCE] ¿Son marroquíes?
-   │     │     │  └─ NPC: No, son israelíes → ACTION 015F
+   │     │     │  └─ NPC: No, son israelíes → ACTION 015F (351)
    │     │     └─ [5] [FB-ONCE] ¿Son israelíes?
-   │     │        └─ NPC: No... digo sí, sí... son israelíes → ACTION 015F
+   │     │        └─ NPC: No... digo sí, sí... son israelíes → ACTION 015F (351)
    │     └─ [3] [FB-ONCE] ¿Cuanto cuestan?
    │        ├─ NPC: 30 monedas de oro
    │        ├─ [4] [FB-ONCE] Demasiado caro
@@ -460,11 +460,11 @@ DESCRIPTIONS:
    │        │  │  │  └─ [7] [FB-ONCE] No, gracias. Me gustaría ver los CD-Roms
    │        │  │  │     ├─ NPC: Tengo uno de un juego llamado : Alfred Pelrock Pero mejor consigue la versión pirata y así te ahorras un dinero. Un primo mío te la puede grabar por menos de una cuarta parta de su precio...
    │        │  │  │     ├─ [8] [FB-ONCE] Sí de acuerdo
-   │        │  │  │     │  └─ NPC: ¡QUE TE DEN MORCILLA! ¡POR PIRATA! → ACTION 015C
+   │        │  │  │     │  └─ NPC: ¡QUE TE DEN MORCILLA! ¡POR PIRATA! → ACTION 015C (348)
    │        │  │  │     └─ [8] [FB-ONCE] No, creo que no es ni legal ni ético
    │        │  │  │        ├─ NPC: Sí tiene razón ¿Qué sería de los creadores del juego? ¿De qué vivirían los guionistas que tanta tinta han gastado en hacer los diálogos? ¿Con qué mantendrían a sus famílias los dibujantes que nos han creado? ¿Que sería de los programadores informáticos que tanta dedicación y tazas de café han dedicado para que tú ahora estes jugando?
    │        │  │  │        └─ [9] [FB-ONCE] Ya, pero los juegos en CD-ROM son un poco caros...
-   │        │  │  │           └─ NPC: No es culpa de los creativos. Los comerciantes, intermediarios y distribuidoras somos unos ladrones. Son las cosas del capitalismo. → ACTION 015E
+   │        │  │  │           └─ NPC: No es culpa de los creativos. Los comerciantes, intermediarios y distribuidoras somos unos ladrones. Son las cosas del capitalismo. → ACTION 015E (350)
    │        │  │  ├─ [6] [FB-ONCE] ¿ Y esos pins ?
    │        │  │  │  └─ NPC: Es que les tengo mucho cariño [F0-GO_BACK]
    │        │  │  └─ [6] [FB-ONCE] La verdad es que no quiero nada. Adios
@@ -480,9 +480,9 @@ DESCRIPTIONS:
    ├─ [1] [FB-ONCE] ¡ No, que va ! Soy de aquí. Es que mi madre se entendía con un marine...
    │  └─ NPC: ¡Ya decía yo que olía usted tan mal!
    └─ [1] [FB-ONCE] Ni Dios ni patria ni rey
-      └─ NPC: ¡SALUD COMPAíERO! → ACTION 015D
+      └─ NPC: ¡SALUD COMPAíERO! → ACTION 015D (349)
 
-└─ ROOT
+└─ ROOT #14
    NPC: ¡SALUD COMPAíERO!
 
 

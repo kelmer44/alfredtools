@@ -22,7 +22,7 @@ int extractAlfred5()
     fclose(fp1);
 
     // Decode and export each entry using lodepng
-    for (int j = 0; j < 55; ++j)
+    for (int j = 0; j < 56; ++j)
     {
         unsigned int offset = bufferFile[j * 6] + (bufferFile[(j * 6) + 1] * 256) + (bufferFile[(j * 6) + 2] * 65536);
         unsigned int ww = 640; // as in original comment
