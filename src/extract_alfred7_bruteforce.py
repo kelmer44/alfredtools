@@ -2445,7 +2445,29 @@ budas = [
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : True,
     "isContinued":  False,
-	   "offset" : 0
+	   "offset" : 0,
+     "blocks": [
+      {
+        "nFrames": 2,
+        "width": 114,
+        "height": 189
+      },
+       {
+        "nFrames": 3,
+        "width": 42,
+        "height": 26
+      },
+          {
+        "nFrames": 3,
+        "width": 93,
+        "height": 71
+      },
+         {
+        "nFrames": 2,
+        "width": 55,
+        "height": 65
+      },
+    ]
   },
   {
     "BUDA": 195,
