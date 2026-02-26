@@ -1404,7 +1404,7 @@ budas = [
   },
   {
     "BUDA": 113,
-    "START_OFFSET": 1749470,
+    "START_OFFSET": 1749464,
     "TYPE": "ANIM",
     "DESC": "ALFREDAGACHA",
     "WIDTH": 95,
@@ -1538,13 +1538,70 @@ budas = [
     "BUDA": 124,
     "START_OFFSET": 2214756,
     "TYPE": "IMAGE",
-    "DESC": "UNKNOWN",
+    "DESC": "CDCONTROLS",
     "WIDTH": 213,
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	  "offset" : 0,
+    "blocks": [
+      {
+        "nFrames": 1,
+        "width": 213,
+        "height": 72
+      },
+      {
+        "nFrames": 1,
+        "width": 37,
+        "height": 26
+      },
+      {
+        "nFrames": 1,
+        "width": 37,
+        "height": 26
+      },
+      {
+        "nFrames": 1,
+        "width": 33,
+        "height": 23
+      },
+      {
+        "nFrames": 1,
+        "width": 33,
+        "height": 23
+      },
+         {
+        "nFrames": 1,
+        "width": 34,
+        "height": 28
+      },
+       {
+        "nFrames": 1,
+        "width": 34,
+        "height": 28
+      },
+     {
+        "nFrames": 1,
+        "width": 38,
+        "height": 24
+      },
+      {
+        "nFrames": 1,
+        "width": 38,
+        "height": 24
+      },
+      {
+        "nFrames": 1,
+        "width": 41,
+        "height": 28
+      },
+      {
+        "nFrames": 1,
+        "width": 41,
+        "height": 28
+      }
+    ]
   },
   {
     "BUDA": 125,
@@ -1668,7 +1725,7 @@ budas = [
   },
   {
     "BUDA": 135,
-    "START_OFFSET": 2253652,
+    "START_OFFSET": 2253856,
     "TYPE": "IMAGE",
     "DESC": "OTROLIBRO",
     "WIDTH": 640,
@@ -1676,7 +1733,7 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  True,
-	"offset" : 0
+	  "offset" : 0
   },
   {
     "BUDA": 136,
@@ -2450,16 +2507,39 @@ direct = [
   {
     "start": 3186048,
     "width": 20,
-    "height": 20,
-    "nframes": 2
+    "height": 60,
+    "nframes": 1
   },
   {
-    "start": 3187348,
-    "width": 28,
-    "height": 28,
-    "nframes": 2
+    "start": 3187248,
+    "width": 20,
+    "height": 60,
+    "nframes": 1
   },
-
+  {
+     "start": 3188448,
+    "width": 28,
+    "height": 44,
+    "nframes": 1
+  },
+  {
+     "start": 3189680,
+    "width": 28,
+    "height": 44,
+    "nframes": 1
+  },
+  {
+     "start": 3190912,
+    "width": 28,
+    "height": 44,
+    "nframes": 1
+  },
+  {
+     "start": 3192144,
+    "width": 28,
+    "height": 44,
+    "nframes": 1
+  },
   {
     "start": 212745,
     "width": 11,

@@ -71,8 +71,8 @@ def detect_format(data):
         return ('st3_module', 0, 0)  # Don't convert, just copy
 
     # Silence/placeholder (all zeros or very small)
-    if len(data) <= 100:
-        return ('silence', 11025, 0)
+    # if len(data) <= 100:
+    #     return ('silence', 11025, 0)
 
     # Raw 8-bit signed PCM (first bytes are audio samples, typically around 0x7f-0x81)
     if 0x70 <= byte0 <= 0x90 or byte0 == 0x00:
@@ -162,10 +162,10 @@ def extract_sounds(sonidos_path, output_dir):
         # Determine output filename
         stem = Path(name).stem
 
-        if fmt == 'silence' or size <= 100:
-            print(f"{i+1:3d} {name:<20} {size:>8} {'SKIP':<12} {'-':>6} {'(silence/placeholder)':<25}")
-            skip_count += 1
-            continue
+        # if fmt == 'silence' or size <= 100:
+        #     print(f"{i+1:3d} {name:<20} {size:>8} {'SKIP':<12} {'-':>6} {'(silence/placeholder)':<25}")
+        #     skip_count += 1
+        #     continue
 
         if fmt == 'st3_module':
             # Copy ST3 file as-is

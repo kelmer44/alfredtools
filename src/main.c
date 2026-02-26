@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     // extractAlfredAnims();
     // extractAlfred3();
     // extractAlfred4();
-    extractAlfred5();
+    // extractAlfred5();
     extractAlfred6();
     // extractAlfred7();
     // extractAlfred9();

@@ -174,9 +174,10 @@ def extract_descriptions(data: bytes, sprite_count: int, hotspot_count: int) -> 
 
         pos += 4  # Skip item_id and header bytes
 
-        # Read text until FD
+        # Read text until FD or next FF (some descriptions end with F8 XX XX
+        # rather than FD; guard against walking into the next description block)
         text = ""
-        while pos < len(data) and data[pos] != CTRL_END_TEXT:
+        while pos < len(data) and data[pos] != CTRL_END_TEXT and data[pos] != CTRL_DESC_START:
             char = decode_byte(data[pos])
             if char:
                 text += char

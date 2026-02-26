@@ -173,8 +173,8 @@ def detect_format(data):
                 sample_rate = rate
         return ('ail_other', sample_rate, 80)
 
-    if len(data) <= 100:
-        return ('silence', 11025, 0)
+    # if len(data) <= 100:
+    #     return ('silence', 11025, 0)
 
     return ('raw_pcm', 11025, 0)
 
@@ -231,8 +231,8 @@ def extract_sound_to_wav(sound_name, sonidos_index, output_path):
 
     sound_data = sonidos_index[sound_name_upper]['data']
 
-    if len(sound_data) <= 100:
-        return None, "Silence/placeholder"
+    # if len(sound_data) <= 100:
+    #     return None, "Silence/placeholder"
 
     fmt, sample_rate, header_size = detect_format(sound_data)
 

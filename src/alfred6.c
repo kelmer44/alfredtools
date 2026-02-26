@@ -52,7 +52,7 @@ int tablapaletas[140]=
 	51,52,53,54,
 	1, 1,
 	1,
-	1,1,1
+	48,48,48
 };
 
 int extractAlfred6()
