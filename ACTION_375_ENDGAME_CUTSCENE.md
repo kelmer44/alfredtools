@@ -63,7 +63,7 @@ handler_action_375() {
 
     // === EXIT SEQUENCE (phase == 5) ===
 
-    // 1. Render final sticker (pegatina_offsets[111] = 0x693C8, 741 bytes)
+    // 1. Render final sticker (pegatina[115] = 0x693C8, 741 bytes)
     load_and_render_sticker_from_alfred6(offset=0x693C8, size=0x2E5);
 
     // 2. Display text with voice
@@ -145,18 +145,56 @@ Called during exit with parameters `(al=1, dl=1, bl=0, cl=0)`. This is a general
 
 ---
 
-## Data Tables (Runtime / BSS)
+## Data Tables (Initialized Data in EXE)
 
-These tables are at BSS addresses (below `0x10000`), populated when room 52 is loaded:
+**Important**: The raw disassembly shows unrelocated addresses (e.g., `0xb82c`). The actual runtime addresses are `+0x40000` (data segment base), so `0xb82c` → `0x4b82c`. These are **initialized data** baked into `JUEGO.EXE`, not BSS.
 
-| Address | Stride | Count | Description |
-|---------|--------|-------|-------------|
-| `0xb82c` | 4 bytes | 5 | Line x1 coordinates (one per phase) |
-| `0xb82e` | 4 bytes | 5 | Line y1 coordinates (one per phase) |
-| `0xb840` | 4 bytes | 5 | Line x2 base coordinates (one per phase) |
-| `0xb842` | 4 bytes | 5 | Line y2 / color parameter (one per phase) |
-| `0xb810` | 1 byte | 5+ | Sticker index lookup (maps phase → sticker data index) |
-| `0xb2f1` | 7 bytes | 20 | Sticker entries: `[offset:4][size:2][extra:1]` from ALFRED.6 |
+### Line Drawing Coordinates (virtual `0x4b82c`)
+
+Each phase draws 19 lines from `(x1, y1)` to `(x2_base + line_index, y2)`:
+
+| Phase | x1  | y1  | x2_base | y2  | Sprite Animated |
+|-------|-----|-----|---------|-----|-----------------|
+| 0     | 57  | 176 | 301     | 322 | Sprite 1 (slot 3) |
+| 1     | 138 | 159 | 283     | 292 | Sprite 2 (slot 4) |
+| 2     | 213 | 156 | 325     | 277 | Sprite 3 (slot 5) |
+| 3     | 460 | 163 | 370     | 292 | Sprite 4 (slot 6) |
+| 4     | 530 | 167 | 353     | 320 | Sprite 5 (slot 7) |
+
+Line `n` (0–18) draws from `(x1, y1)` to `(x2_base + n, y2)`, creating a fan effect.
+
+### Sticker Phase Mapping (virtual `0x4b810`)
+
+The lookup table maps each phase to a **local sticker index** within room 52's sticker set (pegatina indices 105–115):
+
+| Phase | Local Index | Global Pegatina | ALFRED.6 Offset |
+|-------|-------------|-----------------|-----------------|
+| 0     | 8           | 113             | `0x068A76`      |
+| 1     | 9           | 114             | `0x068F30`      |
+| 2     | 5           | 110             | `0x067DDE`      |
+| 3     | 6           | 111             | `0x068115`      |
+| 4     | 7           | 112             | `0x0684E3`      |
+| Final | 10          | 115             | `0x0693C8`      |
+
+Stickers are rendered **cumulatively**: phase 0 shows sticker 113, phase 4 shows stickers 113+114+110+111+112, then the final sticker 115 is added in the exit sequence.
+
+### Sticker File Offset Table (virtual `0x4b2f1`, stride 7)
+
+This is a sub-table for room 52 containing 11 entries (one per room 52 sticker):
+
+| Local | Global | Offset     | Size  |
+|-------|--------|------------|-------|
+| 0     | 105    | `0x0670D7` | 682   |
+| 1     | 106    | `0x067381` | 552   |
+| 2     | 107    | `0x0675A9` | 582   |
+| 3     | 108    | `0x0677EF` | 681   |
+| 4     | 109    | `0x067A98` | 838   |
+| 5     | 110    | `0x067DDE` | 823   |
+| 6     | 111    | `0x068115` | 974   |
+| 7     | 112    | `0x0684E3` | 1427  |
+| 8     | 113    | `0x068A76` | 1210  |
+| 9     | 114    | `0x068F30` | 1176  |
+| 10    | 115    | `0x0693C8` | 741   |
 
 ---
 
@@ -203,7 +241,7 @@ The handler accesses byte at offset **0x21** (33 decimal) within the sprite stru
 | Sprite slots 3–7 animated | Room 52 sprites (indices 105–115 in pegatina tables). Use existing sprite animation system |
 | `draw_line()` Bresenham | `Graphics::drawLine()` or manual Bresenham on `ManagedSurface` |
 | `load_and_render_sticker_from_alfred6()` | `_res->getSticker(index)` — already implemented |
-| Final sticker (offset `0x693C8`) | `_res->getSticker(111)` — `pegatina_offsets[111] = 0x693C8` |
+| Final sticker (offset `0x693C8`) | `_res->getSticker(115)` — `pegatina_offsets[115] = 0x693C8` |
 | `memcpy_wrapper()` 256KB | `Surface::copyFrom()` or `memcpy()` on the 640×400 buffer |
 | `play_ambient_sound()` | `_sound->playSound(...)` |
 | `wait_or_process_input(0x167)` | Game loop iteration — process events, update animations, render |
@@ -214,20 +252,35 @@ The handler accesses byte at offset **0x21** (33 decimal) within the sprite stru
 
 ---
 
+## Room 52 Sprite Info
+
+Room 52 has **8 sprites** (pair 10 data). The cutscene animates sprites at **slots 3–7** (real sprite indices 1–5):
+
+| Slot | Index | x   | y   | w   | h   | Frames | Speed | zOrder | Role in Cutscene |
+|------|-------|-----|-----|-----|-----|--------|-------|--------|------------------|
+| 2    | 0     | 50  | 240 | 102 | 118 | 13     | 2     | 255    | Main scene sprite |
+| **3** | **1** | **41** | **143** | **46** | **72** | **3** | **3** | **255** | **Phase 0** |
+| **4** | **2** | **108** | **135** | **53** | **49** | **3** | **3** | **255** | **Phase 1** |
+| **5** | **3** | **193** | **139** | **41** | **36** | **3** | **3** | **255** | **Phase 2** |
+| **6** | **4** | **440** | **142** | **53** | **58** | **3** | **3** | **255** | **Phase 3** |
+| **7** | **5** | **499** | **142** | **72** | **58** | **3** | **3** | **255** | **Phase 4** |
+| 8    | 6     | 83  | 57  | 147 | 88  | 3      | 1     | 10     | Background detail |
+| 9    | 7     | 438 | 56  | 114 | 93  | 3      | 1     | 10     | Background detail |
+
 ## Room 52 Sticker Info
 
-Room 52 owns stickers **105–115** (11 stickers) in the `pegatina_rooms[]` table. The endgame cutscene uses a subset of these during its 5 phases, plus sticker **111** as the final overlay.
+Room 52 owns stickers **105–115** (11 stickers). The cutscene uses 5 during phases (113, 114, 110, 111, 112) and sticker **115** as the final overlay.
 
-| Sticker Index | ALFRED.6 Offset | Room |
-|--------------|----------------|------|
-| 105 | `0x067A98` | 52 |
-| 106 | `0x067DDE` | 52 |
-| 107 | `0x068115` | 52 |
-| 108 | `0x0684E3` | 52 |
-| 109 | `0x068A76` | 52 |
-| 110 | `0x068F30` | 52 |
-| **111** | **`0x0693C8`** | **52** ← final sticker |
-| 112 | `0x0696AD` | 52 |
-| 113 | `0x06C2C9` | 52 |
-| 114 | `0x06C84D` | 52 |
-| 115 | `0x07095D` | 52 |
+| Sticker Index | ALFRED.6 Offset | Size  | Role |
+|--------------|-----------------|-------|------|
+| 105 | `0x0670D7` | 682   | |
+| 106 | `0x067381` | 552   | |
+| 107 | `0x0675A9` | 582   | |
+| 108 | `0x0677EF` | 681   | |
+| 109 | `0x067A98` | 838   | |
+| 110 | `0x067DDE` | 823   | Phase 2 sticker |
+| 111 | `0x068115` | 974   | Phase 3 sticker |
+| 112 | `0x0684E3` | 1427  | Phase 4 sticker |
+| 113 | `0x068A76` | 1210  | Phase 0 sticker |
+| 114 | `0x068F30` | 1176  | Phase 1 sticker |
+| **115** | **`0x0693C8`** | **741** | **Final sticker** |
