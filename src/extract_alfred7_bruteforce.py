@@ -2471,10 +2471,10 @@ budas = [
   },
   {
     "BUDA": 195,
-    "START_OFFSET": 3527454,
+    "START_OFFSET": 3783454,
     "TYPE": "IMAGE",
     "DESC": "CREDITOS",
-    "WIDTH": 480,
+    "WIDTH": 240,
     "START": "FINAL",
     "OFFSET RLE DEC": "UNKNOWN",
     "isPalette" : False,
@@ -3078,10 +3078,10 @@ def main():
                 img.save(output_file)
 
 
-    for start_buda in range(len(budas) - 1):
+    for start_buda in range(len(budas)):
       # Use the original 'budas' list for metadata, and 'buda_offsets' for file offsets
       start_offset = budas[start_buda]["START_OFFSET"]
-      next_offset = budas[start_buda + 1]["START_OFFSET"]
+      next_offset = budas[start_buda + 1]["START_OFFSET"] if start_buda + 1 < len(budas) else 0x00367EF0
       width =  budas[start_buda]["WIDTH"]
       isPalette = budas[start_buda]["isPalette"]
       isContinued = budas[start_buda]["isContinued"]
