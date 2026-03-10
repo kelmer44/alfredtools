@@ -22,7 +22,7 @@ Date: Session 2025 (spanning multiple prompts)
 
 ## 1. Fix: `-Wglobal-constructors` Warning on `noBook`
 
-**File:** `engines/pelrock/computer.h`  
+**File:** `engines/pelrock/computer.h`
 **Problem:** `static const LibraryBook noBook` at file scope triggered `-Wglobal-constructors` because `LibraryBook` contains `Common::StringArray` and `Common::String` members with non-trivial destructors. At file scope, these require hidden `__cxa_atexit` registration — a global constructor.
 
 **Fix:** Removed the unused `noBook` entirely. No code referenced it anywhere in the codebase.
@@ -33,7 +33,7 @@ Date: Session 2025 (spanning multiple prompts)
 
 ## 2. Fix: Object-Use-with-Alfred Bug
 
-**File:** `engines/pelrock/pelrock.cpp` (popup handling section, ~line 625)  
+**File:** `engines/pelrock/pelrock.cpp` (popup handling section, ~line 625)
 **Problem:** When the player long-pressed on Alfred and selected ITEM from the action popup, the inventory overlay appeared. Selecting an item then called `walkAndAction(_currentHotspot, ITEM)`, but `_currentHotspot` was `nullptr` because Alfred (not a hotspot) triggered the popup. This caused the action to silently fail — objects could never be used on Alfred.
 
 **Root Cause:** The popup handler checked `_currentHotspot != nullptr` before routing to `walkAndAction`, but never checked the Alfred-specific case. When `_actionPopupState.isAlfredUnder` was true, no valid code path existed for item use.
@@ -285,7 +285,7 @@ Full build successful with `make -j4`.
 
 ## 8. Fix: Egypt Travel Position
 
-**File:** `engines/pelrock/pelrock.cpp` (`travelToEgypt()`, ~line 303)  
+**File:** `engines/pelrock/pelrock.cpp` (`travelToEgypt()`, ~line 303)
 **Problem:** After the Egypt travel animation, Alfred appeared at incorrect position (172, 388) — snapped to walkbox 0 instead of the correct location.
 
 ### Root Cause
