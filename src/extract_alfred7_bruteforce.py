@@ -2021,8 +2021,40 @@ budas = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  True,
-	"offset" : 0
+    "isContinued":  False,
+	  "offset" : 0,
+  #   "blocks": [
+  #   {
+  #     "nFrames": 1,
+  #     "width": 66,
+  #     "height": 64
+  #   },
+  #    {
+  #     "nFrames": 1,
+  #     "width": 66,
+  #     "height": 28
+  #   },
+  #    {
+  #     "nFrames": 1,
+  #     "width": 66,
+  #     "height": 64
+  #   },
+  #   {
+  #     "nFrames": 1,
+  #     "width": 66,
+  #     "height": 28
+  #   },
+  #       {
+  #     "nFrames": 1,
+  #     "width": 66,
+  #     "height": 64
+  #   },
+  # {
+  #     "nFrames": 1,
+  #     "width": 66,
+  #     "height": 28
+  #   },
+  # ]
   },
   {
     "BUDA": 160,
@@ -2033,7 +2065,7 @@ budas = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  True,
+    "isContinued":  False,
 	"offset" : 0
   },
   {
@@ -2045,7 +2077,7 @@ budas = [
     "START": "0",
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
-    "isContinued":  True,
+    "isContinued":  False,
 	"offset" : 0
   },
   {
@@ -2323,7 +2355,19 @@ budas = [
     "OFFSET RLE DEC": "COMPLETO",
     "isPalette" : False,
     "isContinued":  False,
-	"offset" : 0
+	"offset" : 0,
+  "blocks": [
+      {
+        "nFrames": 2,
+        "width": 36,
+        "height": 28
+      },
+      {
+        "nFrames": 2,
+        "width": 31,
+        "height": 28
+      },
+  ]
   },
   {
     "BUDA": 185,
@@ -2596,6 +2640,12 @@ direct = [
     "start": 3571440,
     "width": 16,
     "height": 18,
+    "nframes": 1
+  },
+  {
+    "start": 3193376,
+    "width": 81,
+    "height": 34,
     "nframes": 1
   }
 ]
@@ -3078,7 +3128,7 @@ def main():
                 img.save(output_file)
 
 
-    for start_buda in range(len(budas)):
+    for start_buda in range(len(budas) - 1):
       # Use the original 'budas' list for metadata, and 'buda_offsets' for file offsets
       start_offset = budas[start_buda]["START_OFFSET"]
       next_offset = budas[start_buda + 1]["START_OFFSET"] if start_buda + 1 < len(budas) else 0x00367EF0
